@@ -170,7 +170,7 @@ def main() -> None:
     # We want to plot: mean_edge_correlation, same_sector_edge_ratio, same_subsector_edge_ratio, average_clustering
     # Only for 'original' and 'group_mode'
     plot_df = topo_df[topo_df["matrix_type"].isin(["original", "group_mode"])].copy()
-    plot_df["Group"] = plot_df["network_type"] + " " + plot_df["matrix_type"].str.capitalize()
+    plot_df["Group"] = plot_df["network_type"] + " " + plot_df["matrix_type"].map({"original": "Original", "group_mode": "Group Mode"})
     
     metrics = [
         ("mean_edge_correlation", "Mean Edge Correlation"),
@@ -180,8 +180,8 @@ def main() -> None:
     ]
     
     # Custom colors
-    palette_13 = {"MST Original": "#1f77b4", "MST Group_mode": "#aec7e8", 
-                  "PMFG Original": "#d62728", "PMFG Group_mode": "#ff9896"}
+    palette_13 = {"MST Original": "#1f77b4", "MST Group Mode": "#aec7e8", 
+                  "PMFG Original": "#d62728", "PMFG Group Mode": "#ff9896"}
     
     for i, (col, title) in enumerate(metrics):
         ax = axes13[i]
@@ -203,7 +203,7 @@ def main() -> None:
     
     # Figure 14 - Hub Rank Comparison (Horizontal Bar Chart)
     # PMFG Original vs Group Mode Top 10 Betweenness
-    fig14, axes14 = plt.subplots(1, 2, figsize=(16, 8), facecolor="white")
+    fig14, axes14 = plt.subplots(1, 2, figsize=(18, 8), facecolor="white")
     
     # PMFG Original Top 10
     pmfg_orig_top = hub_df.sort_values("betweenness_pmfg_original", ascending=False).head(10)
@@ -218,14 +218,22 @@ def main() -> None:
         ax.barh(df_top["symbol"], df_top[val_col], color=colors, edgecolor="black", linewidth=0.5)
         ax.set_title(title, fontsize=14, fontweight="bold")
         ax.set_xlabel("Betweenness Centrality")
+        # Compute axis range for relative offset
+        max_val = df_top[val_col].max()
+        offset = max_val * 0.03  # 3% of max value
         for i, (val, sec) in enumerate(zip(df_top[val_col], df_top["sector"])):
-            ax.text(val + 0.005, i, f" {sec}", va='center', fontsize=9, fontstyle='italic', alpha=0.7)
+            # Truncate long sector names
+            sec_short = sec if len(str(sec)) <= 20 else str(sec)[:18] + "…"
+            ax.text(val + offset, i, f" {sec_short}", va='center', fontsize=8,
+                    fontstyle='italic', alpha=0.7, clip_on=True)
+        # Pad x-axis to fit labels
+        ax.set_xlim(right=max_val * 1.6)
             
-    plot_hbar(axes14[0], pmfg_orig_top, "betweenness_pmfg_original", "PMFG Original - Top 10 Betweenness")
-    plot_hbar(axes14[1], pmfg_grp_top, "betweenness_pmfg_group_mode", "PMFG Group Mode - Top 10 Betweenness")
+    plot_hbar(axes14[0], pmfg_orig_top, "betweenness_pmfg_original", "PMFG Original — Top 10 Betweenness")
+    plot_hbar(axes14[1], pmfg_grp_top, "betweenness_pmfg_group_mode", "PMFG Group/Sector Mode — Top 10 Betweenness")
     
     plt.suptitle("Hub Shift: Impact of RMT Filtering on Network Centrality", fontsize=18, fontweight="bold")
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
     
     f14_pdf = FIGURES_DIR / "vector" / "figure_14_network_hub_rank_comparison.pdf"
     f14_png = FIGURES_DIR / "preview" / "figure_14_network_hub_rank_comparison.png"

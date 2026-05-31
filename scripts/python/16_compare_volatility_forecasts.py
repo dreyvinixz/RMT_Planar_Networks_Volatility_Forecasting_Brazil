@@ -21,12 +21,37 @@ FIGURE_PREVIEW_DIR.mkdir(parents=True, exist_ok=True)
 def plot_figure_16(comp_df):
     print("Generating Figure 16 (Model Comparison)...")
     test_df = comp_df[comp_df["split"] == "test"].copy()
-    
-    # Clean up model names for plotting
+
+    # Keep the best feature set for each ML model/horizon and label it explicitly.
+    # This avoids ambiguous labels such as "Random Forest (Set)".
+    classical_df = test_df[test_df["feature_set"] == "Classical"].copy()
+    ml_df = test_df[test_df["feature_set"] != "Classical"].copy()
+    ml_rank = (
+        ml_df.groupby(["horizon", "model", "feature_set"], as_index=False)["QLIKE"]
+        .mean()
+        .sort_values(["horizon", "model", "QLIKE"])
+    )
+    best_sets = ml_rank.drop_duplicates(["horizon", "model"])[["horizon", "model", "feature_set"]]
+    ml_df = ml_df.merge(best_sets, on=["horizon", "model", "feature_set"], how="inner")
+    test_df = pd.concat([classical_df, ml_df], ignore_index=True)
+
+    def feature_set_short(value: str) -> str:
+        if value.startswith("Set A"):
+            return "Set A"
+        if value.startswith("Set B"):
+            return "Set B"
+        if value.startswith("Set C"):
+            return "Set C"
+        return value
+
     test_df["model_display"] = test_df["model"]
-    # If ML model, append Feature Set
     ml_mask = test_df["feature_set"] != "Classical"
-    test_df.loc[ml_mask, "model_display"] = test_df.loc[ml_mask, "model"] + "\n(" + test_df.loc[ml_mask, "feature_set"].str.split(" ").str[0] + ")"
+    test_df.loc[ml_mask, "model_display"] = (
+        test_df.loc[ml_mask, "model"]
+        + "\n("
+        + test_df.loc[ml_mask, "feature_set"].map(feature_set_short)
+        + ")"
+    )
     
     # Average across symbols
     agg_df = test_df.groupby(["horizon", "model_display"])["QLIKE"].mean().reset_index()

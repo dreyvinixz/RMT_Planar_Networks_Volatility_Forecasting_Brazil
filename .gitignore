@@ -11,3 +11,5 @@ outputs/tables/*.xlsx
 
 .DS_Store
 Thumbs.db
+
+article/

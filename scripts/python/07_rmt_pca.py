@@ -184,7 +184,7 @@ def main() -> None:
     ax.hist(eigvals_desc, bins=bins, density=True, color="steelblue", alpha=0.6, edgecolor="white", label="Empirical Eigenvalues")
     x_mp = np.linspace(lambda_min, lambda_max, 500)
     y_mp = marcenko_pastur_pdf(x_mp, Q, sigma2)
-    ax.plot(x_mp, y_mp, color="darkred", linewidth=2, label="Marčenko-Pastur distribution")
+    ax.plot(x_mp, y_mp, color="darkred", linewidth=2, label="Marcenko-Pastur distribution")
     ax.axvline(lambda_max, color="black", linestyle="--", linewidth=1, label=f"$\lambda_{{max}} = {lambda_max:.2f}$")
     ax.axvline(largest_eigenvalue, color="dimgrey", linestyle=":", linewidth=1, label=f"Market Mode = {largest_eigenvalue:.2f}")
     ax.set_xscale("log")
@@ -241,7 +241,7 @@ def main() -> None:
                 title_str = f"Eigenvector 1 ($\lambda = {df_rank['eigenvalue'].iloc[0]:.2f}$) | Market Mode"
             else:
                 top_sec = sector_summary_df[sector_summary_df["eigen_rank"] == rank].sort_values("sum_abs_loading", ascending=False).iloc[0]["sector"]
-                title_str = f"Eigenvector {rank} ($\lambda = {df_rank['eigenvalue'].iloc[0]:.2f}$) | Dominant Sector: {top_sec}"
+                title_str = f"Eigenvector {rank} ($\lambda = {df_rank['eigenvalue'].iloc[0]:.2f}$) | Largest loadings: {top_sec}"
                 
             ax.set_title(title_str, fontsize=11, pad=5)
             ax.axhline(0, color="black", linewidth=0.8)
