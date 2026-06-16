@@ -262,103 +262,120 @@ def main() -> None:
     # ---------------------------------------------------------
     print("\nGenerating Figure 15...")
     plt.rcParams["font.family"] = "serif"
-    fig, ax = plt.subplots(figsize=(16, 12), facecolor="white")
-    
-    # Layout (Spring, tuned)
-    # Using absolute weight so negative correlations don't repel in spring_layout (if networkx version handles negative weights poorly)
-    pos_weights = {(u, v): abs(d['weight']) for u, v, d in G.edges(data=True)}
-    nx.set_edge_attributes(G, pos_weights, 'abs_weight')
-    pos = nx.spring_layout(G, seed=42, k=0.8, iterations=1500, weight='abs_weight')
-    
-    # Node Sizes
-    vols = [d.get("total_financial_volume", 0) for n, d in G.nodes(data=True)]
-    if max(vols) > min(vols):
-        min_v = min(vols)
-        max_v = max(vols)
-        # Scale between 200 and 3000
-        node_sizes = [200 + 2800 * ((v - min_v) / (max_v - min_v))**0.5 for v in vols]
-    else:
-        node_sizes = [500] * G.number_of_nodes()
-        
-    # Node Colors
+    fig, ax = plt.subplots(figsize=(12.5, 9.5), facecolor="white")
+
+    # Deterministic layout with stronger separation than the previous free spring plot.
+    abs_weights = {(u, v): abs(d["weight"]) for u, v, d in G.edges(data=True)}
+    nx.set_edge_attributes(G, abs_weights, "abs_weight")
+    pos = nx.spring_layout(G, seed=12, k=1.85, iterations=3500, weight="abs_weight")
+
+    # Normalize coordinates to a stable plotting box.
+    xs = np.array([p[0] for p in pos.values()])
+    ys = np.array([p[1] for p in pos.values()])
+    x_mid, y_mid = (xs.min() + xs.max()) / 2, (ys.min() + ys.max()) / 2
+    span = max(xs.max() - xs.min(), ys.max() - ys.min())
+    pos = {n: ((x - x_mid) / span, (y - y_mid) / span) for n, (x, y) in pos.items()}
+
+    node_sizes = []
     node_colors = []
     for n, d in G.nodes(data=True):
-        sec = d.get("sector", "Unknown")
-        node_colors.append(CUSTOM_PALETTE.get(sec, "#aaaaaa"))
-        
-    # Draw Edges
+        n_assets = float(d.get("n_assets", 1))
+        node_sizes.append(240 + 170 * np.sqrt(n_assets))
+        node_colors.append(CUSTOM_PALETTE.get(d.get("sector", "Unknown"), "#aaaaaa"))
+
+    edge_abs = np.array([abs(d["mean_dependency"]) for _, _, d in G.edges(data=True)])
+    edge_min = edge_abs.min() if len(edge_abs) else 0.0
+    edge_max = edge_abs.max() if len(edge_abs) else 1.0
+
     for u, v, d in G.edges(data=True):
         dep = abs(d["mean_dependency"])
-        width = 0.5 + 3.0 * dep
-        alpha = 0.25 + 0.35 * dep # max 0.6
-        
-        same_sec = d["same_sector"]
-        if same_sec:
-            sec_u = G.nodes[u].get("sector", "Unknown")
-            base_col = CUSTOM_PALETTE.get(sec_u, "#aaaaaa")
+        scaled = (dep - edge_min) / (edge_max - edge_min + 1e-12)
+        width = 0.35 + 2.4 * scaled
+        alpha = 0.18 + 0.45 * scaled
+
+        if d["same_sector"]:
+            base_col = CUSTOM_PALETTE.get(G.nodes[u].get("sector", "Unknown"), "#777777")
         else:
-            base_col = "#999999"
-            
-        col = to_rgba(base_col, alpha=alpha)
-        
+            base_col = "#8a8a8a"
+
         nx.draw_networkx_edges(
-            G, pos,
+            G,
+            pos,
             edgelist=[(u, v)],
             ax=ax,
             width=width,
-            edge_color=[col],
-            connectionstyle="arc3,rad=0.2",
-            arrows=True,
-            arrowstyle="-"
+            edge_color=[to_rgba(base_col, alpha=alpha)],
         )
-        
-    # Draw Nodes
+
     nx.draw_networkx_nodes(
-        G, pos,
+        G,
+        pos,
         ax=ax,
         node_size=node_sizes,
         node_color=node_colors,
-        edgecolors="white",
-        linewidths=1.0,
-        alpha=0.9
+        edgecolors="#ffffff",
+        linewidths=1.1,
+        alpha=0.95,
     )
-    
-    # Draw Labels
-    for n in G.nodes():
-        x, y = pos[n]
+
+    # Place labels just outside the node centers to reduce node-label collisions.
+    for n, (x, y) in pos.items():
+        vec = np.array([x, y])
+        norm = np.linalg.norm(vec)
+        if norm == 0:
+            offset = np.array([0.0, 0.035])
+        else:
+            offset = 0.035 * vec / norm
+        lx, ly = x + offset[0], y + offset[1]
         ax.text(
-            x, y,
+            lx,
+            ly,
             n,
-            fontsize=9,
-            fontfamily="serif",
-            fontweight="bold",
-            color="black",
+            fontsize=6.9,
+            color="#1f1f1f",
             ha="center",
             va="center",
-            bbox=dict(facecolor="white", edgecolor="none", alpha=0.6, pad=0.1, boxstyle="round,pad=0.1")
+            bbox=dict(facecolor="white", edgecolor="#dddddd", linewidth=0.25, alpha=0.82, pad=0.18),
         )
-        
-    ax.set_title("B3 Subsector Aggregated Dependency Network", fontsize=18, fontweight="bold", pad=20)
+
     ax.axis("off")
-    
-    # Legend
-    all_sectors = set([d.get("sector", "Unknown") for n, d in G.nodes(data=True)])
-    handles = []
-    for sec in sorted(list(all_sectors)):
-        if sec != "Unknown":
-            patch = mpatches.Patch(color=CUSTOM_PALETTE.get(sec, "#aaaaaa"), label=sec)
-            handles.append(patch)
-            
+    ax.set_aspect("equal")
+
+    all_sectors = sorted({d.get("sector", "Unknown") for _, d in G.nodes(data=True) if d.get("sector") != "Unknown"})
+    sector_handles = [
+        mpatches.Patch(color=CUSTOM_PALETTE.get(sec, "#aaaaaa"), label=sec)
+        for sec in all_sectors
+    ]
+    edge_handles = [
+        plt.Line2D([0], [0], color="#8a8a8a", lw=0.6, alpha=0.35, label="weaker dependency"),
+        plt.Line2D([0], [0], color="#8a8a8a", lw=2.4, alpha=0.65, label="stronger dependency"),
+    ]
+
     fig.legend(
-        handles=handles,
+        handles=sector_handles,
         loc="lower center",
-        ncol=len(handles) // 2 + 1 if len(handles) > 5 else len(handles),
-        bbox_to_anchor=(0.5, 0.02),
+        bbox_to_anchor=(0.5, 0.045),
         frameon=False,
-        fontsize=12
+        fontsize=8,
+        ncol=3,
+        title="Macro-sector",
+        title_fontsize=8,
     )
-    
-    plt.tight_layout(rect=[0, 0.08, 1, 0.95])
+    ax.legend(
+        handles=edge_handles,
+        loc="upper right",
+        frameon=False,
+        fontsize=8,
+        title="Edge weight",
+        title_fontsize=8,
+    )
+
+    xs = [p[0] for p in pos.values()]
+    ys = [p[1] for p in pos.values()]
+    ax.set_xlim(min(xs) - 0.13, max(xs) + 0.13)
+    ax.set_ylim(min(ys) - 0.13, max(ys) + 0.13)
+
+    plt.tight_layout(rect=[0, 0.13, 1, 1])
     
     pdf_path = FIGURES_DIR / "vector" / "figure_15_subsector_dependency_network.pdf"
     png_path = FIGURES_DIR / "preview" / "figure_15_subsector_dependency_network.png"
