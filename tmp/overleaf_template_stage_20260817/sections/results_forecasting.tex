@@ -1,0 +1,88 @@
+\section{Volatility forecasting}
+\label{sec:forecasting}
+
+\subsection{Forecasting dataset and temporal split}
+
+We evaluate whether RMT and network features contain additional information for realized-volatility forecasting. The experiment is deliberately conservative. It uses PETR4, VALE3 and BBDC4 as target assets and compares machine-learning models with simple neural extensions. The data are split temporally: training covers 2006--2017, validation covers 2018--2020 and testing covers 2021--2025. This temporal split is designed to reduce look-ahead bias and to evaluate model selection on observations later than those used for training. Because some network and RMT features are based on static or slowly changing structures, the forecasting experiment is an added-information test, not a fully real-time trading design.
+
+\subsection{Machine-learning and deep-learning models}
+
+The machine-learning models use three nested feature sets in an ablation design. Set~A contains standard lagged return and volatility features. Set~B adds market and RMT variables. Set~C adds MST and PMFG network variables. This nesting allows the experiment to assess whether network structure adds information beyond lagged-volatility persistence and broad market/RMT features.
+
+The deep-learning extension uses two simple architectures. The MLP is a tabular neural regressor trained on the same feature sets as the machine-learning models. The CNN-1D uses short rolling windows of return and volatility variables. Both neural models use positive-output regression for realized volatility. These models are included as an incremental extension, not as a claim that the neural architecture has been optimized for this market.
+
+\subsection{Out-of-sample model comparison}
+
+Figure~\ref{fig:forecast_comparison} summarizes out-of-sample QLIKE loss, and Table~\ref{tab:forecast_comparison} reports the aggregated test-set metrics. Lower QLIKE is better. For each model and horizon, the reported feature set is selected using the validation period and then evaluated on the test period.
+
+\begin{center}
+\includegraphics[
+  width=\linewidth,
+  height=0.58\textheight,
+  keepaspectratio
+]{images/figure_16_volatility_forecast_model_comparison.pdf}
+\captionof{figure}{Volatility forecasting comparison for machine-learning and deep-learning models. Labels show the validation-selected feature set for each model and horizon.}
+\label{fig:forecast_comparison}
+\end{center}
+
+At the 5-day horizon, Random Forest with Set~C obtains the lowest average test QLIKE among the validation-selected models. Ridge, CNN-1D and MLP remain close in MAE and RMSE, but the QLIKE ranking favours the network-augmented Random Forest. This suggests that PMFG and MST variables can add useful information for short-horizon variance-sensitive evaluation, although the differences are descriptive.
+
+At the 20-day horizon, Ridge with Set~C obtains the lowest average test QLIKE, while CNN-1D gives competitive MAE, RMSE and out-of-sample $R^2$. The MLP has relatively low MAE and RMSE but weaker QLIKE, indicating that it can track average volatility levels while still producing less favourable variance-proxy loss. Overall, the forecasting evidence supports an incremental interpretation: network and RMT features can help, but the gains depend on the model, horizon and evaluation metric.
+
+\begin{center}
+\captionof{table}{Aggregated test-set forecasting comparison (2021--2025). Values are averaged across PETR4, VALE3 and BBDC4 after validation-based model selection.}
+\label{tab:forecast_comparison}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lllrrrr}
+\toprule
+Horizon & Model & Feature set & MAE & RMSE & QLIKE & $R^2_{\mathrm{oos}}$ \\
+\midrule
+5 & Random Forest & Set C (+Network) & 0.0161 & 0.0227 & $-5.2508$ & 0.1989 \\
+5 & Ridge & Set C (+Network) & 0.0146 & 0.0214 & $-5.2303$ & 0.2774 \\
+5 & HistGradientBoosting & Set C (+Network) & 0.0168 & 0.0234 & $-5.2228$ & 0.1477 \\
+5 & CNN-1D & Sequence window & 0.0143 & 0.0213 & $-5.2098$ & 0.2886 \\
+5 & MLP & Set A (Classical) & 0.0138 & 0.0210 & $-5.2095$ & 0.3046 \\
+20 & Ridge & Set C (+Network) & 0.0219 & 0.0309 & $-3.8812$ & 0.3803 \\
+20 & CNN-1D & Sequence window & 0.0205 & 0.0306 & $-3.8552$ & 0.3951 \\
+20 & Random Forest & Set C (+Network) & 0.0264 & 0.0368 & $-3.8455$ & 0.1667 \\
+20 & HistGradientBoosting & Set C (+Network) & 0.0265 & 0.0371 & $-3.8417$ & 0.1685 \\
+20 & MLP & Set B (+Market/RMT) & 0.0213 & 0.0305 & $-3.4271$ & 0.3726 \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+\noindent\footnotesize\emph{Notes:} MAE is mean absolute error, RMSE is root mean squared error, QLIKE is the variance-proxy loss defined in Section~\ref{subsec:evaluation_method}, and $R^2_{\mathrm{oos}}$ is computed relative to the training-sample mean benchmark. Set~A contains standard return and volatility predictors, Set~B adds market/RMT variables, and Set~C adds MST/PMFG network features.
+
+\normalsize
+
+\subsection{Realized vs predicted volatility checks}
+
+Aggregate metrics can hide important time-series behaviour. Figure~\ref{fig:realized_vs_predicted} compares realized 20-day volatility with the validation-selected machine-learning or deep-learning forecast for PETR4, VALE3 and BBDC4. We include this plot in the main text because it illustrates how the selected model tracks changing volatility regimes.
+
+\begin{center}
+\includegraphics[
+  width=0.95\linewidth,
+  height=0.58\textheight,
+  keepaspectratio
+]{images/figure_17_realized_vs_predicted_volatility.pdf}
+\captionof{figure}{Realized versus predicted 20-day volatility for the validation-selected machine-learning or deep-learning model. The vertical dashed line marks the beginning of the 2021--2025 test period.}
+\label{fig:realized_vs_predicted}
+\end{center}
+
+The plots suggest that broad volatility regimes are tracked reasonably well, but extreme spikes remain difficult to forecast. This matches the aggregate results: flexible models can be competitive, but lagged volatility remains the main source of predictive information. The network variables should therefore be read as complementary structural predictors rather than replacements for time-series volatility information.
+
+\subsection{Feature importance and network signal}
+
+Random Forest feature importance gives a model-specific check of which predictors contribute most to the fitted model. Figure~\ref{fig:feature_importance} shows that standard volatility features dominate the model. Rolling absolute returns, lagged realized volatility, rolling volatility and EWMA variables carry most of the importance.
+
+\begin{center}
+\includegraphics[
+  width=0.95\linewidth,
+  height=0.58\textheight,
+  keepaspectratio
+]{images/figure_18_ml_feature_importance.pdf}
+\captionof{figure}{Feature importance for Random Forest volatility forecasting models. Standard volatility predictors dominate the selected rankings, while selected PMFG-based and sector/subsector variables appear with smaller but nonzero importance in the network-augmented feature set.}
+\label{fig:feature_importance}
+\end{center}
+
+The strongest features are rolling absolute return over 20 days, lagged realized volatility and longer rolling volatility measures. Network features have smaller importance values than standard volatility predictors, but selected PMFG variables enter the top-ranked predictors, especially at the 20-day horizon. Because Random Forest importance measures can be affected by correlation among predictors, these rankings are model checks, not causal measures of variable relevance. In summary, topology does not replace lagged-volatility features, but it may add structural information when included in a broader feature set.

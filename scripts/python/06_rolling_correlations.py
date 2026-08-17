@@ -139,7 +139,7 @@ def plot_dynamic_pairwise(df_pairs: pd.DataFrame, pdf_path: Path, png_path: Path
     for ax, pair in zip(axes, pairs):
         data = df_pairs[df_pairs["pair"] == pair]
         
-        ax.plot(data["date"], data["pearson_20d"], color="lightblue", linewidth=0.45, alpha=0.25, label="P.Corr. 20d")
+        ax.plot(data["date"], data["pearson_20d"], color="#7db7dc", linewidth=0.60, alpha=0.60, label="P.Corr. 20d")
         ax.plot(data["date"], data["pearson_60d"], color="steelblue", linewidth=0.80, alpha=0.95, label="P.Corr. 60d")
         ax.plot(data["date"], data["ewma"], color="darkred", linewidth=0.95, linestyle="--", alpha=1.00, label="EWMA")
         

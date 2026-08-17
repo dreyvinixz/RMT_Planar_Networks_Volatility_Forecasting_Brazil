@@ -236,12 +236,18 @@ def main() -> None:
             
             bars = ax.bar(df_rank["symbol"].astype(str), df_rank["loading"], color="darkgray", edgecolor="none")
             
-            # Title logic
-            if rank == 1:
-                title_str = f"Eigenvector 1 ($\lambda = {df_rank['eigenvalue'].iloc[0]:.2f}$) | Market Mode"
-            else:
-                top_sec = sector_summary_df[sector_summary_df["eigen_rank"] == rank].sort_values("sum_abs_loading", ascending=False).iloc[0]["sector"]
-                title_str = f"Eigenvector {rank} ($\lambda = {df_rank['eigenvalue'].iloc[0]:.2f}$) | Largest loadings: {top_sec}"
+            # The non-market modes are relative contrasts, not pure sector factors.
+            mode_labels = {
+                1: "Market-wide mode",
+                2: "Mining/steel versus utilities",
+                3: "Financials versus industrial/consumer",
+                4: "TELEBRAS share-class component",
+                5: "Utilities versus mixed sectors",
+            }
+            title_str = (
+                f"Eigenvector {rank} ($\lambda = {df_rank['eigenvalue'].iloc[0]:.2f}$) "
+                f"| {mode_labels.get(rank, 'Candidate localized component')}"
+            )
                 
             ax.set_title(title_str, fontsize=11, pad=5)
             ax.axhline(0, color="black", linewidth=0.8)

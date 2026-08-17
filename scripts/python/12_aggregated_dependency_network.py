@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+import textwrap
 
 import numpy as np
 import pandas as pd
@@ -262,42 +263,53 @@ def main() -> None:
     # ---------------------------------------------------------
     print("\nGenerating Figure 15...")
     plt.rcParams["font.family"] = "serif"
-    fig, ax = plt.subplots(figsize=(12.5, 9.5), facecolor="white")
+    fig, ax = plt.subplots(figsize=(18, 12), facecolor="white")
 
-    # Deterministic layout with stronger separation than the previous free spring plot.
-    abs_weights = {(u, v): abs(d["weight"]) for u, v, d in G.edges(data=True)}
-    nx.set_edge_attributes(G, abs_weights, "abs_weight")
-    pos = nx.spring_layout(G, seed=12, k=1.85, iterations=3500, weight="abs_weight")
+    edge_abs_weight = {(u, v): abs(d["mean_dependency"]) for u, v, d in G.edges(data=True)}
+    nx.set_edge_attributes(G, edge_abs_weight, "abs_weight")
 
-    # Normalize coordinates to a stable plotting box.
+    # A wide, deterministic spring layout makes the subsector graph read closer
+    # to the PMFG visual language used in Figure 12.
+    pos = nx.spring_layout(G, seed=42, k=1.15, iterations=5000, weight="abs_weight", scale=3.4)
     xs = np.array([p[0] for p in pos.values()])
     ys = np.array([p[1] for p in pos.values()])
     x_mid, y_mid = (xs.min() + xs.max()) / 2, (ys.min() + ys.max()) / 2
-    span = max(xs.max() - xs.min(), ys.max() - ys.min())
-    pos = {n: ((x - x_mid) / span, (y - y_mid) / span) for n, (x, y) in pos.items()}
+    x_span = xs.max() - xs.min()
+    y_span = ys.max() - ys.min()
+    pos = {
+        n: (
+            1.30 * (x - x_mid) / max(x_span, 1e-12),
+            0.88 * (y - y_mid) / max(y_span, 1e-12),
+        )
+        for n, (x, y) in pos.items()
+    }
 
     node_sizes = []
     node_colors = []
     for n, d in G.nodes(data=True):
         n_assets = float(d.get("n_assets", 1))
-        node_sizes.append(240 + 170 * np.sqrt(n_assets))
+        node_sizes.append(420 + 245 * np.sqrt(n_assets))
         node_colors.append(CUSTOM_PALETTE.get(d.get("sector", "Unknown"), "#aaaaaa"))
 
     edge_abs = np.array([abs(d["mean_dependency"]) for _, _, d in G.edges(data=True)])
     edge_min = edge_abs.min() if len(edge_abs) else 0.0
     edge_max = edge_abs.max() if len(edge_abs) else 1.0
 
-    for u, v, d in G.edges(data=True):
+    edge_list = sorted(G.edges(data=True), key=lambda item: abs(item[2]["mean_dependency"]))
+    for edge_idx, (u, v, d) in enumerate(edge_list):
         dep = abs(d["mean_dependency"])
         scaled = (dep - edge_min) / (edge_max - edge_min + 1e-12)
-        width = 0.35 + 2.4 * scaled
-        alpha = 0.18 + 0.45 * scaled
+        width = 0.25 + 3.1 * scaled
+        alpha = 0.12 + 0.52 * scaled
 
         if d["same_sector"]:
             base_col = CUSTOM_PALETTE.get(G.nodes[u].get("sector", "Unknown"), "#777777")
         else:
-            base_col = "#8a8a8a"
+            base_col = "#9a9a9a"
 
+        # Alternate mild curvature so dense local neighborhoods do not collapse
+        # into a single straight bundle.
+        rad = [-0.18, -0.10, 0.10, 0.18][edge_idx % 4]
         nx.draw_networkx_edges(
             G,
             pos,
@@ -305,6 +317,11 @@ def main() -> None:
             ax=ax,
             width=width,
             edge_color=[to_rgba(base_col, alpha=alpha)],
+            connectionstyle=f"arc3,rad={rad}",
+            arrows=True,
+            arrowstyle="-",
+            min_source_margin=10,
+            min_target_margin=10,
         )
 
     nx.draw_networkx_nodes(
@@ -314,32 +331,82 @@ def main() -> None:
         node_size=node_sizes,
         node_color=node_colors,
         edgecolors="#ffffff",
-        linewidths=1.1,
-        alpha=0.95,
+        linewidths=1.25,
+        alpha=0.96,
     )
 
-    # Place labels just outside the node centers to reduce node-label collisions.
+    xs = [p[0] for p in pos.values()]
+    ys = [p[1] for p in pos.values()]
+    ax.set_xlim(min(xs) - 0.23, max(xs) + 0.23)
+    ax.set_ylim(min(ys) - 0.18, max(ys) + 0.18)
+    ax.axis("off")
+    ax.set_aspect("equal")
+
+    texts = []
     for n, (x, y) in pos.items():
         vec = np.array([x, y])
         norm = np.linalg.norm(vec)
-        if norm == 0:
-            offset = np.array([0.0, 0.035])
-        else:
-            offset = 0.035 * vec / norm
-        lx, ly = x + offset[0], y + offset[1]
-        ax.text(
-            lx,
-            ly,
-            n,
-            fontsize=6.9,
-            color="#1f1f1f",
-            ha="center",
-            va="center",
-            bbox=dict(facecolor="white", edgecolor="#dddddd", linewidth=0.25, alpha=0.82, pad=0.18),
+        offset = np.array([0.0, 0.055]) if norm == 0 else 0.065 * vec / norm
+        label = textwrap.fill(n, width=18, break_long_words=False)
+        texts.append(
+            ax.text(
+                x + offset[0],
+                y + offset[1],
+                label,
+                fontsize=8.4,
+                color="#1f1f1f",
+                ha="center",
+                va="center",
+                linespacing=0.95,
+                bbox=dict(
+                    facecolor="white",
+                    edgecolor="#d0d0d0",
+                    linewidth=0.25,
+                    alpha=0.86,
+                    pad=0.20,
+                ),
+            )
         )
 
-    ax.axis("off")
-    ax.set_aspect("equal")
+    def repel_labels(text_artists: list[plt.Text], iterations: int = 140) -> None:
+        fig.canvas.draw()
+        renderer = fig.canvas.get_renderer()
+        inv = ax.transData.inverted()
+
+        for _ in range(iterations):
+            moved = False
+            boxes = [text.get_window_extent(renderer=renderer).expanded(1.05, 1.18) for text in text_artists]
+            for i in range(len(text_artists)):
+                for j in range(i + 1, len(text_artists)):
+                    if not boxes[i].overlaps(boxes[j]):
+                        continue
+
+                    ci = np.array([(boxes[i].x0 + boxes[i].x1) / 2, (boxes[i].y0 + boxes[i].y1) / 2])
+                    cj = np.array([(boxes[j].x0 + boxes[j].x1) / 2, (boxes[j].y0 + boxes[j].y1) / 2])
+                    direction = ci - cj
+                    norm = np.linalg.norm(direction)
+                    if norm == 0:
+                        direction = np.array([1.0, 0.4])
+                        norm = np.linalg.norm(direction)
+                    direction = direction / norm
+
+                    overlap_x = min(boxes[i].x1, boxes[j].x1) - max(boxes[i].x0, boxes[j].x0)
+                    overlap_y = min(boxes[i].y1, boxes[j].y1) - max(boxes[i].y0, boxes[j].y0)
+                    shift = max(1.5, min(9.0, 0.16 * min(overlap_x, overlap_y)))
+
+                    for text, sign in ((text_artists[i], 1), (text_artists[j], -1)):
+                        display_pos = ax.transData.transform(text.get_position())
+                        new_pos = inv.transform(display_pos + sign * direction * shift)
+                        text.set_position(new_pos)
+
+                    moved = True
+
+            if not moved:
+                break
+            fig.canvas.draw()
+            renderer = fig.canvas.get_renderer()
+
+    repel_labels(texts)
 
     all_sectors = sorted({d.get("sector", "Unknown") for _, d in G.nodes(data=True) if d.get("sector") != "Unknown"})
     sector_handles = [
@@ -347,40 +414,35 @@ def main() -> None:
         for sec in all_sectors
     ]
     edge_handles = [
-        plt.Line2D([0], [0], color="#8a8a8a", lw=0.6, alpha=0.35, label="weaker dependency"),
-        plt.Line2D([0], [0], color="#8a8a8a", lw=2.4, alpha=0.65, label="stronger dependency"),
+        plt.Line2D([0], [0], color="#9a9a9a", lw=0.6, alpha=0.30, label="weaker dependency"),
+        plt.Line2D([0], [0], color="#9a9a9a", lw=3.0, alpha=0.65, label="stronger dependency"),
     ]
 
     fig.legend(
         handles=sector_handles,
         loc="lower center",
-        bbox_to_anchor=(0.5, 0.045),
+        bbox_to_anchor=(0.5, 0.04),
         frameon=False,
-        fontsize=8,
-        ncol=3,
+        fontsize=10,
+        ncol=5,
         title="Macro-sector",
-        title_fontsize=8,
+        title_fontsize=10,
     )
     ax.legend(
         handles=edge_handles,
         loc="upper right",
         frameon=False,
-        fontsize=8,
+        fontsize=10,
         title="Edge weight",
-        title_fontsize=8,
+        title_fontsize=10,
     )
 
-    xs = [p[0] for p in pos.values()]
-    ys = [p[1] for p in pos.values()]
-    ax.set_xlim(min(xs) - 0.13, max(xs) + 0.13)
-    ax.set_ylim(min(ys) - 0.13, max(ys) + 0.13)
-
-    plt.tight_layout(rect=[0, 0.13, 1, 1])
+    plt.tight_layout(rect=[0, 0.12, 1, 1])
     
     pdf_path = FIGURES_DIR / "vector" / "figure_15_subsector_dependency_network.pdf"
     png_path = FIGURES_DIR / "preview" / "figure_15_subsector_dependency_network.png"
     plt.savefig(pdf_path, format="pdf", bbox_inches="tight")
-    plt.savefig(png_path, dpi=300, bbox_inches="tight")
+    plt.savefig(png_path, dpi=600, bbox_inches="tight")
     plt.close()
     
     print("\nSaved outputs:")

@@ -1,0 +1,419 @@
+\section{Methodology}
+\label{sec:methodology}
+
+The methodology transforms adjusted B3 prices into return matrices, correlation matrices, spectral components, filtered financial networks and volatility-forecasting features. Figure~\ref{fig:methodology_overview} summarizes the workflow. The workflow estimates dependencies and separates market-wide motion, group-level structure and noise-compatible components before evaluating whether the resulting network structure contains predictive information.
+
+\begin{center}
+\resizebox{0.94\linewidth}{!}{%
+\begin{tikzpicture}[
+    x=1cm, y=1cm,
+    >=Latex,
+    box/.style={
+        rectangle,
+        rounded corners,
+        draw=black,
+        thick,
+        align=center,
+        minimum width=4.2cm,
+        minimum height=1.0cm,
+        font=\small
+    },
+    smallbox/.style={
+        rectangle,
+        rounded corners,
+        draw=black,
+        thick,
+        align=center,
+        minimum width=3.0cm,
+        minimum height=0.85cm,
+        font=\small
+    },
+    line/.style={->, thick}
+]
+
+% Top row
+\node[box] (data)    at (0,0)    {BovDB/B3 daily data\\Adjusted closing prices};
+\node[box] (filters) at (5.4,0)  {Asset filtering\\and universe definition};
+\node[box] (returns) at (10.8,0) {Log returns\\and synchronized panel};
+
+% Middle spine
+\node[box] (stylized) at (5.4,-2.4) {Stylized facts and\\correlation diagnostics};
+\node[box] (rmt)      at (5.4,-4.5) {Random Matrix Theory\\spectral decomposition};
+
+% RMT components
+\node[smallbox] (market) at (1.8,-6.6) {Market mode};
+\node[smallbox] (group)  at (5.4,-6.6) {Group/sector mode};
+\node[smallbox] (noise)  at (9.0,-6.6) {Noise component};
+
+% Downstream analyses
+\node[box] (mstpmfg)   at (1.0,-8.9)  {MST and PMFG\\network construction};
+\node[box] (cluster)   at (5.4,-8.9)  {Hierarchical clustering\\and ordered heatmaps};
+\node[box] (subsector) at (9.8,-8.9)  {Aggregated subsector\\dependency network};
+
+% Forecasting
+\node[box] (forecast) at (5.4,-11.2) {Volatility forecasting\\machine learning and neural models};
+
+% Top flow
+\draw[line] (data) -- (filters);
+\draw[line] (filters) -- (returns);
+
+% Returns to diagnostics
+\draw[line] (returns.south) |- (stylized.east);
+
+% Main vertical flow
+\draw[line] (stylized) -- (rmt);
+
+% RMT decomposition
+\draw[line] (rmt) -- (market);
+\draw[line] (rmt) -- (group);
+\draw[line] (rmt) -- (noise);
+
+% Clean downstream flow from group/sector mode
+\draw[line] (group.south) -- (cluster.north);
+\draw[line] (group.south) .. controls (3.2,-7.4) and (1.0,-7.9) .. (mstpmfg.north);
+\draw[line] (group.south) .. controls (7.6,-7.4) and (9.8,-7.9) .. (subsector.north);
+
+% Downstream analyses to forecasting
+\draw[line] (mstpmfg.south) |- (forecast.west);
+\draw[line] (cluster.south) -- (forecast.north);
+\draw[line] (subsector.south) |- (forecast.east);
+
+\end{tikzpicture}%
+}
+\captionof{figure}{Overview of the empirical workflow. Adjusted daily B3 prices are filtered to define the equity universe and construct synchronized return panels. The workflow proceeds through stylized-fact checks, correlation estimation, Random Matrix Theory filtering, hierarchical clustering, MST/PMFG network construction, subsector aggregation and volatility forecasting with machine-learning, deep-learning, RMT and network-based features.}
+\label{fig:methodology_overview}
+\end{center}
+
+\subsection{Notation and return matrix}
+\label{subsec:notation}
+
+We fix notation before defining the main steps. The index $i=1,\ldots,N$ identifies assets, and the index $t=1,\ldots,T$ identifies trading days in a synchronized panel. In the main spectral, clustering and network analysis, $N=58$ is the number of assets and $T=1527$ is the number of common daily observations after synchronization. Thus $T$ is the number of dates in the complete panel, not the total number of scalar return entries.
+
+Let $P^{\mathrm{adj}}_{i,t}$ denote the adjusted closing price of asset $i$ on trading day $t$. Daily logarithmic returns are computed as
+\begin{equation}
+r_{i,t}
+=
+\log P^{\mathrm{adj}}_{i,t}
+-
+\log P^{\mathrm{adj}}_{i,t-1},
+\end{equation}
+where $P^{\mathrm{adj}}_{i,t}>0$ and $P^{\mathrm{adj}}_{i,t-1}>0$. Log returns are used because they are additive across time and standard in studies of financial returns.
+
+The return panel is represented by the matrix
+\begin{equation}
+\mathbf{R}
+=
+\left(r_{i,t}\right)_{t=1,\ldots,T;\,i=1,\ldots,N}
+\in
+\mathbb{R}^{T \times N}.
+\end{equation}
+For correlation-based analysis, each return series is standardized within the relevant sample:
+\begin{equation}
+\tilde{r}_{i,t}
+=
+\frac{r_{i,t}-\mu_i}{\sigma_i},
+\end{equation}
+where $\mu_i$ and $\sigma_i$ are the sample mean and standard deviation of asset $i$. The standardized return matrix is denoted by $\widetilde{\mathbf{R}}$.
+
+Let $\mathbf{C}$ denote the Pearson correlation matrix, and let $C_{ij}$ be the Pearson correlation between assets $i$ and $j$. In the Random Matrix Theory step, $\lambda_k$ denotes the $k$-th eigenvalue of $\mathbf{C}$, $\mathbf{u}_k$ denotes its normalized eigenvector and $Q=T/N$ denotes the sample-size-to-dimension ratio used in the Mar\v{c}enko--Pastur benchmark.
+
+\subsection{Asset filtering and complete return panel}
+\label{subsec:asset_filtering}
+
+Let $\mathcal{A}_0$ denote the initial set of B3 instruments available in the BovDB/B3 daily database. The data section explains the economic motivation for excluding non-direct-equity instruments. Formally, let $\mathcal{X}$ be the excluded set containing BDRs, ETFs, investment funds, benchmark indices and other non-equity vehicles. The eligible direct-equity set is
+\begin{equation}
+\mathcal{A}_1
+=
+\mathcal{A}_0
+\setminus
+\mathcal{X},
+\end{equation}
+where each element of $\mathcal{A}_1$ is an asset identifier, not an observation date.
+
+For each remaining asset, observations are retained only when adjusted closing prices are valid:
+\begin{equation}
+P^{\mathrm{adj}}_{i,t} > 0.
+\end{equation}
+Daily log returns are then computed from adjusted prices. Assets with insufficient historical coverage are removed according to
+\begin{equation}
+T_i \geq T_{\min},
+\end{equation}
+where $T_i$ is the number of valid return observations for asset $i$ and $T_{\min}$ is the minimum coverage threshold required for the target analysis.
+
+After filtering, assets are synchronized by common trading dates. The RMT, clustering and network analyses are performed on a complete return panel
+\begin{equation}
+\mathbf{R}_{\mathrm{core}}
+\in
+\mathbb{R}^{T \times N},
+\end{equation}
+with $N=58$ assets and $T=1527$ complete daily observations in the main spectral analysis. Complete-panel estimation ensures that all eigenvalues, eigenvectors, distances and network edges are derived from a single common correlation matrix estimated from assets observed on common trading dates.
+
+\subsection{Stylized facts and descriptive diagnostics}
+\label{subsec:stylized_method}
+
+We first document stylized facts for representative B3 assets. For each asset, we compute the sample mean, standard deviation, skewness, excess kurtosis, minimum and maximum returns, value-at-risk at 1\% and 5\%, counts of large absolute returns and autocorrelations of absolute returns.
+
+For an asset return series $\{r_t\}$, the autocorrelation of absolute returns at lag $\ell$ is
+\begin{equation}
+\rho_{|r|}(\ell)
+=
+\mathrm{Corr}(|r_t|, |r_{t-\ell}|).
+\end{equation}
+These checks assess whether B3 returns display the regularities commonly associated with financial time series: heavy tails, volatility clustering and persistent volatility \cite{cont_2001_empirical}.
+
+\subsection{Correlation matrix estimation}
+\label{subsec:correlation_method}
+
+The Pearson correlation matrix is estimated from standardized returns as
+\begin{equation}
+C_{ij}
+=
+\frac{1}{T-1}
+\sum_{t=1}^{T}
+\tilde{r}_{i,t}\tilde{r}_{j,t}.
+\end{equation}
+Equivalently, in matrix form,
+\begin{equation}
+\mathbf{C}
+=
+\frac{1}{T-1}
+\widetilde{\mathbf{R}}^{\top}
+\widetilde{\mathbf{R}}.
+\end{equation}
+The matrix $\mathbf{C}\in\mathbb{R}^{N\times N}$ is symmetric and has unit diagonal. For pairwise descriptive analysis, correlations may be computed with available observations for each pair. For RMT, clustering, MST and PMFG construction, the complete synchronized panel is used to obtain a single consistent $N\times N$ matrix.
+
+\subsection{Sectoral correlation comparison}
+\label{subsec:sectoral_method}
+
+Each asset is assigned to a macro-sector and subsector. The sectoral comparison asks a simple question: are correlations between assets in the same macro-sector larger than correlations between assets in different macro-sectors? To answer this, we classify every unordered asset pair $(i,j)$ into one of two groups. The indicator $s_{ij}$ is not a correlation coefficient; it only records whether the two assets belong to the same macro-sector:
+\begin{equation}
+s_{ij}
+=
+\begin{cases}
+1, & \text{if assets } i \text{ and } j \text{ belong to the same macro-sector},\\
+0, & \text{otherwise.}
+\end{cases}
+\end{equation}
+After this classification, the corresponding Pearson correlations $C_{ij}$ are split into two samples. Pairs with $s_{ij}=1$ form the within-sector correlation distribution, while pairs with $s_{ij}=0$ form the between-sector correlation distribution. We then compare the two distributions using mean, median, dispersion and a one-sided Mann--Whitney U test. This step evaluates whether the economic sector classification is reflected in the dependency matrix before any RMT filtering is applied.
+
+\subsection{Rolling market synchronization}
+\label{subsec:rolling_corr_method}
+
+Static full-sample correlations hide time variation in market dependence. To measure market synchronization, rolling pairwise correlations are estimated over a window of length $w$. For each window ending at time $t$, the average market correlation is
+\begin{equation}
+\bar{\rho}_t^{(w)}
+=
+\frac{2}{N(N-1)}
+\sum_{1\leq i<j\leq N}
+\rho_{ij,t}^{(w)},
+\end{equation}
+where $\rho_{ij,t}^{(w)}$ is the Pearson correlation between assets $i$ and $j$ computed within the rolling window. Elevated values of $\bar{\rho}_t^{(w)}$ indicate stronger market-wide synchronization and motivate the subsequent spectral decomposition.
+
+\subsection{Random Matrix Theory filtering}
+\label{subsec:rmt_method}
+
+Random Matrix Theory is used to distinguish structured collective modes from eigenvalue fluctuations compatible with sampling noise. Let the spectral decomposition of the empirical correlation matrix be
+\begin{equation}
+\mathbf{C}
+=
+\sum_{k=1}^{N}
+\lambda_k
+\mathbf{u}_k
+\mathbf{u}_k^{\top},
+\end{equation}
+where $\lambda_k$ is the $k$-th eigenvalue and $\mathbf{u}_k$ is the corresponding normalized eigenvector. Eigenvalues are sorted in decreasing order, so $k=1$ denotes the largest mode.
+
+For a random correlation matrix estimated from $N$ independent standardized time series of length $T$, the Mar\v{c}enko--Pastur bounds are
+\begin{equation}
+\lambda_{\pm}
+=
+\sigma^2
+\left(
+1+\frac{1}{Q}
+\pm
+2\sqrt{\frac{1}{Q}}
+\right),
+\qquad
+Q=\frac{T}{N}.
+\end{equation}
+Since standardized returns are used, $\sigma^2=1$. Eigenvalues inside $[\lambda_-,\lambda_+]$ are treated as compatible with random-matrix noise, while eigenvalues above $\lambda_+$ are candidates for collective modes.
+
+Let $K$ denote the number of sample eigenvalues above $\lambda_+$. The dominant market component is defined as
+\begin{equation}
+\mathbf{C}^{\mathrm{market}}
+=
+\lambda_1
+\mathbf{u}_1
+\mathbf{u}_1^{\top}.
+\end{equation}
+The group or sector component is reconstructed from the remaining retained eigenvalues:
+\begin{equation}
+\mathbf{C}^{\mathrm{group}}
+=
+\sum_{k=2}^{K}
+\lambda_k
+\mathbf{u}_k
+\mathbf{u}_k^{\top}.
+\end{equation}
+The retained-mode matrix is
+\begin{equation}
+\mathbf{C}^{\mathrm{filtered}}
+=
+\sum_{k=1}^{K}
+\lambda_k
+\mathbf{u}_k
+\mathbf{u}_k^{\top},
+\end{equation}
+and the residual noisy component is
+\begin{equation}
+\mathbf{C}^{\mathrm{noise}}
+=
+\sum_{k=K+1}^{N}
+\lambda_k
+\mathbf{u}_k
+\mathbf{u}_k^{\top}.
+\end{equation}
+Note that partial spectral reconstructions generally do not preserve the unit diagonal of the original correlation matrix. When these filtered matrices are used for downstream tasks, they are rescaled to unit diagonal if the subsequent method requires valid Pearson correlation bounds. This decomposition separates networks dominated by broad market co-movement from networks that emphasize localized group and sectoral structure.
+
+\subsection{Mantegna distance and hierarchical clustering}
+\label{subsec:distance_clustering_method}
+
+Correlations are converted into distances using the metric introduced by Mantegna \cite{mantegna_1999_hierarchical}:
+\begin{equation}
+d_{ij}
+=
+\sqrt{2(1-C_{ij})}.
+\end{equation}
+For a valid correlation matrix, this transformation maps strongly positively correlated assets to short distances and less positively correlated or negatively correlated assets to longer distances. The resulting distance matrix is used for hierarchical clustering, ordered heatmaps, MST and PMFG construction.
+
+Hierarchical clustering is applied to the distance matrix using average linkage (UPGMA). The cophenetic correlation \cite{sokal_rohlf_1962} is used to assess how faithfully the dendrogram preserves pairwise distances. Ordered heatmaps use the dendrogram ordering to rearrange the correlation matrices, making block structures visually identifiable. Comparing original, filtered and group-mode heatmaps helps distinguish broad market co-movement from localized sectoral dependency.
+
+\subsection{Minimum Spanning Tree and Planar Maximally Filtered Graph}
+\label{subsec:network_method}
+
+A financial network is represented as
+\begin{equation}
+G=(V,E,w),
+\end{equation}
+where $V$ is the set of assets, $E$ is the retained set of edges and $w_{ij}=C_{ij}$ is the dependency weight associated with edge $(i,j)$.
+
+The Minimum Spanning Tree is the connected acyclic graph that minimizes total distance:
+\begin{equation}
+\mathrm{MST}
+=
+\arg\min_{E'}
+\sum_{(i,j)\in E'}
+d_{ij},
+\end{equation}
+subject to $(V,E')$ being connected and acyclic. For $N$ nodes, the MST has $N-1$ edges. With $N=58$, this gives 57 edges.
+
+The Planar Maximally Filtered Graph is constructed by considering candidate edges in increasing order of distance, retaining them if they do not violate planarity. For $N$ nodes, a PMFG has
+\begin{equation}
+|E_{\mathrm{PMFG}}|
+=
+3N-6
+\end{equation}
+edges, which gives 168 edges for $N=58$. Unlike the MST, the PMFG can contain cycles, triangles and 4-cliques. Under the same ranking of pairwise distances, the MST is contained in the PMFG as a subgraph. This makes the PMFG a less aggressive graph filter that preserves richer local geometry.
+
+For each network, we report edge correlations, same-sector and same-subsector edge ratios, average clustering, node degree, betweenness centrality and hub rankings. Comparing original and group-mode networks identifies whether centrality is driven by broad market co-movement or by localized dependency channels.
+
+\subsection{Aggregated subsector dependency network}
+\label{subsec:subsector_network_method}
+
+The asset-level networks are complemented by an aggregated subsector dependency network. Let $g(i)$ denote the subsector associated with asset $i$. For two subsectors $a$ and $b$, the aggregated dependency weight is defined as
+\begin{equation}
+W_{ab}
+=
+\frac{1}{|\mathcal{E}_{ab}|}
+\sum_{(i,j)\in \mathcal{E}_{ab}}
+w_{ij},
+\end{equation}
+where
+\begin{equation}
+\mathcal{E}_{ab}
+=
+\{(i,j)\in E : g(i)=a,\; g(j)=b\}.
+\end{equation}
+The aggregation converts ticker-level dependencies into a subsector-level map of dependency channels. The resulting network is summarized using edge density, average dependency, weighted degree and betweenness centrality.
+
+\subsection{Volatility forecasting formulation}
+\label{subsec:forecasting_method}
+
+The forecasting task is formulated as a supervised time-series prediction problem. For target asset $i$ and horizon $h$, realized volatility is defined as
+\begin{equation}
+RV_{i,t,h}
+=
+\sqrt{
+\sum_{\tau=1}^{h}
+r_{i,t+\tau}^{2}
+}.
+\end{equation}
+The objective is to predict $RV_{i,t,h}$ using an information set $\mathcal{F}_t$ available at time $t$:
+\begin{equation}
+\widehat{RV}_{i,t,h}
+=
+f_{\theta}(\mathcal{F}_t).
+\end{equation}
+For forecast evaluation under metrics such as QLIKE, these realized volatility and predicted volatility measures are squared to represent realized variance proxies. The target horizons are $h=5$ and $h=20$ trading days. The initial forecasting experiment uses PETR4, VALE3 and BBDC4, with a strict temporal split into training, validation and test periods to reduce look-ahead bias and preserve the chronological ordering of the forecasting experiment.
+
+\subsection{Machine-learning and deep-learning feature sets}
+\label{subsec:forecast_models_method}
+
+Three feature sets are used in a nested ablation design. Set~A contains classical return and volatility predictors, including rolling volatilities, rolling absolute returns, lagged realized volatility, EWMA volatility and higher-moment rolling statistics. Set~B adds market and RMT variables such as the largest eigenvalue, market-mode trace share and number of eigenvalues above the random-matrix bound. Set~C adds MST and PMFG features, including degree, betweenness and clustering measures from original and group-mode networks.
+
+This nesting defines a controlled ablation:
+\begin{equation}
+\mathcal{F}^{A}_{t}
+\subset
+\mathcal{F}^{B}_{t}
+\subset
+\mathcal{F}^{C}_{t}.
+\end{equation}
+Set~A measures the predictive value of standard lagged return and volatility information alone. Set~B tests the added value of market-wide and RMT features. Set~C tests whether network structure adds further information beyond these baselines. Ridge regression, Random Forest and histogram gradient boosting are used to evaluate these increasingly rich information sets \cite{hoerl_kennard_1970_ridge,breiman_2001_random,friedman_2001_greedy}.
+
+The deep-learning extension is intentionally incremental. A multilayer perceptron (MLP) is trained on the same tabular feature sets, using positive-output regression for realized volatility. A one-dimensional convolutional neural network (CNN-1D) is trained on short rolling windows of return and volatility features. These neural models are included to test whether a simple nonlinear representation adds forecasting value; they are not presented as an exhaustive search over neural architectures \cite{bucci_2020_realized,christensen_2022_realized}.
+
+\subsection{Forecast evaluation metrics}
+\label{subsec:evaluation_method}
+
+Forecasts are evaluated using MAE, RMSE, out-of-sample $R^2$ and QLIKE. For realized values $y_t$ and forecasts $\hat{y}_t$, the MAE and RMSE are
+\begin{equation}
+\mathrm{MAE}
+=
+\frac{1}{M}
+\sum_{t=1}^{M}
+|y_t-\hat{y}_t|,
+\end{equation}
+and
+\begin{equation}
+\mathrm{RMSE}
+=
+\sqrt{
+\frac{1}{M}
+\sum_{t=1}^{M}
+(y_t-\hat{y}_t)^2
+}.
+\end{equation}
+The out-of-sample coefficient of determination is
+\begin{equation}
+R_{\mathrm{oos}}^{2}
+=
+1
+-
+\frac{
+\sum_{t=1}^{M}
+(y_t-\hat{y}_t)^2
+}{
+\sum_{t=1}^{M}
+(y_t-\bar{y}_{\mathrm{train}})^2
+}.
+\end{equation}
+The QLIKE loss is
+\begin{equation}
+\mathrm{QLIKE}_t
+=
+\log(\hat{\sigma}_t^2)
++
+\frac{\sigma_t^2}{\hat{\sigma}_t^2},
+\end{equation}
+where $\hat{\sigma}_t^2$ is the predicted variance proxy and $\sigma_t^2$ is the realized variance proxy. QLIKE is included because it is widely used for volatility forecast comparison when realized volatility is an imperfect proxy for latent variance \cite{patton_2011_volatility}.

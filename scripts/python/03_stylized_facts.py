@@ -15,6 +15,8 @@ sys.path.append(str(PROJECT_ROOT))
 
 TABLES_DIR = PROJECT_ROOT / "outputs" / "tables"
 FIGURES_DIR = PROJECT_ROOT / "outputs" / "figures"
+VECTOR_FIGURES_DIR = FIGURES_DIR / "vector"
+PREVIEW_FIGURES_DIR = FIGURES_DIR / "preview"
 
 RETURNS_LONG_PATH = TABLES_DIR / "demo_assets_returns_long_1998_2025.csv"
 RETURNS_WIDE_PATH = TABLES_DIR / "demo_assets_returns_wide_1998_2025.csv"
@@ -29,13 +31,6 @@ ASSET_COLORS = {
     "VALE3": "#2ca02c",
     "BBDC4": "#d62728",
 }
-RETURN_OFFSETS = {
-    "PETR4": 0.20,
-    "VALE3": 0.00,
-    "BBDC4": -0.20,
-}
-
-
 def configure_matplotlib() -> None:
     plt.rcParams.update(
         {
@@ -130,11 +125,17 @@ def absolute_return_acf(series: pd.Series, nlags: int) -> np.ndarray:
 def plot_stylized_facts(returns_long: pd.DataFrame, returns_wide: pd.DataFrame) -> plt.Figure:
     configure_matplotlib()
 
-    fig, axes = plt.subplots(2, 2, figsize=(9.6, 6.3), constrained_layout=True)
-    style_axes(axes)
+    fig = plt.figure(figsize=(9.6, 6.3), constrained_layout=True)
+    grid = fig.add_gridspec(2, 2)
+    ax_price = fig.add_subplot(grid[0, 0])
+    return_grid = grid[0, 1].subgridspec(3, 1, hspace=0.08)
+    return_axes = [fig.add_subplot(return_grid[i, 0]) for i in range(3)]
+    ax_ccdf = fig.add_subplot(grid[1, 0])
+    ax_acf = fig.add_subplot(grid[1, 1])
+    style_axes(np.array([ax_price, *return_axes, ax_ccdf, ax_acf]))
     price_index = normalized_price_from_prices(returns_long)
 
-    ax = axes[0, 0]
+    ax = ax_price
     for symbol in price_index.columns:
         ax.plot(
             price_index.index,
@@ -147,22 +148,35 @@ def plot_stylized_facts(returns_long: pd.DataFrame, returns_wide: pd.DataFrame) 
     ax.set_ylabel(r"$P_t/P_0$")
     ax.legend(loc="upper left", ncols=3, handlelength=2.0, columnspacing=1.3)
 
-    ax = axes[0, 1]
-    for symbol in returns_wide.columns:
+    return_limit = 0.40
+    for index, (ax, symbol) in enumerate(zip(return_axes, returns_wide.columns)):
         ax.plot(
             returns_wide.index,
-            returns_wide[symbol] + RETURN_OFFSETS[symbol],
-            label=symbol,
+            returns_wide[symbol],
             color=ASSET_COLORS[symbol],
             linewidth=0.35,
             alpha=0.85,
         )
-        ax.axhline(RETURN_OFFSETS[symbol], color="black", linewidth=0.3, alpha=0.3)
-    ax.set_title("returns")
-    ax.set_ylabel(r"$r_t + \mathrm{offset}$")
-    ax.legend(loc="upper left", ncols=3, handlelength=2.0, columnspacing=1.3)
+        ax.axhline(0.0, color="black", linewidth=0.45, alpha=0.7)
+        ax.set_ylim(-return_limit, return_limit)
+        ax.set_ylabel(r"$r_t$")
+        ax.text(
+            0.02,
+            0.74,
+            symbol,
+            transform=ax.transAxes,
+            color=ASSET_COLORS[symbol],
+            fontsize=8,
+            fontweight="bold",
+            bbox=dict(boxstyle="round,pad=0.18", facecolor="white", edgecolor="0.75", alpha=0.9),
+        )
+        if index == 0:
+            ax.set_title("daily log returns")
+        if index < len(return_axes) - 1:
+            ax.tick_params(labelbottom=False)
+    return_axes[-1].set_xlabel("time")
 
-    ax = axes[1, 0]
+    ax = ax_ccdf
     for symbol in returns_wide.columns:
         x_values, y_values = empirical_ccdf(returns_wide[symbol].abs())
         ax.loglog(
@@ -183,7 +197,7 @@ def plot_stylized_facts(returns_long: pd.DataFrame, returns_wide: pd.DataFrame) 
     ax.set_ylabel(r"$P(|r_t| > x)$")
     ax.legend(loc="lower left", handlelength=2.0)
 
-    ax = axes[1, 1]
+    ax = ax_acf
     max_lag = 150
     lags = np.arange(1, max_lag + 1)
     acf_by_asset = []
@@ -212,10 +226,15 @@ def plot_stylized_facts(returns_long: pd.DataFrame, returns_wide: pd.DataFrame) 
 
 
 def save_figure(fig: plt.Figure) -> None:
-    FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+    VECTOR_FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+    PREVIEW_FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 
-    for extension in ("pdf", "svg", "png"):
-        output_path = FIGURES_DIR / f"{FIGURE_SLUG}.{extension}"
+    output_paths = (
+        VECTOR_FIGURES_DIR / f"{FIGURE_SLUG}.pdf",
+        VECTOR_FIGURES_DIR / f"{FIGURE_SLUG}.svg",
+        PREVIEW_FIGURES_DIR / f"{FIGURE_SLUG}.png",
+    )
+    for output_path in output_paths:
         fig.savefig(output_path, bbox_inches="tight")
         print(f"Saved {output_path}")
 
