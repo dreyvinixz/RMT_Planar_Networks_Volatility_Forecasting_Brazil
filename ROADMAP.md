@@ -234,6 +234,19 @@
 
 ---
 
+## Critical priority — Manuscript revision (blocking)
+
+- [~] Establish `article/mode_title_2_revision` as the editable manuscript source extracted from the preserved `mode_title__2_.zip` snapshot
+- [~] Reposition the article as a structural-dependency study with a retrospective volatility-model assessment
+- [~] Reorganize the manuscript around Empirical Framework, Experimental Framework and a unified Results section
+  - [x] Prepare `article/mode_title_2_professor_structure` as a parallel, compiled version following the professor's 13-section hierarchy while retaining the revised retrospective positioning and readability changes
+- [ ] Audit reviewer-flagged claims and add, qualify or remove supporting statements and references
+- [ ] Improve the readability of Figures 7, 9 and 10; standardize Table 2; summarize Limitations
+- [ ] Compile and visually inspect the revised PDF before resuming submission drafting
+- [!] Do not resume general Article Writing or submit a manuscript version until this blocking revision is complete
+
+---
+
 ## Phase 13 — Article writing
 
 - [ ] Write abstract

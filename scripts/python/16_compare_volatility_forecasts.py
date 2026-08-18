@@ -40,31 +40,55 @@ def validation_selected_test_rows(comp_df: pd.DataFrame) -> pd.DataFrame:
     return test_df
 
 
-def plot_figure_16(comp_df: pd.DataFrame) -> None:
+def plot_figure_16(summary_df: pd.DataFrame) -> None:
     print("Generating Figure 16 (ML/DL model comparison)...")
-    test_df = validation_selected_test_rows(comp_df)
-    agg_df = test_df.groupby(["horizon", "model_display"], as_index=False)["QLIKE"].mean()
+    agg_df = summary_df.copy()
+    agg_df["model_display"] = agg_df["model"] + "\n(" + agg_df["feature_set"].map(feature_set_short) + ")"
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 6))
     for i, h in enumerate([5, 20]):
         ax = axes[i]
         plot_data = agg_df[agg_df["horizon"] == h].sort_values("QLIKE").reset_index(drop=True)
         y_pos = list(range(len(plot_data)))
-        xmin = plot_data["QLIKE"].min()
-        xmax = plot_data["QLIKE"].max()
+        xmin = plot_data[["QLIKE", "QLIKE_ci95_low"]].min().min()
+        xmax = plot_data[["QLIKE", "QLIKE_ci95_high"]].max().max()
         pad = max(0.015, 0.12 * (xmax - xmin))
 
         ax.hlines(y=y_pos, xmin=xmin, xmax=plot_data["QLIKE"], color="#8bb7d3", lw=2)
         ax.scatter(plot_data["QLIKE"], y_pos, color="#0072B2", s=55, zorder=3)
-        ax.set_title(f"Out-of-sample QLIKE loss, horizon = {h} days")
-        ax.set_xlabel("QLIKE (lower is better)")
+        ax.errorbar(
+            plot_data["QLIKE"],
+            y_pos,
+            xerr=[
+                plot_data["QLIKE"] - plot_data["QLIKE_ci95_low"],
+                plot_data["QLIKE_ci95_high"] - plot_data["QLIKE"],
+            ],
+            fmt="none",
+            ecolor="#2f2f2f",
+            elinewidth=0.9,
+            capsize=2.5,
+            zorder=2,
+        )
+        ax.set_title(f"Chronological test-period QLIKE loss, horizon = {h} days")
+        ax.set_xlabel("QLIKE (lower is better; 95% moving-block CI)")
         ax.set_yticks(y_pos)
         ax.set_yticklabels(plot_data["model_display"])
         ax.invert_yaxis()
         ax.grid(axis="x", alpha=0.25)
-        ax.set_xlim(xmin - pad, xmax + pad)
+        # Reserve a value column beyond every confidence interval so that
+        # numerical labels never sit on the plotted horizontal elements.
+        value_x = xmax + pad * 0.25
+        ax.set_xlim(xmin - pad, xmax + pad * 1.5)
         for y, value in zip(y_pos, plot_data["QLIKE"]):
-            ax.text(value + pad * 0.15, y, f"{value:.3f}", va="center", fontsize=8)
+            ax.text(
+                value_x,
+                y,
+                f"{value:.3f}",
+                ha="left",
+                va="center",
+                fontsize=8,
+                zorder=4,
+            )
 
     plt.tight_layout()
     fig.savefig(FIGURE_VECTOR_DIR / "figure_16_volatility_forecast_model_comparison.pdf", bbox_inches="tight")
@@ -143,8 +167,9 @@ def main() -> None:
     comp_df = pd.read_csv(OUTPUT_DIR / "volatility_model_comparison_2006_2025.csv")
     pred_df = pd.read_csv(OUTPUT_DIR / "volatility_model_predictions_2006_2025.csv")
     fi_df = pd.read_csv(OUTPUT_DIR / "ml_feature_importances_2006_2025.csv")
+    summary_df = pd.read_csv(OUTPUT_DIR / "forecast_validation_selected_test_summary_2006_2025.csv")
 
-    plot_figure_16(comp_df)
+    plot_figure_16(summary_df)
     plot_figure_17(comp_df, pred_df)
     plot_figure_18(fi_df)
     print("Done.")
