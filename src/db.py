@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Any
 
 import clickhouse_connect
+from dotenv import load_dotenv
 
 try:
     import tomllib  # Python 3.11+
@@ -12,19 +14,34 @@ except ModuleNotFoundError:
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = PROJECT_ROOT / "config" / "clickhouse.toml"
+DEFAULT_CONFIG_PATH = PROJECT_ROOT / "config" / "clickhouse.toml"
+EXAMPLE_CONFIG_PATH = PROJECT_ROOT / "config" / "clickhouse.example.toml"
+
+load_dotenv(PROJECT_ROOT / ".env")
+
+
+def get_config_path() -> Path:
+    """Return the local configuration path, optionally overridden by an env var."""
+    configured_path = os.getenv("B3_ECONOPHYSICS_CONFIG")
+    return Path(configured_path).expanduser() if configured_path else DEFAULT_CONFIG_PATH
 
 
 def load_clickhouse_config() -> dict[str, Any]:
     """
-    Load ClickHouse configuration from config/clickhouse.toml.
+    Load ClickHouse configuration from the local configuration file.
+
+    Copy ``config/clickhouse.example.toml`` to ``config/clickhouse.toml`` first,
+    or point ``B3_ECONOPHYSICS_CONFIG`` to an alternative TOML file.
     """
-    if not CONFIG_PATH.exists():
+    config_path = get_config_path()
+    if not config_path.exists():
         raise FileNotFoundError(
-            f"ClickHouse config file not found: {CONFIG_PATH}"
+            "ClickHouse config file not found: "
+            f"{config_path}. Copy {EXAMPLE_CONFIG_PATH.name} to "
+            "config/clickhouse.toml or set B3_ECONOPHYSICS_CONFIG."
         )
 
-    with CONFIG_PATH.open("rb") as file:
+    with config_path.open("rb") as file:
         return tomllib.load(file)
 
 
@@ -32,18 +49,19 @@ def get_client():
     """
     Create a ClickHouse client using the local research configuration.
 
-    This assumes the QuantBase backend Docker stack exposes ClickHouse HTTP
-    on localhost:8123.
+    Environment variables (``B3_CH_HOST``, ``B3_CH_PORT``,
+    ``B3_CH_USERNAME``, ``B3_CH_PASSWORD`` and ``B3_CH_DATABASE``) take
+    precedence over values in the local TOML configuration.
     """
     config = load_clickhouse_config()
     ch_config = config["clickhouse"]
 
     return clickhouse_connect.get_client(
-        host=ch_config["host"],
-        port=int(ch_config["port"]),
-        username=ch_config["username"],
-        password=ch_config["password"],
-        database=ch_config["database"],
+        host=os.getenv("B3_CH_HOST", ch_config["host"]),
+        port=int(os.getenv("B3_CH_PORT", str(ch_config["port"]))),
+        username=os.getenv("B3_CH_USERNAME", ch_config["username"]),
+        password=os.getenv("B3_CH_PASSWORD", ch_config["password"]),
+        database=os.getenv("B3_CH_DATABASE", ch_config["database"]),
     )
 
 

@@ -185,7 +185,7 @@ def main() -> None:
     x_mp = np.linspace(lambda_min, lambda_max, 500)
     y_mp = marcenko_pastur_pdf(x_mp, Q, sigma2)
     ax.plot(x_mp, y_mp, color="darkred", linewidth=2, label="Marcenko-Pastur distribution")
-    ax.axvline(lambda_max, color="black", linestyle="--", linewidth=1, label=f"$\lambda_{{max}} = {lambda_max:.2f}$")
+    ax.axvline(lambda_max, color="black", linestyle="--", linewidth=1, label=rf"$\lambda_{{max}} = {lambda_max:.2f}$")
     ax.axvline(largest_eigenvalue, color="dimgrey", linestyle=":", linewidth=1, label=f"Market Mode = {largest_eigenvalue:.2f}")
     ax.set_xscale("log")
     ax.set_yscale("log")
@@ -245,7 +245,7 @@ def main() -> None:
                 5: "Utilities versus mixed sectors",
             }
             title_str = (
-                f"Eigenvector {rank} ($\lambda = {df_rank['eigenvalue'].iloc[0]:.2f}$) "
+        rf"Eigenvector {rank} ($\lambda = {df_rank['eigenvalue'].iloc[0]:.2f}$) "
                 f"| {mode_labels.get(rank, 'Candidate localized component')}"
             )
                 

@@ -1,0 +1,24 @@
+name: Methodology or research proposal
+description: Propose a methodological improvement, robustness check or research direction.
+title: "[Research]: "
+labels: [research]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question
+      description: What question does this proposal answer?
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: Proposed method and validation
+      description: State assumptions, data needs, baseline and robustness checks.
+    validations:
+      required: true
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Risks and limitations
+      description: Describe likely bias, leakage, licensing or reproducibility risks.

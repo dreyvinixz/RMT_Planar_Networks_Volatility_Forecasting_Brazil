@@ -1,94 +1,93 @@
-# 🧠 QuantBase Project Architecture
+# RMT Planar Networks & Volatility Forecasting — Brazil
 
-> Auto-generated architecture mapping  
-> Last update: 2026-05-26 22:22:20 (Horário de Brasília)
+Open research code for studying the Brazilian equity market through econophysics, complex networks, and volatility forecasting.
 
----
+The project analyzes daily B3 equity returns with a reproducible Python workflow: stylized facts, correlation structure, Random Matrix Theory (RMT), hierarchical clustering, financial networks, and out-of-sample volatility forecasts.
 
-## Critérios de leitura do mapa
+![Conceptual visualization of spectral structure, planar networks and volatility](assets/readme-hero.png)
 
-- **[📄 Página]**: páginas React
-- **[🧩 Seção]**: blocos grandes da interface
-- **[🎨 Componente]**: componentes React reutilizáveis
-- **[🧱 Layout]**: estruturas de composição/layout
-- **[🪝 Hook]**: hooks customizados
-- **[🗂️ Dados]**: mocks, constantes e estruturas estáticas
-- **[🧾 Tipagem]**: tipos, interfaces e contratos
-- **[🎨 Estilo]**: CSS/SCSS
-- **[🛠️ Config]**: arquivos de configuração
-- **[🧪 Teste]**: testes
-- **[🤖 Script]**: scripts e automações
-- **[⚙️ Utilitário]**: lógica auxiliar
-- **[📦 Módulo]**: módulo genérico quando não houver sinal suficiente
+*Conceptual visual only — it is not a result, chart or dataset from the unpublished article.*
 
----
+> Research software. It is not investment advice and must not be used as the sole basis for an investment decision.
 
-## 📁 Árvore do Projeto
+## Research questions
+
+- How is dependence structured among Brazilian equities?
+- Which correlations carry information beyond the market-wide mode?
+- How do RMT filtering and network construction change the apparent market topology?
+- Do structural and network features improve retrospective volatility forecasts?
+
+## Methods
+
+| Area | Implemented workflow |
+| --- | --- |
+| Returns | Adjusted prices, log returns, descriptive statistics, quality checks |
+| Dependence | Pearson correlations, sector summaries, rolling and EWMA correlations |
+| RMT | Marcenko-Pastur bounds, market/group modes, filtered correlation matrices |
+| Networks | Mantegna distance, MST, PMFG, centrality and subsector dependency networks |
+| Forecasting | Historical volatility, EWMA, GARCH, HAR-RV and machine-learning baselines |
+
+## Repository layout
 
 ```text
-b3-econophysics-ai/
-├── article/
-│   ├── literature_review/
-│   │   ├── docs/
-│   │   │   └── 2302.08208v1_copy.pdf  # [📄 Arquivo] Arquivo do projeto (2302.08208v1_copy)
-│   │   └── literature_search.py  # [∅ Sem conteúdo]
-│   ├── main.tex  # [📄 Arquivo] Arquivo do projeto (main)
-│   ├── references.bib  # [📄 Arquivo] Arquivo do projeto (references)
-│   └── sections.tex  # [📄 Arquivo] Arquivo do projeto (sections)
-├── config/
-│   ├── assets_universe.yaml  # [∅ Sem conteúdo]
-│   └── clickhouse.toml  # [📄 Arquivo] Arquivo do projeto (clickhouse)
-├── notebooks/
-│   ├── 01_exploration.ipynb  # [📄 Arquivo] Arquivo do projeto (01_exploration)
-│   └── 02_article_figures.ipynb  # [📄 Arquivo] Arquivo do projeto (02_article_figures)
-├── outputs/  [∅ Sem conteúdo]
-│   ├── figures/  [∅ Sem conteúdo]
-│   │   ├── preview/  [∅ Sem conteúdo]
-│   │   └── vector/  [∅ Sem conteúdo]
-│   ├── networks/  [∅ Sem conteúdo]
-│   │   ├── gexf/  [∅ Sem conteúdo]
-│   │   └── graphml/  [∅ Sem conteúdo]
-│   └── tables/  [∅ Sem conteúdo]
-├── scripts/
-│   ├── python/
-│   │   ├── 00_check_clickhouse.py  # [∅ Sem conteúdo]
-│   │   ├── 01_list_liquid_assets.py  # [∅ Sem conteúdo]
-│   │   ├── 02_compute_returns.py  # [∅ Sem conteúdo]
-│   │   ├── 03_stylized_facts.py  # [∅ Sem conteúdo]
-│   │   ├── 04_correlation_analysis.py  # [∅ Sem conteúdo]
-│   │   ├── 05_rmt_pca.py  # [∅ Sem conteúdo]
-│   │   ├── 06_heatmap_dendrogram.py  # [∅ Sem conteúdo]
-│   │   ├── 07_mst_network.py  # [∅ Sem conteúdo]
-│   │   ├── 08_pmfg_network.py  # [∅ Sem conteúdo]
-│   │   ├── 09_dynamic_networks.py  # [∅ Sem conteúdo]
-│   │   ├── 10_garch_baselines.py  # [∅ Sem conteúdo]
-│   │   └── 11_ai_models.py  # [∅ Sem conteúdo]
-│   └── r/  [∅ Sem conteúdo]
-├── src/
-│   ├── __init__.py  # [∅ Sem conteúdo]
-│   ├── correlations.py  # [∅ Sem conteúdo]
-│   ├── data_loader.py  # [∅ Sem conteúdo]
-│   ├── db.py  # [∅ Sem conteúdo]
-│   ├── networks.py  # [∅ Sem conteúdo]
-│   ├── plotting.py  # [∅ Sem conteúdo]
-│   ├── returns.py  # [∅ Sem conteúdo]
-│   ├── rmt.py  # [∅ Sem conteúdo]
-│   └── utils.py  # [∅ Sem conteúdo]
-├── generate_project_map.py  # [🤖 Script] Script de automação (generate_project_map) | ⚡ analyze_python_ast, analyze_ts_js, build_tree, classify_css
-├── requirements.txt  # [📄 Arquivo] Arquivo do projeto (requirements)
-└── ROADMAP.md  # [📘 Documento] Documentação (ROADMAP)
+.
+├── config/          # Versioned, safe configuration templates and asset universes
+├── docs/            # Method, data, architecture and contribution documentation
+├── notebooks/       # Exploratory and figure-generation notebooks
+├── scripts/python/  # Ordered research pipeline
+├── src/             # Reusable analysis modules
+├── outputs/         # Local generated figures, tables and networks (not versioned)
+└── article/          # Local manuscript workspace (not part of the public release)
 ```
 
----
-## Observações
+See the [architecture guide](docs/architecture.md) for the execution flow and [data and reproducibility guide](docs/data-and-reproducibility.md) for the data policy.
 
-Este README é inferido automaticamente. A classificação melhorou bastante,
-mas ainda depende da qualidade estrutural do código e dos nomes de arquivos.
+## Quick start
 
-Quanto mais consistentes forem:
-- nomes de arquivos
-- comentários de topo
-- exports
-- separação por responsabilidade
+Requirements: Python 3.11+ and access to a local or remote ClickHouse instance containing the daily-candle table described in the configuration.
 
-mais preciso o mapa fica.
+```bash
+git clone https://github.com/dreyvinixz/RMT_Planar_Networks_Volatility_Forecasting_Brazil.git
+cd RMT_Planar_Networks_Volatility_Forecasting_Brazil
+python -m venv .venv
+```
+
+Activate the virtual environment, install the dependencies, and create your local configuration:
+
+```bash
+pip install -r requirements.txt
+copy config\\clickhouse.example.toml config\\clickhouse.toml
+python scripts/python/00_check_clickhouse.py
+```
+
+On macOS/Linux, replace `copy` with `cp`. Edit the newly created `config/clickhouse.toml` or set the `B3_CH_*` environment variables. This local file is intentionally ignored by Git.
+
+## Pipeline
+
+The numbered scripts in `scripts/python/` are the canonical execution order. A typical end-to-end run is:
+
+```text
+00 data connection → 01 universe selection → 02 returns → 03–06 correlations/RMT
+→ 07–12 networks → 13–16 volatility forecasting → 17–21 robustness and appendices
+```
+
+Each stage writes its derived artefacts under `outputs/`. Generated figures, tables, GraphML/GEXF files, logs, local data and temporary PDF-review files are excluded from the public repository; regenerate them from a compatible data source.
+
+## Data access and reproducibility
+
+This repository contains code and universe definitions, not a redistribution of market data. Obtain B3 data through a source whose licence permits your intended use, load it into ClickHouse, and configure the table locally. See [docs/data-and-reproducibility.md](docs/data-and-reproducibility.md) before running the pipeline.
+
+## Documentation
+
+- [Architecture](docs/architecture.md) — modules and execution flow.
+- [Data and reproducibility](docs/data-and-reproducibility.md) — required schema, provenance and output policy.
+- [Contributing](CONTRIBUTING.md) — setup, pull requests and research-quality expectations.
+- [Citation](CITATION.cff) — how to cite the software.
+
+## Contributing
+
+Contributions are welcome, especially in data-validation checks, methodological robustness, documentation and reproducible examples. Please read [CONTRIBUTING.md](CONTRIBUTING.md) and follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## License
+
+The code is distributed under the [MIT License](LICENSE). Data, third-party research papers and any publisher templates retain their own terms and are not covered by this licence.

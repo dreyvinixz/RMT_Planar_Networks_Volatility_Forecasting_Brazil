@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "RMT Planar Networks & Volatility Forecasting — Brazil"
+authors:
+  - name: "RMT Planar Networks & Volatility Forecasting Contributors"
+abstract: "Open research software for econophysics, financial-network analysis and volatility forecasting in the Brazilian equity market."
+type: software
+repository-code: "https://github.com/dreyvinixz/RMT_Planar_Networks_Volatility_Forecasting_Brazil"
+license: MIT
+version: "0.1.0"
+date-released: "2026-08-18"

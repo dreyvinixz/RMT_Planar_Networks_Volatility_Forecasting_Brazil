@@ -5,9 +5,35 @@ venv/
 .env
 .ipynb_checkpoints/
 
-outputs/figures/preview/
-outputs/tables/*.csv
-outputs/tables/*.xlsx
+# Local infrastructure and data
+config/clickhouse.toml
+data/
+*.parquet
+*.feather
+*.sqlite
+*.db
+
+# Generated research artefacts
+outputs/
+logs/
+tmp/
+texput.log
+
+# Local manuscript workspace, downloaded literature and release bundles
+article/
+/mode_title__2_.zip
+/RMT_Planar_Networks_Volatility_Forecasting_Brazil[[]giancarlo].pdf
+
+# Internal notes and empty local notebook placeholders
+PROJECT_CONTEXT.md
+implementation_plan.md
+docs/GUIA_ESTUDO_REUNIAO_VIVIANE_BERRI.md
+docs/GUIA_EXPLICACAO_GRAFICOS_FIGURAS_TABELAS.md
+docs/ROTEIRO_APRESENTACAO_SECAO_POR_SECAO_GRAFICOS.md
+notebooks/01_exploration.ipynb
+notebooks/02_article_figures.ipynb
+ROADMAP.md
+docs/implementation_plan.md
 
 .DS_Store
 Thumbs.db
