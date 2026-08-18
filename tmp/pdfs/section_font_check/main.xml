@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf2xml SYSTEM "pdf2xml.dtd">
+
+<pdf2xml producer="poppler" version="24.04.0">
+<page number="24" position="absolute" top="0" left="0" height="1114" width="816">
+	<fontspec id="0" size="13" family="RMKBBJ+SFSS0900" color="#000000"/>
+	<fontspec id="1" size="10" family="BXGEVL+DejaVuSerif" color="#000000"/>
+	<fontspec id="2" size="8" family="BXGEVL+DejaVuSerif" color="#000000"/>
+	<fontspec id="3" size="15" family="GSOKAR+STIXGeneral" color="#000000"/>
+	<fontspec id="4" size="16" family="LBTDDL+STIXGeneral" color="#000000"/>
+	<fontspec id="5" size="15" family="GSOKAR+STIXGeneral" color="#2f4f4f"/>
+	<fontspec id="6" size="13" family="GCORUB+STIXGeneral" color="#000000"/>
+<image top="93" left="728" width="9" height="177" src="tmp\pdfs\section_font_check\main-24_1.png"/>
+<text top="53" left="263" width="291" height="12" font="0">RMT-filtered networks for B3 volatility forecasting</text>
+<text top="80" left="143" width="68" height="12" font="1">Original (Ordered)</text>
+<text top="80" left="379" width="67" height="12" font="1">Filtered (Ordered)</text>
+<text top="80" left="582" width="85" height="12" font="1">Group_Mode (Ordered)</text>
+<text top="248" left="745" width="9" height="9" font="2">0.4</text>
+<text top="212" left="745" width="9" height="9" font="2">0.2</text>
+<text top="177" left="741" width="9" height="9" font="2">0.0</text>
+<text top="141" left="741" width="9" height="9" font="2">0.2</text>
+<text top="106" left="741" width="9" height="9" font="2">0.4</text>
+<text top="288" left="58" width="700" height="19" font="3">Figure 9: Ordered heatmaps for original and RMT-filtered correlation matrices. Hierarchical ordering reveals block</text>
+<text top="306" left="58" width="314" height="19" font="3">structures that are less visible in unordered matrices.</text>
+<text top="343" left="58" width="216" height="15" font="4"><b>7.2. Dendrograms comparison</b></text>
+<text top="358" left="81" width="427" height="19" font="3">Dendrograms give another view of the same distance geometry. Figure</text>
+<text top="358" left="512" width="15" height="19" font="5"><a href="main.html#25">10</a></text>
+<text top="358" left="531" width="227" height="19" font="3">compares hierarchical clustering trees</text>
+<text top="376" left="58" width="343" height="19" font="3">for original, filtered and group-mode matrices, and Table</text>
+<text top="376" left="405" width="7" height="19" font="5"><a href="main.html#24">8</a></text>
+<text top="376" left="417" width="341" height="19" font="3">reports the corresponding cophenetic correlations. These</text>
+<text top="394" left="58" width="700" height="19" font="3">trees help identify which assets merge at shorter distances and how the hierarchy changes after market-mode removal.</text>
+<text top="412" left="58" width="700" height="19" font="3">We do not formally test branch stability here; the dendrograms are used as exploratory summaries of the distance</text>
+<text top="430" left="58" width="59" height="19" font="3">geometry.</text>
+<text top="476" left="230" width="356" height="19" font="3">Table 8: Cophenetic correlations for hierarchical clustering.</text>
+<text top="500" left="264" width="41" height="19" font="3">Matrix</text>
+<text top="500" left="359" width="194" height="19" font="3">Assets Cophenetic correlation</text>
+<text top="526" left="264" width="50" height="19" font="3">Original</text>
+<text top="526" left="383" width="15" height="19" font="3">58</text>
+<text top="526" left="511" width="41" height="19" font="3">0.9500</text>
+<text top="544" left="264" width="46" height="19" font="3">Filtered</text>
+<text top="544" left="383" width="15" height="19" font="3">58</text>
+<text top="544" left="511" width="41" height="19" font="3">0.9340</text>
+<text top="562" left="264" width="77" height="19" font="3">Group Mode</text>
+<text top="562" left="383" width="15" height="19" font="3">58</text>
+<text top="562" left="511" width="41" height="19" font="3">0.8705</text>
+<text top="597" left="81" width="677" height="19" font="3">The cophenetic correlation is highest for the original matrix, 0.9500, and remains high for the filtered matrix,</text>
+<text top="615" left="58" width="700" height="19" font="3">0.9340. The group-mode value is lower, 0.8705. This decline is expected because removing the leading market</text>
+<text top="633" left="58" width="700" height="19" font="3">component reduces the smooth common structure that is easier to summarize hierarchically. The lower value indicates</text>
+<text top="651" left="58" width="498" height="19" font="3">that the group-mode distance geometry is less tree-like, not that it is uninformative.</text>
+<text top="1058" left="58" width="115" height="12" font="0">A.V.S. Souza et al.:</text>
+<text top="1059" left="179" width="162" height="12" font="6"><i>Preprint submitted to Elsevier</i></text>
+<text top="1058" left="677" width="81" height="12" font="0">Page 23 of 42</text>
+</page>
+<page number="25" position="absolute" top="0" left="0" height="1114" width="816">
+	<fontspec id="7" size="6" family="BXGEVL+DejaVuSerif" color="#000000"/>
+	<fontspec id="8" size="7" family="BXGEVL+DejaVuSerif" color="#000000"/>
+	<fontspec id="9" size="5" family="BXGEVL+DejaVuSerif" color="#dbdb8d"/>
+	<fontspec id="10" size="5" family="BXGEVL+DejaVuSerif" color="#ff9896"/>
+	<fontspec id="11" size="5" family="BXGEVL+DejaVuSerif" color="#e377c2"/>
+	<fontspec id="12" size="5" family="BXGEVL+DejaVuSerif" color="#ff7f0e"/>
+	<fontspec id="13" size="5" family="BXGEVL+DejaVuSerif" color="#9edae5"/>
+	<fontspec id="14" size="5" family="BXGEVL+DejaVuSerif" color="#98df8a"/>
+	<fontspec id="15" size="5" family="BXGEVL+DejaVuSerif" color="#8c564b"/>
+	<fontspec id="16" size="5" family="BXGEVL+DejaVuSerif" color="#c7c7c7"/>
+	<fontspec id="17" size="5" family="BXGEVL+DejaVuSerif" color="#1f77b4"/>
+<text top="53" left="263" width="291" height="12" font="0">RMT-filtered networks for B3 volatility forecasting</text>
+<text top="319" left="542" width="7" height="8" font="7">0.0</text>
+<text top="319" left="501" width="7" height="8" font="7">0.2</text>
+<text top="319" left="460" width="7" height="8" font="7">0.4</text>
+<text top="319" left="418" width="7" height="8" font="7">0.6</text>
+<text top="319" left="377" width="7" height="8" font="7">0.8</text>
+<text top="319" left="336" width="7" height="8" font="7">1.0</text>
+<text top="319" left="295" width="7" height="8" font="7">1.2</text>
+<text top="319" left="254" width="7" height="8" font="7">1.4</text>
+<text top="325" left="377" width="48" height="8" font="8">Mantegna Distance</text>
+<text top="313" left="549" width="12" height="6" font="9">TELB3</text>
+<text top="309" left="549" width="12" height="6" font="9">TELB4</text>
+<text top="305" left="549" width="12" height="6" font="10">KEPL3</text>
+<text top="302" left="549" width="14" height="6" font="11">EMAE4</text>
+<text top="298" left="549" width="14" height="6" font="12">MGEL4</text>
+<text top="294" left="549" width="13" height="6" font="13">BOBR4</text>
+<text top="290" left="549" width="12" height="6" font="14">BAZA3</text>
+<text top="286" left="549" width="12" height="6" font="14">BEES3</text>
+<text top="282" left="549" width="13" height="6" font="11">CGAS5</text>
+<text top="278" left="549" width="14" height="6" font="15">CTNM4</text>
+<text top="274" left="549" width="12" height="6" font="10">ETER3</text>
+<text top="270" left="549" width="13" height="6" font="11">COCE5</text>
+<text top="266" left="549" width="13" height="6" font="10">ROMI3</text>
+<text top="262" left="549" width="13" height="6" font="10">SHUL4</text>
+<text top="258" left="549" width="13" height="6" font="16">SCAR3</text>
+<text top="254" left="549" width="11" height="6" font="14">ITSA3</text>
+<text top="250" left="549" width="12" height="6" font="12">FESA4</text>
+<text top="247" left="549" width="12" height="6" font="15">ALPA4</text>
+<text top="243" left="549" width="14" height="6" font="15">GRND3</text>
+<text top="239" left="549" width="12" height="6" font="11">SAPR4</text>
+<text top="235" left="549" width="12" height="6" font="14">PSSA3</text>
+<text top="231" left="549" width="14" height="6" font="12">BRKM3</text>
+<text top="227" left="549" width="14" height="6" font="12">BRKM5</text>
+<text top="223" left="549" width="13" height="6" font="12">KLBN4</text>
+<text top="219" left="549" width="12" height="6" font="12">UNIP6</text>
+<text top="215" left="549" width="12" height="6" font="11">TRPL4</text>
+<text top="211" left="549" width="14" height="6" font="10">EMBR3</text>
+<text top="207" left="549" width="12" height="6" font="12">BRAP3</text>
+<text top="203" left="549" width="12" height="6" font="12">BRAP4</text>
+<text top="199" left="549" width="12" height="6" font="12">VALE3</text>
+<text top="196" left="549" width="14" height="6" font="12">GOAU3</text>
+<text top="192" left="549" width="13" height="6" font="12">GGBR3</text>
+<text top="188" left="549" width="13" height="6" font="12">GGBR4</text>
+<text top="184" left="549" width="14" height="6" font="12">GOAU4</text>
+<text top="180" left="549" width="13" height="6" font="12">CSNA3</text>
+<text top="176" left="549" width="13" height="6" font="12">USIM3</text>
+<text top="172" left="549" width="13" height="6" font="12">USIM5</text>
+<text top="168" left="549" width="12" height="6" font="17">PETR3</text>
+<text top="164" left="549" width="12" height="6" font="17">PETR4</text>
+<text top="160" left="549" width="12" height="6" font="14">BBAS3</text>
+<text top="156" left="549" width="11" height="6" font="14">ITSA4</text>
+<text top="152" left="549" width="13" height="6" font="14">BBDC3</text>
+<text top="148" left="549" width="13" height="6" font="14">BBDC4</text>
+<text top="144" left="549" width="12" height="6" font="11">SBSP3</text>
+<text top="141" left="549" width="12" height="6" font="11">ELET3</text>
+<text top="137" left="549" width="12" height="6" font="11">ELET6</text>
+<text top="133" left="549" width="12" height="6" font="11">CPFE3</text>
+<text top="129" left="549" width="13" height="6" font="11">CMIG3</text>
+<text top="125" left="549" width="13" height="6" font="11">CMIG4</text>
+<text top="121" left="549" width="12" height="6" font="11">CPLE3</text>
+<text top="117" left="549" width="12" height="6" font="11">CPLE6</text>
+<text top="113" left="549" width="14" height="6" font="10">POMO4</text>
+<text top="109" left="549" width="12" height="6" font="10">RAPT4</text>
+<text top="105" left="549" width="13" height="6" font="15">GUAR3</text>
+<text top="101" left="549" width="13" height="6" font="10">CCRO3</text>
+<text top="97" left="549" width="13" height="6" font="10">RENT3</text>
+<text top="93" left="549" width="13" height="6" font="16">CYRE3</text>
+<text top="90" left="549" width="13" height="6" font="15">LREN3</text>
+<text top="81" left="326" width="149" height="10" font="2">Original Correlation Matrix Dendrogram (UPGMA)</text>
+<text top="573" left="542" width="7" height="8" font="7">0.0</text>
+<text top="573" left="501" width="7" height="8" font="7">0.2</text>
+<text top="573" left="460" width="7" height="8" font="7">0.4</text>
+<text top="573" left="418" width="7" height="8" font="7">0.6</text>
+<text top="573" left="377" width="7" height="8" font="7">0.8</text>
+<text top="573" left="336" width="7" height="8" font="7">1.0</text>
+<text top="573" left="295" width="7" height="8" font="7">1.2</text>
+<text top="573" left="254" width="7" height="8" font="7">1.4</text>
+<text top="578" left="377" width="48" height="8" font="8">Mantegna Distance</text>
+<text top="567" left="549" width="12" height="6" font="9">TELB3</text>
+<text top="563" left="549" width="12" height="6" font="9">TELB4</text>
+<text top="559" left="549" width="12" height="6" font="10">KEPL3</text>
+<text top="555" left="549" width="14" height="6" font="12">MGEL4</text>
+<text top="551" left="549" width="14" height="6" font="11">EMAE4</text>
+<text top="547" left="549" width="13" height="6" font="13">BOBR4</text>
+<text top="543" left="549" width="12" height="6" font="14">BAZA3</text>
+<text top="539" left="549" width="12" height="6" font="14">BEES3</text>
+<text top="535" left="549" width="13" height="6" font="11">CGAS5</text>
+<text top="531" left="549" width="14" height="6" font="15">CTNM4</text>
+<text top="528" left="549" width="12" height="6" font="10">ETER3</text>
+<text top="524" left="549" width="13" height="6" font="11">COCE5</text>
+<text top="520" left="549" width="13" height="6" font="16">SCAR3</text>
+<text top="516" left="549" width="14" height="6" font="12">BRKM3</text>
+<text top="512" left="549" width="11" height="6" font="14">ITSA3</text>
+<text top="508" left="549" width="12" height="6" font="11">SAPR4</text>
+<text top="504" left="549" width="12" height="6" font="14">PSSA3</text>
+<text top="500" left="549" width="14" height="6" font="10">EMBR3</text>
+<text top="496" left="549" width="12" height="6" font="12">UNIP6</text>
+<text top="492" left="549" width="12" height="6" font="11">TRPL4</text>
+<text top="488" left="549" width="13" height="6" font="12">KLBN4</text>
+<text top="484" left="549" width="12" height="6" font="12">FESA4</text>
+<text top="480" left="549" width="14" height="6" font="12">BRKM5</text>
+<text top="476" left="549" width="12" height="6" font="12">BRAP3</text>
+<text top="473" left="549" width="13" height="6" font="12">USIM3</text>
+<text top="469" left="549" width="13" height="6" font="12">CSNA3</text>
+<text top="465" left="549" width="12" height="6" font="12">BRAP4</text>
+<text top="461" left="549" width="12" height="6" font="12">VALE3</text>
+<text top="457" left="549" width="14" height="6" font="12">GOAU3</text>
+<text top="453" left="549" width="13" height="6" font="12">USIM5</text>
+<text top="449" left="549" width="13" height="6" font="12">GGBR3</text>
+<text top="445" left="549" width="13" height="6" font="12">GGBR4</text>
+<text top="441" left="549" width="14" height="6" font="12">GOAU4</text>
+<text top="437" left="549" width="14" height="6" font="10">POMO4</text>
+<text top="433" left="549" width="12" height="6" font="11">SBSP3</text>
+<text top="429" left="549" width="12" height="6" font="11">CPLE3</text>
+<text top="425" left="549" width="12" height="6" font="11">CPFE3</text>
+<text top="422" left="549" width="13" height="6" font="11">CMIG3</text>
+<text top="418" left="549" width="12" height="6" font="11">ELET3</text>
+<text top="414" left="549" width="12" height="6" font="11">ELET6</text>
+<text top="410" left="549" width="13" height="6" font="11">CMIG4</text>
+<text top="406" left="549" width="12" height="6" font="11">CPLE6</text>
+<text top="402" left="549" width="13" height="6" font="10">RENT3</text>
+<text top="398" left="549" width="13" height="6" font="15">LREN3</text>
+<text top="394" left="549" width="12" height="6" font="10">RAPT4</text>
+<text top="390" left="549" width="13" height="6" font="10">CCRO3</text>
+<text top="386" left="549" width="13" height="6" font="16">CYRE3</text>
+<text top="382" left="549" width="12" height="6" font="17">PETR4</text>
+<text top="378" left="549" width="12" height="6" font="17">PETR3</text>
+<text top="374" left="549" width="12" height="6" font="14">BBAS3</text>
+<text top="370" left="549" width="11" height="6" font="14">ITSA4</text>
+<text top="367" left="549" width="13" height="6" font="14">BBDC3</text>
+<text top="363" left="549" width="13" height="6" font="14">BBDC4</text>
+<text top="359" left="549" width="13" height="6" font="10">SHUL4</text>
+<text top="355" left="549" width="13" height="6" font="10">ROMI3</text>
+<text top="351" left="549" width="14" height="6" font="15">GRND3</text>
+<text top="347" left="549" width="12" height="6" font="15">ALPA4</text>
+<text top="343" left="549" width="13" height="6" font="15">GUAR3</text>
+<text top="334" left="327" width="148" height="10" font="2">Filtered Correlation Matrix Dendrogram (UPGMA)</text>
+<text top="826" left="542" width="7" height="8" font="7">0.0</text>
+<text top="826" left="504" width="7" height="8" font="7">0.2</text>
+<text top="826" left="466" width="7" height="8" font="7">0.4</text>
+<text top="826" left="428" width="7" height="8" font="7">0.6</text>
+<text top="826" left="390" width="7" height="8" font="7">0.8</text>
+<text top="826" left="352" width="7" height="8" font="7">1.0</text>
+<text top="826" left="314" width="7" height="8" font="7">1.2</text>
+<text top="826" left="275" width="7" height="8" font="7">1.4</text>
+<text top="832" left="377" width="48" height="8" font="8">Mantegna Distance</text>
+<text top="820" left="549" width="13" height="6" font="12">KLBN4</text>
+<text top="816" left="549" width="12" height="6" font="12">FESA4</text>
+<text top="812" left="549" width="13" height="6" font="12">USIM3</text>
+<text top="808" left="549" width="14" height="6" font="12">GOAU3</text>
+<text top="805" left="549" width="13" height="6" font="12">USIM5</text>
+<text top="801" left="549" width="13" height="6" font="12">CSNA3</text>
+<text top="797" left="549" width="14" height="6" font="12">GOAU4</text>
+<text top="793" left="549" width="13" height="6" font="12">GGBR3</text>
+<text top="789" left="549" width="13" height="6" font="12">GGBR4</text>
+<text top="785" left="549" width="12" height="6" font="12">BRAP3</text>
+<text top="781" left="549" width="12" height="6" font="12">BRAP4</text>
+<text top="777" left="549" width="12" height="6" font="12">VALE3</text>
+<text top="773" left="549" width="13" height="6" font="16">SCAR3</text>
+<text top="769" left="549" width="12" height="6" font="9">TELB3</text>
+<text top="765" left="549" width="12" height="6" font="9">TELB4</text>
+<text top="761" left="549" width="12" height="6" font="14">BEES3</text>
+<text top="757" left="549" width="13" height="6" font="10">CCRO3</text>
+<text top="754" left="549" width="13" height="6" font="16">CYRE3</text>
+<text top="750" left="549" width="12" height="6" font="14">BAZA3</text>
+<text top="746" left="549" width="12" height="6" font="14">PSSA3</text>
+<text top="742" left="549" width="12" height="6" font="17">PETR4</text>
+<text top="738" left="549" width="12" height="6" font="17">PETR3</text>
+<text top="734" left="549" width="11" height="6" font="14">ITSA3</text>
+<text top="730" left="549" width="12" height="6" font="14">BBAS3</text>
+<text top="726" left="549" width="11" height="6" font="14">ITSA4</text>
+<text top="722" left="549" width="13" height="6" font="14">BBDC3</text>
+<text top="718" left="549" width="13" height="6" font="14">BBDC4</text>
+<text top="714" left="549" width="14" height="6" font="10">EMBR3</text>
+<text top="710" left="549" width="12" height="6" font="10">KEPL3</text>
+<text top="706" left="549" width="14" height="6" font="12">MGEL4</text>
+<text top="702" left="549" width="12" height="6" font="12">UNIP6</text>
+<text top="699" left="549" width="13" height="6" font="11">CGAS5</text>
+<text top="695" left="549" width="13" height="6" font="13">BOBR4</text>
+<text top="691" left="549" width="14" height="6" font="12">BRKM3</text>
+<text top="687" left="549" width="14" height="6" font="11">EMAE4</text>
+<text top="683" left="549" width="12" height="6" font="10">ETER3</text>
+<text top="679" left="549" width="13" height="6" font="10">ROMI3</text>
+<text top="675" left="549" width="13" height="6" font="10">SHUL4</text>
+<text top="671" left="549" width="14" height="6" font="10">POMO4</text>
+<text top="667" left="549" width="14" height="6" font="15">CTNM4</text>
+<text top="663" left="549" width="12" height="6" font="10">RAPT4</text>
+<text top="659" left="549" width="13" height="6" font="10">RENT3</text>
+<text top="655" left="549" width="13" height="6" font="15">LREN3</text>
+<text top="651" left="549" width="14" height="6" font="15">GRND3</text>
+<text top="648" left="549" width="12" height="6" font="15">ALPA4</text>
+<text top="644" left="549" width="13" height="6" font="15">GUAR3</text>
+<text top="640" left="549" width="14" height="6" font="12">BRKM5</text>
+<text top="636" left="549" width="13" height="6" font="11">COCE5</text>
+<text top="632" left="549" width="12" height="6" font="11">SBSP3</text>
+<text top="628" left="549" width="12" height="6" font="11">TRPL4</text>
+<text top="624" left="549" width="12" height="6" font="11">SAPR4</text>
+<text top="620" left="549" width="12" height="6" font="11">CPFE3</text>
+<text top="616" left="549" width="12" height="6" font="11">ELET3</text>
+<text top="612" left="549" width="12" height="6" font="11">ELET6</text>
+<text top="608" left="549" width="12" height="6" font="11">CPLE3</text>
+<text top="604" left="549" width="12" height="6" font="11">CPLE6</text>
+<text top="600" left="549" width="13" height="6" font="11">CMIG3</text>
+<text top="596" left="549" width="13" height="6" font="11">CMIG4</text>
+<text top="588" left="320" width="163" height="10" font="2">Group_Mode Correlation Matrix Dendrogram (UPGMA)</text>
+<text top="856" left="58" width="700" height="19" font="3">Figure 10: Dendrogram comparison for original, filtered and group-mode matrices using Mantegna distances and</text>
+<text top="874" left="58" width="97" height="19" font="3">average linkage.</text>
+<text top="907" left="81" width="677" height="19" font="3">The clustering results connect naturally to network filtering. Ordered heatmaps and dendrograms suggest that</text>
+<text top="925" left="58" width="700" height="19" font="3">localized structure remains after RMT filtering. We next examine how this structure appears when only the strongest</text>
+<text top="943" left="58" width="420" height="19" font="3">distance-ranked edges are retained under MST and PMFG constraints.</text>
+<text top="1058" left="58" width="115" height="12" font="0">A.V.S. Souza et al.:</text>
+<text top="1059" left="179" width="162" height="12" font="6"><i>Preprint submitted to Elsevier</i></text>
+<text top="1058" left="677" width="81" height="12" font="0">Page 24 of 42</text>
+</page>
+<page number="26" position="absolute" top="0" left="0" height="1114" width="816">
+	<fontspec id="18" size="18" family="LBTDDL+STIXGeneral" color="#000000"/>
+	<fontspec id="19" size="15" family="UPZAGN+STIXMath" color="#000000"/>
+	<fontspec id="20" size="15" family="RFIZSR+STIXMath" color="#000000"/>
+	<fontspec id="21" size="7" family="ECACOO+DejaVuSerif" color="#000000"/>
+	<fontspec id="22" size="11" family="ECACOO+DejaVuSerif" color="#000000"/>
+<text top="53" left="263" width="291" height="12" font="0">RMT-filtered networks for B3 volatility forecasting</text>
+<text top="88" left="58" width="232" height="16" font="18"><b>8. Financial network topology</b></text>
+<text top="110" left="81" width="677" height="19" font="3">Clustering summarises hierarchical organisation, but it does not identify graph-theoretic hubs, bridges or local</text>
+<text top="128" left="58" width="700" height="19" font="3">cycles. Financial networks give these additional views by retaining selected high-correlation, short-distance edges</text>
+<text top="146" left="58" width="700" height="19" font="3">under structural constraints. We move from dendrograms to filtered financial networks to examine how dependency</text>
+<text top="164" left="58" width="226" height="19" font="3">structure changes after RMT filtering.</text>
+<text top="201" left="58" width="140" height="15" font="4"><b>8.1. MST backbone</b></text>
+<text top="216" left="81" width="524" height="19" font="3">The MST is the sparsest connected representation of the dependency geometry. With</text>
+<text top="220" left="610" width="13" height="13" font="19"><i>𝑁</i></text>
+<text top="220" left="632" width="33" height="14" font="20">= 58</text>
+<text top="216" left="665" width="93" height="19" font="3">, it contains 57</text>
+<text top="234" left="58" width="81" height="19" font="3">edges. Figure</text>
+<text top="234" left="143" width="15" height="19" font="5"><a href="main.html#26">11</a></text>
+<text top="234" left="162" width="596" height="19" font="3">compares the MST built from the original matrix with the MST built from the group-mode matrix.</text>
+<text top="252" left="58" width="648" height="19" font="3">This comparison illustrates how the MST backbone changes after the leading market component is removed.</text>
+<text top="429" left="216" width="20" height="9" font="21"><b>BBDC4</b></text>
+<text top="430" left="265" width="19" height="9" font="21"><b>CMIG4</b></text>
+<text top="377" left="162" width="19" height="9" font="21"><b>CSNA3</b></text>
+<text top="467" left="215" width="19" height="9" font="21"><b>CYRE3</b></text>
+<text top="442" left="230" width="17" height="9" font="21"><b>ITSA4</b></text>
+<text top="406" left="201" width="18" height="9" font="21"><b>PETR3</b></text>
+<text top="408" left="195" width="18" height="9" font="21"><b>PETR4</b></text>
+<text top="368" left="144" width="19" height="9" font="21"><b>USIM5</b></text>
+<text top="384" left="184" width="18" height="9" font="21"><b>VALE3</b></text>
+<text top="284" left="180" width="107" height="13" font="22"><b>MST - Original Correlation</b></text>
+<text top="417" left="539" width="18" height="9" font="21"><b>ALPA4</b></text>
+<text top="485" left="598" width="20" height="9" font="21"><b>BBDC4</b></text>
+<text top="475" left="677" width="19" height="9" font="21"><b>BRAP4</b></text>
+<text top="448" left="553" width="20" height="9" font="21"><b>GRND3</b></text>
+<text top="396" left="514" width="20" height="9" font="21"><b>GUAR3</b></text>
+<text top="496" left="585" width="17" height="9" font="21"><b>ITSA4</b></text>
+<text top="479" left="627" width="18" height="9" font="21"><b>PETR3</b></text>
+<text top="519" left="604" width="18" height="9" font="21"><b>PETR4</b></text>
+<text top="462" left="578" width="18" height="9" font="21"><b>PSSA3</b></text>
+<text top="482" left="653" width="18" height="9" font="21"><b>VALE3</b></text>
+<text top="284" left="507" width="152" height="13" font="22"><b>MST - Group/Sector Mode Correlation</b></text>
+<text top="590" left="241" width="42" height="9" font="2">Basic Materials</text>
+<text top="598" left="241" width="51" height="9" font="2">Consumer Cyclical</text>
+<text top="590" left="318" width="64" height="9" font="2">Consumer Non-Cyclical</text>
+<text top="598" left="318" width="28" height="9" font="2">Financials</text>
+<text top="590" left="407" width="29" height="9" font="2">Industrials</text>
+<text top="598" left="407" width="55" height="9" font="2">Oil Gas and Biofuels</text>
+<text top="590" left="487" width="31" height="9" font="2">Real Estate</text>
+<text top="598" left="487" width="55" height="9" font="2">Telecommunications</text>
+<text top="590" left="568" width="21" height="9" font="2">Utilities</text>
+<text top="625" left="58" width="700" height="19" font="3">Figure 11: Refined MST comparison for original and group-mode correlation matrices. The original MST emphasizes</text>
+<text top="643" left="58" width="680" height="19" font="3">strong market-mode dependencies, while the group-mode MST highlights weaker localized dependency channels.</text>
+<text top="676" left="81" width="677" height="19" font="3">The original MST has mean edge correlation 0.5796, while the group-mode MST has mean edge correlation</text>
+<text top="694" left="58" width="700" height="19" font="3">0.1388. This decline is expected because the group-mode network is constructed after excluding the dominant common</text>
+<text top="712" left="58" width="700" height="19" font="3">component. The same-sector edge ratio also changes, from 0.7193 in the original MST to 0.6316 in the group-mode</text>
+<text top="730" left="58" width="700" height="19" font="3">MST. The group-mode MST is not simply a weaker version of the original tree. It represents a different dependency</text>
+<text top="748" left="58" width="421" height="19" font="3">backbone constructed after removing the leading common component.</text>
+<text top="785" left="58" width="146" height="15" font="4"><b>8.2. PMFG topology</b></text>
+<text top="800" left="81" width="508" height="19" font="3">The PMFG is less sparse than the MST because it preserves planarity while retaining</text>
+<text top="804" left="593" width="7" height="14" font="20">3</text>
+<text top="804" left="600" width="13" height="13" font="19"><i>𝑁</i></text>
+<text top="804" left="618" width="62" height="14" font="20">− 6 = 168</text>
+<text top="800" left="683" width="75" height="19" font="3">edges. It can</text>
+<text top="818" left="58" width="465" height="19" font="3">retain cycles, triangles and 4-cliques, which are absent from the MST. Figure</text>
+<text top="818" left="528" width="15" height="19" font="5"><a href="main.html#27">12</a></text>
+<text top="818" left="547" width="211" height="19" font="3">compares original and group-mode</text>
+<text top="836" left="58" width="700" height="19" font="3">PMFGs. This is the main network visualization in the paper because the PMFG retains enough structure to study local</text>
+<text top="854" left="58" width="337" height="19" font="3">connectivity patterns, clustering and hub reorganization.</text>
+<text top="872" left="81" width="677" height="19" font="3">The original PMFG has mean edge correlation 0.5177. The group-mode PMFG has mean edge correlation 0.1109.</text>
+<text top="890" left="58" width="700" height="19" font="3">Despite this lower average edge strength, the group-mode PMFG has higher average clustering, 0.6653, than the</text>
+<text top="908" left="58" width="700" height="19" font="3">original PMFG, 0.5273. Removing the market mode lowers the absolute level of edge correlations, but the resulting</text>
+<text top="926" left="58" width="302" height="19" font="3">PMFG is associated with stronger local clustering.</text>
+<text top="1058" left="58" width="115" height="12" font="0">A.V.S. Souza et al.:</text>
+<text top="1059" left="179" width="162" height="12" font="6"><i>Preprint submitted to Elsevier</i></text>
+<text top="1058" left="677" width="81" height="12" font="0">Page 25 of 42</text>
+</page>
+<page number="27" position="absolute" top="0" left="0" height="1114" width="816">
+	<fontspec id="23" size="13" family="GSOKAR+STIXGeneral" color="#000000"/>
+<text top="53" left="263" width="291" height="12" font="0">RMT-filtered networks for B3 volatility forecasting</text>
+<text top="212" left="270" width="20" height="9" font="21"><b>BBDC3</b></text>
+<text top="187" left="215" width="20" height="9" font="21"><b>BBDC4</b></text>
+<text top="154" left="307" width="19" height="9" font="21"><b>CMIG4</b></text>
+<text top="140" left="286" width="18" height="9" font="21"><b>CPLE6</b></text>
+<text top="164" left="158" width="19" height="9" font="21"><b>CYRE3</b></text>
+<text top="289" left="307" width="20" height="9" font="21"><b>GGBR4</b></text>
+<text top="321" left="329" width="20" height="9" font="21"><b>GOAU4</b></text>
+<text top="168" left="238" width="17" height="9" font="21"><b>ITSA4</b></text>
+<text top="239" left="250" width="18" height="9" font="21"><b>PETR4</b></text>
+<text top="280" left="264" width="18" height="9" font="21"><b>VALE3</b></text>
+<text top="79" left="177" width="113" height="13" font="22"><b>PMFG - Original Correlation</b></text>
+<text top="174" left="632" width="20" height="9" font="21"><b>BBDC3</b></text>
+<text top="182" left="620" width="20" height="9" font="21"><b>BBDC4</b></text>
+<text top="208" left="585" width="19" height="9" font="21"><b>CCRO3</b></text>
+<text top="313" left="447" width="19" height="9" font="21"><b>CMIG3</b></text>
+<text top="248" left="527" width="20" height="9" font="21"><b>GUAR3</b></text>
+<text top="164" left="628" width="17" height="9" font="21"><b>ITSA4</b></text>
+<text top="222" left="569" width="19" height="9" font="21"><b>LREN3</b></text>
+<text top="152" left="658" width="18" height="9" font="21"><b>PETR4</b></text>
+<text top="282" left="478" width="18" height="9" font="21"><b>SAPR4</b></text>
+<text top="141" left="686" width="18" height="9" font="21"><b>VALE3</b></text>
+<text top="79" left="504" width="158" height="13" font="22"><b>PMFG - Group/Sector Mode Correlation</b></text>
+<text top="385" left="241" width="42" height="9" font="2">Basic Materials</text>
+<text top="393" left="241" width="51" height="9" font="2">Consumer Cyclical</text>
+<text top="385" left="318" width="64" height="9" font="2">Consumer Non-Cyclical</text>
+<text top="393" left="318" width="28" height="9" font="2">Financials</text>
+<text top="385" left="407" width="29" height="9" font="2">Industrials</text>
+<text top="393" left="407" width="55" height="9" font="2">Oil Gas and Biofuels</text>
+<text top="385" left="487" width="31" height="9" font="2">Real Estate</text>
+<text top="393" left="487" width="55" height="9" font="2">Telecommunications</text>
+<text top="385" left="568" width="21" height="9" font="2">Utilities</text>
+<text top="420" left="58" width="700" height="19" font="3">Figure 12: Refined PMFG comparison for original and group-mode correlation matrices. The group-mode PMFG</text>
+<text top="438" left="58" width="509" height="19" font="3">reduces market-wide dominance and highlights more localized dependency channels.</text>
+<text top="475" left="58" width="323" height="15" font="4"><b>8.3. Original vs Group/Sector Mode networks</b></text>
+<text top="490" left="81" width="33" height="19" font="3">Table</text>
+<text top="490" left="119" width="7" height="19" font="5"><a href="main.html#27">9</a></text>
+<text top="490" left="131" width="627" height="19" font="3">summarizes the main MST and PMFG statistics. Across both graph families, original networks display</text>
+<text top="508" left="58" width="700" height="19" font="3">stronger average edge correlations, while group-mode networks display weaker edge correlations but retain nontrivial</text>
+<text top="526" left="58" width="700" height="19" font="3">sectoral and graph structure. Original networks have stronger average edge correlations, as expected, because they are</text>
+<text top="544" left="58" width="700" height="19" font="3">constructed from matrices that include the leading market component. Group-mode networks have weaker edges but</text>
+<text top="562" left="58" width="377" height="19" font="3">retain patterns aligned with sectoral and subsectoral groupings.</text>
+<text top="608" left="247" width="323" height="19" font="3">Table 9: Selected MST and PMFG topology statistics.</text>
+<text top="632" left="66" width="95" height="17" font="23">Network Matrix</text>
+<text top="632" left="206" width="545" height="17" font="23">Edges Mean edge corr. Same-sector ratio Clustering Top degree Top betweenness 4-cliques</text>
+<text top="654" left="66" width="26" height="17" font="23">MST</text>
+<text top="654" left="126" width="43" height="17" font="23">Original</text>
+<text top="654" left="224" width="13" height="17" font="23">57</text>
+<text top="654" left="301" width="35" height="17" font="23">0.5796</text>
+<text top="654" left="406" width="35" height="17" font="23">0.7193</text>
+<text top="654" left="476" width="35" height="17" font="23">0.0000</text>
+<text top="654" left="545" width="39" height="17" font="23">RAPT4</text>
+<text top="654" left="653" width="35" height="17" font="23">ITSA4</text>
+<text top="654" left="744" width="6" height="17" font="23">0</text>
+<text top="669" left="66" width="26" height="17" font="23">MST</text>
+<text top="669" left="126" width="65" height="17" font="23">Group mode</text>
+<text top="669" left="224" width="13" height="17" font="23">57</text>
+<text top="669" left="301" width="35" height="17" font="23">0.1388</text>
+<text top="669" left="406" width="35" height="17" font="23">0.6316</text>
+<text top="669" left="476" width="35" height="17" font="23">0.0000</text>
+<text top="669" left="545" width="39" height="17" font="23">ALPA4</text>
+<text top="669" left="649" width="39" height="17" font="23">ALPA4</text>
+<text top="669" left="744" width="6" height="17" font="23">0</text>
+<text top="685" left="66" width="35" height="17" font="23">PMFG</text>
+<text top="685" left="126" width="43" height="17" font="23">Original</text>
+<text top="685" left="218" width="19" height="17" font="23">168</text>
+<text top="685" left="301" width="35" height="17" font="23">0.5177</text>
+<text top="685" left="406" width="35" height="17" font="23">0.6012</text>
+<text top="685" left="476" width="35" height="17" font="23">0.5273</text>
+<text top="685" left="543" width="41" height="17" font="23">BBDC4</text>
+<text top="685" left="646" width="42" height="17" font="23">GGBR4</text>
+<text top="685" left="738" width="13" height="17" font="23">55</text>
+<text top="700" left="66" width="35" height="17" font="23">PMFG</text>
+<text top="700" left="126" width="65" height="17" font="23">Group mode</text>
+<text top="700" left="218" width="19" height="17" font="23">168</text>
+<text top="700" left="301" width="35" height="17" font="23">0.1109</text>
+<text top="700" left="406" width="35" height="17" font="23">0.5417</text>
+<text top="700" left="476" width="35" height="17" font="23">0.6653</text>
+<text top="700" left="542" width="42" height="17" font="23">GUAR3</text>
+<text top="700" left="646" width="42" height="17" font="23">GUAR3</text>
+<text top="700" left="738" width="13" height="17" font="23">55</text>
+<text top="737" left="58" width="301" height="15" font="4"><b>8.4. Temporal stability of network features</b></text>
+<text top="752" left="81" width="677" height="19" font="3">The static graphs summarize the full synchronized sample, but their components need not be stable over time. We</text>
+<text top="770" left="58" width="700" height="19" font="3">therefore re-estimate each network in three consecutive 509-trading-day windows: 23 August 2006–13 February 2012,</text>
+<text top="788" left="58" width="434" height="19" font="3">28 February 2012–2 June 2021, and 4 June 2021–15 August 2024. Table</text>
+<text top="788" left="496" width="15" height="19" font="5"><a href="main.html#27">10</a></text>
+<text top="788" left="515" width="243" height="19" font="3">reports the mean pairwise overlap across</text>
+<text top="806" left="58" width="700" height="19" font="3">the three window pairs. Edge persistence is modest in the original networks (mean Jaccard 0.206 for MST and 0.212</text>
+<text top="824" left="58" width="700" height="19" font="3">for PMFG) and lower in the group-mode networks (0.047 and 0.140, respectively). Top-five betweenness-hub overlap</text>
+<text top="842" left="58" width="450" height="19" font="3">is only 0.20–0.27 on average, and community ARI values are similarly low.</text>
+<text top="887" left="58" width="700" height="19" font="3">Table 10: Temporal stability across three consecutive 509-trading-day windows. Values are means over the three</text>
+<text top="905" left="58" width="84" height="19" font="3">window pairs.</text>
+<text top="930" left="164" width="110" height="19" font="3">Network Matrix</text>
+<text top="930" left="327" width="325" height="19" font="3">Edge Jaccard Top-5 hub overlap Community ARI</text>
+<text top="956" left="164" width="30" height="19" font="3">MST</text>
+<text top="956" left="234" width="50" height="19" font="3">Original</text>
+<text top="956" left="372" width="34" height="19" font="3">0.206</text>
+<text top="956" left="500" width="34" height="19" font="3">0.267</text>
+<text top="956" left="618" width="34" height="19" font="3">0.138</text>
+<text top="973" left="164" width="30" height="19" font="3">MST</text>
+<text top="973" left="234" width="75" height="19" font="3">Group mode</text>
+<text top="973" left="372" width="34" height="19" font="3">0.047</text>
+<text top="973" left="500" width="34" height="19" font="3">0.200</text>
+<text top="973" left="618" width="34" height="19" font="3">0.182</text>
+<text top="991" left="164" width="41" height="19" font="3">PMFG</text>
+<text top="991" left="234" width="50" height="19" font="3">Original</text>
+<text top="991" left="372" width="34" height="19" font="3">0.212</text>
+<text top="991" left="500" width="34" height="19" font="3">0.200</text>
+<text top="991" left="618" width="34" height="19" font="3">0.214</text>
+<text top="1009" left="164" width="41" height="19" font="3">PMFG</text>
+<text top="1009" left="234" width="75" height="19" font="3">Group mode</text>
+<text top="1009" left="372" width="34" height="19" font="3">0.140</text>
+<text top="1009" left="500" width="34" height="19" font="3">0.200</text>
+<text top="1009" left="618" width="34" height="19" font="3">0.174</text>
+<text top="1058" left="58" width="115" height="12" font="0">A.V.S. Souza et al.:</text>
+<text top="1059" left="179" width="162" height="12" font="6"><i>Preprint submitted to Elsevier</i></text>
+<text top="1058" left="677" width="81" height="12" font="0">Page 26 of 42</text>
+</page>
+<page number="28" position="absolute" top="0" left="0" height="1114" width="816">
+<text top="53" left="263" width="291" height="12" font="0">RMT-filtered networks for B3 volatility forecasting</text>
+<text top="82" left="81" width="677" height="19" font="3">No top-five betweenness hub appears in all three windows; the most recurrent hubs occur in two. Thus the full-</text>
+<text top="99" left="58" width="700" height="19" font="3">sample graph identifies long-run average dependency channels, while its individual edges, central nodes and modular</text>
+<text top="117" left="58" width="700" height="19" font="3">partitions are sensitive to the observation window. The lower persistence of group-mode edges is consistent with a</text>
+<text top="135" left="58" width="700" height="19" font="3">weaker component reconstructed after removal of the dominant market mode. This result strengthens the descriptive</text>
+<text top="153" left="58" width="145" height="19" font="3">interpretation of Figures</text>
+<text top="153" left="207" width="15" height="19" font="5"><a href="main.html#26">11</a></text>
+<text top="153" left="222" width="7" height="19" font="3"><a href="main.html#26">–</a></text>
+<text top="153" left="229" width="15" height="19" font="5"><a href="main.html#30">14</a></text>
+<text top="153" left="244" width="514" height="19" font="3"><a href="main.html#30">: </a>they reveal economically interpretable configurations in the full sample, not invariant</text>
+<text top="171" left="58" width="108" height="19" font="3">network structure.</text>
+<text top="208" left="58" width="213" height="15" font="4"><b>8.5. Network topology metrics</b></text>
+<text top="224" left="81" width="39" height="19" font="3">Figure</text>
+<text top="224" left="124" width="15" height="19" font="5"><a href="main.html#29">13</a></text>
+<text top="224" left="142" width="616" height="19" font="3">expands the comparison beyond average edge correlation. It summarizes mean edge correlation, same-</text>
+<text top="242" left="58" width="700" height="19" font="3">sector ratio, same-subsector ratio and average clustering across network and matrix types. This figure illustrates that</text>
+<text top="260" left="58" width="412" height="19" font="3">network structure cannot be reduced to a single edge-weight statistic.</text>
+<text top="277" left="81" width="677" height="19" font="3">The network comparison supports a subsector-level interpretation. Group-mode networks have lower mean</text>
+<text top="295" left="58" width="700" height="19" font="3">edge correlations, while the PMFG clustering coefficient increases. Same-sector and same-subsector ratios remain</text>
+<text top="313" left="58" width="274" height="19" font="3">substantial after market-mode removal. Table</text>
+<text top="313" left="337" width="15" height="19" font="5"><a href="main.html#28">11</a></text>
+<text top="313" left="356" width="402" height="19" font="3">confirms that all PMFG variants satisfy the expected planar clique</text>
+<text top="331" left="58" width="700" height="19" font="3">counts. This pattern suggests localized dependency structure, although a formal comparison with graph null models</text>
+<text top="349" left="58" width="700" height="19" font="3">would be required to quantify how unlikely the structure is under randomized alternatives. MST clustering is zero by</text>
+<text top="367" left="58" width="700" height="19" font="3">construction because trees do not contain triangles; the PMFG clustering coefficient is the relevant statistic for local</text>
+<text top="385" left="58" width="140" height="19" font="3">triangular organization.</text>
+<text top="431" left="259" width="298" height="19" font="3">Table 11: PMFG clique and planarity diagnostics.</text>
+<text top="456" left="213" width="41" height="19" font="3">Matrix</text>
+<text top="456" left="308" width="295" height="19" font="3">Nodes Edges Triangles 4-cliques Planar</text>
+<text top="481" left="213" width="50" height="19" font="3">Original</text>
+<text top="481" left="331" width="15" height="19" font="3">58</text>
+<text top="481" left="378" width="22" height="19" font="3">168</text>
+<text top="481" left="452" width="22" height="19" font="3">166</text>
+<text top="481" left="532" width="55" height="19" font="3">55 Yes</text>
+<text top="499" left="213" width="46" height="19" font="3">Filtered</text>
+<text top="499" left="331" width="15" height="19" font="3">58</text>
+<text top="499" left="378" width="22" height="19" font="3">168</text>
+<text top="499" left="452" width="22" height="19" font="3">166</text>
+<text top="499" left="532" width="55" height="19" font="3">55 Yes</text>
+<text top="517" left="213" width="77" height="19" font="3">Group Mode</text>
+<text top="517" left="331" width="15" height="19" font="3">58</text>
+<text top="517" left="378" width="22" height="19" font="3">168</text>
+<text top="517" left="452" width="22" height="19" font="3">166</text>
+<text top="517" left="532" width="55" height="19" font="3">55 Yes</text>
+<text top="553" left="81" width="677" height="19" font="3">The clique counts are construction checks. For a PMFG with 58 nodes, 168 edges are expected. The presence</text>
+<text top="570" left="58" width="700" height="19" font="3">of triangles and 4-cliques shows that the PMFG retains local graph structures that are absent from the MST.</text>
+<text top="588" left="58" width="700" height="19" font="3">These structures can be transformed into network predictors for the forecasting experiment, although their economic</text>
+<text top="606" left="58" width="470" height="19" font="3">interpretation depends on the underlying edge weights and sector composition.</text>
+<text top="1058" left="58" width="115" height="12" font="0">A.V.S. Souza et al.:</text>
+<text top="1059" left="179" width="162" height="12" font="6"><i>Preprint submitted to Elsevier</i></text>
+<text top="1058" left="677" width="81" height="12" font="0">Page 27 of 42</text>
+</page>
+<page number="29" position="absolute" top="0" left="0" height="1114" width="816">
+	<fontspec id="24" size="11" family="BXGEVL+DejaVuSerif" color="#000000"/>
+	<fontspec id="25" size="14" family="ECACOO+DejaVuSerif" color="#000000"/>
+	<fontspec id="26" size="19" family="ECACOO+DejaVuSerif" color="#000000"/>
+<text top="53" left="263" width="291" height="12" font="0">RMT-filtered networks for B3 volatility forecasting</text>
+<text top="343" left="113" width="51" height="13" font="24">MST Original</text>
+<text top="347" left="179" width="221" height="15" font="24">MST Group_mode PMFG Original PMFG Group_mode</text>
+<text top="321" left="84" width="12" height="13" font="24">0.0</text>
+<text top="286" left="84" width="12" height="13" font="24">0.1</text>
+<text top="251" left="84" width="12" height="13" font="24">0.2</text>
+<text top="216" left="84" width="12" height="13" font="24">0.3</text>
+<text top="181" left="84" width="12" height="13" font="24">0.4</text>
+<text top="147" left="84" width="12" height="13" font="24">0.5</text>
+<text top="112" left="84" width="12" height="13" font="24">0.6</text>
+<text top="98" left="189" width="122" height="17" font="25"><b>Mean Edge Correlation</b></text>
+<text top="343" left="446" width="51" height="13" font="24">MST Original</text>
+<text top="347" left="512" width="221" height="15" font="24">MST Group_mode PMFG Original PMFG Group_mode</text>
+<text top="321" left="416" width="12" height="13" font="24">0.0</text>
+<text top="293" left="416" width="12" height="13" font="24">0.1</text>
+<text top="265" left="416" width="12" height="13" font="24">0.2</text>
+<text top="237" left="416" width="12" height="13" font="24">0.3</text>
+<text top="209" left="416" width="12" height="13" font="24">0.4</text>
+<text top="180" left="416" width="12" height="13" font="24">0.5</text>
+<text top="152" left="416" width="12" height="13" font="24">0.6</text>
+<text top="124" left="416" width="12" height="13" font="24">0.7</text>
+<text top="98" left="519" width="127" height="17" font="25"><b>Same Sector Edge Ratio</b></text>
+<text top="609" left="113" width="51" height="13" font="24">MST Original</text>
+<text top="614" left="179" width="221" height="15" font="24">MST Group_mode PMFG Original PMFG Group_mode</text>
+<text top="587" left="84" width="12" height="13" font="24">0.0</text>
+<text top="543" left="84" width="12" height="13" font="24">0.1</text>
+<text top="498" left="84" width="12" height="13" font="24">0.2</text>
+<text top="454" left="84" width="12" height="13" font="24">0.3</text>
+<text top="410" left="84" width="12" height="13" font="24">0.4</text>
+<text top="364" left="177" width="145" height="17" font="25"><b>Same Subsector Edge Ratio</b></text>
+<text top="609" left="446" width="51" height="13" font="24">MST Original</text>
+<text top="614" left="512" width="221" height="15" font="24">MST Group_mode PMFG Original PMFG Group_mode</text>
+<text top="587" left="416" width="12" height="13" font="24">0.0</text>
+<text top="557" left="416" width="12" height="13" font="24">0.1</text>
+<text top="526" left="416" width="12" height="13" font="24">0.2</text>
+<text top="496" left="416" width="12" height="13" font="24">0.3</text>
+<text top="466" left="416" width="12" height="13" font="24">0.4</text>
+<text top="435" left="416" width="12" height="13" font="24">0.5</text>
+<text top="405" left="416" width="12" height="13" font="24">0.6</text>
+<text top="364" left="518" width="130" height="17" font="25"><b>Average Clustering Coef.</b></text>
+<text top="78" left="254" width="315" height="23" font="26"><b>Topology Metrics Comparison: MST vs PMFG</b></text>
+<text top="647" left="74" width="667" height="19" font="3">Figure 13: Network structure comparison across original, filtered and group-mode MST/PMFG representations.</text>
+<text top="684" left="58" width="311" height="15" font="4"><b>8.6. Hub reorganization after RMT filtering</b></text>
+<text top="699" left="81" width="597" height="19" font="3">Hub rankings summarize which assets occupy central positions in the constructed networks. Figure</text>
+<text top="699" left="682" width="15" height="19" font="5"><a href="main.html#30">14</a></text>
+<text top="699" left="701" width="57" height="19" font="3">compares</text>
+<text top="717" left="58" width="700" height="19" font="3">hub rankings before and after filtering. In the original PMFG, GGBR4 is the top betweenness node and BBDC4 is the</text>
+<text top="735" left="58" width="674" height="19" font="3">top degree node. In the group-mode PMFG, GUAR3 becomes the leading node by both degree and betweenness.</text>
+<text top="753" left="81" width="677" height="19" font="3">This change in hub ranking is meaningful for interpretation. Original hubs can reflect market-wide correlation</text>
+<text top="771" left="58" width="700" height="19" font="3">strength and broad exposure to the common component. Group-mode hubs act as localized bridges in the network</text>
+<text top="789" left="58" width="700" height="19" font="3">obtained after removing the leading common component. The appearance of assets such as GUAR3, BBDC3, VALE3,</text>
+<text top="807" left="58" width="700" height="19" font="3">CCRO3, SAPR4 and CMIG3 in group-mode rankings suggests that centrality depends on the matrix used to construct</text>
+<text top="824" left="58" width="700" height="19" font="3">the network. Because hub identities can be sensitive to small changes in edge ranking, we report these rankings as</text>
+<text top="842" left="58" width="344" height="19" font="3">descriptive summaries rather than stable structural labels.</text>
+<text top="1058" left="58" width="115" height="12" font="0">A.V.S. Souza et al.:</text>
+<text top="1059" left="179" width="162" height="12" font="6"><i>Preprint submitted to Elsevier</i></text>
+<text top="1058" left="677" width="81" height="12" font="0">Page 28 of 42</text>
+</page>
+<page number="30" position="absolute" top="0" left="0" height="1114" width="816">
+	<fontspec id="27" size="6" family="HCDTYZ+DejaVuSerif" color="#000000" opacity="0.701961"/>
+	<fontspec id="28" size="12" family="ECACOO+DejaVuSerif" color="#000000"/>
+	<fontspec id="29" size="15" family="ECACOO+DejaVuSerif" color="#000000"/>
+	<fontspec id="30" size="12" family="GCORUB+STIXGeneral" color="#000000"/>
+	<fontspec id="31" size="12" family="GSOKAR+STIXGeneral" color="#000000"/>
+	<fontspec id="32" size="12" family="UPZAGN+STIXMath" color="#000000"/>
+	<fontspec id="33" size="9" family="UPZAGN+STIXMath" color="#000000"/>
+	<fontspec id="34" size="12" family="GSOKAR+STIXGeneral" color="#2f4f4f"/>
+<text top="53" left="263" width="291" height="12" font="0">RMT-filtered networks for B3 volatility forecasting</text>
+<text top="369" left="82" width="9" height="9" font="2">0.0</text>
+<text top="369" left="135" width="9" height="9" font="2">0.1</text>
+<text top="369" left="187" width="9" height="9" font="2">0.2</text>
+<text top="369" left="240" width="9" height="9" font="2">0.3</text>
+<text top="369" left="292" width="9" height="9" font="2">0.4</text>
+<text top="369" left="345" width="9" height="9" font="2">0.5</text>
+<text top="369" left="397" width="9" height="9" font="2">0.6</text>
+<text top="376" left="213" width="66" height="9" font="2">Betweenness Centrality</text>
+<text top="343" left="64" width="19" height="9" font="2">PETR3</text>
+<text top="320" left="64" width="19" height="9" font="2">RAPT4</text>
+<text top="298" left="62" width="21" height="9" font="2">GOAU4</text>
+<text top="275" left="64" width="19" height="9" font="2">CPLE6</text>
+<text top="252" left="66" width="17" height="9" font="2">ITSA4</text>
+<text top="230" left="63" width="20" height="9" font="2">CMIG4</text>
+<text top="207" left="64" width="19" height="9" font="2">CYRE3</text>
+<text top="184" left="63" width="20" height="9" font="2">BBDC3</text>
+<text top="162" left="63" width="20" height="9" font="2">BBDC4</text>
+<text top="139" left="63" width="20" height="9" font="2">GGBR4</text>
+<text top="344" left="125" width="46" height="7" font="27"><i> Oil Gas and Biofuels</i></text>
+<text top="321" left="131" width="25" height="7" font="27"><i> Industrials</i></text>
+<text top="298" left="149" width="36" height="7" font="27"><i> Basic Materials</i></text>
+<text top="276" left="150" width="19" height="7" font="27"><i> Utilities</i></text>
+<text top="253" left="179" width="24" height="7" font="27"><i> Financials</i></text>
+<text top="230" left="195" width="19" height="7" font="27"><i> Utilities</i></text>
+<text top="207" left="197" width="27" height="7" font="27"><i> Real Estate</i></text>
+<text top="185" left="279" width="24" height="7" font="27"><i> Financials</i></text>
+<text top="162" left="281" width="24" height="7" font="27"><i> Financials</i></text>
+<text top="139" left="291" width="36" height="7" font="27"><i> Basic Materials</i></text>
+<text top="110" left="164" width="163" height="14" font="28"><b>PMFG Original   Top 10 Betweenness</b></text>
+<text top="369" left="432" width="9" height="9" font="2">0.0</text>
+<text top="369" left="481" width="9" height="9" font="2">0.1</text>
+<text top="369" left="531" width="9" height="9" font="2">0.2</text>
+<text top="369" left="580" width="9" height="9" font="2">0.3</text>
+<text top="369" left="630" width="9" height="9" font="2">0.4</text>
+<text top="369" left="679" width="9" height="9" font="2">0.5</text>
+<text top="369" left="728" width="9" height="9" font="2">0.6</text>
+<text top="376" left="562" width="66" height="9" font="2">Betweenness Centrality</text>
+<text top="343" left="413" width="19" height="9" font="2">BRAP4</text>
+<text top="320" left="414" width="18" height="9" font="2">ALPA4</text>
+<text top="298" left="413" width="20" height="9" font="2">LREN3</text>
+<text top="275" left="412" width="20" height="9" font="2">BBDC4</text>
+<text top="252" left="413" width="20" height="9" font="2">CMIG3</text>
+<text top="230" left="414" width="19" height="9" font="2">SAPR4</text>
+<text top="207" left="412" width="20" height="9" font="2">CCRO3</text>
+<text top="184" left="414" width="18" height="9" font="2">VALE3</text>
+<text top="162" left="412" width="20" height="9" font="2">BBDC3</text>
+<text top="139" left="412" width="20" height="9" font="2">GUAR3</text>
+<text top="344" left="499" width="36" height="7" font="27"><i> Basic Materials</i></text>
+<text top="321" left="525" width="43" height="7" font="27"><i> Consumer Cyclical</i></text>
+<text top="298" left="537" width="43" height="7" font="27"><i> Consumer Cyclical</i></text>
+<text top="276" left="547" width="24" height="7" font="27"><i> Financials</i></text>
+<text top="253" left="550" width="19" height="7" font="27"><i> Utilities</i></text>
+<text top="230" left="555" width="19" height="7" font="27"><i> Utilities</i></text>
+<text top="207" left="556" width="25" height="7" font="27"><i> Industrials</i></text>
+<text top="185" left="594" width="36" height="7" font="27"><i> Basic Materials</i></text>
+<text top="162" left="594" width="24" height="7" font="27"><i> Financials</i></text>
+<text top="139" left="641" width="43" height="7" font="27"><i> Consumer Cyclical</i></text>
+<text top="110" left="490" width="211" height="14" font="28"><b>PMFG Group/Sector Mode   Top 10 Betweenness</b></text>
+<text top="78" left="249" width="319" height="18" font="29"><b>Hub Shift: Impact of RMT Filtering on Network Centrality</b></text>
+<text top="402" left="58" width="700" height="19" font="3">Figure 14: Hub-rank comparison across original and group-mode networks. RMT filtering changes which assets occupy</text>
+<text top="420" left="58" width="267" height="19" font="3">central positions in the dependency network.</text>
+<text top="471" left="58" width="350" height="16" font="18"><b>9. Aggregated subsector dependency network</b></text>
+<text top="493" left="81" width="677" height="19" font="3">Asset-level networks can be difficult to interpret when many share classes and sectors are present. The aggregated</text>
+<text top="511" left="58" width="700" height="19" font="3">subsector dependency network converts ticker-level dependencies into a subsector-level map. Nodes represent subsec-</text>
+<text top="529" left="58" width="700" height="19" font="3">tors and edges summarize average retained dependency strength between subsectors. This is analogous to sector or</text>
+<text top="547" left="58" width="684" height="19" font="3">country aggregation maps used in the financial dependency literature, but adapted to the Brazilian equity universe <a href="main.html#41">[</a></text>
+<text top="547" left="742" width="7" height="19" font="5"><a href="main.html#41">3</a></text>
+<text top="547" left="749" width="9" height="19" font="3"><a href="main.html#41">].</a></text>
+<text top="564" left="81" width="276" height="19" font="3">We summarize the resulting network in Figure</text>
+<text top="564" left="360" width="15" height="19" font="5"><a href="main.html#31">15</a></text>
+<text top="564" left="378" width="58" height="19" font="3">and Table</text>
+<text top="564" left="440" width="15" height="19" font="5"><a href="main.html#30">12</a></text>
+<text top="564" left="455" width="304" height="19" font="3"><a href="main.html#30">. </a>The network contains 22 subsectors and 66 edges,</text>
+<text top="582" left="58" width="700" height="19" font="3">with density 0.2857. The mean edge dependency is 0.0566 and the median edge dependency is 0.0561. These values</text>
+<text top="600" left="58" width="700" height="19" font="3">are lower than typical raw asset-level correlations, which is expected because the network summarizes filtered and</text>
+<text top="618" left="58" width="415" height="19" font="3">aggregated dependencies instead of direct pairwise asset correlations.</text>
+<text top="636" left="81" width="677" height="19" font="3">The top-degree subsector is Retail, indicating broad direct connectivity in the aggregated dependency map. Electric</text>
+<text top="654" left="58" width="700" height="19" font="3">Utility has the highest betweenness, suggesting that it occupies a bridge-like position in the subsector-level network.</text>
+<text top="672" left="58" width="700" height="19" font="3">Apparel and Footwear has the highest weighted degree, reflecting stronger dependency intensity across its retained</text>
+<text top="690" left="58" width="610" height="19" font="3">connections. These summaries help translate the ticker-level PMFG structure into economic language.</text>
+<text top="708" left="81" width="677" height="19" font="3">The subsector network also connects the structural results to volatility modelling. If network structure contains</text>
+<text top="726" left="58" width="700" height="19" font="3">information beyond univariate volatility persistence, then node-level or group-level centrality measures may help</text>
+<text top="744" left="58" width="700" height="19" font="3">explain future volatility regimes. We examine this idea in an exploratory retrospective experiment; a real-time test</text>
+<text top="762" left="58" width="379" height="19" font="3">requires the network to be reconstructed at each forecast origin.</text>
+<text top="807" left="256" width="304" height="19" font="3">Table 12: Aggregated subsector network summary.</text>
+<text top="844" left="66" width="677" height="17" font="23">Subsectors Edges Density Mean edge dep. Median edge dep. Top degree Top betweenness Top weighted degree</text>
+<text top="867" left="110" width="13" height="17" font="23">22</text>
+<text top="867" left="158" width="13" height="17" font="23">66</text>
+<text top="867" left="191" width="36" height="17" font="23">0.2857</text>
+<text top="867" left="291" width="36" height="17" font="23">0.0566</text>
+<text top="867" left="400" width="83" height="17" font="23">0.0561 Retail</text>
+<text top="867" left="527" width="79" height="17" font="23">Electric Utility</text>
+<text top="867" left="633" width="117" height="17" font="23">Apparel and Footwear</text>
+<text top="904" left="58" width="31" height="10" font="30"><i>Notes:</i></text>
+<text top="900" left="92" width="666" height="16" font="31">Edges are retained subsector-level links in the aggregated dependency network. Density is the ratio between retained and possible undirected</text>
+<text top="915" left="58" width="481" height="16" font="31">subsector links. Mean and median edge dependency are computed from the retained edge weights</text>
+<text top="918" left="543" width="11" height="10" font="32"><i>𝑊</i></text>
+<text top="923" left="554" width="9" height="8" font="33"><i>𝑎𝑏</i></text>
+<text top="915" left="568" width="89" height="16" font="31">defined in Section</text>
+<text top="915" left="660" width="21" height="16" font="34"><a href="main.html#12">4.10</a></text>
+<text top="915" left="681" width="77" height="16" font="31"><a href="main.html#12">. </a>Degree counts</text>
+<text top="929" left="58" width="700" height="16" font="31">retained links, weighted degree sums retained edge weights and betweenness is the standard shortest-path betweenness centrality computed on the</text>
+<text top="943" left="58" width="86" height="16" font="31">aggregated graph.</text>
+<text top="1058" left="58" width="115" height="12" font="0">A.V.S. Souza et al.:</text>
+<text top="1059" left="179" width="162" height="12" font="6"><i>Preprint submitted to Elsevier</i></text>
+<text top="1058" left="677" width="81" height="12" font="0">Page 29 of 42</text>
+</page>
+<page number="31" position="absolute" top="0" left="0" height="1114" width="816">
+	<fontspec id="35" size="7" family="BXGEVL+DejaVuSerif" color="#1f1f1f"/>
+	<fontspec id="36" size="9" family="BXGEVL+DejaVuSerif" color="#000000"/>
+<text top="53" left="263" width="291" height="12" font="0">RMT-filtered networks for B3 volatility forecasting</text>
+<text top="420" left="133" width="38" height="9" font="35">Aerospace and</text>
+<text top="424" left="142" width="21" height="9" font="35">Defense</text>
+<text top="382" left="260" width="31" height="9" font="35">Apparel and</text>
+<text top="387" left="263" width="24" height="9" font="35">Footwear</text>
+<text top="460" left="567" width="16" height="9" font="35">Banks</text>
+<text top="253" left="277" width="27" height="9" font="35">Chemicals</text>
+<text top="344" left="212" width="33" height="9" font="35">Construction</text>
+<text top="349" left="217" width="25" height="9" font="35">Materials</text>
+<text top="128" left="218" width="38" height="9" font="35">Electric Utility</text>
+<text top="442" left="518" width="47" height="9" font="35">Financial Services</text>
+<text top="301" left="301" width="27" height="9" font="35">Gas Utility</text>
+<text top="433" left="436" width="26" height="9" font="35">Insurance</text>
+<text top="301" left="214" width="39" height="9" font="35">Machinery and</text>
+<text top="306" left="219" width="28" height="9" font="35">Equipment</text>
+<text top="271" left="657" width="18" height="9" font="35">Mining</text>
+<text top="379" left="605" width="30" height="9" font="35">Oil Gas and</text>
+<text top="384" left="609" width="21" height="9" font="35">Biofuels</text>
+<text top="200" left="625" width="26" height="9" font="35">Paper and</text>
+<text top="205" left="626" width="24" height="9" font="35">Cellulose</text>
+<text top="311" left="153" width="50" height="9" font="35">Personal and Home</text>
+<text top="316" left="172" width="12" height="9" font="35">Care</text>
+<text top="484" left="319" width="30" height="9" font="35">Real Estate</text>
+<text top="365" left="285" width="15" height="9" font="35">Retail</text>
+<text top="235" left="581" width="24" height="9" font="35">Steel and</text>
+<text top="240" left="579" width="28" height="9" font="35">Metallurgy</text>
+<text top="196" left="431" width="53" height="9" font="35">Telecommunications</text>
+<text top="370" left="194" width="20" height="9" font="35">Textiles</text>
+<text top="434" left="361" width="39" height="9" font="35">Transportation</text>
+<text top="426" left="230" width="39" height="9" font="35">Transportation</text>
+<text top="431" left="235" width="28" height="9" font="35">Equipment</text>
+<text top="188" left="272" width="27" height="9" font="35">Water and</text>
+<text top="192" left="272" width="27" height="9" font="35">Sanitation</text>
+<text top="87" left="660" width="39" height="10" font="36">Edge weight</text>
+<text top="96" left="655" width="61" height="10" font="36">weaker dependency</text>
+<text top="105" left="655" width="65" height="10" font="36">stronger dependency</text>
+<text top="548" left="388" width="41" height="10" font="36">Macro-sector</text>
+<text top="557" left="218" width="48" height="10" font="36">Basic Materials</text>
+<text top="566" left="218" width="58" height="10" font="36">Consumer Cyclical</text>
+<text top="557" left="305" width="73" height="10" font="36">Consumer Non-Cyclical</text>
+<text top="566" left="305" width="32" height="10" font="36">Financials</text>
+<text top="557" left="407" width="33" height="10" font="36">Industrials</text>
+<text top="566" left="407" width="62" height="10" font="36">Oil Gas and Biofuels</text>
+<text top="557" left="498" width="35" height="10" font="36">Real Estate</text>
+<text top="566" left="498" width="63" height="10" font="36">Telecommunications</text>
+<text top="557" left="590" width="24" height="10" font="36">Utilities</text>
+<text top="596" left="58" width="700" height="19" font="3">Figure 15: Aggregated subsector dependency network. Nodes represent subsectors, node colour identifies the macro-</text>
+<text top="614" left="58" width="700" height="19" font="3">sector and node size is proportional to the number of assets in the subsector. Edges represent retained subsector-level</text>
+<text top="632" left="58" width="481" height="19" font="3">dependency weights, with thicker edges indicating stronger average dependency.</text>
+<text top="682" left="58" width="190" height="16" font="18"><b>10. Volatility forecasting</b></text>
+<text top="709" left="58" width="463" height="15" font="4"><b>10.1. Chronological evaluation with ex-post structural descriptors</b></text>
+<text top="724" left="81" width="677" height="19" font="3">We conduct a retrospective evaluation of whether RMT and network descriptors are associated with realized-</text>
+<text top="742" left="58" width="700" height="19" font="3">volatility model performance. The experiment uses PETR4, VALE3 and BBDC4 as target assets and compares</text>
+<text top="760" left="58" width="700" height="19" font="3">machine-learning models with simple neural extensions. The data are split chronologically: training covers 2006–</text>
+<text top="778" left="58" width="700" height="19" font="3">2017, validation covers 2018–2020 and testing covers 2021–2025. This ordering keeps model fitting and feature-set</text>
+<text top="795" left="58" width="700" height="19" font="3">selection separated from the held-out period. However, the RMT and network descriptors are calculated from the full</text>
+<text top="813" left="58" width="700" height="19" font="3">synchronized panel and broadcast across dates; Sets B and C consequently use ex-post structural information. Their</text>
+<text top="831" left="58" width="700" height="19" font="3">test-period scores are not evidence of a tradable, real-time forecasting advantage. They are an exploratory added-</text>
+<text top="849" left="58" width="412" height="19" font="3">information comparison that a recursive rolling design must validate.</text>
+<text top="887" left="58" width="351" height="15" font="4"><b>10.2. Machine-learning and deep-learning models</b></text>
+<text top="902" left="81" width="677" height="19" font="3">The machine-learning models use three nested feature sets in an ablation design. Set A contains standard lagged</text>
+<text top="920" left="58" width="700" height="19" font="3">return and volatility features. Set B adds rolling market variables and full-sample RMT descriptors. Set C adds full-</text>
+<text top="938" left="58" width="700" height="19" font="3">sample MST and PMFG descriptors. This nesting allows the experiment to assess whether ex-post network structure</text>
+<text top="956" left="58" width="663" height="19" font="3">is associated with model performance beyond lagged-volatility persistence and broad market/RMT descriptors.</text>
+<text top="973" left="81" width="677" height="19" font="3">The deep-learning extension uses two simple architectures. The MLP is a tabular neural regressor trained on the</text>
+<text top="991" left="58" width="700" height="19" font="3">same feature sets as the machine-learning models. The CNN-1D uses short rolling windows of return and volatility</text>
+<text top="1058" left="58" width="115" height="12" font="0">A.V.S. Souza et al.:</text>
+<text top="1059" left="179" width="162" height="12" font="6"><i>Preprint submitted to Elsevier</i></text>
+<text top="1058" left="677" width="81" height="12" font="0">Page 30 of 42</text>
+</page>
+<page number="32" position="absolute" top="0" left="0" height="1114" width="816">
+	<fontspec id="37" size="12" family="BMQQDV+DejaVuSans" color="#000000"/>
+	<fontspec id="38" size="14" family="BMQQDV+DejaVuSans" color="#000000"/>
+	<fontspec id="39" size="9" family="BMQQDV+DejaVuSans" color="#000000"/>
+	<fontspec id="40" size="11" family="RFIZSR+STIXMath" color="#000000"/>
+<text top="53" left="263" width="291" height="12" font="0">RMT-filtered networks for B3 volatility forecasting</text>
+<text top="82" left="58" width="700" height="19" font="3">variables. Both neural models use positive-output regression for realized volatility. These models are included as an</text>
+<text top="99" left="58" width="599" height="19" font="3">incremental extension, not as a claim that the neural architecture has been optimized for this market.</text>
+<text top="137" left="58" width="353" height="15" font="4"><b>10.3. Chronological test-period model comparison</b></text>
+<text top="152" left="81" width="39" height="19" font="3">Figure</text>
+<text top="152" left="122" width="15" height="19" font="5"><a href="main.html#32">16</a></text>
+<text top="152" left="140" width="556" height="19" font="3">summarizes held-out test-period QLIKE loss with moving-block bootstrap intervals, and Table</text>
+<text top="152" left="699" width="15" height="19" font="5"><a href="main.html#33">13</a></text>
+<text top="152" left="716" width="42" height="19" font="3">reports</text>
+<text top="170" left="58" width="700" height="19" font="3">the aggregated test-period metrics. Lower QLIKE is better. For each model and horizon, the reported feature set is</text>
+<text top="188" left="58" width="700" height="19" font="3">selected using the validation period and then evaluated on the test period. The temporal holdout applies to model</text>
+<text top="206" left="58" width="585" height="19" font="3">fitting and selection; it does not make the full-sample structural descriptors point-in-time features.</text>
+<text top="523" left="155" width="16" height="14" font="37">5.40</text>
+<text top="523" left="184" width="16" height="14" font="37">5.35</text>
+<text top="523" left="214" width="16" height="14" font="37">5.30</text>
+<text top="523" left="243" width="16" height="14" font="37">5.25</text>
+<text top="523" left="272" width="16" height="14" font="37">5.20</text>
+<text top="523" left="302" width="16" height="14" font="37">5.15</text>
+<text top="523" left="331" width="16" height="14" font="37">5.10</text>
+<text top="523" left="361" width="16" height="14" font="37">5.05</text>
+<text top="523" left="390" width="16" height="14" font="37">5.00</text>
+<text top="533" left="194" width="157" height="14" font="37">QLIKE (lower is better; 95% moving-block CI)</text>
+<text top="270" left="85" width="53" height="14" font="37">Random Forest</text>
+<text top="278" left="114" width="24" height="14" font="37">(Set C)</text>
+<text top="327" left="118" width="20" height="14" font="37">Ridge</text>
+<text top="335" left="114" width="24" height="14" font="37">(Set C)</text>
+<text top="385" left="63" width="75" height="14" font="37">HistGradientBoosting</text>
+<text top="393" left="114" width="24" height="14" font="37">(Set C)</text>
+<text top="443" left="110" width="28" height="14" font="37">CNN-1D</text>
+<text top="451" left="69" width="69" height="14" font="37">(Sequence window)</text>
+<text top="501" left="124" width="14" height="14" font="37">MLP</text>
+<text top="508" left="114" width="24" height="14" font="37">(Set A)</text>
+<text top="252" left="159" width="229" height="17" font="38">Chronological test-period QLIKE loss, horizon = 5 days</text>
+<text top="266" left="252" width="18" height="11" font="39">-5.251</text>
+<text top="324" left="264" width="18" height="11" font="39">-5.230</text>
+<text top="381" left="269" width="18" height="11" font="39">-5.223</text>
+<text top="439" left="276" width="18" height="11" font="39">-5.210</text>
+<text top="497" left="277" width="18" height="11" font="39">-5.209</text>
+<text top="523" left="524" width="11" height="14" font="37">4.0</text>
+<text top="523" left="559" width="11" height="14" font="37">3.8</text>
+<text top="523" left="594" width="11" height="14" font="37">3.6</text>
+<text top="523" left="629" width="11" height="14" font="37">3.4</text>
+<text top="523" left="664" width="11" height="14" font="37">3.2</text>
+<text top="523" left="699" width="11" height="14" font="37">3.0</text>
+<text top="523" left="735" width="11" height="14" font="37">2.8</text>
+<text top="533" left="544" width="157" height="14" font="37">QLIKE (lower is better; 95% moving-block CI)</text>
+<text top="270" left="468" width="20" height="14" font="37">Ridge</text>
+<text top="278" left="464" width="24" height="14" font="37">(Set C)</text>
+<text top="327" left="460" width="28" height="14" font="37">CNN-1D</text>
+<text top="335" left="419" width="69" height="14" font="37">(Sequence window)</text>
+<text top="385" left="436" width="53" height="14" font="37">Random Forest</text>
+<text top="393" left="464" width="24" height="14" font="37">(Set C)</text>
+<text top="443" left="414" width="75" height="14" font="37">HistGradientBoosting</text>
+<text top="451" left="464" width="24" height="14" font="37">(Set C)</text>
+<text top="501" left="474" width="14" height="14" font="37">MLP</text>
+<text top="508" left="464" width="24" height="14" font="37">(Set B)</text>
+<text top="252" left="506" width="234" height="17" font="38">Chronological test-period QLIKE loss, horizon = 20 days</text>
+<text top="266" left="552" width="18" height="11" font="39">-3.881</text>
+<text top="324" left="557" width="18" height="11" font="39">-3.855</text>
+<text top="381" left="558" width="18" height="11" font="39">-3.845</text>
+<text top="439" left="559" width="18" height="11" font="39">-3.842</text>
+<text top="497" left="632" width="18" height="11" font="39">-3.427</text>
+<text top="563" left="58" width="700" height="19" font="3">Figure 16: Chronological test-period comparison for machine-learning and deep-learning volatility models. Points are</text>
+<text top="581" left="58" width="700" height="19" font="3">mean QLIKE across PETR4, VALE3 and BBDC4; horizontal bars are 95% circular moving-block bootstrap intervals</text>
+<text top="599" left="58" width="700" height="19" font="3">with block length equal to the horizon. Labels show the validation-selected feature set for each model and horizon.</text>
+<text top="617" left="58" width="660" height="19" font="3">Sets B and C include ex-post full-sample structural descriptors and are not real-time forecasting specifications.</text>
+<text top="650" left="81" width="677" height="19" font="3">At the 5-day horizon, Random Forest with Set C obtains the lowest average test-period QLIKE among the</text>
+<text top="668" left="58" width="700" height="19" font="3">validation-selected models. Ridge, CNN-1D and MLP remain close in MAE and RMSE, and the 95% moving-</text>
+<text top="686" left="58" width="700" height="19" font="3">block QLIKE intervals overlap materially across the leading specifications. Thus the ranking is descriptive rather</text>
+<text top="704" left="58" width="700" height="19" font="3">than evidence of a precisely estimated performance separation. Per-asset metrics and intervals are reported in the</text>
+<text top="722" left="58" width="145" height="19" font="3">supplementary material.</text>
+<text top="740" left="81" width="677" height="19" font="3">At the 20-day horizon, Ridge with Set C obtains the lowest average test-period QLIKE, while CNN-1D gives</text>
+<text top="758" left="58" width="245" height="19" font="3">competitive MAE, RMSE and held-out</text>
+<text top="762" left="309" width="11" height="13" font="19"><i>𝑅</i></text>
+<text top="759" left="320" width="6" height="10" font="40">2</text>
+<text top="758" left="327" width="432" height="19" font="3">. The MLP has relatively low MAE and RMSE but weaker QLIKE,</text>
+<text top="776" left="58" width="700" height="19" font="3">indicating that it can track average volatility levels while still producing less favourable variance-proxy loss. The</text>
+<text top="794" left="58" width="263" height="19" font="3">focused HAC loss-difference check in Table</text>
+<text top="794" left="325" width="15" height="19" font="5"><a href="main.html#33">14</a></text>
+<text top="794" left="344" width="414" height="19" font="3">compares the validation-selected structural champion (Ridge Set C at</text>
+<text top="812" left="58" width="700" height="19" font="3">both horizons) with the validation-selected point-in-time Set A baseline (Ridge). The mean baseline-minus-structural</text>
+<text top="829" left="58" width="700" height="19" font="3">difference is negative at both horizons, and the one-sided tests do not support lower structural QLIKE. Accordingly, the</text>
+<text top="847" left="58" width="700" height="19" font="3">retrospective exercise does not establish a forecasting gain from the ex-post descriptors; a recursive feature construction</text>
+<text top="865" left="58" width="197" height="19" font="3">remains necessary for that claim.</text>
+<text top="1058" left="58" width="115" height="12" font="0">A.V.S. Souza et al.:</text>
+<text top="1059" left="179" width="162" height="12" font="6"><i>Preprint submitted to Elsevier</i></text>
+<text top="1058" left="677" width="81" height="12" font="0">Page 31 of 42</text>
+</page>
+</pdf2xml>

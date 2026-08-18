@@ -1,0 +1,4 @@
+matrix_name,method,n_assets,cophenetic_correlation,min_corr_before_clip,max_corr_before_clip,n_values_clipped
+Original,average,58,0.9500469234898347,-0.006890662418428547,1.0,0
+Filtered,average,58,0.934017890973025,-0.0322581622201133,1.0,0
+Group_Mode,average,58,0.8704798239312803,-0.1641288841463308,0.8038315412840387,0

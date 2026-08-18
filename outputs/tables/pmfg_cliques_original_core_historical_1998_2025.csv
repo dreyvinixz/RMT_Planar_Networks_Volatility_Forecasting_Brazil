@@ -1,0 +1,222 @@
+matrix_type,clique_size,nodes,sectors,subsectors,n_unique_sectors,same_sector_clique,same_subsector_clique,mean_internal_correlation,min_internal_correlation,max_internal_correlation
+original,3,ALPA4|CYRE3|GRND3,Consumer Cyclical|Real Estate|Consumer Cyclical,Apparel and Footwear|Real Estate|Apparel and Footwear,2,False,False,0.4507444561303233,0.42134769416960505,0.4769309885336118
+original,3,ALPA4|CYRE3|GUAR3,Consumer Cyclical|Real Estate|Consumer Cyclical,Apparel and Footwear|Real Estate|Retail,2,False,False,0.5040915363598538,0.4769309885336118,0.5389011355841542
+original,3,ALPA4|CYRE3|LREN3,Consumer Cyclical|Real Estate|Consumer Cyclical,Apparel and Footwear|Real Estate|Retail,2,False,False,0.5234750968493108,0.4769309885336118,0.6083504304359342
+original,3,ALPA4|GRND3|LREN3,Consumer Cyclical|Consumer Cyclical|Consumer Cyclical,Apparel and Footwear|Apparel and Footwear|Retail,1,True,False,0.4585178985624436,0.42134769416960505,0.4851438715783864
+original,3,ALPA4|GUAR3|LREN3,Consumer Cyclical|Consumer Cyclical|Consumer Cyclical,Apparel and Footwear|Retail|Retail,1,True,False,0.5172835814181975,0.4851438715783864,0.5702643877144109
+original,3,BAZA3|BBAS3|BBDC4,Financials|Financials|Financials,Banks|Banks|Banks,1,True,True,0.44835908321437384,0.29431786391322545,0.7476300415316489
+original,3,BAZA3|BBAS3|PETR4,Financials|Financials|Oil Gas and Biofuels,Banks|Banks|Oil Gas and Biofuels,2,False,False,0.39905067769006947,0.29392434995851857,0.6000983389134423
+original,3,BAZA3|BBDC4|PETR4,Financials|Financials|Oil Gas and Biofuels,Banks|Banks|Oil Gas and Biofuels,2,False,False,0.3991553638898419,0.29392434995851857,0.6092238777977815
+original,3,BBAS3|BBDC3|BBDC4,Financials|Financials|Financials,Banks|Banks|Banks,1,True,True,0.8097672115460258,0.736320683884876,0.9453509092215523
+original,3,BBAS3|BBDC3|ITSA3,Financials|Financials|Financials,Banks|Banks|Financial Services,1,True,False,0.5648853054730681,0.4518033226357867,0.736320683884876
+original,3,BBAS3|BBDC3|ITSA4,Financials|Financials|Financials,Banks|Banks|Financial Services,1,True,False,0.7697783681616208,0.736320683884876,0.8218902484570456
+original,3,BBAS3|BBDC3|PETR4,Financials|Financials|Oil Gas and Biofuels,Banks|Banks|Oil Gas and Biofuels,2,False,False,0.6444351632135131,0.596886466842221,0.736320683884876
+original,3,BBAS3|BBDC4|CCRO3,Financials|Financials|Industrials,Banks|Banks|Transportation,2,False,False,0.6140973217622802,0.5441863423789257,0.7476300415316489
+original,3,BBAS3|BBDC4|CYRE3,Financials|Financials|Real Estate,Banks|Banks|Real Estate,2,False,False,0.6455054785105737,0.5940343657572114,0.7476300415316489
+original,3,BBAS3|BBDC4|ITSA4,Financials|Financials|Financials,Banks|Banks|Financial Services,1,True,False,0.7812659948119985,0.7476300415316489,0.8450437707614061
+original,3,BBAS3|BBDC4|PETR4,Financials|Financials|Oil Gas and Biofuels,Banks|Banks|Oil Gas and Biofuels,2,False,False,0.6523174194142909,0.6000983389134423,0.7476300415316489
+original,3,BBAS3|CCRO3|CYRE3,Financials|Industrials|Real Estate,Banks|Transportation|Real Estate,3,False,False,0.5704381123159915,0.5504755813762656,0.594852028242861
+original,3,BBAS3|CYRE3|ITSA4,Financials|Real Estate|Financials,Banks|Real Estate|Financial Services,2,False,False,0.6563877067790816,0.594852028242861,0.7511241721429408
+original,3,BBAS3|CYRE3|SCAR3,Financials|Real Estate|Real Estate,Banks|Real Estate|Real Estate,2,False,False,0.44167205672194393,0.35476839631321155,0.594852028242861
+original,3,BBAS3|ITSA3|ITSA4,Financials|Financials|Financials,Banks|Financial Services|Financial Services,1,True,False,0.5844460829661071,0.4518033226357867,0.7511241721429408
+original,3,BBAS3|ITSA4|SCAR3,Financials|Financials|Real Estate,Banks|Financial Services|Real Estate,2,False,False,0.4939840612611058,0.35543226603061734,0.7511241721429408
+original,3,BBDC3|BBDC4|CMIG4,Financials|Financials|Utilities,Banks|Banks|Electric Utility,2,False,False,0.6901713337626516,0.5608917846918231,0.9453509092215523
+original,3,BBDC3|BBDC4|ITSA4,Financials|Financials|Financials,Banks|Banks|Financial Services,1,True,False,0.8707616428133348,0.8218902484570456,0.9453509092215523
+original,3,BBDC3|BBDC4|PETR3,Financials|Financials|Oil Gas and Biofuels,Banks|Banks|Oil Gas and Biofuels,2,False,False,0.7203130289171047,0.6030877422667673,0.9453509092215523
+original,3,BBDC3|BBDC4|PETR4,Financials|Financials|Oil Gas and Biofuels,Banks|Banks|Oil Gas and Biofuels,2,False,False,0.717153751287185,0.596886466842221,0.9453509092215523
+original,3,BBDC3|CMIG4|ITSA4,Financials|Utilities|Financials,Banks|Electric Utility|Financial Services,2,False,False,0.6513175246662147,0.5642713073745794,0.8218902484570456
+original,3,BBDC3|CMIG4|PSSA3,Financials|Utilities|Financials,Banks|Electric Utility|Insurance,2,False,False,0.47334145355313434,0.39619368360758944,0.5642713073745794
+original,3,BBDC3|GGBR4|PETR3,Financials|Basic Materials|Oil Gas and Biofuels,Banks|Steel and Metallurgy|Oil Gas and Biofuels,3,False,False,0.5827358040825378,0.5568545115796648,0.6030877422667673
+original,3,BBDC3|GGBR4|PETR4,Financials|Basic Materials|Oil Gas and Biofuels,Banks|Steel and Metallurgy|Oil Gas and Biofuels,3,False,False,0.5785941621440892,0.5568545115796648,0.596886466842221
+original,3,BBDC3|ITSA3|ITSA4,Financials|Financials|Financials,Banks|Financial Services|Financial Services,1,True,False,0.626277637491727,0.5065319098985418,0.8218902484570456
+original,3,BBDC3|ITSA4|PSSA3,Financials|Financials|Financials,Banks|Financial Services|Insurance,1,True,False,0.5793264631904433,0.4565297714370503,0.8218902484570456
+original,3,BBDC3|PETR3|PETR4,Financials|Oil Gas and Biofuels|Oil Gas and Biofuels,Banks|Oil Gas and Biofuels|Oil Gas and Biofuels,2,False,False,0.7251688303059723,0.596886466842221,0.9755322818089285
+original,3,BBDC4|BEES3|CPLE6,Financials|Financials|Utilities,Banks|Banks|Electric Utility,2,False,False,0.36450913102534327,0.2614908018674284,0.5609101126481109
+original,3,BBDC4|BEES3|ITSA4,Financials|Financials|Financials,Banks|Banks|Financial Services,1,True,False,0.46934076084081183,0.27112647856049066,0.8450437707614061
+original,3,BBDC4|CCRO3|CGAS5,Financials|Industrials|Utilities,Banks|Transportation|Gas Utility,3,False,False,0.3612618933595722,0.26004148042326986,0.5441863423789257
+original,3,BBDC4|CCRO3|CYRE3,Financials|Industrials|Real Estate,Banks|Transportation|Real Estate,3,False,False,0.568069145154995,0.5441863423789257,0.5940343657572114
+original,3,BBDC4|CCRO3|RAPT4,Financials|Industrials|Industrials,Banks|Transportation|Transportation Equipment,2,False,False,0.52956040685332,0.5208941776797377,0.5441863423789257
+original,3,BBDC4|CGAS5|RAPT4,Financials|Utilities|Industrials,Banks|Gas Utility|Transportation Equipment,3,False,False,0.35478107612203164,0.26004148042326986,0.5208941776797377
+original,3,BBDC4|CMIG4|CPLE6,Financials|Utilities|Utilities,Banks|Electric Utility|Electric Utility,2,False,False,0.6045184073964028,0.5608917846918231,0.6917533248492743
+original,3,BBDC4|CMIG4|ITSA4,Financials|Utilities|Financials,Banks|Electric Utility|Financial Services,2,False,False,0.6579088578734161,0.5608917846918231,0.8450437707614061
+original,3,BBDC4|CPLE6|ITSA4,Financials|Utilities|Financials,Banks|Electric Utility|Financial Services,2,False,False,0.6576336268240962,0.5609101126481109,0.8450437707614061
+original,3,BBDC4|CYRE3|ITSA4,Financials|Real Estate|Financials,Banks|Real Estate|Financial Services,2,False,False,0.6874216854900204,0.5940343657572114,0.8450437707614061
+original,3,BBDC4|CYRE3|KEPL3,Financials|Real Estate|Industrials,Banks|Real Estate|Machinery and Equipment,3,False,False,0.32808741451106815,0.1682284339889757,0.5940343657572114
+original,3,BBDC4|CYRE3|LREN3,Financials|Real Estate|Consumer Cyclical,Banks|Real Estate|Retail,3,False,False,0.5849180018160668,0.552369209255055,0.6083504304359342
+original,3,BBDC4|CYRE3|POMO4,Financials|Real Estate|Industrials,Banks|Real Estate|Transportation Equipment,3,False,False,0.52860373071237,0.47266907536407404,0.5940343657572114
+original,3,BBDC4|CYRE3|RAPT4,Financials|Real Estate|Industrials,Banks|Real Estate|Transportation Equipment,3,False,False,0.567906617308309,0.5208941776797377,0.5940343657572114
+original,3,BBDC4|ITSA4|LREN3,Financials|Financials|Consumer Cyclical,Banks|Financial Services|Retail,2,False,False,0.6490073144084126,0.549608963208777,0.8450437707614061
+original,3,BBDC4|KEPL3|LREN3,Financials|Industrials|Consumer Cyclical,Banks|Machinery and Equipment|Retail,3,False,False,0.3112894423561398,0.1682284339889757,0.552369209255055
+original,3,BBDC4|PETR3|PETR4,Financials|Oil Gas and Biofuels|Oil Gas and Biofuels,Banks|Oil Gas and Biofuels|Oil Gas and Biofuels,2,False,False,0.732418864956568,0.6092238777977815,0.9755322818089285
+original,3,BBDC4|POMO4|RAPT4,Financials|Industrials|Industrials,Banks|Transportation Equipment|Transportation Equipment,2,False,False,0.5232712874115572,0.47266907536407404,0.5762506091908597
+original,3,BEES3|CPLE6|ITSA4,Financials|Utilities|Financials,Banks|Electric Utility|Financial Services,2,False,False,0.3734299440435796,0.2614908018674284,0.5669469970627716
+original,3,BOBR4|GGBR3|GOAU3,Consumer Non-Cyclical|Basic Materials|Basic Materials,Personal and Home Care|Steel and Metallurgy|Steel and Metallurgy,2,False,False,0.4420295848353921,0.24039703458200612,0.8220940519172879
+original,3,BOBR4|GGBR3|GOAU4,Consumer Non-Cyclical|Basic Materials|Basic Materials,Personal and Home Care|Steel and Metallurgy|Steel and Metallurgy,2,False,False,0.464951691892141,0.24039703458200612,0.8997881409522721
+original,3,BOBR4|GOAU3|GOAU4,Consumer Non-Cyclical|Basic Materials|Basic Materials,Personal and Home Care|Steel and Metallurgy|Steel and Metallurgy,2,False,False,0.461470691379543,0.2546699001421447,0.8661445059896019
+original,3,BRAP3|BRAP4|CSNA3,Basic Materials|Basic Materials|Basic Materials,Mining|Mining|Steel and Metallurgy,1,True,False,0.7272422558853632,0.6266704621925788,0.829926921722093
+original,3,BRAP3|BRAP4|VALE3,Basic Materials|Basic Materials|Basic Materials,Mining|Mining|Mining,1,True,True,0.8402775660897737,0.7775690640391193,0.9133367125081089
+original,3,BRAP3|CSNA3|VALE3,Basic Materials|Basic Materials|Basic Materials,Mining|Steel and Metallurgy|Mining,1,True,False,0.7143234410509928,0.6266704621925788,0.7775690640391193
+original,3,BRAP4|CSNA3|GGBR4,Basic Materials|Basic Materials|Basic Materials,Mining|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.7320841845699917,0.7181412729024198,0.7529818970661375
+original,3,BRAP4|CSNA3|GOAU4,Basic Materials|Basic Materials|Basic Materials,Mining|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.7305551698607274,0.7235639544706749,0.7429721713700898
+original,3,BRAP4|CSNA3|VALE3,Basic Materials|Basic Materials|Basic Materials,Mining|Steel and Metallurgy|Mining,1,True,False,0.7923989643902688,0.7251293837414177,0.9133367125081089
+original,3,BRAP4|FESA4|GGBR4,Basic Materials|Basic Materials|Basic Materials,Mining|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.5553500807396834,0.4710465394883927,0.7181412729024198
+original,3,BRAP4|FESA4|GOAU4,Basic Materials|Basic Materials|Basic Materials,Mining|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.5580111211975152,0.4736069792936329,0.7235639544706749
+original,3,BRAP4|GGBR4|GOAU4,Basic Materials|Basic Materials|Basic Materials,Mining|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.797515258176894,0.7181412729024198,0.9508405471575873
+original,3,BRAP4|GGBR4|PETR3,Basic Materials|Basic Materials|Oil Gas and Biofuels,Mining|Steel and Metallurgy|Oil Gas and Biofuels,2,False,False,0.6209572485713936,0.55646531441058,0.7181412729024198
+original,3,BRAP4|GGBR4|VALE3,Basic Materials|Basic Materials|Basic Materials,Mining|Steel and Metallurgy|Mining,1,True,False,0.7849898863069225,0.7181412729024198,0.9133367125081089
+original,3,BRAP4|PETR3|VALE3,Basic Materials|Oil Gas and Biofuels|Basic Materials,Mining|Oil Gas and Biofuels|Mining,2,False,False,0.690382441425931,0.55646531441058,0.9133367125081089
+original,3,BRKM3|BRKM5|GOAU3,Basic Materials|Basic Materials|Basic Materials,Chemicals|Chemicals|Steel and Metallurgy,1,True,False,0.516182483812896,0.3735857136275685,0.6974911745276479
+original,3,BRKM3|BRKM5|GOAU4,Basic Materials|Basic Materials|Basic Materials,Chemicals|Chemicals|Steel and Metallurgy,1,True,False,0.5253261262307586,0.36588485863754217,0.6974911745276479
+original,3,BRKM3|GOAU3|GOAU4,Basic Materials|Basic Materials|Basic Materials,Chemicals|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.5352050260849043,0.36588485863754217,0.8661445059896019
+original,3,BRKM5|GGBR4|GOAU3,Basic Materials|Basic Materials|Basic Materials,Chemicals|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.6101459949558152,0.47747056328347176,0.8475316808045885
+original,3,BRKM5|GGBR4|GOAU4,Basic Materials|Basic Materials|Basic Materials,Chemicals|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.6562928778213529,0.5054357407793855,0.9508405471575873
+original,3,BRKM5|GGBR4|KLBN4,Basic Materials|Basic Materials|Basic Materials,Chemicals|Steel and Metallurgy|Paper and Cellulose,1,True,False,0.4665323013432407,0.4027870512462465,0.5054357407793855
+original,3,BRKM5|GOAU3|GOAU4,Basic Materials|Basic Materials|Basic Materials,Chemicals|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.6187391382667199,0.47747056328347176,0.8661445059896019
+original,3,BRKM5|GOAU4|KLBN4,Basic Materials|Basic Materials|Basic Materials,Chemicals|Steel and Metallurgy|Paper and Cellulose,1,True,False,0.4667492667794492,0.4027870512462465,0.5126023455270858
+original,3,CCRO3|CGAS5|RAPT4,Industrials|Utilities|Industrials,Transportation|Gas Utility|Transportation Equipment,2,False,False,0.3621887093469684,0.2795578572765211,0.5236007005012967
+original,3,CCRO3|CYRE3|ETER3,Industrials|Real Estate|Industrials,Transportation|Real Estate|Construction Materials,2,False,False,0.39012158255252727,0.2810930997974253,0.5659867273288478
+original,3,CCRO3|CYRE3|RAPT4,Industrials|Real Estate|Industrials,Transportation|Real Estate|Transportation Equipment,2,False,False,0.5594595787727075,0.5236007005012967,0.5887913084879779
+original,3,CCRO3|ETER3|RAPT4,Industrials|Industrials|Industrials,Transportation|Construction Materials|Transportation Equipment,1,True,False,0.3773812263219525,0.2810930997974253,0.5236007005012967
+original,3,CMIG3|CMIG4|CPFE3,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.6635435473091046,0.5431085101989643,0.8455831236793538
+original,3,CMIG3|CMIG4|CPLE6,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.7162169444131826,0.6113143847109196,0.8455831236793538
+original,3,CMIG3|CMIG4|SAPR4,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Water and Sanitation,1,True,False,0.58192427907179,0.4351961536189501,0.8455831236793538
+original,3,CMIG3|CMIG4|SBSP3,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Water and Sanitation,1,True,False,0.641678649008365,0.513528004658696,0.8455831236793538
+original,3,CMIG3|CPFE3|CPLE6,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.5911832611900089,0.5431085101989643,0.6191268886601426
+original,3,CMIG3|CPLE6|SBSP3,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Water and Sanitation,1,True,False,0.5744340311409762,0.513528004658696,0.6113143847109196
+original,3,CMIG3|SAPR4|SBSP3,Utilities|Utilities|Utilities,Electric Utility|Water and Sanitation|Water and Sanitation,1,True,False,0.47326513294862477,0.4351961536189501,0.513528004658696
+original,3,CMIG4|COCE5|CPLE3,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.4124173441666916,0.31651297476920914,0.5808499941526606
+original,3,CMIG4|COCE5|CPLE6,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.46148254960674207,0.33988906357820503,0.6917533248492743
+original,3,CMIG4|CPFE3|CPLE3,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.5779686300678644,0.5511168880019369,0.6019390080489956
+original,3,CMIG4|CPFE3|CPLE6,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.6376064071861375,0.6019390080489956,0.6917533248492743
+original,3,CMIG4|CPLE3|CPLE6,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.6840185449572672,0.5808499941526606,0.779452315869867
+original,3,CMIG4|CPLE6|ELET3,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.6292415610621598,0.5926186362118865,0.6917533248492743
+original,3,CMIG4|CPLE6|ELET6,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.6356850879162962,0.6006056265944034,0.6917533248492743
+original,3,CMIG4|CPLE6|ITSA4,Utilities|Utilities|Financials,Electric Utility|Electric Utility|Financial Services,2,False,False,0.6088304466930218,0.5669469970627716,0.6917533248492743
+original,3,CMIG4|CPLE6|SBSP3,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Water and Sanitation,1,True,False,0.6187126158632109,0.5659248186870451,0.6917533248492743
+original,3,CMIG4|ELET3|ELET6,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.7189190736723609,0.6033527221253187,0.9387081865865531
+original,3,CMIG4|ELET3|SBSP3,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Water and Sanitation,1,True,False,0.5769589908263878,0.5615994316667996,0.6033527221253187
+original,3,CMIG4|ELET3|TELB4,Utilities|Utilities|Telecommunications,Electric Utility|Electric Utility|Telecommunications,2,False,False,0.294047638771015,0.1351087970603559,0.6033527221253187
+original,3,CMIG4|ELET6|ITSA4,Utilities|Utilities|Financials,Electric Utility|Electric Utility|Financial Services,2,False,False,0.5814054353152286,0.5617289754734557,0.6146963123052108
+original,3,CMIG4|ITSA4|PSSA3,Utilities|Financials|Financials,Electric Utility|Financial Services|Insurance,2,False,False,0.47350482440388636,0.39619368360758944,0.5677910181670193
+original,3,CMIG4|SAPR4|SBSP3,Utilities|Utilities|Utilities,Electric Utility|Water and Sanitation|Water and Sanitation,1,True,False,0.5006632063907799,0.46499355991706615,0.5659248186870451
+original,3,CMIG4|SBSP3|TELB3,Utilities|Utilities|Telecommunications,Electric Utility|Water and Sanitation|Telecommunications,2,False,False,0.2845324630087296,0.13997760160256806,0.5659248186870451
+original,3,CMIG4|SBSP3|TELB4,Utilities|Utilities|Telecommunications,Electric Utility|Water and Sanitation|Telecommunications,2,False,False,0.2908220062273821,0.14368139712737044,0.5659248186870451
+original,3,CMIG4|TELB3|TELB4,Utilities|Telecommunications|Telecommunications,Electric Utility|Telecommunications|Telecommunications,2,False,False,0.32443211353390505,0.13997760160256806,0.6896373418717767
+original,3,COCE5|CPLE3|CPLE6,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.48292351701060765,0.31651297476920914,0.779452315869867
+original,3,CPFE3|CPLE3|CPLE6,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.6498986975106489,0.5511168880019369,0.779452315869867
+original,3,CPFE3|CPLE3|TRPL4,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.4899319979443603,0.4233745540720044,0.5511168880019369
+original,3,CPFE3|CPLE6|TRPL4,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.5390274514617436,0.49530455175913957,0.6191268886601426
+original,3,CPLE3|CPLE6|TRPL4,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.56849259463594,0.4233745540720044,0.779452315869867
+original,3,CPLE6|ELET3|ELET6,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility,1,True,True,0.7106441497976143,0.5926186362118865,0.9387081865865531
+original,3,CPLE6|ELET3|SBSP3,Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Water and Sanitation,1,True,False,0.5842259239773331,0.5615994316667996,0.5984597040533131
+original,3,CPLE6|ELET6|ITSA4,Utilities|Utilities|Financials,Electric Utility|Electric Utility|Financial Services,2,False,False,0.5764271997102103,0.5617289754734557,0.6006056265944034
+original,3,CSNA3|GGBR4|GOAU4,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.8155982051979381,0.7429721713700898,0.9508405471575873
+original,3,CSNA3|GGBR4|USIM5,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.7640644131323858,0.7529818970661375,0.7815633921585098
+original,3,CSNA3|GGBR4|VALE3,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Mining,1,True,False,0.7384014558325521,0.7234916735102389,0.7529818970661375
+original,3,CSNA3|GOAU4|USIM3,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.7161881034740779,0.6948459218289066,0.7429721713700898
+original,3,CSNA3|GOAU4|USIM5,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.7643339609896748,0.7429721713700898,0.7815633921585098
+original,3,CSNA3|USIM3|USIM5,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.7899970148576584,0.7107462172232373,0.8776814351912281
+original,3,CTNM4|CYRE3|GRND3,Consumer Cyclical|Real Estate|Consumer Cyclical,Textiles|Real Estate|Apparel and Footwear,2,False,False,0.3484661781854885,0.28085298719531776,0.4539546856877531
+original,3,CTNM4|CYRE3|LREN3,Consumer Cyclical|Real Estate|Consumer Cyclical,Textiles|Real Estate|Retail,2,False,False,0.38415198516841437,0.2632525378739913,0.6083504304359342
+original,3,CTNM4|GRND3|LREN3,Consumer Cyclical|Consumer Cyclical|Consumer Cyclical,Textiles|Apparel and Footwear|Retail,1,True,False,0.3476351764955751,0.2632525378739913,0.46906212993933943
+original,3,CYRE3|ETER3|RAPT4,Real Estate|Industrials|Industrials,Real Estate|Construction Materials|Transportation Equipment,2,False,False,0.4131753692288073,0.3232849205313087,0.5887913084879779
+original,3,CYRE3|GRND3|LREN3,Real Estate|Consumer Cyclical|Consumer Cyclical,Real Estate|Apparel and Footwear|Retail,2,False,False,0.5104557486876756,0.4539546856877531,0.6083504304359342
+original,3,CYRE3|GUAR3|LREN3,Real Estate|Consumer Cyclical|Consumer Cyclical,Real Estate|Retail|Retail,2,False,False,0.5725053179114997,0.5389011355841542,0.6083504304359342
+original,3,CYRE3|GUAR3|RENT3,Real Estate|Consumer Cyclical|Industrials,Real Estate|Retail|Transportation,3,False,False,0.531219044528446,0.46799052209397396,0.5867654759072101
+original,3,CYRE3|ITSA4|LREN3,Real Estate|Financials|Consumer Cyclical,Real Estate|Financial Services|Retail,3,False,False,0.5937154378653848,0.549608963208777,0.6231869199514434
+original,3,CYRE3|ITSA4|RENT3,Real Estate|Financials|Industrials,Real Estate|Financial Services|Transportation,3,False,False,0.5766218486566771,0.5199131501113778,0.6231869199514434
+original,3,CYRE3|ITSA4|SCAR3,Real Estate|Financials|Real Estate,Real Estate|Financial Services|Real Estate,2,False,False,0.44446252743175746,0.35476839631321155,0.6231869199514434
+original,3,CYRE3|KEPL3|LREN3,Real Estate|Industrials|Consumer Cyclical,Real Estate|Machinery and Equipment|Retail,3,False,False,0.34787351934911354,0.21327068382438885,0.6083504304359342
+original,3,CYRE3|LREN3|RENT3,Real Estate|Consumer Cyclical|Industrials,Real Estate|Retail|Transportation,3,False,False,0.5812295086696908,0.5485726196659282,0.6083504304359342
+original,3,CYRE3|POMO4|RAPT4,Real Estate|Industrials|Industrials,Real Estate|Transportation Equipment|Transportation Equipment,2,False,False,0.5613832228982207,0.5191077510158246,0.5887913084879779
+original,3,CYRE3|POMO4|ROMI3,Real Estate|Industrials|Industrials,Real Estate|Transportation Equipment|Machinery and Equipment,2,False,False,0.416504255899168,0.34620483216451486,0.5191077510158246
+original,3,CYRE3|RAPT4|ROMI3,Real Estate|Industrials|Industrials,Real Estate|Transportation Equipment|Machinery and Equipment,2,False,False,0.46251679503965043,0.38420018451716453,0.5887913084879779
+original,3,ELET3|SBSP3|TELB4,Utilities|Utilities|Telecommunications,Electric Utility|Water and Sanitation|Telecommunications,2,False,False,0.2865226771982954,0.1351087970603559,0.5615994316667996
+original,3,EMAE4|POMO4|RAPT4,Utilities|Industrials|Industrials,Electric Utility|Transportation Equipment|Transportation Equipment,2,False,False,0.3377126834315021,0.20175759344713043,0.5762506091908597
+original,3,EMAE4|POMO4|SHUL4,Utilities|Industrials|Industrials,Electric Utility|Transportation Equipment|Machinery and Equipment,2,False,False,0.2451173462792315,0.20175759344713043,0.3214768708721888
+original,3,EMAE4|RAPT4|SHUL4,Utilities|Industrials|Industrials,Electric Utility|Transportation Equipment|Machinery and Equipment,2,False,False,0.2784700359419808,0.2121175745183753,0.38816268565105083
+original,3,EMBR3|GGBR4|GOAU4,Industrials|Basic Materials|Basic Materials,Aerospace and Defense|Steel and Metallurgy|Steel and Metallurgy,2,False,False,0.6172146466934879,0.4482340089712251,0.9508405471575873
+original,3,EMBR3|GGBR4|KLBN4,Industrials|Basic Materials|Basic Materials,Aerospace and Defense|Steel and Metallurgy|Paper and Cellulose,2,False,False,0.41509526033433813,0.3056776600276992,0.4913741120040902
+original,3,EMBR3|GOAU4|KLBN4,Industrials|Basic Materials|Basic Materials,Aerospace and Defense|Steel and Metallurgy|Paper and Cellulose,2,False,False,0.41436848251478864,0.3056776600276992,0.48485840356501525
+original,3,FESA4|GGBR4|GOAU4,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.6318313553132042,0.4710465394883927,0.9508405471575873
+original,3,GGBR3|GGBR4|GOAU3,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.8657618468326808,0.8220940519172879,0.9276598077761655
+original,3,GGBR3|GGBR4|GOAU4,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.9260961652953417,0.8997881409522721,0.9508405471575873
+original,3,GGBR3|GGBR4|MGEL4,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.45323584285459545,0.20285172043450758,0.9276598077761655
+original,3,GGBR3|GGBR4|USIM5,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.8079608313469552,0.73857473609219,0.9276598077761655
+original,3,GGBR3|GOAU3|GOAU4,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.8626755662863873,0.8220940519172879,0.8997881409522721
+original,3,GGBR3|GOAU3|MGEL4,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.4253160708775014,0.22465816036210307,0.8220940519172879
+original,3,GGBR3|GOAU4|USIM5,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.8022763988282957,0.73857473609219,0.8997881409522721
+original,3,GGBR4|GOAU3|GOAU4,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.8881722446505926,0.8475316808045885,0.9508405471575873
+original,3,GGBR4|GOAU3|MGEL4,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.4250138538670664,0.20285172043450758,0.8475316808045885
+original,3,GGBR4|GOAU4|KLBN4,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Paper and Cellulose,1,True,False,0.6423576875755642,0.48485840356501525,0.9508405471575873
+original,3,GGBR4|GOAU4|USIM5,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.8256516055901738,0.7576479501725099,0.9508405471575873
+original,3,GGBR4|PETR3|PETR4,Basic Materials|Oil Gas and Biofuels|Oil Gas and Biofuels,Steel and Metallurgy|Oil Gas and Biofuels|Oil Gas and Biofuels,2,False,False,0.7152796494068304,0.582041508010382,0.9755322818089285
+original,3,GGBR4|PETR3|VALE3,Basic Materials|Oil Gas and Biofuels|Basic Materials,Steel and Metallurgy|Oil Gas and Biofuels|Mining,2,False,False,0.6377007097568413,0.588265158401181,0.7234916735102389
+original,3,GGBR4|PETR4|VALE3,Basic Materials|Oil Gas and Biofuels|Basic Materials,Steel and Metallurgy|Oil Gas and Biofuels|Mining,2,False,False,0.63106250037748,0.582041508010382,0.7234916735102389
+original,3,GOAU4|USIM3|USIM5,Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.7803312254868532,0.6948459218289066,0.8776814351912281
+original,3,GUAR3|LREN3|RENT3,Consumer Cyclical|Consumer Cyclical|Industrials,Retail|Retail|Transportation,2,False,False,0.528942509824771,0.46799052209397396,0.5702643877144109
+original,3,ITSA4|LREN3|RENT3,Financials|Consumer Cyclical|Industrials,Financial Services|Retail|Transportation,3,False,False,0.539364910995361,0.5199131501113778,0.549608963208777
+original,3,PETR3|PETR4|UNIP6,Oil Gas and Biofuels|Oil Gas and Biofuels|Basic Materials,Oil Gas and Biofuels|Oil Gas and Biofuels|Chemicals,2,False,False,0.6204533669591749,0.4391329823117367,0.9755322818089285
+original,3,PETR3|PETR4|VALE3,Oil Gas and Biofuels|Oil Gas and Biofuels|Basic Materials,Oil Gas and Biofuels|Oil Gas and Biofuels|Mining,2,False,False,0.7215106329266172,0.5876543196118194,0.9755322818089285
+original,3,PETR3|UNIP6|VALE3,Oil Gas and Biofuels|Basic Materials|Basic Materials,Oil Gas and Biofuels|Chemicals|Mining,2,False,False,0.48521880032553294,0.4076162668606353,0.601345297359104
+original,3,PETR4|UNIP6|VALE3,Oil Gas and Biofuels|Basic Materials|Basic Materials,Oil Gas and Biofuels|Chemicals|Mining,2,False,False,0.4781345229280638,0.4076162668606353,0.5876543196118194
+original,3,POMO4|RAPT4|ROMI3,Industrials|Industrials|Industrials,Transportation Equipment|Transportation Equipment|Machinery and Equipment,1,True,False,0.4456714444897278,0.34620483216451486,0.5762506091908597
+original,3,POMO4|RAPT4|SHUL4,Industrials|Industrials|Industrials,Transportation Equipment|Transportation Equipment|Machinery and Equipment,1,True,False,0.4286300552380331,0.3214768708721888,0.5762506091908597
+original,3,POMO4|ROMI3|SHUL4,Industrials|Industrials|Industrials,Transportation Equipment|Machinery and Equipment|Machinery and Equipment,1,True,False,0.33051144289305523,0.3214768708721888,0.34620483216451486
+original,3,RAPT4|ROMI3|SHUL4,Industrials|Industrials|Industrials,Transportation Equipment|Machinery and Equipment|Machinery and Equipment,1,True,False,0.3755247344691071,0.323852625642462,0.41455889211380875
+original,3,SBSP3|TELB3|TELB4,Utilities|Telecommunications|Telecommunications,Water and Sanitation|Telecommunications|Telecommunications,2,False,False,0.33339737115869433,0.14769496873657567,0.6896373418717767
+original,4,ALPA4|CYRE3|GRND3|LREN3,Consumer Cyclical|Real Estate|Consumer Cyclical|Consumer Cyclical,Apparel and Footwear|Real Estate|Apparel and Footwear|Retail,2,False,False,0.48579830005743835,0.42134769416960505,0.6083504304359342
+original,4,ALPA4|CYRE3|GUAR3|LREN3,Consumer Cyclical|Real Estate|Consumer Cyclical|Consumer Cyclical,Apparel and Footwear|Real Estate|Retail|Retail,2,False,False,0.5293388831347156,0.4769309885336118,0.6083504304359342
+original,4,BAZA3|BBAS3|BBDC4|PETR4,Financials|Financials|Financials|Oil Gas and Biofuels,Banks|Banks|Banks|Oil Gas and Biofuels,2,False,False,0.47472063605214404,0.29392434995851857,0.7476300415316489
+original,4,BBAS3|BBDC3|BBDC4|ITSA4,Financials|Financials|Financials|Financials,Banks|Banks|Banks|Financial Services,1,True,False,0.8078933043332449,0.736320683884876,0.9453509092215523
+original,4,BBAS3|BBDC3|BBDC4|PETR4,Financials|Financials|Financials|Oil Gas and Biofuels,Banks|Banks|Banks|Oil Gas and Biofuels,2,False,False,0.7059183863652536,0.596886466842221,0.9453509092215523
+original,4,BBAS3|BBDC3|ITSA3|ITSA4,Financials|Financials|Financials|Financials,Banks|Banks|Financial Services|Financial Services,1,True,False,0.6363468485231308,0.4518033226357867,0.8218902484570456
+original,4,BBAS3|BBDC4|CCRO3|CYRE3,Financials|Financials|Industrials|Real Estate,Banks|Banks|Transportation|Real Estate,3,False,False,0.5995275144359601,0.5441863423789257,0.7476300415316489
+original,4,BBAS3|BBDC4|CYRE3|ITSA4,Financials|Financials|Real Estate|Financials,Banks|Banks|Real Estate|Financial Services,2,False,False,0.6926452163979185,0.5940343657572114,0.8450437707614061
+original,4,BBAS3|CYRE3|ITSA4|SCAR3,Financials|Real Estate|Financials|Real Estate,Banks|Real Estate|Financial Services|Real Estate,2,False,False,0.5091265880484722,0.35476839631321155,0.7511241721429408
+original,4,BBDC3|BBDC4|CMIG4|ITSA4,Financials|Financials|Utilities|Financials,Banks|Banks|Electric Utility|Financial Services,2,False,False,0.7175398397789045,0.5608917846918231,0.9453509092215523
+original,4,BBDC3|BBDC4|PETR3|PETR4,Financials|Financials|Oil Gas and Biofuels|Oil Gas and Biofuels,Banks|Banks|Oil Gas and Biofuels|Oil Gas and Biofuels,2,False,False,0.7237636188667075,0.596886466842221,0.9755322818089285
+original,4,BBDC3|CMIG4|ITSA4|PSSA3,Financials|Utilities|Financials|Financials,Banks|Electric Utility|Financial Services|Insurance,2,False,False,0.5443725664534197,0.39619368360758944,0.8218902484570456
+original,4,BBDC3|GGBR4|PETR3|PETR4,Financials|Basic Materials|Oil Gas and Biofuels|Oil Gas and Biofuels,Banks|Steel and Metallurgy|Oil Gas and Biofuels|Oil Gas and Biofuels,3,False,False,0.6504446114848574,0.5568545115796648,0.9755322818089285
+original,4,BBDC4|BEES3|CPLE6|ITSA4,Financials|Financials|Utilities|Financials,Banks|Banks|Electric Utility|Financial Services,2,False,False,0.46622836568345777,0.2614908018674284,0.8450437707614061
+original,4,BBDC4|CCRO3|CGAS5|RAPT4,Financials|Industrials|Utilities|Industrials,Banks|Transportation|Gas Utility|Transportation Equipment,3,False,False,0.4019480214204731,0.26004148042326986,0.5441863423789257
+original,4,BBDC4|CCRO3|CYRE3|RAPT4,Financials|Industrials|Real Estate|Industrials,Banks|Transportation|Real Estate|Transportation Equipment,3,False,False,0.5562489370223328,0.5208941776797377,0.5940343657572114
+original,4,BBDC4|CMIG4|CPLE6|ITSA4,Financials|Utilities|Utilities|Financials,Banks|Electric Utility|Electric Utility|Financial Services,2,False,False,0.6322228346967342,0.5608917846918231,0.8450437707614061
+original,4,BBDC4|CYRE3|ITSA4|LREN3,Financials|Real Estate|Financials|Consumer Cyclical,Banks|Real Estate|Financial Services|Retail,3,False,False,0.6287656098949711,0.549608963208777,0.8450437707614061
+original,4,BBDC4|CYRE3|KEPL3|LREN3,Financials|Real Estate|Industrials|Consumer Cyclical,Banks|Real Estate|Machinery and Equipment|Retail,4,False,False,0.3930420945080971,0.1682284339889757,0.6083504304359342
+original,4,BBDC4|CYRE3|POMO4|RAPT4,Financials|Real Estate|Industrials|Industrials,Banks|Real Estate|Transportation Equipment|Transportation Equipment,3,False,False,0.5452912145826142,0.47266907536407404,0.5940343657572114
+original,4,BOBR4|GGBR3|GOAU3|GOAU4,Consumer Non-Cyclical|Basic Materials|Basic Materials|Basic Materials,Personal and Home Care|Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,2,False,False,0.5577818835983658,0.24039703458200612,0.8997881409522721
+original,4,BRAP3|BRAP4|CSNA3|VALE3,Basic Materials|Basic Materials|Basic Materials|Basic Materials,Mining|Mining|Steel and Metallurgy|Mining,1,True,False,0.7685605568540996,0.6266704621925788,0.9133367125081089
+original,4,BRAP4|CSNA3|GGBR4|GOAU4,Basic Materials|Basic Materials|Basic Materials|Basic Materials,Mining|Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.7689382044513878,0.7181412729024198,0.9508405471575873
+original,4,BRAP4|CSNA3|GGBR4|VALE3,Basic Materials|Basic Materials|Basic Materials|Basic Materials,Mining|Steel and Metallurgy|Steel and Metallurgy|Mining,1,True,False,0.7619686227749338,0.7181412729024198,0.9133367125081089
+original,4,BRAP4|FESA4|GGBR4|GOAU4,Basic Materials|Basic Materials|Basic Materials|Basic Materials,Mining|Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.6356769538568242,0.4710465394883927,0.9508405471575873
+original,4,BRAP4|GGBR4|PETR3|VALE3,Basic Materials|Basic Materials|Oil Gas and Biofuels|Basic Materials,Mining|Steel and Metallurgy|Oil Gas and Biofuels|Mining,2,False,False,0.6835075715152721,0.55646531441058,0.9133367125081089
+original,4,BRKM3|BRKM5|GOAU3|GOAU4,Basic Materials|Basic Materials|Basic Materials|Basic Materials,Chemicals|Chemicals|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.5488631935988196,0.36588485863754217,0.8661445059896019
+original,4,BRKM5|GGBR4|GOAU3|GOAU4,Basic Materials|Basic Materials|Basic Materials|Basic Materials,Chemicals|Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,False,0.69333756392362,0.47747056328347176,0.9508405471575873
+original,4,BRKM5|GGBR4|GOAU4|KLBN4,Basic Materials|Basic Materials|Basic Materials|Basic Materials,Chemicals|Steel and Metallurgy|Steel and Metallurgy|Paper and Cellulose,1,True,False,0.5579830333799017,0.4027870512462465,0.9508405471575873
+original,4,CCRO3|CYRE3|ETER3|RAPT4,Industrials|Real Estate|Industrials|Industrials,Transportation|Real Estate|Construction Materials|Transportation Equipment,2,False,False,0.4350344392189986,0.2810930997974253,0.5887913084879779
+original,4,CMIG3|CMIG4|CPFE3|CPLE6,Utilities|Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility|Electric Utility,1,True,True,0.6521375400246083,0.5431085101989643,0.8455831236793538
+original,4,CMIG3|CMIG4|CPLE6|SBSP3,Utilities|Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility|Water and Sanitation,1,True,False,0.6377605601064337,0.513528004658696,0.8455831236793538
+original,4,CMIG3|CMIG4|SAPR4|SBSP3,Utilities|Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Water and Sanitation|Water and Sanitation,1,True,False,0.5493828168548899,0.4351961536189501,0.8455831236793538
+original,4,CMIG4|COCE5|CPLE3|CPLE6,Utilities|Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility|Electric Utility,1,True,True,0.5102104889353272,0.31651297476920914,0.779452315869867
+original,4,CMIG4|CPFE3|CPLE3|CPLE6,Utilities|Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility|Electric Utility,1,True,True,0.6373730699304795,0.5511168880019369,0.779452315869867
+original,4,CMIG4|CPLE6|ELET3|ELET6,Utilities|Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility|Electric Utility,1,True,True,0.6736224681121078,0.5926186362118865,0.9387081865865531
+original,4,CMIG4|CPLE6|ELET3|SBSP3,Utilities|Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility|Water and Sanitation,1,True,False,0.6022847729322729,0.5615994316667996,0.6917533248492743
+original,4,CMIG4|CPLE6|ELET6|ITSA4,Utilities|Utilities|Utilities|Financials,Electric Utility|Electric Utility|Electric Utility|Financial Services,2,False,False,0.6005870424086892,0.5617289754734557,0.6917533248492743
+original,4,CMIG4|ELET3|SBSP3|TELB4,Utilities|Utilities|Utilities|Telecommunications,Electric Utility|Electric Utility|Water and Sanitation|Telecommunications,2,False,False,0.3620878282557701,0.1351087970603559,0.6033527221253187
+original,4,CMIG4|SBSP3|TELB3|TELB4,Utilities|Utilities|Telecommunications|Telecommunications,Electric Utility|Water and Sanitation|Telecommunications|Telecommunications,2,False,False,0.30829598848217776,0.13997760160256806,0.6896373418717767
+original,4,CPFE3|CPLE3|CPLE6|TRPL4,Utilities|Utilities|Utilities|Utilities,Electric Utility|Electric Utility|Electric Utility|Electric Utility,1,True,True,0.5618376853881732,0.4233745540720044,0.779452315869867
+original,4,CSNA3|GGBR4|GOAU4|USIM5,Basic Materials|Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.7924120462275431,0.7429721713700898,0.9508405471575873
+original,4,CSNA3|GOAU4|USIM3|USIM5,Basic Materials|Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.762712576202066,0.6948459218289066,0.8776814351912281
+original,4,CTNM4|CYRE3|GRND3|LREN3,Consumer Cyclical|Real Estate|Consumer Cyclical|Consumer Cyclical,Textiles|Real Estate|Apparel and Footwear|Retail,2,False,False,0.39767727213428844,0.2632525378739913,0.6083504304359342
+original,4,CYRE3|GUAR3|LREN3|RENT3,Real Estate|Consumer Cyclical|Consumer Cyclical|Industrials,Real Estate|Retail|Retail|Transportation,3,False,False,0.5534740952336019,0.46799052209397396,0.6083504304359342
+original,4,CYRE3|ITSA4|LREN3|RENT3,Real Estate|Financials|Consumer Cyclical|Industrials,Real Estate|Financial Services|Retail|Transportation,4,False,False,0.5727329265467785,0.5199131501113778,0.6231869199514434
+original,4,CYRE3|POMO4|RAPT4|ROMI3,Real Estate|Industrials|Industrials|Industrials,Real Estate|Transportation Equipment|Transportation Equipment|Machinery and Equipment,2,False,False,0.4715189295816917,0.34620483216451486,0.5887913084879779
+original,4,EMAE4|POMO4|RAPT4|SHUL4,Utilities|Industrials|Industrials|Industrials,Electric Utility|Transportation Equipment|Transportation Equipment|Machinery and Equipment,2,False,False,0.32248253022268686,0.20175759344713043,0.5762506091908597
+original,4,EMBR3|GGBR4|GOAU4|KLBN4,Industrials|Basic Materials|Basic Materials|Basic Materials,Aerospace and Defense|Steel and Metallurgy|Steel and Metallurgy|Paper and Cellulose,2,False,False,0.5222590192795448,0.3056776600276992,0.9508405471575873
+original,4,GGBR3|GGBR4|GOAU3|GOAU4,Basic Materials|Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.8856764557662505,0.8220940519172879,0.9508405471575873
+original,4,GGBR3|GGBR4|GOAU3|MGEL4,Basic Materials|Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.5423319036079609,0.20285172043450758,0.9276598077761655
+original,4,GGBR3|GGBR4|GOAU4|USIM5,Basic Materials|Basic Materials|Basic Materials|Basic Materials,Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy|Steel and Metallurgy,1,True,True,0.8404962502651915,0.73857473609219,0.9508405471575873
+original,4,GGBR4|PETR3|PETR4|VALE3,Basic Materials|Oil Gas and Biofuels|Oil Gas and Biofuels|Basic Materials,Steel and Metallurgy|Oil Gas and Biofuels|Oil Gas and Biofuels|Mining,2,False,False,0.6763883731169423,0.582041508010382,0.9755322818089285
+original,4,PETR3|PETR4|UNIP6|VALE3,Oil Gas and Biofuels|Oil Gas and Biofuels|Basic Materials|Basic Materials,Oil Gas and Biofuels|Oil Gas and Biofuels|Chemicals|Mining,2,False,False,0.5763293307848472,0.4076162668606353,0.9755322818089285
+original,4,POMO4|RAPT4|ROMI3|SHUL4,Industrials|Industrials|Industrials|Industrials,Transportation Equipment|Transportation Equipment|Machinery and Equipment|Machinery and Equipment,1,True,False,0.3950844192724808,0.3214768708721888,0.5762506091908597

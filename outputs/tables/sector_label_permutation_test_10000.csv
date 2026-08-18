@@ -1,0 +1,2 @@
+statistic,observed_value,n_assets,n_pairs,n_permutations,seed,null_mean,null_std,null_q95,exceedances_ge_observed,one_sided_monte_carlo_p
+mean_within_minus_between_correlation,0.118407099082843,58,1653,10000,42,5.500510814662539e-05,0.014079268849256706,0.024503962868355753,0,9.999000099990002e-05

@@ -1,0 +1,12 @@
+\section{Limitations}
+\label{sec:limitations}
+
+The first limitation concerns time variation. The RMT and network features used in the initial forecasting exercise are based on full-sample or slowly changing structures. They are useful for understanding the market, but they are not fully real-time predictors unless reconstructed recursively using only information available at each forecast origin. A stricter forecasting design should use rolling RMT and rolling network features.
+
+The second limitation concerns the target set. We use PETR4, VALE3 and BBDC4 in the forecasting experiment. These assets are liquid and economically important, but they do not cover the full B3 cross-section. Future work should extend the forecasting exercise to a larger set of assets and evaluate whether network features help more for some sectors than others.
+
+The third limitation concerns data quality. The core historical universe is sufficiently clean for the current analysis, but broader or more liquid modern universes may contain extreme adjusted-return events that require additional validation. These events may reflect corporate actions, ticker transitions, units or adjustment-factor issues. We would flag, inspect and either correct or handle them through robustness checks before using broader universes for final network claims.
+
+The fourth limitation concerns sector classification. The macro-sector and subsector map is an initial classification. It is adequate for testing whether within-sector correlations exceed between-sector correlations, but it should be reviewed ticker by ticker before submission. This is especially important for holding companies, units, firms with multiple share classes and companies with mixed exposure across sectors.
+
+Finally, the forecasting analysis is limited to three target assets, static network features and simple neural architectures. Feature importance in tree models is useful but does not establish causal mechanisms. PMFG features show nonzero but modest importance, and the magnitude is small compared with lagged-volatility predictors. Future work should include rolling network features, a broader target asset set, richer temporal neural architectures and graph neural networks.

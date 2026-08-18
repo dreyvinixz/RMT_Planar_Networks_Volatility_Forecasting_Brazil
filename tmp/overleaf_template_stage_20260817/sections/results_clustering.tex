@@ -1,0 +1,53 @@
+\section{Hierarchical clustering and ordered heatmaps}
+\label{sec:clustering}
+
+\subsection{Ordered heatmaps}
+
+RMT decomposes the correlation matrix into spectral components, while ordered heatmaps offer a visual check of whether these components display block-like organization. We order the assets through hierarchical clustering in Figure~\ref{fig:ordered_heatmaps}, which displays original, filtered and group-mode structures. The heatmaps serve as diagnostic tools, assessing whether spectral filtering is associated with patterns that can be read in relation to sector and subsector classifications.
+
+The original matrix displays a broad positive background, reflecting the large leading eigenvalue. The filtered matrix preserves part of this organized dependence while reducing the contribution of eigenvalues inside the random-matrix band. The group-mode matrix has lower average correlation by construction, but its ordered representation displays localized block-like patterns that are less dominated by the market-wide component.
+
+\begin{center}
+\includegraphics[
+  width=\linewidth,
+  height=0.72\textheight,
+  keepaspectratio
+]{images/figure_10_ordered_heatmaps.pdf}
+\captionof{figure}{Ordered heatmaps for original and RMT-filtered correlation matrices. Hierarchical ordering reveals block structures that are less visible in unordered matrices.}
+\label{fig:ordered_heatmaps}
+\end{center}
+
+\subsection{Dendrograms comparison}
+
+Dendrograms give another view of the same distance geometry. Figure~\ref{fig:dendrograms} compares hierarchical clustering trees for original, filtered and group-mode matrices, and Table~\ref{tab:cophenetic_summary} reports the corresponding cophenetic correlations. These trees help identify which assets merge at shorter distances and how the hierarchy changes after market-mode removal. We do not formally test branch stability here; the dendrograms are used as exploratory summaries of the distance geometry.
+
+\begin{center}
+\captionof{table}{Cophenetic correlations for hierarchical clustering.}
+\label{tab:cophenetic_summary}
+\begin{tabular}{lrr}
+\toprule
+Matrix & Assets & Cophenetic correlation \\
+\midrule
+Original & 58 & 0.9500 \\
+Filtered & 58 & 0.9340 \\
+Group Mode & 58 & 0.8705 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The cophenetic correlation is highest for the original matrix, 0.9500, and remains high for the filtered matrix, 0.9340. The group-mode value is lower, 0.8705. This decline is expected because removing the leading market component reduces the smooth common structure that is easier to summarize hierarchically. The lower value indicates that the group-mode distance geometry is less tree-like, not that it is uninformative.
+
+
+
+
+\begin{center}
+\includegraphics[
+  width=\linewidth,
+  height=0.8\textheight,
+  keepaspectratio
+]{images/figure_9_dendrograms_comparison.pdf}
+\captionof{figure}{Dendrogram comparison for original, filtered and group-mode matrices using Mantegna distances and average linkage.}
+\label{fig:dendrograms}
+\end{center}
+
+The clustering results connect naturally to network filtering. Ordered heatmaps and dendrograms suggest that localized structure remains after RMT filtering. We next examine how this structure appears when only the strongest distance-ranked edges are retained under MST and PMFG constraints.

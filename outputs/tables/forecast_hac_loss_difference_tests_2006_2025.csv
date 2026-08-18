@@ -1,0 +1,3 @@
+horizon,structural_model,structural_feature_set,baseline_model,baseline_feature_set,n_assets,n_test_dates,newey_west_lag,mean_baseline_minus_structural_QLIKE,hac_standard_error,loss_difference_statistic,one_sided_p_baseline_loss_gt_structural_loss
+5,Ridge,Set C (+Network),Ridge,Set A (Classical),3,1241,4,-0.004548328447914352,0.0030925391354339614,-1.4707424057468255,0.9293196033073392
+20,Ridge,Set C (+Network),Ridge,Set A (Classical),3,1226,19,-0.007229103715011104,0.0038852749911370272,-1.8606414556246131,0.9686025867804579

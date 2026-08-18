@@ -1,0 +1,67 @@
+source,target,sector_source,sector_target,subsector_source,subsector_target,mean_dependency,mean_abs_dependency,n_pairwise_links,same_sector,weight
+Oil Gas and Biofuels,Paper and Cellulose,Oil Gas and Biofuels,Basic Materials,Oil Gas and Biofuels,Paper and Cellulose,0.0089934023273135,0.0089934023273135,2,False,0.0089934023273135
+Apparel and Footwear,Construction Materials,Consumer Cyclical,Industrials,Apparel and Footwear,Construction Materials,0.10200380786112309,0.10200380786112309,2,False,0.10200380786112309
+Transportation,Transportation Equipment,Industrials,Industrials,Transportation,Transportation Equipment,0.04541378535368663,0.04541378535368663,4,True,0.04541378535368663
+Telecommunications,Water and Sanitation,Telecommunications,Utilities,Telecommunications,Water and Sanitation,0.030816313485719348,0.030816313485719348,4,False,0.030816313485719348
+Machinery and Equipment,Personal and Home Care,Industrials,Consumer Non-Cyclical,Machinery and Equipment,Personal and Home Care,0.05513739623121561,0.05513739623121561,3,False,0.05513739623121561
+Chemicals,Electric Utility,Basic Materials,Utilities,Chemicals,Electric Utility,0.010548482618165149,0.010548482618165149,30,False,0.010548482618165149
+Apparel and Footwear,Transportation Equipment,Consumer Cyclical,Industrials,Apparel and Footwear,Transportation Equipment,0.09961687235178114,0.09961687235178114,4,False,0.09961687235178114
+Aerospace and Defense,Construction Materials,Industrials,Industrials,Aerospace and Defense,Construction Materials,0.0295978749872482,0.0295978749872482,1,True,0.0295978749872482
+Apparel and Footwear,Textiles,Consumer Cyclical,Consumer Cyclical,Apparel and Footwear,Textiles,0.1046454400698633,0.1046454400698633,2,True,0.1046454400698633
+Gas Utility,Machinery and Equipment,Utilities,Industrials,Gas Utility,Machinery and Equipment,0.054541106765236234,0.054541106765236234,3,False,0.054541106765236234
+Chemicals,Personal and Home Care,Basic Materials,Consumer Non-Cyclical,Chemicals,Personal and Home Care,0.029520120799150996,0.029520120799150996,3,False,0.029520120799150996
+Insurance,Real Estate,Financials,Real Estate,Insurance,Real Estate,0.03431792760917735,0.03431792760917735,2,False,0.03431792760917735
+Textiles,Transportation Equipment,Consumer Cyclical,Industrials,Textiles,Transportation Equipment,0.06365432427508425,0.06365432427508425,2,False,0.06365432427508425
+Real Estate,Retail,Real Estate,Consumer Cyclical,Real Estate,Retail,0.042729276503962826,0.042729276503962826,4,False,0.042729276503962826
+Aerospace and Defense,Textiles,Industrials,Consumer Cyclical,Aerospace and Defense,Textiles,0.0278075530940671,0.0278075530940671,1,False,0.0278075530940671
+Financial Services,Transportation,Financials,Industrials,Financial Services,Transportation,0.040820063795452555,0.040820063795452555,4,False,0.040820063795452555
+Insurance,Retail,Financials,Consumer Cyclical,Insurance,Retail,0.05968387966294565,0.05968387966294565,2,False,0.05968387966294565
+Construction Materials,Personal and Home Care,Industrials,Consumer Non-Cyclical,Construction Materials,Personal and Home Care,0.05651790198513,0.05651790198513,1,False,0.05651790198513
+Oil Gas and Biofuels,Steel and Metallurgy,Oil Gas and Biofuels,Basic Materials,Oil Gas and Biofuels,Steel and Metallurgy,0.005954438244508211,0.005954438244508211,18,False,0.005954438244508211
+Retail,Telecommunications,Consumer Cyclical,Telecommunications,Retail,Telecommunications,0.0213442632869329,0.0213442632869329,4,False,0.0213442632869329
+Banks,Financial Services,Financials,Financials,Banks,Financial Services,0.1013789371357164,0.1013789371357164,10,True,0.1013789371357164
+Construction Materials,Gas Utility,Industrials,Utilities,Construction Materials,Gas Utility,0.0539008478246034,0.0539008478246034,1,False,0.0539008478246034
+Real Estate,Transportation,Real Estate,Industrials,Real Estate,Transportation,0.032672507099251076,0.032672507099251076,4,False,0.032672507099251076
+Apparel and Footwear,Real Estate,Consumer Cyclical,Real Estate,Apparel and Footwear,Real Estate,0.04637398660955435,0.04637398660955435,4,False,0.04637398660955435
+Paper and Cellulose,Steel and Metallurgy,Basic Materials,Basic Materials,Paper and Cellulose,Steel and Metallurgy,0.06726751645513877,0.06726751645513877,9,True,0.06726751645513877
+Insurance,Transportation,Financials,Industrials,Insurance,Transportation,0.052271703201670155,0.052271703201670155,2,False,0.052271703201670155
+Retail,Transportation,Consumer Cyclical,Industrials,Retail,Transportation,0.07796440742437137,0.07796440742437137,4,False,0.07796440742437137
+Apparel and Footwear,Retail,Consumer Cyclical,Consumer Cyclical,Apparel and Footwear,Retail,0.14984764453918548,0.14984764453918548,4,True,0.14984764453918548
+Banks,Mining,Financials,Basic Materials,Banks,Mining,-0.0029723523913214797,0.0029723523913214797,15,False,-0.0029723523913214797
+Banks,Transportation,Financials,Industrials,Banks,Transportation,0.02812974569970562,0.02812974569970562,10,False,0.02812974569970562
+Aerospace and Defense,Apparel and Footwear,Industrials,Consumer Cyclical,Aerospace and Defense,Apparel and Footwear,0.04210516535119415,0.04210516535119415,2,False,0.04210516535119415
+Financial Services,Insurance,Financials,Financials,Financial Services,Insurance,0.071567245173274,0.071567245173274,2,True,0.071567245173274
+Chemicals,Machinery and Equipment,Basic Materials,Industrials,Chemicals,Machinery and Equipment,0.06246582524963911,0.06246582524963911,9,False,0.06246582524963911
+Mining,Oil Gas and Biofuels,Basic Materials,Oil Gas and Biofuels,Mining,Oil Gas and Biofuels,0.06020283649419119,0.06020283649419119,6,False,0.06020283649419119
+Paper and Cellulose,Telecommunications,Basic Materials,Telecommunications,Paper and Cellulose,Telecommunications,0.041402661974788396,0.041402661974788396,2,False,0.041402661974788396
+Aerospace and Defense,Retail,Industrials,Consumer Cyclical,Aerospace and Defense,Retail,0.03596560749130375,0.03596560749130375,2,False,0.03596560749130375
+Retail,Transportation Equipment,Consumer Cyclical,Industrials,Retail,Transportation Equipment,0.08527058175410103,0.08527058175410103,4,False,0.08527058175410103
+Retail,Water and Sanitation,Consumer Cyclical,Utilities,Retail,Water and Sanitation,0.030758102190989078,0.030758102190989078,4,False,0.030758102190989078
+Chemicals,Construction Materials,Basic Materials,Industrials,Chemicals,Construction Materials,0.046672847505665936,0.046672847505665936,3,False,0.046672847505665936
+Electric Utility,Transportation,Utilities,Industrials,Electric Utility,Transportation,0.0034804207859122195,0.0034804207859122195,20,False,0.0034804207859122195
+Gas Utility,Retail,Utilities,Consumer Cyclical,Gas Utility,Retail,0.0562647116414635,0.0562647116414635,2,False,0.0562647116414635
+Financial Services,Oil Gas and Biofuels,Financials,Oil Gas and Biofuels,Financial Services,Oil Gas and Biofuels,0.07732679787198235,0.07732679787198235,4,False,0.07732679787198235
+Construction Materials,Machinery and Equipment,Industrials,Industrials,Construction Materials,Machinery and Equipment,0.08587389267372757,0.08587389267372757,3,True,0.08587389267372757
+Machinery and Equipment,Textiles,Industrials,Consumer Cyclical,Machinery and Equipment,Textiles,0.07625464098793212,0.07625464098793212,3,False,0.07625464098793212
+Gas Utility,Telecommunications,Utilities,Telecommunications,Gas Utility,Telecommunications,0.02687234398751425,0.02687234398751425,2,False,0.02687234398751425
+Apparel and Footwear,Transportation,Consumer Cyclical,Industrials,Apparel and Footwear,Transportation,0.08816652263211178,0.08816652263211178,4,False,0.08816652263211178
+Electric Utility,Water and Sanitation,Utilities,Utilities,Electric Utility,Water and Sanitation,0.0881697595488385,0.0881697595488385,20,True,0.0881697595488385
+Chemicals,Textiles,Basic Materials,Consumer Cyclical,Chemicals,Textiles,0.03879591175469863,0.03879591175469863,3,False,0.03879591175469863
+Construction Materials,Transportation Equipment,Industrials,Industrials,Construction Materials,Transportation Equipment,0.06555282132378809,0.06555282132378809,2,True,0.06555282132378809
+Personal and Home Care,Retail,Consumer Non-Cyclical,Consumer Cyclical,Personal and Home Care,Retail,0.05583771221166455,0.05583771221166455,2,False,0.05583771221166455
+Apparel and Footwear,Water and Sanitation,Consumer Cyclical,Utilities,Apparel and Footwear,Water and Sanitation,0.024015170739902926,0.024015170739902926,4,False,0.024015170739902926
+Banks,Insurance,Financials,Financials,Banks,Insurance,0.05762601139698288,0.05762601139698288,5,True,0.05762601139698288
+Mining,Paper and Cellulose,Basic Materials,Basic Materials,Mining,Paper and Cellulose,0.09050394228503257,0.09050394228503257,3,True,0.09050394228503257
+Banks,Oil Gas and Biofuels,Financials,Oil Gas and Biofuels,Banks,Oil Gas and Biofuels,0.06984522783614353,0.06984522783614353,10,False,0.06984522783614353
+Construction Materials,Textiles,Industrials,Consumer Cyclical,Construction Materials,Textiles,0.0803620007940812,0.0803620007940812,1,False,0.0803620007940812
+Insurance,Oil Gas and Biofuels,Financials,Oil Gas and Biofuels,Insurance,Oil Gas and Biofuels,0.03783325111866705,0.03783325111866705,2,False,0.03783325111866705
+Apparel and Footwear,Personal and Home Care,Consumer Cyclical,Consumer Non-Cyclical,Apparel and Footwear,Personal and Home Care,0.0670322164083125,0.0670322164083125,2,False,0.0670322164083125
+Apparel and Footwear,Insurance,Consumer Cyclical,Financials,Apparel and Footwear,Insurance,0.06677225966302995,0.06677225966302995,2,False,0.06677225966302995
+Apparel and Footwear,Gas Utility,Consumer Cyclical,Utilities,Apparel and Footwear,Gas Utility,0.06467234197559645,0.06467234197559645,2,False,0.06467234197559645
+Chemicals,Steel and Metallurgy,Basic Materials,Basic Materials,Chemicals,Steel and Metallurgy,0.0253486049731772,0.0253486049731772,27,True,0.0253486049731772
+Machinery and Equipment,Retail,Industrials,Consumer Cyclical,Machinery and Equipment,Retail,0.07120093501794884,0.07120093501794884,6,False,0.07120093501794884
+Mining,Steel and Metallurgy,Basic Materials,Basic Materials,Mining,Steel and Metallurgy,0.15276732846223606,0.15276732846223606,27,True,0.15276732846223606
+Electric Utility,Machinery and Equipment,Utilities,Industrials,Electric Utility,Machinery and Equipment,0.005758573933785984,0.005758573933785984,30,False,0.005758573933785984
+Retail,Textiles,Consumer Cyclical,Consumer Cyclical,Retail,Textiles,0.08319647644741444,0.08319647644741444,2,True,0.08319647644741444
+Construction Materials,Retail,Industrials,Consumer Cyclical,Construction Materials,Retail,0.0849839712249015,0.0849839712249015,2,False,0.0849839712249015
+Apparel and Footwear,Machinery and Equipment,Consumer Cyclical,Industrials,Apparel and Footwear,Machinery and Equipment,0.08599015669419573,0.08599015669419573,6,False,0.08599015669419573

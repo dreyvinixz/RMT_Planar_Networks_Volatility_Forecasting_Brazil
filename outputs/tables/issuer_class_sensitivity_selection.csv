@@ -1,0 +1,25 @@
+symbol,company_name,sector,subsector,segment,valid_return_observations,retained_in_issuer_panel
+BBDC3,BRADESCO,Financials,Banks,Banks,6885,False
+BBDC4,BRADESCO,Financials,Banks,Banks,6886,True
+BRAP3,BRADESPAR,Basic Materials,Mining,Holdings,6210,False
+BRAP4,BRADESPAR,Basic Materials,Mining,Holdings,6291,True
+BRKM3,BRASKEM,Basic Materials,Chemicals,Petrochemicals,5048,False
+BRKM5,BRASKEM,Basic Materials,Chemicals,Petrochemicals,5783,True
+CMIG3,CEMIG,Utilities,Electric Utility,Generation and Distribution,6880,False
+CMIG4,CEMIG,Utilities,Electric Utility,Generation and Distribution,6885,True
+CPLE3,COPEL,Utilities,Electric Utility,Generation and Distribution,6787,False
+CPLE6,COPEL,Utilities,Electric Utility,Generation and Distribution,6852,True
+ELET3,ELETROBRAS,Utilities,Electric Utility,Generation and Transmission,6852,True
+ELET6,ELETROBRAS,Utilities,Electric Utility,Generation and Transmission,6852,False
+GGBR3,GERDAU,Basic Materials,Steel and Metallurgy,Steel,5682,False
+GGBR4,GERDAU,Basic Materials,Steel and Metallurgy,Steel,6174,True
+ITSA3,ITAUSA,Financials,Financial Services,Holdings,5710,False
+ITSA4,ITAUSA,Financials,Financial Services,Holdings,6885,True
+GOAU3,METALURGICA GERDAU,Basic Materials,Steel and Metallurgy,Holdings,5852,False
+GOAU4,METALURGICA GERDAU,Basic Materials,Steel and Metallurgy,Holdings,6885,True
+PETR3,PETROBRAS,Oil Gas and Biofuels,Oil Gas and Biofuels,Exploration Refining and Distribution,6885,True
+PETR4,PETROBRAS,Oil Gas and Biofuels,Oil Gas and Biofuels,Exploration Refining and Distribution,6885,False
+TELB3,TELEBRAS,Telecommunications,Telecommunications,Telecommunications,5386,False
+TELB4,TELEBRAS,Telecommunications,Telecommunications,Telecommunications,6852,True
+USIM3,USIMINAS,Basic Materials,Steel and Metallurgy,Steel,6005,False
+USIM5,USIMINAS,Basic Materials,Steel and Metallurgy,Steel,6669,True

@@ -1,0 +1,2 @@
+n_subsectors,n_edges,density,mean_edge_dependency,median_edge_dependency,mean_internal_dependency,top_degree_subsector,top_betweenness_subsector,top_weighted_degree_subsector
+22,66,0.2857142857142857,0.05662748564366406,0.056051211926564024,0.09616238769535185,Retail,Electric Utility,Apparel and Footwear
