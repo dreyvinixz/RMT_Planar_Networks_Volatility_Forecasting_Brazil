@@ -131,6 +131,41 @@ J.~Y. Campbell, A.~W. Lo, A.~C. MacKinlay, The Econometrics of Financial
 R.~S. Tsay, Analysis of Financial Time Series, 2nd Edition, John Wiley \& Sons,
   Hoboken, NJ, 2005.
 
+\bibitem{mandelbrot_1963_variation}
+B.~Mandelbrot, The variation of certain speculative prices, The Journal of
+  Business 36~(4) (1963) 394--419.
+\newblock \href {http://dx.doi.org/10.1086/294632} {\path{doi:10.1086/294632}}.
+
+\bibitem{fama_1965_behavior}
+E.~F. Fama, The behavior of stock-market prices, The Journal of Business 38~(1)
+  (1965) 34--105.
+\newblock \href {http://dx.doi.org/10.1086/294743} {\path{doi:10.1086/294743}}.
+
+\bibitem{engle_1982_autoregressive}
+R.~F. Engle, Autoregressive conditional heteroscedasticity with estimates of
+  the variance of {United Kingdom} inflation, Econometrica 50~(4) (1982)
+  987--1007.
+\newblock \href {http://dx.doi.org/10.2307/1912773}
+  {\path{doi:10.2307/1912773}}.
+
+\bibitem{bollerslev_1986_generalized}
+T.~Bollerslev, Generalized autoregressive conditional heteroskedasticity,
+  Journal of Econometrics 31~(3) (1986) 307--327.
+\newblock \href {http://dx.doi.org/10.1016/0304-4076(86)90063-1}
+  {\path{doi:10.1016/0304-4076(86)90063-1}}.
+
+\bibitem{longin_solnik_2001_extreme}
+F.~Longin, B.~Solnik, Extreme correlation of international equity markets, The
+  Journal of Finance 56~(2) (2001) 649--676.
+\newblock \href {http://dx.doi.org/10.1111/0022-1082.00340}
+  {\path{doi:10.1111/0022-1082.00340}}.
+
+\bibitem{ang_chen_2002_asymmetric}
+A.~Ang, J.~Chen, Asymmetric correlations of equity portfolios, Journal of
+  Financial Economics 63~(3) (2002) 443--494.
+\newblock \href {http://dx.doi.org/10.1016/S0304-405X(02)00068-5}
+  {\path{doi:10.1016/S0304-405X(02)00068-5}}.
+
 \bibitem{guhr_muller_1998}
 T.~Guhr, A.~M{\"u}ller-Groeling, H.~A. Weidenm{\"u}ller, Random-matrix theories
   in quantum physics: common concepts, Physics Reports 299~(4--6) (1998)

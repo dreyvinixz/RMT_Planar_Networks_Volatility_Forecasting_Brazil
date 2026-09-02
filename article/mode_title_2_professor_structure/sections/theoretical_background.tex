@@ -58,60 +58,52 @@ where $\overline{\lambda}_{\mathrm{rem}} = \frac{1}{N - K_{\mathrm{signal}} + 1}
 \subsection{Topological Filtering and Planar Network Representations}
 \label{subsec:theory_networks}
 
-Although spectral filtering strips noise from the correlation matrix, the resulting object is still dense and fully connected ($N(N-1)/2$ edges). Topological filtering maps dependencies into a sparse, geometric network while preserving essential clustering and hierarchical properties \cite{tumminello_2010_correlation}.
+The correlation matrix records the relationship between every pair of assets. This complete representation is useful for calculation, but it is difficult to interpret because all assets are connected to one another. Even after RMT filtering removes noise-compatible components, the matrix does not directly show which dependencies form the market backbone, which assets behave as hubs, or whether sectoral groups remain visible. Topological filtering addresses this problem by retaining an informative subset of the strongest relationships and representing them as a network \cite{tumminello_2010_correlation}.
 
-The construction maps Pearson correlations $C_{ij}$ into metric distances via the Mantegna metric \cite{mantegna_1999_hierarchical}:
-\begin{equation}
-d_{ij} = \sqrt{2(1 - C_{ij})}, \quad d_{ij} \in [0, 2],
-\label{eq:theory_mantegna_metric}
-\end{equation}
-which strictly satisfies the metric axioms (positivity, symmetry, and triangle inequality $d_{ij} \le d_{ik} + d_{kj}$). Highly synchronized assets are mapped to near-zero distances ($d_{ij} \to 0$).
+In this network, each asset is a node and each retained dependency is an edge. Correlations are first converted into distances using the transformation proposed by Mantegna \cite{mantegna_1999_hierarchical}: assets with stronger positive correlations are placed closer together, whereas weakly or negatively correlated assets are farther apart. This distance representation allows standard graph algorithms to select the most relevant connections. The network is therefore a simplified view of the correlation structure, not a replacement for the underlying matrix and not evidence of a causal relationship between companies.
+
+In this study, networks are constructed from both the original correlation matrix and the RMT group-mode matrix. Comparing these representations shows which connections are mainly driven by the broad market movement and which localized structures remain after that common component is removed.
 
 \subsubsection{Minimum Spanning Tree (MST)}
-The Minimum Spanning Tree $\mathcal{T} = (\mathcal{V}, \mathcal{E}_{\mathrm{MST}})$ is the connected, acyclic subgraph spanning all $N$ vertices that minimizes total edge length $\sum_{(i,j) \in \mathcal{E}_{\mathrm{MST}}} d_{ij}$ using exactly $|\mathcal{E}_{\mathrm{MST}}| = N - 1$ edges \cite{mantegna_1999_hierarchical,bonanno_2004_networks}. The MST extracts the subdominant ultrametric hierarchy of the financial market. However, because it strictly disallows loops, the MST discards triangular interactions and multi-path connectivity.
+The Minimum Spanning Tree (MST) provides the sparsest connected representation of the market. It links every asset while preferentially retaining the shortest distances, and therefore the strongest correlations, without allowing closed loops \cite{mantegna_1999_hierarchical,bonanno_2004_networks}. The result can be read as a market backbone: branches indicate groups of closely related assets, central nodes indicate potential hubs, and peripheral nodes represent assets that are less integrated with the rest of the network.
+
+The MST is useful because it makes the main dependency hierarchy easy to visualize. Its simplicity is also a limitation, since alternative routes and triangular relationships are discarded. We use the MST to compare the backbone obtained from the original correlations with the backbone that remains after market-mode removal, focusing on changes in hubs and sectoral organization.
 
 \subsubsection{Planar Maximally Filtered Graph (PMFG)}
-The Planar Maximally Filtered Graph $\mathcal{G}_{\mathrm{PMFG}} = (\mathcal{V}, \mathcal{E}_{\mathrm{PMFG}})$ relaxes the tree constraint by embedding the dependency network onto a two-dimensional surface of genus $g=0$ (topologically homeomorphic to a sphere or plane) without edge crossings \cite{tumminello_2005_tool}.
+The Planar Maximally Filtered Graph (PMFG) retains more of the correlation structure than the MST. Connections are considered from strongest to weakest and are added while the graph can still be represented on a plane without edge crossings \cite{tumminello_2005_tool}. Unlike the MST, the PMFG allows loops and interconnected neighborhoods. It can therefore reveal local clusters, alternative dependency paths and groups of assets that share several strong relationships.
 
-Edges are ordered by ascending distance $d_{ij}$ (descending correlation $C_{ij}$) and inserted sequentially if and only if planarity is preserved. By Euler's polyhedral formula ($V - E + F = 2$), a planar graph on $N$ vertices with triangular faces contains exactly:
-\begin{equation}
-|\mathcal{E}_{\mathrm{PMFG}}| = 3N - 6
-\label{eq:theory_pmfg_edges}
-\end{equation}
-edges and $2N - 4$ triangular faces (3-cliques). The PMFG subsumes the MST as a topological subgraph ($\mathcal{E}_{\mathrm{MST}} \subset \mathcal{E}_{\mathrm{PMFG}}$) and retains 3-cliques and 4-cliques (tetrahedra), enabling rich quantification of local clustering, hub structures, and community modularity without arbitrary threshold tuning \cite{aste_2010_correlation,pozzi_2013_spread}.
+This richer structure is particularly useful for examining whether companies from the same sector remain connected, whether a small number of firms concentrate many relevant links, and how local organization changes after RMT filtering \cite{aste_2010_correlation,pozzi_2013_spread}. In this work, the PMFG complements the MST by supporting comparisons of clustering, sector retention, hub rankings and subsector-level dependencies. Detailed construction rules and mathematical properties are available in the original methodological references \cite{tumminello_2005_tool,tumminello_2010_correlation}.
 
-\subsubsection{Network Centrality Invariants}
-From the filtered graphs, asset topological roles are characterized by standard network metrics:
+\subsubsection{Network Descriptors Used in This Study}
+Once the filtered networks are constructed, standard descriptors summarize the role of each asset and the organization of the market:
 \begin{itemize}
-  \item \textbf{Degree Centrality ($k_i$):} The number of incident connections $k_i = \sum_{j=1}^N A_{ij}$, where $\mathbf{A}$ is the adjacency matrix.
-  \item \textbf{Betweenness Centrality ($BC_i$):} The fraction of all shortest paths traversing node $i$: $BC_i = \sum_{s \neq i \neq t} \frac{\sigma_{st}(i)}{\sigma_{st}}$, where $\sigma_{st}$ is the number of shortest paths between $s$ and $t$.
-  \item \textbf{Closeness Centrality ($CC_i$):} The reciprocal of average shortest-path distance: $CC_i = \frac{N-1}{\sum_{j \neq i} \operatorname{dist}(i, j)}$.
-  \item \textbf{Eigenvector Centrality ($x_i$):} Recursive node importance $x_i = \frac{1}{\lambda_{\max}(\mathbf{A})} \sum_{j=1}^N A_{ij} x_j$.
-  \item \textbf{Local Clustering Coefficient ($C_i$):} The fraction of connected neighbor pairs: $C_i = \frac{2 E_i}{k_i(k_i - 1)}$, where $E_i$ is the number of edges among neighbors of node $i$.
+  \item \textbf{Degree centrality} counts how many direct connections an asset has and helps identify highly connected hubs.
+  \item \textbf{Betweenness centrality} indicates how often an asset lies between other assets, highlighting potential bridges between groups.
+  \item \textbf{Closeness centrality} measures how near an asset is to the rest of the network through the available paths.
+  \item \textbf{Eigenvector centrality} gives greater importance to assets connected to other influential assets.
+  \item \textbf{Local clustering} measures how strongly an asset's neighbors are connected to one another and helps identify cohesive local groups.
 \end{itemize}
+
+These descriptors do not represent predictive signals by themselves. They summarize structural roles in the filtered market and allow the original and group-mode networks to be compared consistently. In the retrospective volatility experiment, selected descriptors are subsequently added to conventional return and volatility variables to assess whether market position is associated with model performance. Because they are estimated from the full synchronized sample, that use remains an ex-post structural assessment rather than a real-time forecasting strategy.
 
 \subsection{Realized Volatility and Supervised Predictive Modeling}
 \label{subsec:theory_volatility}
 
-Conditional volatility is a foundational latent state in portfolio allocation and risk management. Following Andersen et~al. \cite{andersen_2003_modeling}, historical realized volatility over a backward window $w$ provides a non-parametric estimator of integrated variance:
-\begin{equation}
-\mathrm{RV}_{i,t}^{(w)} = \sqrt{\frac{252}{w} \sum_{\tau=0}^{w-1} \left( r_{i,t-\tau} - \overline{r}_{i,t}^{(w)} \right)^2},
-\label{eq:theory_rv}
-\end{equation}
-where 252 annualizes daily volatility.
+Volatility describes the intensity of price fluctuations, regardless of whether prices move upward or downward. A low-volatility period is relatively calm, whereas a high-volatility period contains larger and less stable price movements. This information is important for risk measurement, portfolio allocation and position sizing because two assets with similar average returns may expose investors to very different levels of uncertainty.
 
-Volatility forecasting leverages the Heterogeneous Autoregressive (HAR) paradigm, capturing multi-scale participant dynamics across daily ($w=1$), weekly ($w=5$), and monthly ($w=21$) horizons. Supervised machine learning algorithms (e.g., Ridge Regression \cite{hoerl_kennard_1970_ridge}, Random Forests \cite{breiman_2001_random}, Gradient Boosted Decision Trees \cite{friedman_2001_greedy}, and Neural Networks \cite{bucci_2020_realized,christensen_2022_realized}) extend linear autoregressions by capturing nonlinear feature combinations and high-dimensional network embeddings.
+Future volatility is not known when a forecast is made. After the forecast horizon has passed, it can be approximated from the returns observed during that period. This ex-post measure is called \emph{realized volatility} \cite{andersen_2003_modeling}. In this study, the forecasting task is not to predict the direction of the next price movement. It is to estimate how much PETR4, VALE3 and BBDC4 are likely to fluctuate over the following 5 or 20 trading days.
 
-Given that volatility is strictly non-negative, loss functions must be carefully selected. Patton \cite{patton_2011_volatility} showed that the Gaussian Quasi-Likelihood ($\mathrm{QLIKE}$) loss is uniquely robust to measurement noise in the volatility proxy:
-\begin{equation}
-\mathrm{QLIKE}(y, \widehat{y}) = \frac{y}{\widehat{y}} - \ln\left(\frac{y}{\widehat{y}}\right) - 1,
-\label{eq:theory_qlike}
-\end{equation}
-where $y = \mathrm{RV}_{i,t+h}$ is the target volatility and $\widehat{y}$ is the model prediction. Predictive quality is further benchmarked via Root Mean Squared Error ($\mathrm{RMSE}$), Mean Absolute Error ($\mathrm{MAE}$), and Out-of-Sample $R^2$:
-\begin{equation}
-R_{\mathrm{OOS}}^2 = 1 - \frac{\sum_{t=1}^M (y_t - \widehat{y}_t)^2}{\sum_{t=1}^M (y_t - \overline{y}_{\mathrm{train}})^2}.
-\label{eq:theory_oos_r2}
-\end{equation}
+\subsubsection{How Supervised Learning Is Used}
+A supervised model learns from historical examples that contain two parts: information available at a given date and the volatility subsequently observed over the forecast horizon. During training, the model learns how the predictors are associated with later volatility. It then applies the learned relationship to dates that were not used for model fitting.
 
-\subsubsection{Retrospective vs. Point-in-Time Paradigm}
-An essential methodological distinction in empirical finance concerns the information filtration used during feature extraction. In a strict \emph{point-in-time} forecasting framework, all feature transformations at date $t$ must strictly depend only on information available up to $t$ ($\mathcal{F}_t$). When spectral RMT decompositions and PMFG topologies are extracted from the complete synchronized panel across the entire sample, the resulting structural invariants incorporate full-sample information. Evaluating predictive models with such descriptors therefore represents a \emph{retrospective structural assessment}---identifying ex-post topological associations with volatility dynamics rather than an operational real-time forecasting strategy.
+The conventional predictors summarize recent returns and volatility persistence. Additional feature sets introduce broad market information, RMT descriptors and the MST/PMFG network descriptors discussed in Section~\ref{subsec:theory_networks}. The comparison includes a linear Ridge model \cite{hoerl_kennard_1970_ridge}, tree-based models such as Random Forest and gradient boosting \cite{breiman_2001_random,friedman_2001_greedy}, and simple neural models \cite{bucci_2020_realized,christensen_2022_realized}. These approaches differ in how they combine the predictors: the linear model provides a simple baseline, tree-based models can capture nonlinear interactions, and neural models provide a limited deep-learning comparison. The purpose is to test whether adding structural information is associated with better volatility estimates, not to claim that one model represents the true dynamics of the market.
+
+\subsubsection{How Forecasts Are Evaluated}
+No single metric provides a complete assessment, so the models are compared using complementary measures. MAE reports the average absolute prediction error. RMSE gives greater weight to large errors. Out-of-sample $R^2$ compares the model with a simple historical benchmark. QLIKE is a loss measure commonly used for volatility forecasts because it remains informative when realized volatility is an imperfect proxy for the underlying market risk \cite{patton_2011_volatility}. Lower MAE, RMSE and QLIKE values indicate better forecasts, while a higher out-of-sample $R^2$ indicates a stronger improvement over the benchmark.
+
+Model configurations and feature sets are chosen with the validation period and are then evaluated on a separate chronological test period. This separation reduces the risk of selecting a model simply because it fits the evaluation sample well. The exact target construction, temporal split, model settings and statistical comparisons are reported in the methodology and results sections.
+
+\subsubsection{Retrospective Assessment vs. Real-Time Forecasting}
+A real-time forecast made on a particular date may use only information that was available up to that date. The return and volatility predictors satisfy this principle because they are calculated from past observations. However, the RMT and network descriptors used in this study were estimated from the complete synchronized sample. For an early date in the sample, those descriptors therefore summarize information that would not yet have been available.
+
+Consequently, the experiment should be interpreted as a retrospective structural assessment. It tests whether the ex-post market structure is associated with volatility-model performance, but it does not establish that the same information could have improved forecasts in real time. A deployable forecasting experiment would need to reconstruct the RMT and network descriptors repeatedly, using only data available before each prediction date.
