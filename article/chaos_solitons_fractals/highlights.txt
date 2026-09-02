@@ -1,0 +1,5 @@
+RMT separates market, group and noisy modes in Brazilian equities
+PMFG filtering reveals localized sectoral dependency structures
+Within-sector correlations exceed between-sector correlations
+Network features add incremental evidence for volatility forecasting
+GARCH and HAR-RV set strong benchmarks for network-based ML

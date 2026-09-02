@@ -1,0 +1,102 @@
+\section{Methodology}
+\label{sec:methodology}
+
+\subsection{Adjusted log returns}
+
+For asset $i$ at date $t$, the daily log return is computed from adjusted closing prices as
+\begin{equation}
+r_{i,t} = \log(P_{i,t}) - \log(P_{i,t-1}),
+\end{equation}
+where $P_{i,t}$ is the adjusted closing price. Log returns are used because they are additive across time and standard in empirical econophysics. The pipeline exports both long-format return tables and wide return matrices. The long format is convenient for diagnostics by asset, while the wide format is required for correlation, RMT and network construction.
+
+\subsection{Descriptive statistics and stylized facts}
+
+The first empirical layer documents stylized facts in a small set of representative B3 assets. For each asset, the pipeline computes mean, standard deviation, skewness, excess kurtosis, minimum and maximum returns, empirical VaR at 1\% and 5\%, counts of large absolute returns and autocorrelations of $|r_t|$. These diagnostics are not the main contribution of the paper, but they establish that the Brazilian series display the usual empirical ingredients of econophysics: heavy tails, volatility clustering and persistent volatility.
+
+\subsection{Correlation matrix estimation}
+
+Let $R$ be the $T \times N$ matrix of demeaned standardized returns. The Pearson correlation matrix is
+\begin{equation}
+C = \frac{1}{T-1} R^\top R.
+\end{equation}
+For pairwise descriptive analysis, correlations are computed with available observations for each asset pair. For the RMT and network analysis, a common window is used to obtain a consistent $N \times N$ matrix. The core historical matrix contains $N=58$ assets and is the basis for the main RMT, clustering, MST and PMFG results.
+
+\subsection{Sectoral correlation comparison}
+
+Each asset is assigned to an initial macro sector and subsector. For each pair $(i,j)$, the pair is classified as within-sector if both assets have the same macro sector and between-sector otherwise. The resulting empirical distributions are compared using mean, median, dispersion and a one-sided Mann--Whitney U test. This test provides an early validation that the economic classification is reflected in the empirical dependency matrix before any RMT filtering is applied.
+
+\subsection{Rolling average market correlation}
+
+Static correlations hide time variation. To measure market synchronization, the pipeline computes rolling average pairwise correlations over long windows. The statistic summarizes whether the market is moving as a single common system or as a more dispersed set of sectoral components. Elevated rolling average correlation during crises motivates the subsequent RMT decomposition because it suggests that the strength of the market mode changes over time. This step provides a natural bridge to spectral analysis: a strong time-varying common component should appear as a dominant eigenmode in the correlation matrix.
+
+\subsection{Random Matrix Theory and Marcenko--Pastur bounds}
+
+For a random correlation matrix with aspect ratio $Q=T/N$, the Marcenko--Pastur bounds are
+\begin{equation}
+\lambda_{\pm} = \sigma^2 \left(1 + \frac{1}{Q} \pm 2\sqrt{\frac{1}{Q}}\right),
+\end{equation}
+where $\sigma^2=1$ for standardized returns. Eigenvalues inside $[\lambda_-,\lambda_+]$ are treated as broadly consistent with random noise. Eigenvalues above $\lambda_+$ are candidates for collective structure. In the core historical window, $N=58$, $T=1527$ and $Q \approx 26.33$.
+
+\subsection{Spectral decomposition and reconstruction}
+
+Let $\lambda_k$ and $u_k$ denote the eigenvalues and eigenvectors of $C$. The spectral representation is
+\begin{equation}
+C = \sum_{k=1}^{N} \lambda_k u_k u_k^\top.
+\end{equation}
+This representation allows the matrix to be reconstructed from selected modes. The reconstruction is useful because it makes it possible to study the full matrix, the dominant market mode, the group/sector modes and the noisy component separately. Numerical reconstruction errors are reported to ensure that differences between matrices are caused by mode selection rather than numerical instability.
+
+\subsection{Market Mode, Group/Sector Mode and Noise Mode}
+
+The Market Mode is defined from the first eigenpair. It captures broad co-movement and is expected to have widespread loadings across the market. The Group/Sector Mode is reconstructed from the remaining eigenpairs above the Marcenko--Pastur upper bound. This component is expected to contain sectoral or subsectoral dependencies. The Noise Mode is reconstructed from eigenpairs inside the random band. The filtered matrix combines the informative modes and suppresses the random-band component.
+
+\subsection{Mantegna distance}
+
+Correlations are converted into distances using the Mantegna metric
+\begin{equation}
+d_{ij} = \sqrt{2(1-\rho_{ij})}.
+\end{equation}
+This transformation maps high correlations to short distances and low correlations to longer distances. The same distance geometry is then used for hierarchical clustering, ordered heatmaps, MST and PMFG construction, which makes the results comparable across methods.
+
+\subsection{Hierarchical clustering and ordered heatmaps}
+
+Hierarchical clustering is applied to the Mantegna distance matrix using average linkage. The dendrograms summarize how assets merge into clusters as the distance threshold increases. Ordered heatmaps use the dendrogram order to rearrange the correlation matrices so that block structures become visually identifiable. Comparing original, filtered and group-mode heatmaps helps distinguish broad market co-movement from localized sectoral structure.
+
+\subsection{Minimum Spanning Tree}
+
+For $N$ nodes, the MST has $N-1$ edges. With $N=58$, this gives 57 edges. The MST is constructed from the distance matrix and retains the connected tree with minimum total distance. It is useful as a minimal dependency backbone, but its sparseness is also a limitation: it cannot represent cycles, triangles or multiple paths between sectors.
+
+\subsection{Planar Maximally Filtered Graph}
+
+The PMFG retains the strongest edges subject to planarity. For $N$ nodes, a PMFG has $3N-6$ edges; with $N=58$, this gives 168 edges. Unlike the MST, the PMFG preserves triangles and 4-cliques. Under the same ranking of pairwise distances, the MST is contained in the PMFG as a subgraph, so the PMFG can be interpreted as a less aggressive topological filter that preserves richer local geometry. Clique counts are therefore useful construction diagnostics. In this paper, PMFGs are built for original, filtered and group-mode matrices and compared using edge correlations, sectoral edge ratios, clustering, centrality and hub rankings.
+
+\subsection{Aggregated subsector dependency network}
+
+The asset-level networks are complemented by an aggregated subsector dependency network. Asset dependencies are grouped by subsector, and cross-subsector edge weights summarize average dependency strength. This mesoscopic representation is useful because it translates a dense ticker-level structure into an economically interpretable map of dependency channels among subsectors.
+
+\subsection{Volatility forecasting dataset}
+
+For forecasting, realized volatility over horizon $h$ is computed as
+\begin{equation}
+RV_{t,h} = \sqrt{\sum_{k=1}^{h} r_{t+k}^2}.
+\end{equation}
+The target horizons are $h=5$ and $h=20$ trading days. The initial forecasting experiment uses PETR4, VALE3 and BBDC4. The sample is split temporally into training, validation and test periods to avoid random cross-sectional leakage across time.
+
+\subsection{Econometric benchmarks}
+
+The benchmark set includes historical volatility, EWMA, GARCH(1,1) and HAR-RV. The GARCH(1,1) conditional variance is
+\begin{equation}
+\sigma_t^2 = \omega + \alpha \epsilon_{t-1}^2 + \beta \sigma_{t-1}^2.
+\end{equation}
+The GARCH models are estimated with Student-$t$ innovations to account for the fat tails documented in the stylized-fact analysis. HAR-RV uses daily, weekly and monthly realized-volatility components to approximate long-memory behaviour \cite{corsi_2009_simple}. These benchmarks are intentionally strong because volatility persistence is difficult to outperform \cite{hansen_lunde_2005}.
+
+\subsection{Machine-learning models and feature sets}
+
+Three feature sets are used in a nested ablation design. Set~A contains classical return and volatility predictors, including rolling volatilities, rolling absolute returns, lagged realized volatility, EWMA volatility and higher-moment rolling statistics. Set~B adds market and RMT variables such as the largest eigenvalue, market-mode share and number of eigenvalues above the random-matrix bound. Set~C adds MST and PMFG features, including degree, betweenness and clustering measures from original and group-mode networks. This nesting defines a controlled ablation: Set~A measures the predictive value of classical volatility information alone, Set~B tests the incremental value of market-wide and RMT features, and Set~C tests whether network topology adds further information beyond these baselines. Ridge regression, Random Forest and histogram gradient boosting are used to evaluate these increasingly rich feature sets.
+
+\subsection{Evaluation metrics}
+
+Forecasts are evaluated using MAE, RMSE, out-of-sample $R^2$ and QLIKE. The QLIKE loss is
+\begin{equation}
+QLIKE_t = \log(\hat{\sigma}_t^2) + \frac{\sigma_t^2}{\hat{\sigma}_t^2},
+\end{equation}
+where $\hat{\sigma}_t^2$ is the predicted variance proxy and $\sigma_t^2$ is the realized proxy. QLIKE is included because it is widely used for volatility forecast comparison when realized volatility is an imperfect proxy for latent variance \cite{patton_2011_volatility}.

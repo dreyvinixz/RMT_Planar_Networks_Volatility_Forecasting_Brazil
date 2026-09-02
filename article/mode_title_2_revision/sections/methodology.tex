@@ -1,0 +1,75 @@
+\section{Empirical framework}
+\label{sec:methodology}
+
+This section states the empirical objects needed to answer the structural question of the article: how are B3 equity dependencies organized after broad market co-movement is separated from localized patterns? Figure~\ref{fig:methodology_overview} gives the reading order. Data preparation produces a synchronized return panel; correlation diagnostics describe its broad structure; RMT separates spectral components; and filtered graphs summarize the resulting geometry. The retrospective volatility-model assessment is described separately in Section~\ref{sec:experimental_framework}.
+
+\begin{center}
+\resizebox{0.94\linewidth}{!}{%
+\begin{tikzpicture}[
+    x=1cm, y=1cm, >=Latex,
+    box/.style={rectangle,rounded corners,draw=black,thick,align=center,minimum width=4.2cm,minimum height=1.0cm,font=\small},
+    smallbox/.style={rectangle,rounded corners,draw=black,thick,align=center,minimum width=3.0cm,minimum height=0.85cm,font=\small},
+    line/.style={->,thick}]
+\node[box] (data) at (0,0) {BovDB/B3 daily data\\Adjusted closing prices};
+\node[box] (filters) at (5.4,0) {Asset filtering\\and universe definition};
+\node[box] (returns) at (10.8,0) {Log returns\\and synchronized panel};
+\node[box] (diagnostics) at (5.4,-2.3) {Stylized facts and\\correlation diagnostics};
+\node[box] (rmt) at (5.4,-4.5) {Random Matrix Theory\\spectral decomposition};
+\node[smallbox] (market) at (1.8,-6.6) {Market mode};
+\node[smallbox] (group) at (5.4,-6.6) {Group/sector mode};
+\node[smallbox] (noise) at (9.0,-6.6) {Noise component};
+\node[box] (networks) at (2.4,-8.8) {MST, PMFG and\\hierarchical clustering};
+\node[box] (aggregate) at (8.4,-8.8) {Aggregated subsector\\dependency network};
+\node[box] (assessment) at (5.4,-11.0) {Retrospective volatility-model\\assessment (separate framework)};
+\draw[line] (data)--(filters); \draw[line] (filters)--(returns);
+\draw[line] (returns.south)|-(diagnostics.east); \draw[line] (diagnostics)--(rmt);
+\draw[line] (rmt)--(market); \draw[line] (rmt)--(group); \draw[line] (rmt)--(noise);
+\draw[line] (group.south).. controls (4.2,-7.5) and (2.4,-7.9)..(networks.north);
+\draw[line] (group.south).. controls (6.6,-7.5) and (8.4,-7.9)..(aggregate.north);
+\draw[line] (networks.south)|-(assessment.west); \draw[line] (aggregate.south)|-(assessment.east);
+\end{tikzpicture}%
+}
+\captionof{figure}{Empirical workflow. Adjusted B3 prices define the equity universe and synchronized returns; correlation diagnostics, RMT and filtered graphs then characterize the dependency structure. The final volatility-model assessment is retrospective because its structural descriptors are estimated from the full synchronized sample.}
+\label{fig:methodology_overview}
+\end{center}
+
+\subsection{Return panel and correlation diagnostics}
+\label{subsec:notation}
+
+After the data filters described in Section~\ref{sec:data}, daily log returns are $r_{i,t}=\log P^{\mathrm{adj}}_{i,t}-\log P^{\mathrm{adj}}_{i,t-1}$. The complete panel used for RMT and networks is $\mathbf{R}_{\mathrm{core}}\in\mathbb{R}^{T\times N}$, with $N=58$ assets and $T=1527$ common trading days. Each series is standardized within the relevant sample before estimating the Pearson correlation matrix,
+\begin{equation}
+\mathbf{C}=\frac{1}{T-1}\widetilde{\mathbf{R}}^{\top}\widetilde{\mathbf{R}}.
+\end{equation}
+\label{subsec:asset_filtering}
+
+Stylized-fact summaries, static pairwise correlations, a sector-label permutation check and rolling average correlation provide complementary diagnostics. The descriptive pairwise analyses use the available overlap for each pair; spectral and graph analyses use the single complete panel. This distinction prevents the broader historical coverage from being mistaken for the RMT sample.
+\label{subsec:stylized_method}
+\label{subsec:correlation_method}
+\label{subsec:sectoral_method}
+\label{subsec:rolling_corr_method}
+
+\subsection{RMT filtering}
+\label{subsec:rmt_method}
+
+The empirical correlation matrix is decomposed as $\mathbf{C}=\sum_{k=1}^{N}\lambda_k\mathbf{u}_k\mathbf{u}_k^{\top}$. For $Q=T/N$, the Mar\v{c}enko--Pastur benchmark has bounds
+\begin{equation}
+\lambda_{\pm}=\left(1+\frac{1}{Q}\pm2\sqrt{\frac{1}{Q}}\right).
+\end{equation}
+Eigenvalues inside this interval are treated as compatible with the benchmark's sampling-noise model; modes above $\lambda_+$ are candidates for collective structure, not automatic economic sector labels. We use the leading mode as a broad market component, retain the remaining above-bound modes as candidate group-level structure, and report the residual as noise-compatible. Issuer-collapsed and circular-shift checks test the robustness of that descriptive interpretation.
+
+\subsection{Filtered topology}
+\label{subsec:distance_clustering_method}
+
+We transform valid correlation matrices into Mantegna distances, $d_{ij}=\sqrt{2(1-C_{ij})}$, and apply average-linkage clustering, MST and PMFG filtering. The MST retains the sparse connected backbone; the PMFG retains a planar graph with $3N-6$ edges, allowing local clustering and clique structure to be summarized. Comparisons between original and group-mode matrices ask whether localized topology remains once the dominant common component is removed.
+\label{subsec:network_method}
+
+\subsection{Subsector aggregation}
+\label{subsec:subsector_network_method}
+
+The aggregated network is a descriptive translation from ticker-level edges to economic groups. For subsectors $a$ and $b$, its edge weight is the mean retained ticker-level dependency,
+\begin{equation}
+W_{ab}=\frac{1}{|\mathcal{E}_{ab}|}\sum_{(i,j)\in\mathcal{E}_{ab}} w_{ij},
+\qquad
+\mathcal{E}_{ab}=\{(i,j)\in E:g(i)=a,\;g(j)=b\}.
+\end{equation}
+It answers which subsector pairs are connected in the selected graph, rather than estimating a causal channel or a new aggregation model. We summarize the map with density, average dependency, degree, weighted degree and betweenness.

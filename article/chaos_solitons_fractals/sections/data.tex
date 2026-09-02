@@ -1,0 +1,45 @@
+\section{Data and asset universe}
+\label{sec:data}
+
+\subsection{QuantBase/B3 data source}
+
+The empirical analysis uses daily Brazilian equity data processed through the QuantBase data infrastructure and stored in a local ClickHouse database. The main source table is \texttt{quantbase.candles\_1d}. The relevant price field is the adjusted closing price \texttt{adj\_close}, which incorporates the adjustment factors available in the database. The full generated price and return files cover the period from 16 March 1998 to 31 December 2025.
+
+\subsection{Asset filters and adjusted prices}
+
+The asset universe is constructed to focus on ordinary exchange-traded equity instruments. The pipeline requires \texttt{adj\_close > 0}, uses instruments with \texttt{cod\_bdi = 02}, and excludes securities whose specification contains \texttt{DR}, in order to remove BDRs. ETFs, funds and benchmark instruments are not used as nodes in the main equity network. Brazilian units and preferred/common share classes are retained when they satisfy the history and liquidity filters because they are traded instruments and can reveal share-class dependencies.
+
+Adjusted prices are essential for long historical samples because stock splits, dividends, corporate reorganizations and unit conversions can otherwise create artificial jumps. At the same time, adjusted prices are not a guarantee that every corporate action is fully corrected. This is especially important for the modern liquid top-50 universe, where preliminary validation found several large adjusted-return events. For this reason, the modern universe is reported as generated but deferred for a separate quality-control stage.
+
+\subsection{Core historical universe}
+
+The core historical universe contains 58 assets with sufficient data coverage for the RMT, clustering and network analysis. This universe is intentionally historical rather than purely current. It allows the paper to study a long Brazilian equity sample while keeping the cross-section large enough for network analysis and small enough for interpretable figures. The RMT window used in the main spectral analysis contains $T=1527$ observations for $N=58$ assets.
+
+\subsection{Demo assets}
+
+PETR4, VALE3 and BBDC4 are used as demonstration assets for stylized facts and as the first forecasting targets. They were selected because they represent large, liquid and economically distinct parts of B3: oil and gas, basic materials/mining and financials. This small panel is not meant to represent the entire market. It is used to show return behaviour, fat tails, volatility clustering and the feasibility of the forecasting pipeline before expanding the forecasting design to a larger target set.
+
+\subsection{Sector and subsector classification}
+
+The initial macro-sector classification maps each core-historical asset into a sector, subsector and segment. The macro sectors include Financials, Oil Gas and Biofuels, Basic Materials, Utilities, Industrials, Consumer Cyclical, Consumer Non-Cyclical, Real Estate and Telecommunications. Utilities and Real Estate are kept separate because their risk drivers differ substantially. Utilities are more directly linked to regulation, concessions and defensive cash flows, while Real Estate is more sensitive to credit conditions and the real-estate cycle. Within Basic Materials, the \texttt{subsector} field distinguishes Mining, Steel and Metallurgy, Chemicals, and Paper and Cellulose.
+
+\begin{table}
+\centering
+\caption{Summary of the empirical samples used in the working draft.}
+\label{tab:universe_summary}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrl}
+\toprule
+Sample & Assets & Period & Main use \\
+\midrule
+Demo assets & 3 & 2006--2025 & Stylized facts and first forecasting experiment \\
+Core historical universe & 58 & 1998--2025 & Correlation, RMT, clustering and networks \\
+Modern liquid top 50 & 50 & 1998--2025 generated & Future modern-window robustness after QC \\
+\bottomrule
+\end{tabular}}
+\end{table}
+\FloatBarrier
+
+\subsection{Data quality notes and limitations}
+
+The main data-quality issue is the distinction between genuine extreme returns and artificial jumps caused by corporate-action adjustment problems. For PETR4, VALE3 and BBDC4, the largest daily returns are consistent with known stress periods such as 2008, 2015--2016 and 2020. For the modern top-50 universe, however, some observations exceed thresholds that are too large for normal daily equity returns. The working pipeline therefore keeps extreme-return flags as a separate quality-control task and avoids using the modern universe for the main RMT and network claims in this draft.

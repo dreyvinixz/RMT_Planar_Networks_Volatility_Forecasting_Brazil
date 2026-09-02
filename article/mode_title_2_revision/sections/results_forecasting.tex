@@ -1,0 +1,106 @@
+\clearpage
+\subsection{Retrospective volatility-model assessment}
+\label{sec:forecasting}
+
+This section evaluates whether the full-sample structural descriptors are associated with model performance under the stated chronological split. It reports model configurations, held-out metrics, time-series checks and feature-importance diagnostics. Because the structural descriptors are ex-post, every result in this section is interpreted as retrospective evidence rather than as a deployable point-in-time forecasting result.
+
+\subsubsection{Chronological evaluation with ex-post structural descriptors}
+
+We conduct a retrospective evaluation of whether RMT and network descriptors are associated with realized-volatility model performance. The experiment uses PETR4, VALE3 and BBDC4 as target assets and compares machine-learning models with simple neural extensions. The data are split chronologically: training covers 2006--2017, validation covers 2018--2020 and testing covers 2021--2025. This ordering keeps model fitting and feature-set selection separated from the held-out period. However, the RMT and network descriptors are calculated from the full synchronized panel and broadcast across dates; Sets~B and~C consequently use ex-post structural information. Their test-period scores are not evidence of a tradable, real-time forecasting advantage. They are an exploratory added-information comparison that a recursive rolling design must validate.
+
+\subsubsection{Machine-learning and deep-learning models}
+
+The machine-learning models use three nested feature sets in an ablation design. Set~A contains standard lagged return and volatility features. Set~B adds rolling market variables and full-sample RMT descriptors. Set~C adds full-sample MST and PMFG descriptors. This nesting allows the experiment to assess whether ex-post network structure is associated with model performance beyond lagged-volatility persistence and broad market/RMT descriptors.
+
+The deep-learning extension uses two simple architectures. The MLP is a tabular neural regressor trained on the same feature sets as the machine-learning models. The CNN-1D uses short rolling windows of return and volatility variables. Both neural models use positive-output regression for realized volatility. These models are included as an incremental extension, not as a claim that the neural architecture has been optimized for this market.
+
+\subsubsection{Chronological test-period model comparison}
+
+Figure~\ref{fig:forecast_comparison} summarizes held-out test-period QLIKE loss with moving-block bootstrap intervals, and Table~\ref{tab:forecast_comparison} reports the aggregated test-period metrics. Lower QLIKE is better. For each model and horizon, the reported feature set is selected using the validation period and then evaluated on the test period. The temporal holdout applies to model fitting and selection; it does not make the full-sample structural descriptors point-in-time features.
+
+\begin{center}
+\includegraphics[
+  width=\linewidth,
+  height=0.58\textheight,
+  keepaspectratio
+]{images/figure_16_volatility_forecast_model_comparison.pdf}
+\captionof{figure}{Chronological test-period comparison for machine-learning and deep-learning volatility models. Points are mean QLIKE across PETR4, VALE3 and BBDC4; horizontal bars are 95\% circular moving-block bootstrap intervals with block length equal to the horizon. Labels show the validation-selected feature set for each model and horizon. Sets~B and~C include ex-post full-sample structural descriptors and are not real-time forecasting specifications.}
+\label{fig:forecast_comparison}
+\end{center}
+
+At the 5-day horizon, Random Forest with Set~C obtains the lowest average test-period QLIKE among the validation-selected models. Ridge, CNN-1D and MLP remain close in MAE and RMSE, and the 95\% moving-block QLIKE intervals overlap materially across the leading specifications. Thus the ranking is descriptive rather than evidence of a precisely estimated performance separation. Per-asset metrics and intervals are reported in the supplementary material.
+
+At the 20-day horizon, Ridge with Set~C obtains the lowest average test-period QLIKE, while CNN-1D gives competitive MAE, RMSE and held-out $R^2$. The MLP has relatively low MAE and RMSE but weaker QLIKE, indicating that it can track average volatility levels while still producing less favourable variance-proxy loss. The focused HAC loss-difference check in Table~\ref{tab:forecast_loss_test} compares the validation-selected structural champion (Ridge Set~C at both horizons) with the validation-selected point-in-time Set~A baseline (Ridge). The mean baseline-minus-structural difference is negative at both horizons, and the one-sided tests do not support lower structural QLIKE. Accordingly, the retrospective exercise does not establish a forecasting gain from the ex-post descriptors; a recursive feature construction remains necessary for that claim.
+
+\begin{center}
+\captionof{table}{Aggregated chronological test-period comparison (2021--2025). Values are averaged across PETR4, VALE3 and BBDC4 after validation-based model selection. Sets~B and~C use ex-post full-sample structural descriptors.}
+\label{tab:forecast_comparison}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lllrrrrr}
+\toprule
+Horizon & Model & Feature set & MAE & RMSE & QLIKE & 95\% CI & $R^2_{\mathrm{oos}}$ \\
+\midrule
+5 & Random Forest & Set C (+Network) & 0.0161 & 0.0227 & $-5.2508$ & [$-5.3859$, $-5.0970$] & 0.1989 \\
+5 & Ridge & Set C (+Network) & 0.0146 & 0.0214 & $-5.2303$ & [$-5.3787$, $-5.0652$] & 0.2774 \\
+5 & HistGradientBoosting & Set C (+Network) & 0.0168 & 0.0234 & $-5.2228$ & [$-5.3580$, $-5.0691$] & 0.1477 \\
+5 & CNN-1D & Sequence window & 0.0143 & 0.0213 & $-5.2098$ & [$-5.3634$, $-5.0367$] & 0.2886 \\
+5 & MLP & Set A (Classical) & 0.0138 & 0.0210 & $-5.2095$ & [$-5.3658$, $-5.0292$] & 0.3046 \\
+20 & Ridge & Set C (+Network) & 0.0219 & 0.0309 & $-3.8812$ & [$-4.0443$, $-3.7206$] & 0.3803 \\
+20 & CNN-1D & Sequence window & 0.0205 & 0.0306 & $-3.8552$ & [$-4.0470$, $-3.6445$] & 0.3951 \\
+20 & Random Forest & Set C (+Network) & 0.0264 & 0.0368 & $-3.8455$ & [$-3.9911$, $-3.6843$] & 0.1667 \\
+20 & HistGradientBoosting & Set C (+Network) & 0.0265 & 0.0371 & $-3.8417$ & [$-3.9841$, $-3.6847$] & 0.1685 \\
+20 & MLP & Set B (+Market/RMT) & 0.0213 & 0.0305 & $-3.4271$ & [$-3.8434$, $-2.8528$] & 0.3726 \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+\noindent\footnotesize\emph{Notes:} MAE is mean absolute error, RMSE is root mean squared error, QLIKE is the variance-proxy loss defined in Section~\ref{subsec:evaluation_method}, and $R^2_{\mathrm{oos}}$ is computed relative to the training-sample mean benchmark. The QLIKE interval is a 95\% circular moving-block bootstrap interval based on 2,000 replications and a block length equal to the horizon. Set~A contains point-in-time return and volatility predictors. Set~B adds rolling market variables and full-sample RMT descriptors; Set~C adds full-sample MST/PMFG descriptors. Thus the table evaluates chronological model fitting and selection, not a strict real-time forecast implementation for Sets~B and~C.
+
+\normalsize
+
+\begin{center}
+\captionof{table}{HAC loss-difference test for the validation-selected structural specification against the validation-selected Set~A baseline. Positive differences favour the structural specification.}
+\label{tab:forecast_loss_test}
+\begin{tabular}{lccrrrr}
+\toprule
+Horizon & Structural & Set~A baseline & Mean difference & HAC s.e. & Statistic & One-sided $p$ \\
+\midrule
+5 & Ridge Set~C & Ridge Set~A & $-0.0045$ & 0.0031 & $-1.47$ & 0.929 \\
+20 & Ridge Set~C & Ridge Set~A & $-0.0072$ & 0.0039 & $-1.86$ & 0.969 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\footnotesize\emph{Notes:} The loss differential is the date-level mean of $\mathrm{QLIKE}^{A}_t-\mathrm{QLIKE}^{\mathrm{struct}}_t$ across the three assets. The HAC variance uses Bartlett/Newey--West lags 4 and 19 for the 5- and 20-day horizons, respectively. The one-sided alternative is that the structural loss is lower.\normalsize
+
+\subsubsection{Realized versus predicted volatility}
+
+Aggregate metrics can hide important time-series behaviour. Figure~\ref{fig:realized_vs_predicted} compares realized 20-day volatility with the validation-selected machine-learning or deep-learning forecast for PETR4, VALE3 and BBDC4. We include this plot in the main text because it illustrates how the selected model tracks changing volatility regimes.
+
+The plots suggest that broad volatility regimes are tracked reasonably well, but extreme spikes remain difficult to forecast. This matches the aggregate results: flexible models can be competitive, but lagged volatility remains the main source of point-in-time predictive information. The network variables should be read as ex-post structural descriptors rather than replacements for time-series volatility information.
+
+\begin{center}
+\includegraphics[
+  width=0.95\linewidth,
+  height=0.58\textheight,
+  keepaspectratio
+]{images/figure_17_realized_vs_predicted_volatility.pdf}
+\captionof{figure}{Realized versus predicted 20-day volatility for the validation-selected machine-learning or deep-learning model. The vertical dashed line marks the beginning of the 2021--2025 test period.}
+\label{fig:realized_vs_predicted}
+\end{center}
+
+\subsubsection{Feature importance and network signal}
+
+Random Forest feature importance gives a model-specific check of which predictors contribute most to the fitted model. Figure~\ref{fig:feature_importance} shows that standard volatility features dominate the model. Rolling absolute returns, lagged realized volatility, rolling volatility and EWMA variables carry most of the importance.
+
+The strongest features are rolling absolute return over 20 days, lagged realized volatility and longer rolling volatility measures. Network descriptors have smaller importance values than standard volatility predictors, but selected PMFG variables enter the top-ranked predictors, especially at the 20-day horizon. Because Random Forest importance measures can be affected by correlation among predictors, and because the structural descriptors are ex post, these rankings are model checks rather than causal or real-time measures of variable relevance. In summary, topology does not replace lagged-volatility features; its point-in-time contribution remains to be tested with recursively reconstructed features.
+
+\begin{center}
+\includegraphics[
+  width=0.95\linewidth,
+  height=0.58\textheight,
+  keepaspectratio
+]{images/figure_18_ml_feature_importance.pdf}
+\captionof{figure}{Feature importance for Random Forest volatility forecasting models. Standard volatility predictors dominate the selected rankings, while selected PMFG-based and sector/subsector variables appear with smaller but nonzero importance in the network-augmented feature set.}
+\label{fig:feature_importance}
+\end{center}

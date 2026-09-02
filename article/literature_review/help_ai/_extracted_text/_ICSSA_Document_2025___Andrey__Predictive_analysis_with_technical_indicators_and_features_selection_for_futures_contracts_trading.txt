@@ -1,0 +1,103 @@
+ Predictive analysis with technical indicators and
+  features selection for futures contracts trading
+
+             Andrey V. S. Souza1[0009−0006−4177−758X] , Richard F.
+       1[0009−0007−0176−3383]
+ Pinto                       , Bruno L. Dalmazo1[0000−0002−6996−7602] , Eduardo
+          1[0000−0003−1595−7676]
+N. Borges                        , Giancarlo Lucca2[0000−0002−3776−0260] , Viviane
+                 1[0000−0002−3512−6290]
+L. D. de Mattos                         , and Rafael A. Berri1[0000−0002−3812−4186]
+          1
+             Federal University of Rio Grande (FURG), Rio Grande, Brazil
+    {andreyvinicius, richard_pinto, dalmazo, eduardoborges,vivianemattos,
+                                rafaelberri}@furgbr
+              2
+                Catholic University of Pelotas (UCPel), Pelotas, Brazil
+                          giancarlo.lucca@ucpel.edu.br
+
+
+
+       Abstract. This study investigates the impact of feature selection on
+       the predictive performance of machine learning models in the Brazilian
+       derivatives market. Precisely, by integrating technical analysis indicators,
+       such as Simple and Exponential Moving Averages and Standard Devi-
+       ation, derived from intraday price data of mini-Bovespa index futures
+       traded on the Brazilian Stock Exchange, we construct a robust dataset of
+       historical prices from the BovDBV2 database. We employ several feature
+       selection methods to reduce dimensionality, minimize overfitting, and im-
+       prove model generalization. A Random Forest classifier, evaluated using
+       a 9-fold stratified cross-validation scheme, is employed to compare the
+       performance of models trained on the full feature set versus those trained
+       on reduced subsets. Our findings demonstrate that feature reduction sig-
+       nificantly improves accuracy on test data while reducing computational
+       costs. These results provide valuable insights for investors and traders,
+       highlighting the importance of feature selection in developing predictive
+       models capable of adapting to dynamic derivatives market conditions.
+
+       Keywords: Machine Learning · Derivatives market · Technical Analysis
+       · Feature Selection.
+
+
+1     Introduction
+
+The financial market relies on various types of analysis, forecasts, and models
+to assist in business decision-making around the world [3], playing a crucial role
+in the generation and interpretation of large volumes of data. Among the most
+traded assets in this environment are futures contracts, which are standardized
+financial agreements between two parties to buy or sell an underlying asset at a
+predetermined price on a specified future date [10].
+    Stock exchanges are essential financial institutions for the trading of stocks,
+bonds, and other financial assets [8]. Globally, there are a variety of exchanges
+2       Souza, A. et al.
+
+such as the New York Stock Exchange3 , NASDAQ4 , and the London Stock Ex-
+change5 , which operate under distinct regulatory frameworks and serve different
+market segments [7]. In Brazil, the Brazilian Stock Exchange (B3)6 plays a cen-
+tral role in the financial market, enabling companies to raise funds through the
+issuance and sale of stocks, bonds, and futures contracts, providing a structured
+and regulated environment. In this context, investors trade various financial in-
+struments on B3, such as index contracts (for example, the Mini Index (WIN),
+based on the Ibovespa) and currency contracts (DOL and WDO, based on the
+dollar exchange rate), among others, promoting liquidity and facilitating the flow
+of capital between companies and investors.
+    Due to the economic importance of financial assets, particularly in the equity
+and derivatives markets [5], researchers and practitioners have extensively stud-
+ied patterns and behaviors to improve market forecasting. Traditionally, techni-
+cal analysis is one of the main approaches for market analysis, and it uses charts
+and historical price data to identify trends and potential reversals [6]. In recent
+years, the field of stock market forecasting has emerged at the intersection of
+finance and computing [14]. Machine Learning (ML), a subfield of artificial intel-
+ligence that develops algorithms capable of learning from data without explicit
+programming [16], has become central to predicting market behavior.
+    A critical step in building robust machine learning models is feature selection.
+This process involves identifying and retaining only the most relevant attributes
+to increase prediction accuracy while reducing computational complexity and
+training time. Since not all features contribute equally to predictive performance,
+techniques such as filtering, encapsulation, or embedding methods [24] are es-
+sential to minimize overfitting and improve model generalization.
+    The objective of this paper is to evaluate the effectiveness of feature selection
+methods in financial time series in order to improve the performance of predictive
+models. To achieve this, the study integrates technical analysis with advanced
+machine learning techniques, optimizing the accuracy and adaptability of the
+model to market dynamics.
+    This paper is organized as follows: Section 2 addresses Feature Selection
+Techniques and Technical Analysis Indicators; in Section 3, a literature review
+summarizes the main previous studies; Section 4 details the Methodology of this
+study, while Section 5 presents the findings of the study and, finally, Section 6
+presents the conclusions and future work for the research.
+
+
+2   Theoretical Concepts
+In this section, we aim to contextualize our research by presenting the tech-
+nical analysis indicators that are used as input to the models, followed by an
+exploration of the feature selection techniques employed.
+3
+  Access the NYSE website at www.nyse.com
+4
+  Access the NASDAQ website at www.nasdaq.com
+5
+  Access the LSEG website at www.londonstockexchange.com
+6
+  Access the B3 website at www.b3.com.br
+

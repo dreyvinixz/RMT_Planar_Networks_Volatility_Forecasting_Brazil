@@ -1,0 +1,112 @@
+\section{Theoretical Background and Conceptual Framework}
+\label{sec:theoretical_background}
+
+This section establishes the theoretical, mathematical and econophysics foundations of the research pipeline. We formalize cross-sectional financial dependencies and finite-sample estimation noise, Random Matrix Theory (RMT) spectral filtering, topological planar graphs (MST and PMFG), and the principles of realized volatility modeling in complex networks.
+
+\subsection{Cross-Sectional Dependencies and Complex Market Dynamics}
+\label{subsec:theory_market_dynamics}
+
+Financial markets operate as complex interconnected systems where asset prices continuously interact through macroeconomic news, sector trends, liquidity cycles, and investor behavior \cite{mantegna_stanley_1999_book,bouchaud_potters_2003}. Rather than analyzing individual stocks in isolation, modern risk management focuses on understanding how assets move together across the entire market cross-section.
+
+To compare price changes consistently across different companies, prices are converted into daily logarithmic returns $r_{i,t} = \ln(P_{i,t}^{\mathrm{adj}} / P_{i,t-1}^{\mathrm{adj}})$, where $P_{i,t}^{\mathrm{adj}}$ is the dividend- and split-adjusted closing price of asset $i \in \{1, \dots, N\}$ on trading day $t \in \{1, \dots, T\}$ \cite{campbell_1997_econometrics,tsay_2005_analysis}. Across global stock markets, return series share several well-established universal behaviors, known as \emph{stylized facts} \cite{cont_2001_empirical}:
+\begin{itemize}
+  \item \textbf{Heavy Tails (Non-Gaussianity):} Extreme positive or negative price swings occur much more frequently than predicted by a standard normal curve (leptokurtosis).
+  \item \textbf{Volatility Clustering:} While raw daily returns show little linear predictability, price volatility clusters in time---turbulent days are typically followed by turbulent days, and calm days by calm days.
+  \item \textbf{Asymmetric Co-movement:} Correlations between stocks tend to increase sharply during market downturns, which temporarily reduces the benefits of portfolio diversification.
+\end{itemize}
+
+To measure co-movement without distortion from differences in individual asset volatility, each return series is normalized to zero mean and unit variance, $\widetilde{r}_{i,t} = (r_{i,t} - \widehat{\mu}_i)/\widehat{\sigma}_i$. The resulting standardized matrix $\widetilde{\mathbf{R}} \in \mathbb{R}^{T \times N}$ yields the Pearson cross-correlation matrix:
+\begin{equation}
+\mathbf{C} = \frac{1}{T-1} \widetilde{\mathbf{R}}^{\top} \widetilde{\mathbf{R}},
+\label{eq:theory_corr_matrix}
+\end{equation}
+where each entry $C_{ij} \in [-1, 1]$ represents the pairwise linear correlation between assets $i$ and $j$.
+
+However, a fundamental practical obstacle arises when the number of assets $N$ is comparable to the observation history $T$ (i.e., when $Q = T/N$ is finite). Under these conditions, sample correlation matrices become heavily contaminated by random sampling fluctuations, a phenomenon known as \emph{noise dressing} \cite{laloux_1999_noise}. Purely accidental historical coincidences can easily masquerade as real economic relationships. Directly relying on unfiltered sample correlations can severely distort portfolio optimization, network reconstruction, and risk forecasting, creating the need for principled filtering methods.
+
+\subsection{Random Matrix Theory and Spectral Noise Filtering}
+\label{subsec:theory_rmt}
+
+Random Matrix Theory (RMT), originally introduced in mathematical physics to model the energy spectra of complex nuclei \cite{guhr_muller_1998}, provides an analytical benchmark to separate genuine economic structure from random sampling noise in empirical correlation matrices \cite{laloux_1999_noise,plerou_2002_random}.
+
+Under the null hypothesis of a purely random Wishart ensemble, $\mathbf{X} \in \mathbb{R}^{T \times N}$ consists of mutually independent standard normal variables ($X_{ti} \sim \mathcal{N}(0, 1)$). In the asymptotic limit $N, T \to \infty$ with $Q = T/N \ge 1$, the eigenvalue density $\rho(\lambda) = \frac{1}{N}\sum_{k=1}^N \delta(\lambda - \lambda_k)$ of the sample covariance matrix $\mathbf{W} = \frac{1}{T}\mathbf{X}^{\top}\mathbf{X}$ converges almost surely to the Mar\v{c}enko--Pastur (MP) probability distribution \cite{marcenko_1967_distribution}:
+\begin{equation}
+\rho_{\mathrm{MP}}(\lambda) = \frac{Q}{2\pi \sigma^2 \lambda} \sqrt{(\lambda_+ - \lambda)(\lambda - \lambda_-)}, \quad \text{for } \lambda \in [\lambda_-, \lambda_+],
+\label{eq:theory_marcenko_pastur}
+\end{equation}
+with theoretical support bounded by $\lambda_{\pm} = \sigma^2 \left(1 \pm \sqrt{1/Q}\right)^2$, where $\sigma^2$ is the residual variance parameter.
+
+When evaluated against empirical financial correlation matrices, the eigenspectrum $\mathbf{C} = \sum_{k=1}^N \lambda_k \mathbf{v}_k \mathbf{v}_k^{\top}$ ($\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_N$) exhibits a characteristic tripartite decomposition \cite{plerou_2002_random,bun_2017_cleaning}:
+\begin{enumerate}
+  \item \textbf{Market Mode ($\lambda_1 \gg \lambda_+$):} The largest eigenvalue sharply exceeds the MP upper bound $\lambda_+$, absorbing a substantial fraction of the total matrix trace ($\operatorname{Tr}(\mathbf{C}) = N$). Its eigenvector $\mathbf{v}_1$ has strictly positive and relatively uniform loadings ($v_{1,i} \approx 1/\sqrt{N}$), representing pervasive macroeconomic co-movement that pulls all equities simultaneously.
+  \item \textbf{Group/Sectoral Modes ($\lambda_k > \lambda_+$ for $k = 2, \dots, K_{\mathrm{signal}}$):} Intermediate eigenvalues that remain above $\lambda_+$ carry genuine collective economic signal, capturing localized industry sectors, business conglomerates or shared factor exposures.
+  \item \textbf{Bulk Noise Component ($\lambda_k \in [\lambda_-, \lambda_+]$):} The bulk of intermediate and small eigenvalues fall within the theoretical MP band, indicating sampling noise statistically indistinguishable from a random Wishart matrix.
+\end{enumerate}
+
+To isolate localized group dependencies free from market-wide drift and bulk noise, RMT enables spectral matrix reconstruction. Removing the dominant market mode ($k=1$) while retaining genuine group modes ($k = 2, \dots, K_{\mathrm{signal}}$) produces the group-mode filtered matrix:
+\begin{equation}
+\mathbf{C}_{\mathrm{group}} = \sum_{k=2}^{K_{\mathrm{signal}}} \lambda_k \mathbf{v}_k \mathbf{v}_k^{\top} + \overline{\lambda}_{\mathrm{rem}} \mathbf{I},
+\label{eq:theory_c_group}
+\end{equation}
+where $\overline{\lambda}_{\mathrm{rem}} = \frac{1}{N - K_{\mathrm{signal}} + 1} \left( N - \lambda_1 - \sum_{k=2}^{K_{\mathrm{signal}}} \lambda_k \right)$ preserves the trace constraint, with diagonal elements subsequently normalized such that $(C_{\mathrm{group}})_{ii} = 1$.
+
+\subsection{Topological Filtering and Planar Network Representations}
+\label{subsec:theory_networks}
+
+Although spectral filtering strips noise from the correlation matrix, the resulting object is still dense and fully connected ($N(N-1)/2$ edges). Topological filtering maps dependencies into a sparse, geometric network while preserving essential clustering and hierarchical properties \cite{tumminello_2010_correlation}.
+
+The construction maps Pearson correlations $C_{ij}$ into metric distances via the Mantegna metric \cite{mantegna_1999_hierarchical}:
+\begin{equation}
+d_{ij} = \sqrt{2(1 - C_{ij})}, \quad d_{ij} \in [0, 2],
+\label{eq:theory_mantegna_metric}
+\end{equation}
+which strictly satisfies the metric axioms (positivity, symmetry, and triangle inequality $d_{ij} \le d_{ik} + d_{kj}$). Highly synchronized assets are mapped to near-zero distances ($d_{ij} \to 0$).
+
+\subsubsection{Minimum Spanning Tree (MST)}
+The Minimum Spanning Tree $\mathcal{T} = (\mathcal{V}, \mathcal{E}_{\mathrm{MST}})$ is the connected, acyclic subgraph spanning all $N$ vertices that minimizes total edge length $\sum_{(i,j) \in \mathcal{E}_{\mathrm{MST}}} d_{ij}$ using exactly $|\mathcal{E}_{\mathrm{MST}}| = N - 1$ edges \cite{mantegna_1999_hierarchical,bonanno_2004_networks}. The MST extracts the subdominant ultrametric hierarchy of the financial market. However, because it strictly disallows loops, the MST discards triangular interactions and multi-path connectivity.
+
+\subsubsection{Planar Maximally Filtered Graph (PMFG)}
+The Planar Maximally Filtered Graph $\mathcal{G}_{\mathrm{PMFG}} = (\mathcal{V}, \mathcal{E}_{\mathrm{PMFG}})$ relaxes the tree constraint by embedding the dependency network onto a two-dimensional surface of genus $g=0$ (topologically homeomorphic to a sphere or plane) without edge crossings \cite{tumminello_2005_tool}.
+
+Edges are ordered by ascending distance $d_{ij}$ (descending correlation $C_{ij}$) and inserted sequentially if and only if planarity is preserved. By Euler's polyhedral formula ($V - E + F = 2$), a planar graph on $N$ vertices with triangular faces contains exactly:
+\begin{equation}
+|\mathcal{E}_{\mathrm{PMFG}}| = 3N - 6
+\label{eq:theory_pmfg_edges}
+\end{equation}
+edges and $2N - 4$ triangular faces (3-cliques). The PMFG subsumes the MST as a topological subgraph ($\mathcal{E}_{\mathrm{MST}} \subset \mathcal{E}_{\mathrm{PMFG}}$) and retains 3-cliques and 4-cliques (tetrahedra), enabling rich quantification of local clustering, hub structures, and community modularity without arbitrary threshold tuning \cite{aste_2010_correlation,pozzi_2013_spread}.
+
+\subsubsection{Network Centrality Invariants}
+From the filtered graphs, asset topological roles are characterized by standard network metrics:
+\begin{itemize}
+  \item \textbf{Degree Centrality ($k_i$):} The number of incident connections $k_i = \sum_{j=1}^N A_{ij}$, where $\mathbf{A}$ is the adjacency matrix.
+  \item \textbf{Betweenness Centrality ($BC_i$):} The fraction of all shortest paths traversing node $i$: $BC_i = \sum_{s \neq i \neq t} \frac{\sigma_{st}(i)}{\sigma_{st}}$, where $\sigma_{st}$ is the number of shortest paths between $s$ and $t$.
+  \item \textbf{Closeness Centrality ($CC_i$):} The reciprocal of average shortest-path distance: $CC_i = \frac{N-1}{\sum_{j \neq i} \operatorname{dist}(i, j)}$.
+  \item \textbf{Eigenvector Centrality ($x_i$):} Recursive node importance $x_i = \frac{1}{\lambda_{\max}(\mathbf{A})} \sum_{j=1}^N A_{ij} x_j$.
+  \item \textbf{Local Clustering Coefficient ($C_i$):} The fraction of connected neighbor pairs: $C_i = \frac{2 E_i}{k_i(k_i - 1)}$, where $E_i$ is the number of edges among neighbors of node $i$.
+\end{itemize}
+
+\subsection{Realized Volatility and Supervised Predictive Modeling}
+\label{subsec:theory_volatility}
+
+Conditional volatility is a foundational latent state in portfolio allocation and risk management. Following Andersen et~al. \cite{andersen_2003_modeling}, historical realized volatility over a backward window $w$ provides a non-parametric estimator of integrated variance:
+\begin{equation}
+\mathrm{RV}_{i,t}^{(w)} = \sqrt{\frac{252}{w} \sum_{\tau=0}^{w-1} \left( r_{i,t-\tau} - \overline{r}_{i,t}^{(w)} \right)^2},
+\label{eq:theory_rv}
+\end{equation}
+where 252 annualizes daily volatility.
+
+Volatility forecasting leverages the Heterogeneous Autoregressive (HAR) paradigm, capturing multi-scale participant dynamics across daily ($w=1$), weekly ($w=5$), and monthly ($w=21$) horizons. Supervised machine learning algorithms (e.g., Ridge Regression \cite{hoerl_kennard_1970_ridge}, Random Forests \cite{breiman_2001_random}, Gradient Boosted Decision Trees \cite{friedman_2001_greedy}, and Neural Networks \cite{bucci_2020_realized,christensen_2022_realized}) extend linear autoregressions by capturing nonlinear feature combinations and high-dimensional network embeddings.
+
+Given that volatility is strictly non-negative, loss functions must be carefully selected. Patton \cite{patton_2011_volatility} showed that the Gaussian Quasi-Likelihood ($\mathrm{QLIKE}$) loss is uniquely robust to measurement noise in the volatility proxy:
+\begin{equation}
+\mathrm{QLIKE}(y, \widehat{y}) = \frac{y}{\widehat{y}} - \ln\left(\frac{y}{\widehat{y}}\right) - 1,
+\label{eq:theory_qlike}
+\end{equation}
+where $y = \mathrm{RV}_{i,t+h}$ is the target volatility and $\widehat{y}$ is the model prediction. Predictive quality is further benchmarked via Root Mean Squared Error ($\mathrm{RMSE}$), Mean Absolute Error ($\mathrm{MAE}$), and Out-of-Sample $R^2$:
+\begin{equation}
+R_{\mathrm{OOS}}^2 = 1 - \frac{\sum_{t=1}^M (y_t - \widehat{y}_t)^2}{\sum_{t=1}^M (y_t - \overline{y}_{\mathrm{train}})^2}.
+\label{eq:theory_oos_r2}
+\end{equation}
+
+\subsubsection{Retrospective vs. Point-in-Time Paradigm}
+An essential methodological distinction in empirical finance concerns the information filtration used during feature extraction. In a strict \emph{point-in-time} forecasting framework, all feature transformations at date $t$ must strictly depend only on information available up to $t$ ($\mathcal{F}_t$). When spectral RMT decompositions and PMFG topologies are extracted from the complete synchronized panel across the entire sample, the resulting structural invariants incorporate full-sample information. Evaluating predictive models with such descriptors therefore represents a \emph{retrospective structural assessment}---identifying ex-post topological associations with volatility dynamics rather than an operational real-time forecasting strategy.

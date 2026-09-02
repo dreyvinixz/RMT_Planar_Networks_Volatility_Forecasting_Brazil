@@ -1,0 +1,102 @@
+   Combining Technical Indicators and Genetic
+   Algorithms for Short-Term Machine Learning
+         Prediction of Mini-Index Futures
+
+               Andrey V.S Souza1[0009−0006−4177−758X] , Bruno L.
+              Dalmazo1[0000−0002−6996−7602] , Viviane Leite Dias de
+         1[0000−0002−3512−6290]
+  Mattos                        , Richard F. Pinto1[0009−0007−0176−3383] , Diego
+               2[0009−0008−1806−0278]
+ Renan Bruno                          , Eduardo N. Borges1[0000−0003−1595−7676] ,
+                 3[0000−0002−3776−0260]
+Giancarlo Lucca                         , Fabian C. Cardoso4[0000−0002−2842−0387] ,
+                    and Rafael A. Berri1[0000−0002−3812−4186]
+
+          Federal University of Rio Grande (FURG), Rio Grande, Brazil
+          1
+
+ {andreyvinicius, dalmazo, vivianemattos, richard_pinto, eduardoborges,
+                   giancarlo.lucca, rafaelberri}@furg.br
+    2
+      Universidade Estadual Paulista (UNESP), São José do Rio Preto, Brazil
+                             diego.bruno@unesp.br
+              3
+                University of Rio Verde (UniRV), Rio Verde, Brazil
+                              fabian@unirv.edu.br
+
+
+
+
+      Abstract. This article investigates short-term trend forecasting in the
+      mini-index futures market using a hybrid framework that integrates tech-
+      nical analysis, feature selection, and evolutionary hyperparameter opti-
+      mization. Five-minute intraday data obtained from the BovDBV2 database
+      are used to construct a set of technical indicators that capture short-term
+      price dynamics. To address the redundancy and noise commonly found
+      in high-dimensional financial data, a feature selection method is applied
+      to reduce the original feature space to a compact and informative subset.
+      Genetic algorithms are then employed to optimize the hyperparameters
+      of three supervised learning models: Random Forest, Support Vector Ma-
+      chine, and Multilayer Perceptron. Experimental results indicate that ge-
+      netic algorithm optimization consistently improves model performance
+      when compared to a baseline Random Forest model without hyperpa-
+      rameter tuning, which achieved an accuracy of approximately 61.63%.
+      Within the proposed framework, the optimized Support Vector Machine
+      and Multilayer Perceptron models reach test accuracies of 65.61% and
+      65.85%, respectively, while maintaining balanced F 1 − scores across up-
+      trend and downtrend classes. These results demonstrate the effectiveness
+      of combining feature selection with evolutionary hyperparameter opti-
+      mization for short-term financial time series forecasting in derivatives
+      markets.
+
+      Keywords: Neural Networks · Machine Learning · Genetic Algorithm ·
+      Intraday Trading · Financial Forecasting.
+2        Andrey V.S Souza et al.
+
+1     Introduction
+
+Futures contracts are financial instruments with high trading volume in the
+intraday market, due to their combination of high liquidity and direct exposure
+to price fluctuations. They define agreements for the purchase or sale of an
+underlying asset at a predetermined price, with settlement on a future date [13].
+    In Brazil, the futures contract such as Mini Index (WIN), listed on the B3
+(Brazilian Stock Exchange)4 , concentrates a significant portion of the daily in-
+traday volume, drawing attention as a particularly relevant instrument for short-
+term forecasting research. These instruments are heavily traded in day trading;
+however, identifying reliable patterns for forecasting over such short periods has
+been a challenge due to the inherent volatility and dynamic behavior of the time
+series. This complexity motivates researchers and professionals to develop more
+robust and adaptable modeling approaches.
+    One of the early approaches to predicting financial time series was the use
+of static models like ARIMA [22]; however, because these models assume simple
+linearity and temporal dependence, they do not fit well with the highly complex
+and dynamic structure of the current financial market. More recently, with the
+growing intersection between computing and finance and the increasing avail-
+ability of data, methods such as Machine Learning (ML) [14] and Recurrent
+Neural Networks (RNN) [10] have emerged, which impose fewer distributional
+constraints and can capture non-linear relationships directly from price series.
+    The best-known ways to "feed" the input to these models is by using math-
+ematical values, such as historical price information, market data, and technical
+analysis indicators like moving averages, volatility measures, and others. By
+using this data with advanced models, we can try to predict market fluctua-
+tions [17]. However, to increase the accuracy of the prediction, one of the most
+critical steps in building more robust machine learning models is feature selec-
+tion, which involves identifying and retaining only the most relevant attributes.
+Since not all attributes contribute equally to predictive performance, techniques
+such as filtering, encapsulation, or embedding are essential to minimize overfit-
+ting and improve model generalization.
+    Technical indicators derived from price series — moving averages, volatility
+measures, among others — serve as input variables in data-driven forecasting
+models [17]. Including a large number of them, however, tends to introduce re-
+dundancy, which can destabilize model training. Feature selection addresses this
+by restricting the input space to the most informative variables. That said, a
+reduced feature set does not compensate for poorly chosen hyperparameters.
+Genetic Algorithms (GA) [6] have been used in this context to search for con-
+figurations that improve generalization beyond what manual tuning typically
+achieves.
+    In parallel, hyperparameter optimization plays a critical role in improving
+model performance, particularly in flexible models such as Random Forest (RF)
+and Multilayer Perceptron (MLP). Evolutionary approaches, such as Genetic Al-
+4
+    https://www.b3.com.br/
+

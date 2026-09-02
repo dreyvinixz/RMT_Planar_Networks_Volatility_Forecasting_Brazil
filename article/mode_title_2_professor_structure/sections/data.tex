@@ -1,0 +1,61 @@
+\section{Data and asset universe}
+\label{sec:data}
+
+This section defines what enters the analysis and why. It separates the historical coverage used for descriptive summaries from the complete synchronized panel used for RMT, clustering and network construction.
+
+\subsection{BovDB/B3 data source}
+
+The dataset consists of Brazilian equity prices from BovDB and its extended version BovDBv2 \cite{cardoso_2022_bovdb,souza_2024_bovdbv2}. BovDB was originally proposed as an open dataset of stock prices for companies traded on the Brazilian Stock Exchange (B3), covering the period from 1995 to 2020 and applying cumulative adjustment factors to correct prices for corporate events. BovDBv2 is distributed through Harvard Dataverse as the \emph{Dataset for Intraday Analysis of B3 stock prices}, containing daily price information from 1995 to 2024 and intraday price data for Brazilian stocks from January 1995 to July 2024.
+
+Although BovDBv2 includes intraday information, we use daily adjusted prices because the objective is to study long-run cross-sectional dependencies, Random Matrix Theory filtering and network structure over a broad historical window. Daily data give a stable sampling frequency for estimating correlations across many assets and reduce microstructure effects that would be more prominent in intraday analysis. The main objects of interest are adjusted closing prices, logarithmic returns and correlation matrices constructed from synchronized daily observations.
+
+\subsection{Adjusted prices}
+
+Adjusted closing prices are used because long historical equity samples are affected by stock splits, reverse splits, dividends, interest on equity, bonuses, corporate reorganizations and share-class changes. Without adjustment, these events can generate artificial jumps that contaminate return distributions, correlations and network structure. Return construction, standardization and correlation estimation are defined formally in Section~\ref{sec:methodology}.
+
+\subsection{Asset filters and equity universe definition}
+
+The core equity universe is obtained through deterministic filters applied to the BovDB/B3 daily database. The starting point is the set of B3 instruments with daily adjusted price information. We then exclude instruments that are not direct listed equities, including Brazilian Depositary Receipts (BDRs), exchange-traded funds (ETFs), investment funds, benchmark indices and other non-equity vehicles. This filter keeps the dependency matrix focused on listed equity shares instead of mixing equities with instruments that mechanically track baskets, benchmarks or foreign securities.
+
+After this class filter, we retain observations only when adjusted closing prices are valid and strictly positive. Daily logarithmic returns are computed from adjusted closing prices, and extreme adjusted-return observations are inspected as part of the data-quality procedure. These observations are used as exclusion criteria only when they indicate clear corporate-action adjustment inconsistencies. Assets are then required to satisfy a minimum historical-coverage condition, and the remaining assets are synchronized on common trading dates. The formal notation for this synchronized return panel is given in Section~\ref{subsec:notation}.
+
+\subsection{Core historical universe}
+
+The core historical universe contains 58 assets with sufficient data coverage for the main RMT, clustering and network analysis. Its raw, unbalanced return file spans 17 March 1998 to 30 December 2025. Table~\ref{tab:universe_summary} distinguishes that coverage from the complete synchronized analytical window. The universe is historical, not purely current. It allows us to study a long Brazilian equity sample while keeping the cross-section large enough for network analysis and small enough for interpretable visualizations.
+
+\begin{center}
+\captionof{table}{Summary of the samples used in this study.}
+\label{tab:universe_summary}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrl}
+\toprule
+Sample & Assets & Period & Main use \\
+\midrule
+Representative assets & 3 & 2006--2025 & Stylized facts and initial forecasting experiment \\
+Core historical universe & 58 & 2006-08-23--2024-08-15 & RMT, clustering and networks (complete panel) \\
+\bottomrule
+\end{tabular}}
+\end{center}
+\GlobalPrecisionNote
+
+The main spectral analysis uses a complete synchronized panel with $N=58$ assets and $T=1527$ common daily observations, from 23 August 2006 to 15 August 2024. The complete-case restriction is important because the empirical correlation matrix must be estimated from a common set of trading dates across all assets. This avoids pairwise changes in sample composition and ensures that eigenvalues, eigenvectors, distances and network edges are derived from a single common correlation matrix. Static pairwise correlations and rolling correlations are reported separately using the observations available for each pair or window; they therefore retain the broader unbalanced historical coverage and should not be interpreted as estimates from the complete RMT panel.
+
+\subsection{Demonstration and forecasting assets}
+
+We use PETR4, VALE3 and BBDC4 as representative assets for stylized facts and as the initial forecasting targets. They were selected because they are large, liquid and economically distinct Brazilian equities. PETR4 represents oil and gas exposure, with sensitivity to commodity prices and firm-specific institutional events. VALE3 represents basic materials and global mining exposure, with sensitivity to commodity cycles and exchange-rate dynamics. BBDC4 represents the financial sector and domestic credit conditions.
+
+This small panel is not intended to represent the entire Brazilian equity market. It offers a compact and interpretable entry point into the analysis, illustrating heavy tails, volatility clustering, return extremes, absolute-return persistence and the feasibility of the forecasting design.
+
+\subsection{Sector and subsector classification}
+
+Each asset in the core historical universe is assigned to a macro-sector, subsector and segment classification. The macro sectors include Financials, Oil Gas and Biofuels, Basic Materials, Utilities, Industrials, Consumer Cyclical, Consumer Non-Cyclical, Real Estate and Telecommunications. These labels are used for descriptive comparison, sectoral correlation tests, heatmap interpretation and subsector-level aggregation.
+
+Utilities and Real Estate are kept separate as an initial descriptive classification, rather than as a claim that every firm in either group has the same risk profile. The classification is used to test whether the chosen labels are reflected in the dependency matrix. Within Basic Materials, the subsector map distinguishes Mining, Steel and Metallurgy, Chemicals, and Paper and Cellulose; detailed asset assignments are provided in the supplementary material.
+
+\subsection{Data quality notes and limitations}
+
+The main data-quality issue is the distinction between genuine extreme returns and artificial jumps caused by corporate-action adjustment problems. Adjusted prices reduce the impact of splits, dividends and related events, but they do not guarantee that every historical corporate action is perfectly corrected. This limitation is especially relevant in long historical samples, where ticker histories, share-class changes and corporate reorganizations can be complex.
+
+For PETR4, VALE3 and BBDC4, extreme-return validation is treated as a separate quality-control step, and assets with implausible corporate-action-related jumps are excluded from the main analyses.
+
+The main RMT, clustering and network results are based on the complete synchronized panel within the core historical universe. This choice yields a common panel for estimating the corresponding correlation matrix, eigenvalue spectrum and network structure, but it also imposes limits: the complete-panel window is shorter than the raw historical coverage. Results may differ under intraday sampling, alternative liquidity filters, rolling-window universes, or broader target sets for forecasting. These extensions are left for robustness analysis and future work.

@@ -1,0 +1,344 @@
+﻿=== PAGE 1 ===
+A Look at Financial Dependencies by Means of
+Econophysics and Financial Economics
+M. Raddanta,b, T. Di Matteoc,b,d
+aUniversity for Continuing Education Krems, Department for Knowledge and
+Communication Management, 3500 Krems, Austria
+bComplexity Science Hub Vienna, Josefst┬¿adter Stra├ƒe 39, 1080 Vienna, Austria
+cDepartment of Mathematics, KingΓÇÖs College London,
+The Strand, London, WC2R 2LS, UK
+dCentro Ricerche Enrico Fermi, Via Panisperna 89 A, 00184 Rome, Italy
+Abstract
+This is a review about ∩¼ünancial dependencies which merges e∩¼Çorts in econo-
+physics and ∩¼ünancial economics during the last few years. We focus on the
+most relevant contributions to the analysis of asset marketsΓÇÖ dependencies,
+especially correlational studies, which in our opinion are bene∩¼ücial for re-
+searchers in both ∩¼üelds. In econophysics, these dependencies can be modeled
+to describe ∩¼ünancial markets as evolving complex networks. In particular we
+show that a useful way to describe dependencies is by means of information
+∩¼ültering networks that are able to retrieve relevant and meaningful informa-
+tion in complex ∩¼ünancial data sets. In ∩¼ünancial economics these dependencies
+can describe asset comovement and spill-overs. In particular, several mod-
+els are presented that show how network and factor model approaches are
+related to modeling of multivariate volatility and asset returns respectively.
+Finally, we sketch out how these studies can inspire future research and how
+they contribute to support researchers in both ∩¼üelds to ∩¼ünd a better and a
+stronger common language.
+Keywords:
+∩¼ünancial networks, asset markets, information ∩¼ültering
+JEL: C58, C22, G12
+Email addresses: raddant@csh.ac.at (M. Raddant),
+tiziana.di_matteo@kcl.ac.uk (T. Di Matteo)
+1
+arXiv:2302.08208v1  [q-fin.ST]  16 Feb 2023
+
+=== PAGE 2 ===
+1. Introduction
+Dependencies in ∩¼ünancial markets are complex and can be found at many
+levels. These markets are in∩¼éuenced by changing economic fundamentals and
+economic policies around the world. There are also numerous interactions
+within the asset markets themselves, as well as there is feedback from mar-
+ket participants who have varying expectations about future developments.
+Many of these processes do not result in measurable streams of data but only
+manifest themselves in latent variables, like the observable changes in asset
+prices and other ∩¼ünancial data. In order to understand the functioning of
+∩¼ünancial markets we therefore have to analyze the structures that are present
+in market data, which in turn means to measure and explain their depen-
+dencies. This is of course not a new endeavor, the literature in the ∩¼üeld of
+∩¼ünancial economics has dealt with this for several decades and has developed
+models that explain the di∩¼Çerences in asset returns. Network science has
+however brought a new approach to the ∩¼üeld, as it has enabled us to describe
+the dependencies of large sets of assets jointly ΓÇô and not only factors that
+explain di∩¼Çerences.1
+Research on the quantitative aspects of ∩¼ünancial markets has always been
+interdisciplinary, at the intersection of economics, mathematics and statis-
+tics. With the advent of networks science however, even more ∩¼üelds became
+interested in ∩¼ünancial markets, especially researchers from physics, computer
+science and engineering. This has led to many new and important insights
+into ∩¼ünancial markets, but has also made it more di∩¼âcult to understand the
+diversity of approaches and to evaluate what the most powerful methods are
+to study ∩¼ünancial dependencies. The overview presented in this review there-
+fore speci∩¼ücally aims at showing di∩¼Çerent approaches to measuring ∩¼ünancial
+dependencies across disciplines and connecting them to the foundations in ∩¼ü-
+nancial economics and statistics. This presentation will therefore sometimes
+be rather wide in scope than deep. This is intentional because we believe that
+interdisciplinary research is typically only impact-full if it reaches researchers
+in di∩¼Çerent disciplines, and when it shows that its authors understand and
+address research questions across disciplinary borders. We will focus on the
+analysis of asset returns, in particular the dependencies between stocks, mea-
+sured by their daily price changes. Most of the presented material will how-
+1See also Caldarelli (2012) and sec
+=== PAGE 3 ===
+ever also apply to any other ∩¼ünancial time series in any other frequency.2 We
+are guided by four questions: how are the returns modeled? How are de-
+pendencies measured? How are ∩¼ültering or dimensional reduction achieved?
+How are the measurements mapped into a network representation?
+Hence, we ∩¼ürst touch upon cornerstones in ∩¼ünancial economics and new
+approaches from econophysics in section 2. In section 3 we summarize sta-
+tistical regularities of asset returns. In section 4 we will explain the basics
+of calculating correlations and its challenges together with some of its pit-
+falls. Section 5 shows the spectrum of correlation matrices and how it is
+related to ∩¼ünding stocks with similar behaviors. We then proceed to present
+recent approaches from econophysics and ∩¼ünancial econometrics. In section
+6 we discuss how networks can be derived from correlation measures and
+we introduce two ∩¼ültering methods that apply structural constraints on the
+network. Further we show how clusters and emerging properties can be iden-
+ti∩¼üed in such networks. We then turn to present GARCH models, pairwise
+estimation methods, and the variance decomposition approach in sections 7,
+8 and 9. In the last section we present some conclusions.
+2. The broader picture of ∩¼ünancial market research
+2.1. Cornerstones in ∩¼ünancial economics
+Before discussing recent studies on ∩¼ünancial dependencies and networks,
+it is important to understand the origin of the ∩¼üeld, together with its main
+motives and the scienti∩¼üc language used.
+In ∩¼ünancial economics there are two important viewpoints when it comes
+to asset markets. One is the analysis of market e∩¼âciency, the other one is the
+analysis of the returns of an asset and how it relates to the development of the
+market and that of other factors. We will focus on the latter. A well-known
+model in this class is the so-called single index model by Sharpe (1963). Here
+we assume that a vector of returns ri of an asset i can be described by
+ri = ╬▒i + ╬▓irM + ╬╡i ,
+(1)
+where rM is the market return and ╬▓i measures how sensitive the stockΓÇÖs
+return is with respect to the market. ╬▒i is a constant, ╬╡i is the residual error.
+2See also Tsay (2010) and Dacorogna et al. (2001) for general introductions to the
+analysis of ∩¼ünancial market data.
+3
+
+=== PAGE 4 ===
+Since we assume that the errors are uncorrelated, i.e. cov(╬╡i, ╬╡j) = 0 for all
+i ╠╕= j, any correlation between stocks can only come from the market factor
+rM.
+A slight variation of this idea is the capital market pricing model (CAPM,
+Sharpe, 1964; Lintner, 1965), which includes a risk-free reference interest rate
+rF, and where the ╬▓ then describes the risk of an investment relative to the
+market portfolio. Additionally, there is also a large literature that discusses
+to which extend the ╬▓s are changing over time (see for example Bollerslev
+et al., 1988; Bodurtha and Mark, 1991; Raddant and Wagner, 2017).
+Variations with more factors have been developed over the years, includ-
+ing the well-known model by Fama and French (1992) which includes factors
+that account for size and value e∩¼Çects.
+ri ΓêÆrF = ╬▒i + ╬▓1,i(rM ΓêÆrF) + ╬▓2,iSMB + ╬▓3,iHML + ╬╡i .
+(2)
+Here, ╬▓1 measures the sensitivity of a stock to market risk. ╬▓2 and ╬▓3
+measure the sensitivity to the factors SMB (Small Minus Big) and HML
+(High Minus Low).
+These factors represent the average return of stocks
+with certain characteristics in terms of ∩¼ürm size, value, and growth. Hence,
+implicitly this model assumes that stocks can be clustered according to these
+three characteristics.
+While much of the di∩¼Çerences in asset returns can be attributed to the
+actions and performance of the ∩¼ürms themselves, there is also ample evi-
+dence for the in∩¼éuence of investors. They sometimes evaluate stocks with
+certain characteristics in a too homogeneous way, disregard di∩¼Çerences and
+thus in∩¼éuence stock prices (Barberis et al., 2005; Green and Hwang, 2009).
+Investors are also not always good in spotting ∩¼ürms that are economically
+linked, thus missing opportunities to predict returns (Cohen and Frazzini,
+2008).
+It is important to note that the analysis of the comovement on the global
+level uses more aggregated data (see, e.g., Rigobon, 2003). Most approaches
+have focused on the analysis of stock market indices or other smaller samples
+including sectoral indices. A wide range of methods has been applied, among
+these are unit root and cointegration tests, vector autoregression models,
+correlation-based tests (Forbes and Rigobon, 2002; Fry et al., 2010), causality
+tests (Billio et al., 2012), multivariate GARCH models (Engle, 2002), and
+models of variance decomposition (Diebold and Yilmaz, 2009). We will have
+a closer look at the latter in the following sections.
+4
+
+=== PAGE 5 ===
+Another aspect in the literature about ∩¼ünancial market dependencies is
+the question about its determinants (Bracker et al., 1999). Studies often ∩¼ünd
+that structural similarity of the countriesΓÇÖ economies explains only partially
+the level of comovement of their ∩¼ünancial markets. This resulted in a de-
+bate about the in∩¼éuence of global sectoral factors (Dutt and Mihov, 2013;
+Bekaert et al., 2009, 2011). Previous results hint at an increase in the im-
+portance of these factors. Forbes and Chinn (2004) ∩¼ünd that cross-country
+factors and global sectoral factors both are important determinants of stock
+returns. They also note that changes in global linkages over time might make
+it di∩¼âcult to disentangle di∩¼Çerent in∩¼éuences on asset market comovement.
+2.2. Statistical physics, econophysics, and complex networks
+The contribution of statistical physics and the development of econo-
+physics approaches have much to do with the data revolution in social science
+and economics (see also Pentland, 2014; Kutner et al., 2019; Caldarelli et al.,
+2018; Steinbacher et al., 2021).
+Large-scale investigations on the scaling-
+properties of asset returns (Plerou et al., 1999, see also section 3) opened the
+∩¼üeld for many similar investigations of ∩¼ünancial data (Mantegna and Stanley,
+1999; Bouchaud and Potters, 2009b). These approaches have rather quickly
+led to the realization that important challenges in the ∩¼üeld are the dependen-
+cies of ∩¼ünancial data and the complexity of the ∩¼ünancial system in general
+(Laloux et al., 1999; Plerou et al., 2002).
+Over the course of a decade the analysis of the cross-correlations of asset
+returns has developed into an analysis of asset markets seen as complex net-
+works, studied with techniques from network theory (Mantegna, 1999; Song
+et al., 2011a). This has been accompanied by a general in∩¼éux of network sci-
+ence into the analysis of ∩¼ünancial markets in general, fueled of course by the
+∩¼ünancial crisis that started in 2008 (Bardoscia et al., 2021; Summer, 2013;
+Acemoglu et al., 2015; Battiston et al., 2016; Elliott et al., 2014). Further ex-
+tensions in the methodology are the analyses of bi-partite networks, systems
+with couplings, and multiple layers of networks (Tumminello et al., 2011;
+Gualdi et al., 2016; Buldyrev et al., 2010).
+Describing the details of this evolution is outside the scope of this paper.
+It however shows that collaboration across disciplines is happening, especially
+when important problems arise to which established models h
+=== PAGE 6 ===
+3. Preliminaries about asset returns
+Dependencies between ∩¼ünancial assets are mostly analyzed based on their
+log daily returns ri,t, which are calculated from the stock prices pi,t of asset
+i at the days t and t ΓêÆ1
+ri,t = ln pi,t ΓêÆln pi,tΓêÆ1 ,
+(3)
+where i = 1, . . . , N and t = 1, . . . , T. N denotes the number of stocks, T
+denotes the number of observations, in this case these correspond to trading
+days.
+Daily closing prices are the most common data used in the analysis of as-
+set returns. For some applications, e.g. when di∩¼Çerent markets are involved
+and trading hours are not perfectly aligned, lower frequencies, for example
+weekly returns, can be used. Note that the use of logarithmic returns al-
+lows to calculate these by summation of the higher frequency returns. On
+the other end, there is a trend towards the use of higher frequency data in
+the trading industry that utilizes advances in scalable computing and often
+employs machine learning.
+For most of the following analyses we use daily data covering the time
+period from April 2006 until March 2021 (T = 3, 775 trading days) for N =
+404 stocks that are constituents of the S&P 500 index. Three exemplary
+time series of daily prices and returns are plotted in the left panels of ∩¼ügure
+1. For the purpose of comparison we plot normalized prices ╦£p, such that
+╦£pi,t = pi,t
+pi,1
+.
+(4)
+While stock prices show generally some upward trend in the long run, we
+can see that the returns shown in the bottom left panel ∩¼éuctuate around zero
+with some visible spikes and clusters.
+The volatility of returns can be de∩¼üned by their sample variance ╦å╧â2 as
+╦å╧â2 =
+1
+T ΓêÆ1
+T
+X
+t=1
+(rt ΓêÆ┬»r)2 .
+(5)
+One can also de∩¼üne a variance in terms of the expectation of the time
+series. A common notation is to state that
+╧â2 = Γƒ¿r2Γƒ⌐ΓêÆΓƒ¿rΓƒ⌐2 ,
+(6)
+6
+
+=== PAGE 7 ===
+2008
+2012
+2016
+2020
+-0.3
+-0.2
+-0.1
+0
+0.1
+0.2
+0.3
+returns
+0
+50
+100
+150
+200
+250
+300
+-0.1
+0
+0.1
+0.2
+0.3
+0.4
+autocorrelations
+all
+Exxon
+AT&T
+Coca Cola
+10 -4
+10 -3
+10 -2
+10 -1
+10 0
+10 -4
+10 -3
+10 -2
+10 -1
+10 0
+complementary CDF of returns
+2008
+2012
+2016
+2020
+0.5
+1
+1.5
+2
+2.5
+3
+normalized price
+Exxon
+AT&T
+Coca Cola
+time
+lag (days)
+time
+|r|
+ri,t
+╦£pi,t
+ACF (|r|)
+P>(|r|)
+Figure 1: Daily stock returns and their properties.
+The top left panel shows the normalized stock price ╦£p for three stocks over time.
+The bottom left panel shows the corresponding daily returns of these three stocks
+(two of them plotted with an o∩¼Çset of ┬▒0.2). The top right panel shows com-
+plementary CDFs (CCDFs) of absolute returns on log-log scales for the three
+stocks, as well as the CCDF for all stocks (black line, with the CCDF = 1 ΓêÆF(x),
+where F(x) = Pr[X Γëñx]).
+The bottom right panel shows the corresponding
+auto-correlations dependent on the lag in days.
+7
+
+=== PAGE 8 ===
+where Γƒ¿Γƒ⌐denote the expectation.
+There are also instances where |r|
+or r2 are used as measures for volatility.
+This is of course motivated by
+the fact that Γƒ¿rΓƒ⌐is typically close to zero and that the intercept of r is in
+many models estimated separately from the volatility component (more on
+volatility models in section 7).
+Hence, one aspect of the returns is that their distributions are non-
+Gaussian, heavily skewed, and fat-tailed. In fact, the tail of these distri-
+butions is well represented by a power-law, in our case with an exponent of
+2.94, as can be seen in the top right panel of ∩¼ügure 1 (see also Plerou et al.,
+1999).
+Another aspect of the returns is that the volatility is not constant over
+time. Times with high volatility are often followed by more high volatility.
+This phenomenon is also called long memory (see also Cont, 2001).
+We
+can measure this aspect by calculating the autocorrelations, which are the
+correlations of the time series with lagged versions of itself. Their entirety
+is also called the autocorrelation function (ACF), which is shown in the
+bottom right panel of ∩¼ügure 1. The autocorrelations of the absolute returns
+are typically signi∩¼ücantly positive for more than 100 days (Ding et al., 1993).
+Hence, while we cannot forecast tomorrowΓÇÖs stock prices, some information
+about tomorrowΓÇÖs volatility is included in todayΓÇÖs prices.
+These ∩¼ündings are important for two reasons. First, because they in∩¼éu-
+ence how we can analyze the time series of returns and their dependencies.
+The changing volatility can make it di∩¼âcult to determine whether two time
+series are in fact signi∩¼ücantly related. Properties of the distribution of stock
+returns imply that many parametric tests do not apply for this data. The
+second aspect of these ∩¼ündings is that they have of course been discussed in
+streams of literature in di∩¼Çerent ∩¼üelds and that it is therefore important to
+understand what the state of the art models are that deal with them ΓÇô so
+that future research on ∩¼ünancial networks can bene∩¼üt from and contribute
+to them.
+4. Correlations of asset returns
+PearsonΓÇÖs correlation coe∩¼âcient is the most common measure to describe
+correlations that are linear. For each pair of stocks i and j it can be calculated
+as
+8
+

@@ -1,0 +1,12 @@
+\section{Limitations}
+\label{sec:limitations}
+
+The first limitation concerns time variation. The RMT and network features used in the initial forecasting exercise are based on full-sample or slowly changing structures. They are useful for understanding the market, but they should not be interpreted as fully real-time predictors unless reconstructed recursively using only information available at each forecast origin. A stricter forecasting design should use rolling RMT and rolling network features.
+
+The second limitation concerns the target set. The forecasting experiment uses PETR4, VALE3 and BBDC4. These assets are liquid and economically important, but they do not cover the full B3 cross-section. The next version should extend the forecasting exercise to a larger set of assets and evaluate whether network features help more for some sectors than others.
+
+The third limitation concerns data quality. The core historical universe is sufficiently clean for the current analysis, but the modern liquid top-50 universe contains extreme adjusted-return events that require additional validation. These events may reflect corporate actions, ticker transitions, units or adjustment-factor issues. They should be flagged, inspected and either corrected or handled through robustness checks before the modern universe is used for final network claims.
+
+The fourth limitation concerns sector classification. The macro-sector and subsector map is an initial classification. It is adequate for testing whether within-sector correlations exceed between-sector correlations, but it should be reviewed ticker by ticker before submission. This is especially important for holding companies, units, firms with multiple share classes and companies with mixed exposure across sectors.
+
+Finally, the machine-learning results are preliminary. Feature importance in tree models is useful but not a causal explanation. The nonzero importance of PMFG features suggests incremental signal, but the magnitude is small compared with classical volatility predictors. Future work should include rolling network features, DCC-GARCH comparisons, more target assets, temporal neural architectures and graph neural networks.

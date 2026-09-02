@@ -1,0 +1,140 @@
+        Impact of Feature Selection and Genetic Algorithms on Machine
+         Learning Performance for Intraday Financial Trend Prediction
+
+Andrey V.S Souza1 a , Bruno L. Dalmazo1 b , Giancarlo Lucca1 c , Eduardo N. Borges1 d , Richard
+     F. Pinto1 e , Fabian C. Cardoso2 f , Viviane L. D. de Mattos1 g and Rafael A. Berri1 h
+                               1 Federal University of Rio Grande (FURG), Rio Grande, Brazil
+                                     2 University of Rio Verde (UniRV), Rio Verde, Brazil
+
+        {andreyvinicius, dalmazo, giancarlo.lucca, eduardoborges, richard pinto, vivianemattos, rafaelberri}@furg.br,
+                                                    fabian@unirv.edu.br
+
+
+
+
+Keywords:       Machine Learning, Feature Selection, Genetic Algorithms, Technical Analysis, Mini Index.
+
+Abstract:       This study examines the effect of feature selection and Genetic Algorithm-based hyperparameter optimization
+                on intraday financial trend forecasting in the Brazilian futures market. Using Mini Index (WIN) contracts from
+                the BovDBv2 database, five feature selection methods were evaluated: Information Gain, ReliefF, PCA, Clas-
+                sifierAttributeEval, and CorrelationAttributeEval. Random Forest and Multilayer Perceptron classifiers were
+                employed, with optimal feature subsets selected through stratified cross-validation and model hyperparame-
+                ters subsequently optimized by a Genetic Algorithm. All optimized Random Forest models outperformed the
+                baseline accuracy of 0.6381, with PCA achieving the best RF result at 0.6555. The best overall performance
+                was obtained by the MLP with PCA and GA-tuned hyperparameters, reaching 0.6571. These findings indicate
+                that jointly improving feature representation and model configuration enhances generalization in noisy and
+                nonstationary market prediction tasks.
+
+
+
+1       INTRODUCTION                                              redundancy and degrade generalization performance.
+                                                                      Feature selection methods aim to mitigate this is-
+Intraday financial forecasting aims to identify short-            sue by identifying the most informative variables and
+term patterns in high-frequency market data, a task               reducing dimensionality Kumar and Minz (2014). In
+characterized by noise, nonstationarity, and weak pre-            parallel, hyperparameter optimization plays a critical
+dictive signals. In the Brazilian market, Mini Index              role in improving model performance, particularly in
+futures (WIN) are widely traded due to their high liq-            flexible models such as Random Forest (RF) and Mul-
+uidity, making them a relevant benchmark for intra-               tilayer Perceptron (MLP). Evolutionary approaches,
+day prediction models.                                            such as Genetic Algorithms (GA), are well suited for
+    Machine Learning (ML) techniques have been in-                this task due to their ability to explore complex and
+creasingly applied to financial forecasting, as they can          non-convex search spaces Goldberg (1989).
+capture complex nonlinear relationships from histor-                  This work addresses this gap by conducting a con-
+ical data Usmani et al. (2016). In this context, tech-            trolled empirical study on the joint effect of feature
+nical indicators derived from price and volume series             selection and GA-based hyperparameter optimization
+are commonly used as input features. However, the                 for intraday trend prediction. The main contributions
+large number of correlated indicators may introduce               are threefold: (i) the integration of feature selection
+                                                                  and evolutionary optimization within a unified ex-
+    a    https://orcid.org/0009-0006-4177-758X                    perimental framework, (ii) an evaluation using high-
+    b    https://orcid.org/0000-0002-6996-7602                    frequency Mini Index futures data from the Brazilian
+    c    https://orcid.org/0000-0002-3776-0260                    market, and (iii) an analysis of generalization behav-
+    d    https://orcid.org/0000-0003-1595-7676                    ior under different feature representations. Although
+    e    https://orcid.org/0009-0007-0176-3383                    the observed improvements in predictive performance
+    f    https://orcid.org/0000-0002-2842-0387                    are modest, they are consistent across configurations,
+    g    https://orcid.org/0000-0002-3512-6290                    which is particularly relevant in financial forecasting
+    h    https://orcid.org/0000-0002-3812-4186                    tasks.
+    The remainder of this paper is organized as fol-      3     METHODOLOGY
+lows. Section 2 reviews the relevant literature. Sec-
+tion 3 describes the proposed methodology. Section 4      This section presents the methodology adopted in this
+presents the experimental results, and Section 5 con-     study. Figure 1 illustrates the proposed methodolog-
+cludes the paper.                                         ical process, highlighting the main stages of the ap-
+                                                          proach developed in this work.
+
+                                                                              Generate
+2    RELATED WORK                                             Input Data     Technical
+                                                                             Indicators
+                                                                                           Approaches
+                                                                                            Adopted
+                                                                                                        Feature Selection
+                                                                                                            Method
+
+
+Machine learning has become a central tool in fi-                            Normalized
+                                                                              Technical
+                                                                                                        Genetic Algorithm
+nancial market forecasting, with studies consistently                         Indicators
+
+reporting that models trained on technical indicator
+                                                                                                          Train Models
+features outperform those relying on raw price series
+alone Nabipour et al. (2020).
+                                                                                                        Evaluation Metrics
+    MLPs are widely used due to their ability to cap-
+ture nonlinear relationships without strong assump-             Figure 1: Overview of the proposed methodology.
+tions. Ecer et al. (2020) showed that architectural
+choices, such as network depth and activation func-
+tions, directly affect generalization performance. Re-
+                                                          3.1      Input Data
+current models such as LSTMs have also been ex-
+                                                          The data employed in this study were obtained from
+plored Kamalov et al. (2020), but their computational
+                                                          the BovDbV21 database Souza et al. (2024), an up-
+cost and sensitivity to hyperparameters limit their ap-
+                                                          dated version of BovDb Cardoso et al. (2022) that
+plicability in high-frequency settings. In contrast, RF
+                                                          provides publicly available, pre-processed data from
+has emerged as a robust baseline for financial clas-
+                                                          (B32 ) for research purposes. In addition to historical
+sification, as it effectively handles noisy and hetero-
+                                                          daily data, BovDbV2 includes intraday records sam-
+geneous features Ballings et al. (2015). However, its
+                                                          pled at 5-minute intervals from January to June 2024,
+performance remains strongly dependent on feature
+                                                          enabling a more detailed examination of short-term
+representation and model configuration.
+                                                          market behavior.
+    Technical indicators are commonly used as input
+                                                              This work focuses on futures contracts extracted
+features, but large set of indicators often introduce
+                                                          from the intraday Price5 table, with emphasis on
+redundancy and multicollinearity, which can degrade
+                                                          the Mini Index futures contracts (WIN), a derivative
+model generalization Souza et al. (2025). Feature se-
+                                                          linked to the Ibovespa index. These contracts were
+lection methods address this issue by identifying the
+                                                          selected for their high liquidity and intense trading
+most relevant attributes. For example, Naik and Mo-
+                                                          activity, which makes them particularly suitable for
+han (2019) reported a 12% reduction in prediction er-
+                                                          intraday forecasting. From these intraday series, tech-
+ror after applying feature selection to technical indi-
+                                                          nical analysis indicators were computed and used as
+cators, while Tanrikulu and Pabuccu (2024) showed
+                                                          explanatory variables in the predictive models.
+that compact feature sets can outperform full indica-
+tor sets in cryptocurrency forecasting.
+    GA have been widely adopted for hyperparame-          3.2      Technical Indicators Construction
+ter optimization due to their ability to explore com-
+plex and non-convex search spaces. Ding et al.            Technical indicators were computed from intraday
+(2011) demonstrated that hybrid GA-based strategies       price series and normalized to ensure scale compat-
+improve convergence in neural networks, while Guo         ibility. The feature set includes SMA and EMA, used
+(2025) showed that evolutionary tuning improves RF        to capture trend behavior Billah et al. (2024), as well
+performance in large-scale financial datasets.            as rolling standard deviation (STD), employed as a
+    Despite these advances, feature selection and hy-     proxy for volatility Altman and Bland (2005). Mo-
+perparameter optimization are typically addressed as      mentum is modeled through MACD, defined from
+independent stages. This separation limits the un-        the difference between exponential moving averages
+derstanding of how feature representation and model       Aguirre et al. (2020), while trend strength is repre-
+configuration interact, particularly in intraday fore-    sented by ADX and its smoothed variant ADXR Thar-
+casting scenarios. This work addresses this gap by        avanij et al. (2015).
+evaluating both processes jointly within a unified ex-        1 https://doi.org/10.7910/DVN/TMB4IG
+perimental framework.                                         2 https://www.b3.com.br/
+

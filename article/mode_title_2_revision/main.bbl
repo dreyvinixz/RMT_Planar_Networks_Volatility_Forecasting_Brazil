@@ -1,0 +1,262 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{mantegna_stanley_1999_book}
+R.~N. Mantegna, H.~E. Stanley, Introduction to Econophysics: Correlations and
+  Complexity in Finance, Cambridge University Press, Cambridge, 1999.
+
+\bibitem{cont_2001_empirical}
+R.~Cont, Empirical properties of asset returns: stylized facts and statistical
+  issues, Quantitative Finance 1~(2) (2001) 223--236.
+\newblock \href {http://dx.doi.org/10.1080/713665670}
+  {\path{doi:10.1080/713665670}}.
+
+\bibitem{laloux_1999_noise}
+L.~Laloux, P.~Cizeau, J.-P. Bouchaud, M.~Potters, Noise dressing of financial
+  correlation matrices, Physical Review Letters 83~(7) (1999) 1467--1470.
+\newblock \href {http://dx.doi.org/10.1103/PhysRevLett.83.1467}
+  {\path{doi:10.1103/PhysRevLett.83.1467}}.
+
+\bibitem{plerou_2002_random}
+V.~Plerou, P.~Gopikrishnan, B.~Rosenow, L.~A.~N. Amaral, T.~Guhr, H.~E.
+  Stanley, Random matrix approach to cross correlations in financial data,
+  Physical Review E 65~(6) (2002) 066126.
+\newblock \href {http://dx.doi.org/10.1103/PhysRevE.65.066126}
+  {\path{doi:10.1103/PhysRevE.65.066126}}.
+
+\bibitem{bun_2017_cleaning}
+J.~Bun, J.-P. Bouchaud, M.~Potters, Cleaning large correlation matrices: Tools
+  from random matrix theory, Physics Reports 666 (2017) 1--109.
+\newblock \href {http://dx.doi.org/10.1016/j.physrep.2016.10.005}
+  {\path{doi:10.1016/j.physrep.2016.10.005}}.
+
+\bibitem{billio_2012_econometric}
+M.~Billio, M.~Getmansky, A.~W. Lo, L.~Pelizzon, Econometric measures of
+  connectedness and systemic risk in the finance and insurance sectors, Journal
+  of Financial Economics 104~(3) (2012) 535--559.
+\newblock \href {http://dx.doi.org/10.1016/j.jfineco.2011.12.010}
+  {\path{doi:10.1016/j.jfineco.2011.12.010}}.
+
+\bibitem{junior_2012_correlation}
+L.~S. Junior, I.~T.~P. Franca, Correlation of financial markets in times of
+  crisis, Physica A: Statistical Mechanics and its Applications 391~(1--2)
+  (2012) 187--208.
+\newblock \href {http://dx.doi.org/10.1016/j.physa.2011.07.023}
+  {\path{doi:10.1016/j.physa.2011.07.023}}.
+
+\bibitem{zheng_2012_changes}
+Z.~Zheng, B.~Podobnik, L.~Feng, B.~Li, Changes in cross-correlations as an
+  indicator for systemic risk, Scientific Reports 2 (2012) 888.
+\newblock \href {http://dx.doi.org/10.1038/srep00888}
+  {\path{doi:10.1038/srep00888}}.
+
+\bibitem{tabak_2010_topology}
+B.~M. Tabak, D.~O. Cajueiro, M.~V. Serra, Topology of the brazilian interbank
+  network, Physica A: Statistical Mechanics and its Applications 389~(22)
+  (2010) 5277--5283.
+\newblock \href {http://dx.doi.org/10.1016/j.physa.2010.07.037}
+  {\path{doi:10.1016/j.physa.2010.07.037}}.
+
+\bibitem{pereira_2019_multiscale}
+E.~J. A.~L. Pereira, M.~F. da~Silva, H.~B.~B. Pereira, Multiscale network for
+  twenty stock markets using {DCCA}, Physica A: Statistical Mechanics and its
+  Applications 529 (2019) 121542.
+\newblock \href {http://dx.doi.org/10.1016/j.physa.2019.121542}
+  {\path{doi:10.1016/j.physa.2019.121542}}.
+
+\bibitem{stosic_2015_correlations}
+T.~Stosi{\'c}, L.~Telesca, T.~A.~E. Ferreira, B.~D. Stosic, Correlations and
+  cross-correlations in the {Brazilian} agrarian commodities and stocks,
+  Physica A: Statistical Mechanics and its Applications 437 (2015) 248--262.
+\newblock \href {http://dx.doi.org/10.1016/j.physa.2015.05.091}
+  {\path{doi:10.1016/j.physa.2015.05.091}}.
+
+\bibitem{leonel_2022_brazilian}
+M.~A. Leonel~Caetano, T.~Yoneyama, Complex network analysis of the {Brazilian}
+  stock market, Expert Systems with Applications 196 (2022) 116680.
+\newblock \href {http://dx.doi.org/10.1016/j.eswa.2022.116680}
+  {\path{doi:10.1016/j.eswa.2022.116680}}.
+
+\bibitem{marcenko_1967_distribution}
+V.~A. Mar{\v{c}}enko, L.~A. Pastur, Distribution of eigenvalues for some sets
+  of random matrices, Mathematics of the USSR-Sbornik 1~(4) (1967) 457--483.
+\newblock \href {http://dx.doi.org/10.1070/SM1967v001n04ABEH001994}
+  {\path{doi:10.1070/SM1967v001n04ABEH001994}}.
+
+\bibitem{mantegna_1999_hierarchical}
+R.~N. Mantegna, Hierarchical structure in financial markets, The European
+  Physical Journal B 11~(1) (1999) 193--197.
+\newblock \href {http://dx.doi.org/10.1007/s100510050929}
+  {\path{doi:10.1007/s100510050929}}.
+
+\bibitem{tumminello_2005_tool}
+M.~Tumminello, T.~Aste, T.~Di~Matteo, R.~N. Mantegna, A tool for filtering
+  information in complex systems, Proceedings of the National Academy of
+  Sciences 102~(30) (2005) 10421--10426.
+\newblock \href {http://dx.doi.org/10.1073/pnas.0500298102}
+  {\path{doi:10.1073/pnas.0500298102}}.
+
+\bibitem{tumminello_2010_correlation}
+M.~Tumminello, F.~Lillo, R.~N. Mantegna, Correlation, hierarchies, and networks
+  in financial markets, Journal of Economic Behavior \& Organization 75~(1)
+  (2010) 40--58.
+\newblock \href {http://dx.doi.org/10.1016/j.jebo.2010.01.004}
+  {\path{doi:10.1016/j.jebo.2010.01.004}}.
+
+\bibitem{pozzi_2013_spread}
+F.~Pozzi, T.~Di~Matteo, T.~Aste, Spread of risk across financial markets:
+  better to invest in the peripheries, Scientific Reports 3 (2013) 1665.
+\newblock \href {http://dx.doi.org/10.1038/srep01665}
+  {\path{doi:10.1038/srep01665}}.
+
+\bibitem{aste_2010_correlation}
+T.~Aste, W.~Shaw, T.~Di~Matteo, Correlation structure and dynamics in volatile
+  markets, New Journal of Physics 12~(8) (2010) 085009.
+\newblock \href {http://dx.doi.org/10.1088/1367-2630/12/8/085009}
+  {\path{doi:10.1088/1367-2630/12/8/085009}}.
+
+\bibitem{raddant_dimatteo_2023}
+M.~Raddant, T.~Di~Matteo, A look at financial dependencies by means of
+  econophysics and financial economics, Journal of Economic Interaction and
+  Coordination 18~(4) (2023) 701--734.
+\newblock \href {http://dx.doi.org/10.1007/s11403-023-00395-y}
+  {\path{doi:10.1007/s11403-023-00395-y}}.
+
+\bibitem{laloux_2000_random}
+L.~Laloux, P.~Cizeau, M.~Potters, J.-P. Bouchaud, Random matrix theory and
+  financial correlations, International Journal of Theoretical and Applied
+  Finance 3~(3) (2000) 391--397.
+\newblock \href {http://dx.doi.org/10.1142/S0219024900000255}
+  {\path{doi:10.1142/S0219024900000255}}.
+
+\bibitem{guhr_muller_1998}
+T.~Guhr, A.~M{\"u}ller-Groeling, H.~A. Weidenm{\"u}ller, Random-matrix theories
+  in quantum physics: common concepts, Physics Reports 299~(4--6) (1998)
+  189--425.
+\newblock \href {http://dx.doi.org/10.1016/S0370-1573(97)00088-4}
+  {\path{doi:10.1016/S0370-1573(97)00088-4}}.
+
+\bibitem{onnela_2003_dynamics}
+J.-P. Onnela, A.~Chakraborti, K.~Kaski, J.~Kert{\'e}sz, A.~Kanto, Dynamics of
+  market correlations: Taxonomy and portfolio analysis, Physical Review E
+  68~(5) (2003) 056110.
+\newblock \href {http://dx.doi.org/10.1103/PhysRevE.68.056110}
+  {\path{doi:10.1103/PhysRevE.68.056110}}.
+
+\bibitem{bonanno_2004_networks}
+G.~Bonanno, G.~Caldarelli, F.~Lillo, S.~Miccich{\`e}, N.~Vandewalle, R.~N.
+  Mantegna, Networks of equities in financial markets, The European Physical
+  Journal B 38~(2) (2004) 363--371.
+\newblock \href {http://dx.doi.org/10.1140/epjb/e2004-00129-6}
+  {\path{doi:10.1140/epjb/e2004-00129-6}}.
+
+\bibitem{song_2012_evolution}
+D.-M. Song, M.~Tumminello, W.-X. Zhou, R.~N. Mantegna, Evolution of worldwide
+  stock markets, correlation structure, and correlation-based graphs, Physical
+  Review E 84~(2) (2011) 026108.
+\newblock \href {http://dx.doi.org/10.1103/PhysRevE.84.026108}
+  {\path{doi:10.1103/PhysRevE.84.026108}}.
+
+\bibitem{massara_2016_tmfg}
+G.~P. Massara, T.~Di~Matteo, T.~Aste, Network filtering for big data:
+  Triangulated maximally filtered graph, Journal of Complex Networks 5~(2)
+  (2017) 161--178.
+\newblock \href {http://dx.doi.org/10.1093/comnet/cnw015}
+  {\path{doi:10.1093/comnet/cnw015}}.
+
+\bibitem{kenett_2012_dominating}
+D.~Y. Kenett, M.~Tumminello, A.~Madi, G.~Gur-Gershgoren, R.~N. Mantegna,
+  E.~Ben-Jacob, Dominating clasp of the financial sector revealed by partial
+  correlation analysis of the stock market, PLoS ONE 5~(12) (2010) e15032.
+\newblock \href {http://dx.doi.org/10.1371/journal.pone.0015032}
+  {\path{doi:10.1371/journal.pone.0015032}}.
+
+\bibitem{silva_2016_structure}
+T.~C. Silva, S.~R.~S. de~Souza, B.~M. Tabak, Structure and dynamics of the
+  global financial network, Chaos, Solitons \& Fractals 88 (2016) 218--234.
+\newblock \href {http://dx.doi.org/10.1016/j.chaos.2016.01.023}
+  {\path{doi:10.1016/j.chaos.2016.01.023}}.
+
+\bibitem{wang_2018_correlation}
+G.-J. Wang, C.~Xie, H.~E. Stanley, Correlation structure and evolution of world
+  stock markets: Evidence from {Pearson} and partial correlation-based
+  networks, Computational Economics 51~(3) (2018) 607--635.
+\newblock \href {http://dx.doi.org/10.1007/s10614-016-9627-7}
+  {\path{doi:10.1007/s10614-016-9627-7}}.
+
+\bibitem{andersen_2003_modeling}
+T.~G. Andersen, T.~Bollerslev, F.~X. Diebold, P.~Labys, Modeling and
+  forecasting realized volatility, Econometrica 71~(2) (2003) 579--625.
+\newblock \href {http://dx.doi.org/10.1111/1468-0262.00418}
+  {\path{doi:10.1111/1468-0262.00418}}.
+
+\bibitem{poon_granger_2003}
+S.-H. Poon, C.~W.~J. Granger, Forecasting volatility in financial markets: A
+  review, Journal of Economic Literature 41~(2) (2003) 478--539.
+\newblock \href {http://dx.doi.org/10.1257/jel.41.2.478}
+  {\path{doi:10.1257/jel.41.2.478}}.
+
+\bibitem{patton_2011_volatility}
+A.~J. Patton, Volatility forecast comparison using imperfect volatility
+  proxies, Journal of Econometrics 160~(1) (2011) 246--256.
+\newblock \href {http://dx.doi.org/10.1016/j.jeconom.2010.03.034}
+  {\path{doi:10.1016/j.jeconom.2010.03.034}}.
+
+\bibitem{breiman_2001_random}
+L.~Breiman, Random forests, Machine Learning 45~(1) (2001) 5--32.
+\newblock \href {http://dx.doi.org/10.1023/A:1010933404324}
+  {\path{doi:10.1023/A:1010933404324}}.
+
+\bibitem{friedman_2001_greedy}
+J.~H. Friedman, Greedy function approximation: A gradient boosting machine,
+  Annals of Statistics 29~(5) (2001) 1189--1232.
+\newblock \href {http://dx.doi.org/10.1214/aos/1013203451}
+  {\path{doi:10.1214/aos/1013203451}}.
+
+\bibitem{hoerl_kennard_1970_ridge}
+A.~E. Hoerl, R.~W. Kennard, Ridge regression: Biased estimation for
+  nonorthogonal problems, Technometrics 12~(1) (1970) 55--67.
+\newblock \href {http://dx.doi.org/10.1080/00401706.1970.10488634}
+  {\path{doi:10.1080/00401706.1970.10488634}}.
+
+\bibitem{bucci_2020_realized}
+A.~Bucci, Realized volatility forecasting with neural networks, Journal of
+  Financial Econometrics 18~(3) (2020) 502--531.
+\newblock \href {http://dx.doi.org/10.1093/jjfinec/nbaa008}
+  {\path{doi:10.1093/jjfinec/nbaa008}}.
+
+\bibitem{christensen_2022_realized}
+K.~Christensen, M.~Siggaard, B.~Veliyev, A machine learning approach to
+  volatility forecasting, Journal of Financial Econometrics 21~(5) (2023)
+  1680--1727.
+\newblock \href {http://dx.doi.org/10.1093/jjfinec/nbac020}
+  {\path{doi:10.1093/jjfinec/nbac020}}.
+
+\bibitem{zhang_2023_network_volatility}
+D.~Zhang, D.~C. Broadstock, Financial network topology and market risk: A
+  machine learning perspective, International Review of Financial Analysis 87
+  (2023) 102604.
+\newblock \href {http://dx.doi.org/10.1016/j.irfa.2023.102604}
+  {\path{doi:10.1016/j.irfa.2023.102604}}.
+
+\bibitem{cardoso_2022_bovdb}
+F.~C. Cardoso, J.~A.~V. Malska, P.~J. Ramiro, G.~Lucca, E.~N. Borges, V.~L.
+  D.~d. Mattos, R.~A. Berri, {BovDB: a data set of stock prices of all
+  companies in B3 from 1995 to 2020}, Journal of Information and Data
+  Management 13~(1).
+\newblock \href {http://dx.doi.org/10.5753/jidm.2022.2345}
+  {\path{doi:10.5753/jidm.2022.2345}}.
+
+\bibitem{souza_2024_bovdbv2}
+A.~S. Souza, G.~Lucca, E.~N. Borges, F.~C. Cardoso, B.~L. Dalmazo, R.~Berri,
+  \href{https://doi.org/10.7910/DVN/TMB4IG}{{Dataset for Intraday Analysis of
+  B3 stock prices}}, Harvard Dataverse, v1 (2024).
+\newblock \href {http://dx.doi.org/10.7910/DVN/TMB4IG}
+  {\path{doi:10.7910/DVN/TMB4IG}}.
+\newline\urlprefix\url{https://doi.org/10.7910/DVN/TMB4IG}
+
+\end{thebibliography}

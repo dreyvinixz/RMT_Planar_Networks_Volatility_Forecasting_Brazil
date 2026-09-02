@@ -1,0 +1,143 @@
+\documentclass[a4paper,fleqn]{cas-sc}
+
+\usepackage[numbers]{natbib}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{stfloats}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, calc}
+
+% ------------------------------------------------------------
+% Float placement tuning
+% ------------------------------------------------------------
+% These settings make LaTeX more permissive with figure/table placement.
+% They help reduce large blank spaces caused by restrictive float rules.
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.75}
+
+\setcounter{topnumber}{5}
+\setcounter{bottomnumber}{5}
+\setcounter{totalnumber}{10}
+
+
+
+\begin{document}
+
+\let\WriteBookmarks\relax
+
+\shorttitle{RMT-filtered networks: retrospective volatility assessment}
+\shortauthors{A.V.S. Souza et al.}
+
+\title[mode=title]{Random Matrix Filtering and Planar Financial Networks:\\A Retrospective Assessment for Volatility Forecasting in Complex Financial Markets}
+
+\author[1]{Andrey V. S. Souza}[orcid=0009-0006-4177-758X]
+\cormark[1]
+\ead{andreyvinicius@furg.br}
+\credit{Conceptualization, Methodology, Software, Formal analysis, Writing - original draft}
+
+\author[1]{Bruno L. Dalmazo}[orcid=0000-0002-6996-7602]
+\ead{dalmazo@furg.br}
+\credit{Methodology, Supervision, Writing - review and editing}
+
+\author[1]{Giancarlo Lucca}[orcid=0000-0002-3776-0260]
+\ead{giancarlo.lucca@furg.br}
+\credit{Methodology, Validation, Writing - review and editing}
+
+\author[1]{Eduardo N. Borges}[orcid=0000-0003-1595-7676]
+\ead{eduardoborges@furg.br}
+\credit{Supervision, Methodology, Writing - review and editing}
+
+\author[1]{Richard F. Pinto}[orcid=0009-0007-0176-3383]
+\ead{richardpinto@furg.br}
+\credit{Software, Data curation, Validation}
+
+\author[2]{Fabian C. Cardoso}[orcid=0000-0002-2842-0387]
+\ead{fabian@unirv.edu.br}
+\credit{Data curation, Resources, Writing - review and editing}
+
+\author[1]{Viviane L. D. de Mattos}[orcid=0000-0002-3512-6290]
+\ead{vivianemattos@furg.br}
+\credit{Formal analysis, Supervision, Writing - review and editing}
+
+\author[1]{Rafael A. Berri}[orcid=0000-0002-3812-4186]
+\ead{rafaelberri@furg.br}
+\credit{Supervision, Project administration, Writing - review and editing}
+
+\affiliation[1]{
+  organization={Federal University of Rio Grande (FURG)},
+  city={Rio Grande},
+  state={Rio Grande do Sul},
+  country={Brazil}
+}
+
+\affiliation[2]{
+  organization={University of Rio Verde (UniRV)},
+  city={Rio Verde},
+  state={Goias},
+  country={Brazil}
+}
+
+\cortext[cor1]{Corresponding author.}
+
+\begin{abstract}
+We study the dependency structure of Brazilian equities traded on B3 and assess, retrospectively, whether structural descriptors are associated with realized-volatility model performance. Using adjusted daily prices, we construct returns for a 58-equity historical universe and estimate RMT, clustering and network quantities from a complete synchronized panel spanning 23 August 2006 to 15 August 2024. The Mar\v{c}enko--Pastur benchmark separates a dominant market mode, candidate group-level modes and a residual noise-compatible component; five eigenvalues exceed the upper bound, and the largest accounts for about 37\% of the correlation-matrix trace. MST and PMFG representations show that market-mode removal lowers average edge correlation while preserving localized patterns; the group-mode PMFG has lower mean edge correlation but higher clustering than the original PMFG. We then conduct a chronological train-validation-test assessment with machine-learning and simple neural models. RMT and network descriptors are estimated from the full synchronized sample, so the experiment identifies an ex-post structural association rather than a real-time forecasting gain. The contribution is therefore an integrated, reproducible framework for interpreting B3 market structure and specifying a future point-in-time volatility experiment.
+\end{abstract}
+
+\begin{highlights}
+\item RMT separates market, group and noise components in B3 equities.
+\item PMFG filtering highlights localized sectoral dependency patterns.
+\item Within-sector correlations are larger than between-sector correlations on average.
+\item Ex-post network descriptors are associated with modest model-performance differences.
+\item Simple neural models provide an incremental deep-learning extension.
+\end{highlights}
+
+\begin{keywords}
+Econophysics \sep Random matrix theory \sep Financial networks \sep
+Planar maximally filtered graph \sep Volatility forecasting \sep
+Machine learning \sep Brazilian stock market
+\end{keywords}
+
+\maketitle
+
+\input{sections/introduction}
+\input{sections/theoretical_background}
+\input{sections/related_work}
+\input{sections/data}
+\input{sections/methodology}
+\input{sections/experimental_framework}
+\section{Results}
+\label{sec:results}
+The results follow the empirical sequence defined above. We first establish the return and correlation regularities, then examine spectral filtering and topology, and finally report the retrospective volatility-model assessment. Each result is interpreted as a full-sample structural finding unless explicitly described as chronological model evaluation.
+\input{sections/results_stylized_correlation}
+\input{sections/results_rmt}
+\input{sections/results_clustering}
+\input{sections/results_networks}
+\input{sections/results_subsector_network}
+\input{sections/results_forecasting}
+\input{sections/discussion}
+\input{sections/limitations}
+\input{sections/conclusion}
+
+\appendix
+\input{sections/appendix_supplementary_figures}
+\input{sections/appendix_supplementary_tables}
+\input{sections/declarations}
+
+\FloatBarrier
+
+\printcredits
+
+\bibliographystyle{elsarticle-num}
+\bibliography{references}
+
+\end{document}

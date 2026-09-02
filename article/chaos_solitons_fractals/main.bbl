@@ -1,0 +1,394 @@
+\begin{thebibliography}{41}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Article
+\bibitem[{Andersen et~al.(2003)Andersen, Bollerslev, Diebold and
+  Labys}]{andersen_2003_modeling}
+\bibinfo{author}{Andersen, T.G.}, \bibinfo{author}{Bollerslev, T.},
+  \bibinfo{author}{Diebold, F.X.}, \bibinfo{author}{Labys, P.},
+  \bibinfo{year}{2003}.
+\newblock \bibinfo{title}{Modeling and forecasting realized volatility}.
+\newblock \bibinfo{journal}{Econometrica} \bibinfo{volume}{71},
+  \bibinfo{pages}{579--625}.
+\newblock \DOIprefix\doi{10.1111/1468-0262.00418}.
+%Type = Article
+\bibitem[{Aste et~al.(2010)Aste, Shaw and Di~Matteo}]{aste_2010_correlation}
+\bibinfo{author}{Aste, T.}, \bibinfo{author}{Shaw, W.},
+  \bibinfo{author}{Di~Matteo, T.}, \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Correlation structure and dynamics in volatile
+  markets}.
+\newblock \bibinfo{journal}{New Journal of Physics} \bibinfo{volume}{12},
+  \bibinfo{pages}{085009}.
+\newblock \DOIprefix\doi{10.1088/1367-2630/12/8/085009}.
+%Type = Article
+\bibitem[{Billio et~al.(2012)Billio, Getmansky, Lo and
+  Pelizzon}]{billio_2012_econometric}
+\bibinfo{author}{Billio, M.}, \bibinfo{author}{Getmansky, M.},
+  \bibinfo{author}{Lo, A.W.}, \bibinfo{author}{Pelizzon, L.},
+  \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{Econometric measures of connectedness and systemic
+  risk in the finance and insurance sectors}.
+\newblock \bibinfo{journal}{Journal of Financial Economics}
+  \bibinfo{volume}{104}, \bibinfo{pages}{535--559}.
+\newblock \DOIprefix\doi{10.1016/j.jfineco.2011.12.010}.
+%Type = Article
+\bibitem[{Bollerslev(1986)}]{bollerslev_1986_generalized}
+\bibinfo{author}{Bollerslev, T.}, \bibinfo{year}{1986}.
+\newblock \bibinfo{title}{Generalized autoregressive conditional
+  heteroskedasticity}.
+\newblock \bibinfo{journal}{Journal of Econometrics} \bibinfo{volume}{31},
+  \bibinfo{pages}{307--327}.
+\newblock \DOIprefix\doi{10.1016/0304-4076(86)90063-1}.
+%Type = Article
+\bibitem[{Bonanno et~al.(2004)Bonanno, Caldarelli, Lillo, Miccich{\`e},
+  Vandewalle and Mantegna}]{bonanno_2004_networks}
+\bibinfo{author}{Bonanno, G.}, \bibinfo{author}{Caldarelli, G.},
+  \bibinfo{author}{Lillo, F.}, \bibinfo{author}{Miccich{\`e}, S.},
+  \bibinfo{author}{Vandewalle, N.}, \bibinfo{author}{Mantegna, R.N.},
+  \bibinfo{year}{2004}.
+\newblock \bibinfo{title}{Networks of equities in financial markets}.
+\newblock \bibinfo{journal}{The European Physical Journal B}
+  \bibinfo{volume}{38}, \bibinfo{pages}{363--371}.
+\newblock \DOIprefix\doi{10.1140/epjb/e2004-00129-6}.
+%Type = Article
+\bibitem[{Breiman(2001)}]{breiman_2001_random}
+\bibinfo{author}{Breiman, L.}, \bibinfo{year}{2001}.
+\newblock \bibinfo{title}{Random forests}.
+\newblock \bibinfo{journal}{Machine Learning} \bibinfo{volume}{45},
+  \bibinfo{pages}{5--32}.
+\newblock \DOIprefix\doi{10.1023/A:1010933404324}.
+%Type = Article
+\bibitem[{Bucci(2020)}]{bucci_2020_realized}
+\bibinfo{author}{Bucci, A.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Realized volatility forecasting with neural
+  networks}.
+\newblock \bibinfo{journal}{Journal of Financial Econometrics}
+  \bibinfo{volume}{18}, \bibinfo{pages}{502--531}.
+\newblock \DOIprefix\doi{10.1093/jjfinec/nbaa008}.
+%Type = Article
+\bibitem[{Bun et~al.(2017)Bun, Bouchaud and Potters}]{bun_2017_cleaning}
+\bibinfo{author}{Bun, J.}, \bibinfo{author}{Bouchaud, J.P.},
+  \bibinfo{author}{Potters, M.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Cleaning large correlation matrices: Tools from
+  random matrix theory}.
+\newblock \bibinfo{journal}{Physics Reports} \bibinfo{volume}{666},
+  \bibinfo{pages}{1--109}.
+\newblock \DOIprefix\doi{10.1016/j.physrep.2016.10.005}.
+%Type = Article
+\bibitem[{Christensen et~al.(2023)Christensen, Siggaard and
+  Veliyev}]{christensen_2022_realized}
+\bibinfo{author}{Christensen, K.}, \bibinfo{author}{Siggaard, M.},
+  \bibinfo{author}{Veliyev, B.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{A machine learning approach to volatility
+  forecasting}.
+\newblock \bibinfo{journal}{Journal of Financial Econometrics}
+  \bibinfo{volume}{21}, \bibinfo{pages}{1680--1727}.
+\newblock \DOIprefix\doi{10.1093/jjfinec/nbac020}.
+%Type = Article
+\bibitem[{Cont(2001)}]{cont_2001_empirical}
+\bibinfo{author}{Cont, R.}, \bibinfo{year}{2001}.
+\newblock \bibinfo{title}{Empirical properties of asset returns: stylized facts
+  and statistical issues}.
+\newblock \bibinfo{journal}{Quantitative Finance} \bibinfo{volume}{1},
+  \bibinfo{pages}{223--236}.
+\newblock \DOIprefix\doi{10.1080/713665670}.
+%Type = Article
+\bibitem[{Corsi(2009)}]{corsi_2009_simple}
+\bibinfo{author}{Corsi, F.}, \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{A simple approximate long-memory model of realized
+  volatility}.
+\newblock \bibinfo{journal}{Journal of Financial Econometrics}
+  \bibinfo{volume}{7}, \bibinfo{pages}{174--196}.
+\newblock \DOIprefix\doi{10.1093/jjfinec/nbp001}.
+%Type = Article
+\bibitem[{Engle(1982)}]{engle_1982_autoregressive}
+\bibinfo{author}{Engle, R.F.}, \bibinfo{year}{1982}.
+\newblock \bibinfo{title}{Autoregressive conditional heteroscedasticity with
+  estimates of the variance of {United Kingdom} inflation}.
+\newblock \bibinfo{journal}{Econometrica} \bibinfo{volume}{50},
+  \bibinfo{pages}{987--1007}.
+\newblock \DOIprefix\doi{10.2307/1912773}.
+%Type = Article
+\bibitem[{Friedman(2001)}]{friedman_2001_greedy}
+\bibinfo{author}{Friedman, J.H.}, \bibinfo{year}{2001}.
+\newblock \bibinfo{title}{Greedy function approximation: A gradient boosting
+  machine}.
+\newblock \bibinfo{journal}{Annals of Statistics} \bibinfo{volume}{29},
+  \bibinfo{pages}{1189--1232}.
+\newblock \DOIprefix\doi{10.1214/aos/1013203451}.
+%Type = Article
+\bibitem[{Guhr et~al.(1998)Guhr, M{\"u}ller-Groeling and
+  Weidenm{\"u}ller}]{guhr_muller_1998}
+\bibinfo{author}{Guhr, T.}, \bibinfo{author}{M{\"u}ller-Groeling, A.},
+  \bibinfo{author}{Weidenm{\"u}ller, H.A.}, \bibinfo{year}{1998}.
+\newblock \bibinfo{title}{Random-matrix theories in quantum physics: common
+  concepts}.
+\newblock \bibinfo{journal}{Physics Reports} \bibinfo{volume}{299},
+  \bibinfo{pages}{189--425}.
+\newblock \DOIprefix\doi{10.1016/S0370-1573(97)00088-4}.
+%Type = Article
+\bibitem[{Hansen and Lunde(2005)}]{hansen_lunde_2005}
+\bibinfo{author}{Hansen, P.R.}, \bibinfo{author}{Lunde, A.},
+  \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{A forecast comparison of volatility models: Does
+  anything beat a {GARCH}(1,1)?}
+\newblock \bibinfo{journal}{Journal of Applied Econometrics}
+  \bibinfo{volume}{20}, \bibinfo{pages}{873--889}.
+\newblock \DOIprefix\doi{10.1002/jae.800}.
+%Type = Article
+\bibitem[{Hoerl and Kennard(1970)}]{hoerl_kennard_1970_ridge}
+\bibinfo{author}{Hoerl, A.E.}, \bibinfo{author}{Kennard, R.W.},
+  \bibinfo{year}{1970}.
+\newblock \bibinfo{title}{Ridge regression: Biased estimation for nonorthogonal
+  problems}.
+\newblock \bibinfo{journal}{Technometrics} \bibinfo{volume}{12},
+  \bibinfo{pages}{55--67}.
+\newblock \DOIprefix\doi{10.1080/00401706.1970.10488634}.
+%Type = Article
+\bibitem[{Junior and Franca(2012)}]{junior_2012_correlation}
+\bibinfo{author}{Junior, L.S.}, \bibinfo{author}{Franca, I.T.P.},
+  \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{Correlation of financial markets in times of crisis}.
+\newblock \bibinfo{journal}{Physica A: Statistical Mechanics and its
+  Applications} \bibinfo{volume}{391}, \bibinfo{pages}{187--208}.
+\newblock \DOIprefix\doi{10.1016/j.physa.2011.07.023}.
+%Type = Article
+\bibitem[{Kenett et~al.(2010)Kenett, Tumminello, Madi, Gur-Gershgoren, Mantegna
+  and Ben-Jacob}]{kenett_2012_dominating}
+\bibinfo{author}{Kenett, D.Y.}, \bibinfo{author}{Tumminello, M.},
+  \bibinfo{author}{Madi, A.}, \bibinfo{author}{Gur-Gershgoren, G.},
+  \bibinfo{author}{Mantegna, R.N.}, \bibinfo{author}{Ben-Jacob, E.},
+  \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Dominating clasp of the financial sector revealed by
+  partial correlation analysis of the stock market}.
+\newblock \bibinfo{journal}{PLoS ONE} \bibinfo{volume}{5},
+  \bibinfo{pages}{e15032}.
+\newblock \DOIprefix\doi{10.1371/journal.pone.0015032}.
+%Type = Article
+\bibitem[{Laloux et~al.(1999)Laloux, Cizeau, Bouchaud and
+  Potters}]{laloux_1999_noise}
+\bibinfo{author}{Laloux, L.}, \bibinfo{author}{Cizeau, P.},
+  \bibinfo{author}{Bouchaud, J.P.}, \bibinfo{author}{Potters, M.},
+  \bibinfo{year}{1999}.
+\newblock \bibinfo{title}{Noise dressing of financial correlation matrices}.
+\newblock \bibinfo{journal}{Physical Review Letters} \bibinfo{volume}{83},
+  \bibinfo{pages}{1467--1470}.
+\newblock \DOIprefix\doi{10.1103/PhysRevLett.83.1467}.
+%Type = Article
+\bibitem[{Laloux et~al.(2000)Laloux, Cizeau, Potters and
+  Bouchaud}]{laloux_2000_random}
+\bibinfo{author}{Laloux, L.}, \bibinfo{author}{Cizeau, P.},
+  \bibinfo{author}{Potters, M.}, \bibinfo{author}{Bouchaud, J.P.},
+  \bibinfo{year}{2000}.
+\newblock \bibinfo{title}{Random matrix theory and financial correlations}.
+\newblock \bibinfo{journal}{International Journal of Theoretical and Applied
+  Finance} \bibinfo{volume}{3}, \bibinfo{pages}{391--397}.
+\newblock \DOIprefix\doi{10.1142/S0219024900000255}.
+%Type = Article
+\bibitem[{Leonel~Caetano and Yoneyama(2022)}]{leonel_2022_brazilian}
+\bibinfo{author}{Leonel~Caetano, M.A.}, \bibinfo{author}{Yoneyama, T.},
+  \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Complex network analysis of the {Brazilian} stock
+  market}.
+\newblock \bibinfo{journal}{Expert Systems with Applications}
+  \bibinfo{volume}{196}, \bibinfo{pages}{116680}.
+\newblock \DOIprefix\doi{10.1016/j.eswa.2022.116680}.
+%Type = Article
+\bibitem[{Mantegna(1999)}]{mantegna_1999_hierarchical}
+\bibinfo{author}{Mantegna, R.N.}, \bibinfo{year}{1999}.
+\newblock \bibinfo{title}{Hierarchical structure in financial markets}.
+\newblock \bibinfo{journal}{The European Physical Journal B}
+  \bibinfo{volume}{11}, \bibinfo{pages}{193--197}.
+\newblock \DOIprefix\doi{10.1007/s100510050929}.
+%Type = Book
+\bibitem[{Mantegna and Stanley(1999)}]{mantegna_stanley_1999_book}
+\bibinfo{author}{Mantegna, R.N.}, \bibinfo{author}{Stanley, H.E.},
+  \bibinfo{year}{1999}.
+\newblock \bibinfo{title}{Introduction to Econophysics: Correlations and
+  Complexity in Finance}.
+\newblock \bibinfo{publisher}{Cambridge University Press},
+  \bibinfo{address}{Cambridge}.
+%Type = Article
+\bibitem[{Mar{\v{c}}enko and Pastur(1967)}]{marcenko_1967_distribution}
+\bibinfo{author}{Mar{\v{c}}enko, V.A.}, \bibinfo{author}{Pastur, L.A.},
+  \bibinfo{year}{1967}.
+\newblock \bibinfo{title}{Distribution of eigenvalues for some sets of random
+  matrices}.
+\newblock \bibinfo{journal}{Mathematics of the USSR-Sbornik}
+  \bibinfo{volume}{1}, \bibinfo{pages}{457--483}.
+\newblock \DOIprefix\doi{10.1070/SM1967v001n04ABEH001994}.
+%Type = Article
+\bibitem[{Massara et~al.(2017)Massara, Di~Matteo and Aste}]{massara_2016_tmfg}
+\bibinfo{author}{Massara, G.P.}, \bibinfo{author}{Di~Matteo, T.},
+  \bibinfo{author}{Aste, T.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Network filtering for big data: Triangulated
+  maximally filtered graph}.
+\newblock \bibinfo{journal}{Journal of Complex Networks} \bibinfo{volume}{5},
+  \bibinfo{pages}{161--178}.
+\newblock \DOIprefix\doi{10.1093/comnet/cnw015}.
+%Type = Article
+\bibitem[{Onnela et~al.(2003)Onnela, Chakraborti, Kaski, Kert{\'e}sz and
+  Kanto}]{onnela_2003_dynamics}
+\bibinfo{author}{Onnela, J.P.}, \bibinfo{author}{Chakraborti, A.},
+  \bibinfo{author}{Kaski, K.}, \bibinfo{author}{Kert{\'e}sz, J.},
+  \bibinfo{author}{Kanto, A.}, \bibinfo{year}{2003}.
+\newblock \bibinfo{title}{Dynamics of market correlations: Taxonomy and
+  portfolio analysis}.
+\newblock \bibinfo{journal}{Physical Review E} \bibinfo{volume}{68},
+  \bibinfo{pages}{056110}.
+\newblock \DOIprefix\doi{10.1103/PhysRevE.68.056110}.
+%Type = Article
+\bibitem[{Patton(2011)}]{patton_2011_volatility}
+\bibinfo{author}{Patton, A.J.}, \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{Volatility forecast comparison using imperfect
+  volatility proxies}.
+\newblock \bibinfo{journal}{Journal of Econometrics} \bibinfo{volume}{160},
+  \bibinfo{pages}{246--256}.
+\newblock \DOIprefix\doi{10.1016/j.jeconom.2010.03.034}.
+%Type = Article
+\bibitem[{Pereira et~al.(2019)Pereira, da~Silva and
+  Pereira}]{pereira_2019_multiscale}
+\bibinfo{author}{Pereira, E.J.A.L.}, \bibinfo{author}{da~Silva, M.F.},
+  \bibinfo{author}{Pereira, H.B.B.}, \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Multiscale network for twenty stock markets using
+  {DCCA}}.
+\newblock \bibinfo{journal}{Physica A: Statistical Mechanics and its
+  Applications} \bibinfo{volume}{529}, \bibinfo{pages}{121542}.
+\newblock \DOIprefix\doi{10.1016/j.physa.2019.121542}.
+%Type = Article
+\bibitem[{Plerou et~al.(2002)Plerou, Gopikrishnan, Rosenow, Amaral, Guhr and
+  Stanley}]{plerou_2002_random}
+\bibinfo{author}{Plerou, V.}, \bibinfo{author}{Gopikrishnan, P.},
+  \bibinfo{author}{Rosenow, B.}, \bibinfo{author}{Amaral, L.A.N.},
+  \bibinfo{author}{Guhr, T.}, \bibinfo{author}{Stanley, H.E.},
+  \bibinfo{year}{2002}.
+\newblock \bibinfo{title}{Random matrix approach to cross correlations in
+  financial data}.
+\newblock \bibinfo{journal}{Physical Review E} \bibinfo{volume}{65},
+  \bibinfo{pages}{066126}.
+\newblock \DOIprefix\doi{10.1103/PhysRevE.65.066126}.
+%Type = Article
+\bibitem[{Poon and Granger(2003)}]{poon_granger_2003}
+\bibinfo{author}{Poon, S.H.}, \bibinfo{author}{Granger, C.W.J.},
+  \bibinfo{year}{2003}.
+\newblock \bibinfo{title}{Forecasting volatility in financial markets: A
+  review}.
+\newblock \bibinfo{journal}{Journal of Economic Literature}
+  \bibinfo{volume}{41}, \bibinfo{pages}{478--539}.
+\newblock \DOIprefix\doi{10.1257/jel.41.2.478}.
+%Type = Article
+\bibitem[{Pozzi et~al.(2013)Pozzi, Di~Matteo and Aste}]{pozzi_2013_spread}
+\bibinfo{author}{Pozzi, F.}, \bibinfo{author}{Di~Matteo, T.},
+  \bibinfo{author}{Aste, T.}, \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{Spread of risk across financial markets: better to
+  invest in the peripheries}.
+\newblock \bibinfo{journal}{Scientific Reports} \bibinfo{volume}{3},
+  \bibinfo{pages}{1665}.
+\newblock \DOIprefix\doi{10.1038/srep01665}.
+%Type = Article
+\bibitem[{Raddant and Di~Matteo(2023)}]{raddant_dimatteo_2023}
+\bibinfo{author}{Raddant, M.}, \bibinfo{author}{Di~Matteo, T.},
+  \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{A look at financial dependencies by means of
+  econophysics and financial economics}.
+\newblock \bibinfo{journal}{Journal of Economic Interaction and Coordination}
+  \bibinfo{volume}{18}, \bibinfo{pages}{701--734}.
+\newblock \DOIprefix\doi{10.1007/s11403-023-00395-y}.
+%Type = Article
+\bibitem[{Silva et~al.(2016)Silva, de~Souza and Tabak}]{silva_2016_structure}
+\bibinfo{author}{Silva, T.C.}, \bibinfo{author}{de~Souza, S.R.S.},
+  \bibinfo{author}{Tabak, B.M.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Structure and dynamics of the global financial
+  network}.
+\newblock \bibinfo{journal}{Chaos, Solitons \& Fractals} \bibinfo{volume}{88},
+  \bibinfo{pages}{218--234}.
+\newblock \DOIprefix\doi{10.1016/j.chaos.2016.01.023}.
+%Type = Article
+\bibitem[{Song et~al.(2011)Song, Tumminello, Zhou and
+  Mantegna}]{song_2012_evolution}
+\bibinfo{author}{Song, D.M.}, \bibinfo{author}{Tumminello, M.},
+  \bibinfo{author}{Zhou, W.X.}, \bibinfo{author}{Mantegna, R.N.},
+  \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{Evolution of worldwide stock markets, correlation
+  structure, and correlation-based graphs}.
+\newblock \bibinfo{journal}{Physical Review E} \bibinfo{volume}{84},
+  \bibinfo{pages}{026108}.
+\newblock \DOIprefix\doi{10.1103/PhysRevE.84.026108}.
+%Type = Article
+\bibitem[{Stosi{\'c} et~al.(2015)Stosi{\'c}, Telesca, Ferreira and
+  Stosic}]{stosic_2015_correlations}
+\bibinfo{author}{Stosi{\'c}, T.}, \bibinfo{author}{Telesca, L.},
+  \bibinfo{author}{Ferreira, T.A.E.}, \bibinfo{author}{Stosic, B.D.},
+  \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{Correlations and cross-correlations in the
+  {Brazilian} agrarian commodities and stocks}.
+\newblock \bibinfo{journal}{Physica A: Statistical Mechanics and its
+  Applications} \bibinfo{volume}{437}, \bibinfo{pages}{248--262}.
+\newblock \DOIprefix\doi{10.1016/j.physa.2015.05.091}.
+%Type = Article
+\bibitem[{Tabak et~al.(2010)Tabak, Cajueiro and Serra}]{tabak_2010_topology}
+\bibinfo{author}{Tabak, B.M.}, \bibinfo{author}{Cajueiro, D.O.},
+  \bibinfo{author}{Serra, M.V.}, \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Topology of the brazilian interbank network}.
+\newblock \bibinfo{journal}{Physica A: Statistical Mechanics and its
+  Applications} \bibinfo{volume}{389}, \bibinfo{pages}{5277--5283}.
+\newblock \DOIprefix\doi{10.1016/j.physa.2010.07.037}.
+%Type = Article
+\bibitem[{Tumminello et~al.(2005)Tumminello, Aste, Di~Matteo and
+  Mantegna}]{tumminello_2005_tool}
+\bibinfo{author}{Tumminello, M.}, \bibinfo{author}{Aste, T.},
+  \bibinfo{author}{Di~Matteo, T.}, \bibinfo{author}{Mantegna, R.N.},
+  \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{A tool for filtering information in complex systems}.
+\newblock \bibinfo{journal}{Proceedings of the National Academy of Sciences}
+  \bibinfo{volume}{102}, \bibinfo{pages}{10421--10426}.
+\newblock \DOIprefix\doi{10.1073/pnas.0500298102}.
+%Type = Article
+\bibitem[{Tumminello et~al.(2010)Tumminello, Lillo and
+  Mantegna}]{tumminello_2010_correlation}
+\bibinfo{author}{Tumminello, M.}, \bibinfo{author}{Lillo, F.},
+  \bibinfo{author}{Mantegna, R.N.}, \bibinfo{year}{2010}.
+\newblock \bibinfo{title}{Correlation, hierarchies, and networks in financial
+  markets}.
+\newblock \bibinfo{journal}{Journal of Economic Behavior \& Organization}
+  \bibinfo{volume}{75}, \bibinfo{pages}{40--58}.
+\newblock \DOIprefix\doi{10.1016/j.jebo.2010.01.004}.
+%Type = Article
+\bibitem[{Wang et~al.(2018)Wang, Xie and Stanley}]{wang_2018_correlation}
+\bibinfo{author}{Wang, G.J.}, \bibinfo{author}{Xie, C.},
+  \bibinfo{author}{Stanley, H.E.}, \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{Correlation structure and evolution of world stock
+  markets: Evidence from {Pearson} and partial correlation-based networks}.
+\newblock \bibinfo{journal}{Computational Economics} \bibinfo{volume}{51},
+  \bibinfo{pages}{607--635}.
+\newblock \DOIprefix\doi{10.1007/s10614-016-9627-7}.
+%Type = Article
+\bibitem[{Zhang and Broadstock(2023)}]{zhang_2023_network_volatility}
+\bibinfo{author}{Zhang, D.}, \bibinfo{author}{Broadstock, D.C.},
+  \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Financial network topology and market risk: A machine
+  learning perspective}.
+\newblock \bibinfo{journal}{International Review of Financial Analysis}
+  \bibinfo{volume}{87}, \bibinfo{pages}{102604}.
+\newblock \DOIprefix\doi{10.1016/j.irfa.2023.102604}.
+%Type = Article
+\bibitem[{Zheng et~al.(2012)Zheng, Podobnik, Feng and Li}]{zheng_2012_changes}
+\bibinfo{author}{Zheng, Z.}, \bibinfo{author}{Podobnik, B.},
+  \bibinfo{author}{Feng, L.}, \bibinfo{author}{Li, B.}, \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{Changes in cross-correlations as an indicator for
+  systemic risk}.
+\newblock \bibinfo{journal}{Scientific Reports} \bibinfo{volume}{2},
+  \bibinfo{pages}{888}.
+\newblock \DOIprefix\doi{10.1038/srep00888}.
+
+\end{thebibliography}
