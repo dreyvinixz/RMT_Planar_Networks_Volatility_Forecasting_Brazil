@@ -1,0 +1,5 @@
+Random-matrix spectra identify market, group and noise-compatible modes.
+Planar filtering exposes localized sectoral dependency patterns.
+Within-sector correlations exceed between-sector correlations on average.
+Full-sample network descriptors yield modest ex-post model differences.
+Compact neural models extend the machine-learning comparison.
