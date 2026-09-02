@@ -1,0 +1,11 @@
+\section{Limitations}
+\label{sec:limitations}
+
+The results should be read subject to five limits.
+\begin{enumerate}
+    \item \textbf{Information availability.} RMT and network descriptors are estimated from the full synchronized sample and are therefore unavailable at historical forecast origins. The volatility exercise is retrospective, not a strict real-time test.
+    \item \textbf{Target coverage.} The model assessment uses PETR4, VALE3 and BBDC4. These liquid and economically distinct assets are useful demonstrations, but do not represent the whole B3 cross-section.
+    \item \textbf{Historical data quality.} Long adjusted-price histories can retain artifacts from corporate actions, ticker transitions, units or adjustment factors. Broader universes require renewed event-level validation.
+    \item \textbf{Classification and issuer representation.} Sector and subsector labels are an initial descriptive map, and the deterministic issuer-collapse rule is a robustness check rather than a definitive economic-exposure or liquidity rule.
+    \item \textbf{Model scope.} Static network descriptors and simple neural architectures do not establish causal mechanisms. Future work should reconstruct structural features in rolling or expanding windows, broaden the target set and compare richer temporal or graph-based models.
+\end{enumerate}

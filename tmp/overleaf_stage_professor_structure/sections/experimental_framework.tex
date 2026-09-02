@@ -1,0 +1,21 @@
+\section{Experimental framework for retrospective volatility-model assessment}
+\label{sec:experimental_framework}
+
+This experiment is intentionally separated from the empirical framework because it asks a different question: whether structural descriptors estimated from the full synchronized sample are associated with model performance in a chronological volatility exercise. It is not a point-in-time trading or real-time forecasting test.
+
+\subsection{Targets, temporal split and feature sets}
+\label{subsec:forecasting_method}
+
+For PETR4, VALE3 and BBDC4, the target at horizon $h\in\{5,20\}$ is realized volatility $RV_{i,t,h}=\sqrt{\sum_{\tau=1}^{h}r_{i,t+\tau}^{2}}$. Training covers 2006--2017, validation 2018--2020 and the held-out test period 2021--2025. Set~A contains point-in-time return and volatility predictors. Set~B adds rolling market variables and full-sample RMT descriptors; Set~C adds full-sample MST and PMFG descriptors. Thus only Set~A is strictly point-in-time; Sets~B and~C are retrospective structural comparisons.
+
+\subsection{Models and evaluation}
+\label{subsec:forecast_models_method}
+
+Ridge, Random Forest and histogram gradient boosting are evaluated in a nested ablation design. MLP and CNN-1D models are included as simple neural extensions, not an exhaustive architecture search. Validation selects each reported specification before test-period evaluation.
+
+\label{subsec:evaluation_method}
+Forecasts are evaluated with MAE, RMSE, out-of-sample $R^2$ and QLIKE. For a predicted variance proxy $\hat{\sigma}_t^2$ and realized variance proxy $\sigma_t^2$,
+\begin{equation}
+\mathrm{QLIKE}_t=\log(\hat{\sigma}_t^2)+\frac{\sigma_t^2}{\hat{\sigma}_t^2}.
+\end{equation}
+Test-period QLIKE intervals use 2,000 fixed-seed circular moving-block bootstrap replications with block length equal to the forecast horizon. A focused one-sided HAC comparison contrasts the validation-selected structural specification with the validation-selected Set~A baseline. Because the structural descriptors are ex-post, this inferential check tests retrospective association only.

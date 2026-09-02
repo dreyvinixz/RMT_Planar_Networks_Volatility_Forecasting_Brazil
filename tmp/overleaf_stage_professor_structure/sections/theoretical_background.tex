@@ -8,16 +8,11 @@ This section establishes the theoretical, mathematical and econophysics foundati
 
 Financial markets operate as complex interconnected systems where asset prices continuously interact through macroeconomic news, sector trends, liquidity cycles, and investor behavior \cite{mantegna_stanley_1999_book,bouchaud_potters_2003}. Rather than analyzing individual stocks in isolation, modern risk management focuses on understanding how assets move together across the entire market cross-section.
 
-To compare price changes consistently across different companies, prices are converted into daily logarithmic returns:
-\begin{equation}
-r_{i,t} = \ln\left(\frac{P_{i,t}^{\mathrm{adj}}}{P_{i,t-1}^{\mathrm{adj}}}\right),
-\label{eq:theory_log_returns}
-\end{equation}
-where $P_{i,t}^{\mathrm{adj}}$ is the dividend- and split-adjusted closing price of asset $i \in \{1, \dots, N\}$ on trading day $t \in \{1, \dots, T\}$ \cite{campbell_1997_econometrics,tsay_2005_analysis}. Across global stock markets, return series share several well-established universal behaviors, known as \emph{stylized facts} \cite{cont_2001_empirical}:
+To compare price changes consistently across different companies, prices are converted into daily logarithmic returns $r_{i,t} = \ln(P_{i,t}^{\mathrm{adj}} / P_{i,t-1}^{\mathrm{adj}})$, where $P_{i,t}^{\mathrm{adj}}$ is the dividend- and split-adjusted closing price of asset $i \in \{1, \dots, N\}$ on trading day $t \in \{1, \dots, T\}$ \cite{campbell_1997_econometrics,tsay_2005_analysis}. Across global stock markets, return series share several well-established universal behaviors, known as \emph{stylized facts} \cite{cont_2001_empirical}:
 \begin{itemize}
-  \item \textbf{Heavy Tails (Non-Gaussianity):} Extreme positive or negative price swings occur much more frequently than predicted by a standard normal curve (leptokurtosis) \cite{mandelbrot_1963_variation,fama_1965_behavior}.
-  \item \textbf{Volatility Clustering:} While raw daily returns show little linear predictability, price volatility clusters in time---turbulent days are typically followed by turbulent days, and calm days by calm days \cite{engle_1982_autoregressive,bollerslev_1986_generalized}.
-  \item \textbf{Asymmetric Co-movement:} Correlations between stocks tend to increase sharply during market downturns, which temporarily reduces the benefits of portfolio diversification \cite{longin_solnik_2001_extreme,ang_chen_2002_asymmetric}.
+  \item \textbf{Heavy Tails (Non-Gaussianity):} Extreme positive or negative price swings occur much more frequently than predicted by a standard normal curve (leptokurtosis).
+  \item \textbf{Volatility Clustering:} While raw daily returns show little linear predictability, price volatility clusters in time---turbulent days are typically followed by turbulent days, and calm days by calm days.
+  \item \textbf{Asymmetric Co-movement:} Correlations between stocks tend to increase sharply during market downturns, which temporarily reduces the benefits of portfolio diversification.
 \end{itemize}
 
 To measure co-movement without distortion from differences in individual asset volatility, each return series is normalized to zero mean and unit variance, $\widetilde{r}_{i,t} = (r_{i,t} - \widehat{\mu}_i)/\widehat{\sigma}_i$. The resulting standardized matrix $\widetilde{\mathbf{R}} \in \mathbb{R}^{T \times N}$ yields the Pearson cross-correlation matrix:

@@ -1,0 +1,115 @@
+\section{Methodology}
+\label{sec:methodology}
+
+This section explains how the study moves from adjusted prices to correlation structure, RMT components, filtered graphs and a retrospective volatility-model assessment. Each subsection states the empirical object, its purpose and its interpretation. Standard notation is kept compact here; implementation details and robustness outputs remain available in the Supplementary Material. Figure~\ref{fig:methodology_overview} summarizes the sequence.
+
+\begin{center}
+\resizebox{0.94\linewidth}{!}{%
+\begin{tikzpicture}[
+    x=1cm, y=1cm, >=Latex,
+    box/.style={rectangle,rounded corners,draw=black,thick,align=center,minimum width=4.2cm,minimum height=1.0cm,font=\small},
+    smallbox/.style={rectangle,rounded corners,draw=black,thick,align=center,minimum width=3.0cm,minimum height=0.85cm,font=\small},
+    line/.style={->,thick}]
+\node[box] (data) at (0,0) {BovDB/B3 daily data\\Adjusted closing prices};
+\node[box] (filters) at (5.4,0) {Asset filtering\\and universe definition};
+\node[box] (returns) at (10.8,0) {Log returns\\and synchronized panel};
+\node[box] (diagnostics) at (5.4,-2.3) {Stylized facts and\\correlation diagnostics};
+\node[box] (rmt) at (5.4,-4.5) {Random Matrix Theory\\spectral decomposition};
+\node[smallbox] (market) at (1.8,-6.6) {Market mode};
+\node[smallbox] (group) at (5.4,-6.6) {Group/sector mode};
+\node[smallbox] (noise) at (9.0,-6.6) {Noise component};
+\node[box] (networks) at (2.4,-8.8) {MST, PMFG and\\hierarchical clustering};
+\node[box] (aggregate) at (8.4,-8.8) {Aggregated subsector\\dependency network};
+\node[box] (assessment) at (5.4,-11.0) {Retrospective volatility-model\\assessment (separate framework)};
+\draw[line] (data)--(filters); \draw[line] (filters)--(returns);
+\draw[line] (returns.south)|-(diagnostics.east); \draw[line] (diagnostics)--(rmt);
+\draw[line] (rmt)--(market); \draw[line] (rmt)--(group); \draw[line] (rmt)--(noise);
+\draw[line] (group.south).. controls (4.2,-7.5) and (2.4,-7.9)..(networks.north);
+\draw[line] (group.south).. controls (6.6,-7.5) and (8.4,-7.9)..(aggregate.north);
+\draw[line] (networks.south)|-(assessment.west); \draw[line] (aggregate.south)|-(assessment.east);
+\end{tikzpicture}%
+}
+\captionof{figure}{Empirical workflow. Adjusted B3 prices define the equity universe and synchronized returns; correlation diagnostics, RMT and filtered graphs then characterize the dependency structure. The final volatility-model assessment is retrospective because its structural descriptors are estimated from the full synchronized sample.}
+\label{fig:methodology_overview}
+\end{center}
+
+\subsection{Notation and return matrix}
+\label{subsec:notation}
+
+For adjusted close $P^{\mathrm{adj}}_{i,t}$, the daily log return is $r_{i,t}=\log P^{\mathrm{adj}}_{i,t}-\log P^{\mathrm{adj}}_{i,t-1}$. The core panel is $\mathbf{R}_{\mathrm{core}}\in\mathbb{R}^{T\times N}$, with $N=58$ equities and $T=1527$ common trading days. This common panel is the input to all spectral and graph calculations.
+
+\subsection{Asset filtering and complete return panel}
+\label{subsec:asset_filtering}
+
+We retain direct equities with sufficient history and valid adjusted-price observations, select one share class per issuer where necessary, and intersect their dates to form the complete panel. Broader pairwise descriptive statistics use their available overlap; the distinction avoids treating the larger descriptive sample as if it were the RMT sample.
+
+\subsection{Stylized facts and descriptive diagnostics}
+\label{subsec:stylized_method}
+
+For PETR4, VALE3 and BBDC4, we report return plots, tail summaries, moments, empirical Value at Risk and autocorrelations of absolute returns. These checks establish the observed return regularities before any network interpretation; they are descriptive rather than tests of a specific return-generating model.
+
+\subsection{Correlation matrix estimation}
+\label{subsec:correlation_method}
+
+Each return series is standardized within the relevant sample and the Pearson matrix is estimated as
+\begin{equation}
+\mathbf{C}=\frac{1}{T-1}\widetilde{\mathbf{R}}^{\top}\widetilde{\mathbf{R}}.
+\end{equation}
+It summarizes linear co-movement and is the common object for the spectral, clustering and graph analyses that follow.
+
+\subsection{Sectoral correlation comparison}
+\label{subsec:sectoral_method}
+
+We compare within-sector and between-sector pairwise correlations using the stated B3 classifications, supplemented by an asset-level sector-label permutation check. The comparison asks whether the observed labels align with correlation differences; it does not establish that sector membership causes those differences.
+
+\subsection{Rolling market synchronization}
+\label{subsec:rolling_corr_method}
+
+Rolling average pairwise correlation tracks changes in broad co-movement through time. It is interpreted as a descriptive synchronization measure, useful for locating intervals in which market-wide dependence is more pronounced, not as a trading signal.
+
+\subsection{Random Matrix Theory filtering}
+\label{subsec:rmt_method}
+
+We decompose $\mathbf{C}=\sum_{k=1}^{N}\lambda_k\mathbf{u}_k\mathbf{u}_k^{\top}$ and compare its spectrum with the Mar\v{c}enko--Pastur bounds
+\begin{equation}
+\lambda_{\pm}=\left(1+\frac{1}{Q}\pm2\sqrt{\frac{1}{Q}}\right), \qquad Q=T/N.
+\end{equation}
+The leading mode is described as broad market co-movement; remaining above-bound modes are candidate group-level structure, while the residual is noise-compatible under this benchmark. Issuer-collapsed and circular-shift analyses assess the robustness of this descriptive reading.
+
+\subsection{Mantegna distance and hierarchical clustering}
+\label{subsec:distance_clustering_method}
+
+For valid correlation matrices, $d_{ij}=\sqrt{2(1-C_{ij})}$ converts similarity into Mantegna distance. Average-linkage clustering and ordered heatmaps then make block-like organization visible. The main text presents one annotated group-mode dendrogram; alternative comparisons are retained in the Supplementary Material.
+
+\subsection{Minimum Spanning Tree and Planar Maximally Filtered Graph}
+\label{subsec:network_method}
+
+The MST is the sparse connected backbone of the distance graph. The PMFG retains up to $3N-6$ planar edges, allowing localized cycles and clustering to be summarized. Original and group-mode networks are compared to ask whether localized topology persists after removal of broad common motion.
+
+\subsection{Aggregated subsector dependency network}
+\label{subsec:subsector_network_method}
+
+The subsector network translates retained ticker-level edges to pairs of B3 subsectors. For groups $a$ and $b$, its displayed weight is the mean retained dependency,
+\begin{equation}
+W_{ab}=\frac{1}{|\mathcal{E}_{ab}|}\sum_{(i,j)\in\mathcal{E}_{ab}}w_{ij},
+\qquad \mathcal{E}_{ab}=\{(i,j)\in E:g(i)=a,\ g(j)=b\}.
+\end{equation}
+It answers which subsector pairs are connected in the selected graph. It is not a causal channel estimate or a new aggregation theory.
+
+\subsection{Volatility forecasting formulation}
+\label{subsec:forecast_formulation}
+
+For horizon $h$, the realized-variance proxy is $\sigma^2_t(h)=\sum_{j=1}^{h}r_{t+j}^2$. The forecasting exercise relates model predictions to this proxy for three demonstration assets. Structural descriptors are calculated with the full synchronized sample, so their use is explicitly ex-post and cannot support a claim of deployable real-time forecasting performance.
+
+\subsection{Machine-learning and deep-learning feature sets}
+\label{subsec:feature_sets}
+
+Set A contains lagged return and volatility features. Set B adds rolling market variables and full-sample RMT descriptors, and Set C adds full-sample MST/PMFG descriptors. Tree-based machine-learning models and compact neural models are tuned on the validation period and evaluated once on the chronological test period. The comparison evaluates association under this fixed design, not causal feature value.
+
+\subsection{Forecast evaluation metrics}
+\label{subsec:forecast_metrics}
+\label{subsec:evaluation_method}
+
+We report MAE, RMSE, out-of-sample $R^2$ and QLIKE. For predicted proxy $\hat{\sigma}^2_t$ and realized proxy $\sigma^2_t$, QLIKE is $\sigma^2_t/\hat{\sigma}^2_t-\log(\sigma^2_t/\hat{\sigma}^2_t)-1$. Fixed-seed circular moving-block bootstrap intervals summarize test-period uncertainty, while a one-sided HAC comparison is a focused retrospective contrast between the validation-selected structural and Set-A specifications. The full settings are reported with the results and Supplementary Material.
+
+All tables use one numerical-display convention. Counts, sample sizes and graph cardinalities are integers; continuous estimates, error metrics, correlations, interval endpoints, eigenvalues and shares use four decimal places; shape statistics and design ratios such as $Q$ use two; autocorrelations, stability or similarity measures and $p$-values use three; test statistics use two; and numerical reconstruction errors use scientific notation with three significant figures. This convention affects display only and does not change any empirical calculation.
