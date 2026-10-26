@@ -4,6 +4,7 @@ __pycache__/
 venv/
 .env
 .ipynb_checkpoints/
+tmp/
 
 # Local infrastructure and data
 config/clickhouse.toml

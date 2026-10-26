@@ -320,8 +320,8 @@
 <text x="806" y="250" class="t2">bulk</text>
 
 <!-- Region labels: separated, each aligned with its region -->
-<text class="t2" x="570" y="362" text-anchor="middle" style="font-weight:600;">significant modes</text>
-<text class="t2" x="790" y="362" text-anchor="middle" style="font-weight:600;">remaining spectrum</text>
+<text class="t2" x="560" y="362" text-anchor="middle" style="font-weight:600;">significant modes</text>
+<text class="t2" x="810" y="362" text-anchor="middle" style="font-weight:600;">remaining spectrum</text>
 
 <!-- Dominant market mode info -->
 <text x="531" y="396" class="t3">Dominant market mode</text>
@@ -532,20 +532,21 @@
 <text class="small" x="1374" y="288">-0.5</text>
 <text class="small" x="1374" y="333">-1.0</text>
 
-<!-- "Localized blocks" text — repositioned below heatmap, left-aligned -->
-<text x="1115" y="382" class="t2" style="font-style:italic;">Localized blocks persist after market-mode removal</text>
+<!-- "Localized blocks" text — split into two lines -->
+<text x="1115" y="380" class="t2" style="font-style:italic;">Localized blocks persist after</text>
+<text x="1115" y="396" class="t2" style="font-style:italic;">market-mode removal</text>
 
-<!-- PMFG clustering box — aligned below localized text, narrower -->
-<rect x="1115" y="392" width="216" height="30" rx="8" ry="8" fill="#f3f8ff" stroke="#1d6fb8" stroke-width="1.4"/>
-<text x="1130" y="412" class="t2" style="font-weight:600;">PMFG clustering: 0.527 → 0.665</text>
+<!-- PMFG clustering box — more breathing room below text -->
+<rect x="1115" y="405" width="216" height="30" rx="8" ry="8" fill="#f3f8ff" stroke="#1d6fb8" stroke-width="1.4"/>
+<text x="1130" y="425" class="t2" style="font-weight:600;">PMFG clustering: 0.527 → 0.665</text>
 
-<!-- Network labels -->
-<text x="1040" y="445" class="t4">Original</text>
-<text x="1305" y="445" class="t4">Group-mode</text>
+<!-- Network labels (spread wider) -->
+<text x="1025" y="450" class="t4">Original</text>
+<text x="1280" y="450" class="t4">Group-mode</text>
 
-<!-- Internal arrow (REDUCED) -->
-<text x="1195" y="460" class="t5" style="font-weight:600;">MST / PMFG</text>
-<line x1="1200" y1="468" x2="1240" y2="468" stroke="#1d6fb8" stroke-width="3" marker-end="url(#arrowSmall)"/>
+<!-- Internal arrow (centered between networks) -->
+<text x="1190" y="462" class="t5" text-anchor="middle" style="font-weight:600;">MST / PMFG</text>
+<line x1="1172" y1="470" x2="1210" y2="470" stroke="#1d6fb8" stroke-width="2.5" marker-end="url(#arrowSmall)"/>
 
 <!-- Original network -->
 <line x1="1131.6" y1="482" x2="1147.9" y2="505.7" stroke="#bdbdbd" stroke-width="1" opacity="0.85"/>
@@ -669,73 +670,73 @@
 <circle cx="1078.9" cy="461.0" r="5" fill="#b9e2ff" stroke="#5f6f7f" stroke-width="1"/>
 <circle cx="1107.3" cy="466.2" r="5" fill="#b9e2ff" stroke="#5f6f7f" stroke-width="1"/>
 
-<!-- Group-mode clusters (shifted right for spacing from arrow) -->
-<circle cx="1290" cy="490" r="10" fill="#1d78d2"/>
-<line x1="1290" y1="490" x2="1317.4" y2="495.6" stroke="#1d78d2" stroke-width="2"/>
-<circle cx="1317.4" cy="495.6" r="5" fill="white" stroke="#1d78d2" stroke-width="2"/>
-<line x1="1290" y1="490" x2="1298.9" y2="516.5" stroke="#1d78d2" stroke-width="2"/>
-<circle cx="1298.9" cy="516.5" r="5" fill="white" stroke="#1d78d2" stroke-width="2"/>
-<line x1="1290" y1="490" x2="1271.5" y2="511.0" stroke="#1d78d2" stroke-width="2"/>
-<circle cx="1271.5" cy="511.0" r="5" fill="white" stroke="#1d78d2" stroke-width="2"/>
-<line x1="1290" y1="490" x2="1262.6" y2="484.4" stroke="#1d78d2" stroke-width="2"/>
-<circle cx="1262.6" cy="484.4" r="5" fill="white" stroke="#1d78d2" stroke-width="2"/>
-<line x1="1290" y1="490" x2="1281.1" y2="463.5" stroke="#1d78d2" stroke-width="2"/>
-<circle cx="1281.1" cy="463.5" r="5" fill="white" stroke="#1d78d2" stroke-width="2"/>
-<line x1="1290" y1="490" x2="1308.5" y2="469.0" stroke="#1d78d2" stroke-width="2"/>
-<circle cx="1308.5" cy="469.0" r="5" fill="white" stroke="#1d78d2" stroke-width="2"/>
+<!-- Group-mode clusters (shifted 20px left to avoid right border) -->
+<circle cx="1270" cy="490" r="10" fill="#1d78d2"/>
+<line x1="1270" y1="490" x2="1297.4" y2="495.6" stroke="#1d78d2" stroke-width="2"/>
+<circle cx="1297.4" cy="495.6" r="5" fill="white" stroke="#1d78d2" stroke-width="2"/>
+<line x1="1270" y1="490" x2="1278.9" y2="516.5" stroke="#1d78d2" stroke-width="2"/>
+<circle cx="1278.9" cy="516.5" r="5" fill="white" stroke="#1d78d2" stroke-width="2"/>
+<line x1="1270" y1="490" x2="1251.5" y2="511.0" stroke="#1d78d2" stroke-width="2"/>
+<circle cx="1251.5" cy="511.0" r="5" fill="white" stroke="#1d78d2" stroke-width="2"/>
+<line x1="1270" y1="490" x2="1242.6" y2="484.4" stroke="#1d78d2" stroke-width="2"/>
+<circle cx="1242.6" cy="484.4" r="5" fill="white" stroke="#1d78d2" stroke-width="2"/>
+<line x1="1270" y1="490" x2="1261.1" y2="463.5" stroke="#1d78d2" stroke-width="2"/>
+<circle cx="1261.1" cy="463.5" r="5" fill="white" stroke="#1d78d2" stroke-width="2"/>
+<line x1="1270" y1="490" x2="1288.5" y2="469.0" stroke="#1d78d2" stroke-width="2"/>
+<circle cx="1288.5" cy="469.0" r="5" fill="white" stroke="#1d78d2" stroke-width="2"/>
 
-<circle cx="1370" cy="490" r="10" fill="#ff8c2b"/>
-<line x1="1370" y1="490" x2="1397.4" y2="495.6" stroke="#ff8c2b" stroke-width="2"/>
-<circle cx="1397.4" cy="495.6" r="5" fill="white" stroke="#ff8c2b" stroke-width="2"/>
-<line x1="1370" y1="490" x2="1378.9" y2="516.5" stroke="#ff8c2b" stroke-width="2"/>
-<circle cx="1378.9" cy="516.5" r="5" fill="white" stroke="#ff8c2b" stroke-width="2"/>
-<line x1="1370" y1="490" x2="1351.5" y2="511.0" stroke="#ff8c2b" stroke-width="2"/>
-<circle cx="1351.5" cy="511.0" r="5" fill="white" stroke="#ff8c2b" stroke-width="2"/>
-<line x1="1370" y1="490" x2="1342.6" y2="484.4" stroke="#ff8c2b" stroke-width="2"/>
-<circle cx="1342.6" cy="484.4" r="5" fill="white" stroke="#ff8c2b" stroke-width="2"/>
-<line x1="1370" y1="490" x2="1361.1" y2="463.5" stroke="#ff8c2b" stroke-width="2"/>
-<circle cx="1361.1" cy="463.5" r="5" fill="white" stroke="#ff8c2b" stroke-width="2"/>
-<line x1="1370" y1="490" x2="1388.5" y2="469.0" stroke="#ff8c2b" stroke-width="2"/>
-<circle cx="1388.5" cy="469.0" r="5" fill="white" stroke="#ff8c2b" stroke-width="2"/>
+<circle cx="1350" cy="490" r="10" fill="#ff8c2b"/>
+<line x1="1350" y1="490" x2="1377.4" y2="495.6" stroke="#ff8c2b" stroke-width="2"/>
+<circle cx="1377.4" cy="495.6" r="5" fill="white" stroke="#ff8c2b" stroke-width="2"/>
+<line x1="1350" y1="490" x2="1358.9" y2="516.5" stroke="#ff8c2b" stroke-width="2"/>
+<circle cx="1358.9" cy="516.5" r="5" fill="white" stroke="#ff8c2b" stroke-width="2"/>
+<line x1="1350" y1="490" x2="1331.5" y2="511.0" stroke="#ff8c2b" stroke-width="2"/>
+<circle cx="1331.5" cy="511.0" r="5" fill="white" stroke="#ff8c2b" stroke-width="2"/>
+<line x1="1350" y1="490" x2="1322.6" y2="484.4" stroke="#ff8c2b" stroke-width="2"/>
+<circle cx="1322.6" cy="484.4" r="5" fill="white" stroke="#ff8c2b" stroke-width="2"/>
+<line x1="1350" y1="490" x2="1341.1" y2="463.5" stroke="#ff8c2b" stroke-width="2"/>
+<circle cx="1341.1" cy="463.5" r="5" fill="white" stroke="#ff8c2b" stroke-width="2"/>
+<line x1="1350" y1="490" x2="1368.5" y2="469.0" stroke="#ff8c2b" stroke-width="2"/>
+<circle cx="1368.5" cy="469.0" r="5" fill="white" stroke="#ff8c2b" stroke-width="2"/>
 
-<circle cx="1290" cy="560" r="10" fill="#33b86c"/>
-<line x1="1290" y1="560" x2="1317.4" y2="565.6" stroke="#33b86c" stroke-width="2"/>
-<circle cx="1317.4" cy="565.6" r="5" fill="white" stroke="#33b86c" stroke-width="2"/>
-<line x1="1290" y1="560" x2="1298.9" y2="586.5" stroke="#33b86c" stroke-width="2"/>
-<circle cx="1298.9" cy="586.5" r="5" fill="white" stroke="#33b86c" stroke-width="2"/>
-<line x1="1290" y1="560" x2="1271.5" y2="581.0" stroke="#33b86c" stroke-width="2"/>
-<circle cx="1271.5" cy="581.0" r="5" fill="white" stroke="#33b86c" stroke-width="2"/>
-<line x1="1290" y1="560" x2="1262.6" y2="554.4" stroke="#33b86c" stroke-width="2"/>
-<circle cx="1262.6" cy="554.4" r="5" fill="white" stroke="#33b86c" stroke-width="2"/>
-<line x1="1290" y1="560" x2="1281.1" y2="533.5" stroke="#33b86c" stroke-width="2"/>
-<circle cx="1281.1" cy="533.5" r="5" fill="white" stroke="#33b86c" stroke-width="2"/>
-<line x1="1290" y1="560" x2="1308.5" y2="539.0" stroke="#33b86c" stroke-width="2"/>
-<circle cx="1308.5" cy="539.0" r="5" fill="white" stroke="#33b86c" stroke-width="2"/>
+<circle cx="1270" cy="560" r="10" fill="#33b86c"/>
+<line x1="1270" y1="560" x2="1297.4" y2="565.6" stroke="#33b86c" stroke-width="2"/>
+<circle cx="1297.4" cy="565.6" r="5" fill="white" stroke="#33b86c" stroke-width="2"/>
+<line x1="1270" y1="560" x2="1278.9" y2="586.5" stroke="#33b86c" stroke-width="2"/>
+<circle cx="1278.9" cy="586.5" r="5" fill="white" stroke="#33b86c" stroke-width="2"/>
+<line x1="1270" y1="560" x2="1251.5" y2="581.0" stroke="#33b86c" stroke-width="2"/>
+<circle cx="1251.5" cy="581.0" r="5" fill="white" stroke="#33b86c" stroke-width="2"/>
+<line x1="1270" y1="560" x2="1242.6" y2="554.4" stroke="#33b86c" stroke-width="2"/>
+<circle cx="1242.6" cy="554.4" r="5" fill="white" stroke="#33b86c" stroke-width="2"/>
+<line x1="1270" y1="560" x2="1261.1" y2="533.5" stroke="#33b86c" stroke-width="2"/>
+<circle cx="1261.1" cy="533.5" r="5" fill="white" stroke="#33b86c" stroke-width="2"/>
+<line x1="1270" y1="560" x2="1288.5" y2="539.0" stroke="#33b86c" stroke-width="2"/>
+<circle cx="1288.5" cy="539.0" r="5" fill="white" stroke="#33b86c" stroke-width="2"/>
 
-<circle cx="1370" cy="560" r="10" fill="#8a5bd3"/>
-<line x1="1370" y1="560" x2="1397.4" y2="565.6" stroke="#8a5bd3" stroke-width="2"/>
-<circle cx="1397.4" cy="565.6" r="5" fill="white" stroke="#8a5bd3" stroke-width="2"/>
-<line x1="1370" y1="560" x2="1378.9" y2="586.5" stroke="#8a5bd3" stroke-width="2"/>
-<circle cx="1378.9" cy="586.5" r="5" fill="white" stroke="#8a5bd3" stroke-width="2"/>
-<line x1="1370" y1="560" x2="1351.5" y2="581.0" stroke="#8a5bd3" stroke-width="2"/>
-<circle cx="1351.5" cy="581.0" r="5" fill="white" stroke="#8a5bd3" stroke-width="2"/>
-<line x1="1370" y1="560" x2="1342.6" y2="554.4" stroke="#8a5bd3" stroke-width="2"/>
-<circle cx="1342.6" cy="554.4" r="5" fill="white" stroke="#8a5bd3" stroke-width="2"/>
-<line x1="1370" y1="560" x2="1361.1" y2="533.5" stroke="#8a5bd3" stroke-width="2"/>
-<circle cx="1361.1" cy="533.5" r="5" fill="white" stroke="#8a5bd3" stroke-width="2"/>
-<line x1="1370" y1="560" x2="1388.5" y2="539.0" stroke="#8a5bd3" stroke-width="2"/>
-<circle cx="1388.5" cy="539.0" r="5" fill="white" stroke="#8a5bd3" stroke-width="2"/>
+<circle cx="1350" cy="560" r="10" fill="#8a5bd3"/>
+<line x1="1350" y1="560" x2="1377.4" y2="565.6" stroke="#8a5bd3" stroke-width="2"/>
+<circle cx="1377.4" cy="565.6" r="5" fill="white" stroke="#8a5bd3" stroke-width="2"/>
+<line x1="1350" y1="560" x2="1358.9" y2="586.5" stroke="#8a5bd3" stroke-width="2"/>
+<circle cx="1358.9" cy="586.5" r="5" fill="white" stroke="#8a5bd3" stroke-width="2"/>
+<line x1="1350" y1="560" x2="1331.5" y2="581.0" stroke="#8a5bd3" stroke-width="2"/>
+<circle cx="1331.5" cy="581.0" r="5" fill="white" stroke="#8a5bd3" stroke-width="2"/>
+<line x1="1350" y1="560" x2="1322.6" y2="554.4" stroke="#8a5bd3" stroke-width="2"/>
+<circle cx="1322.6" cy="554.4" r="5" fill="white" stroke="#8a5bd3" stroke-width="2"/>
+<line x1="1350" y1="560" x2="1341.1" y2="533.5" stroke="#8a5bd3" stroke-width="2"/>
+<circle cx="1341.1" cy="533.5" r="5" fill="white" stroke="#8a5bd3" stroke-width="2"/>
+<line x1="1350" y1="560" x2="1368.5" y2="539.0" stroke="#8a5bd3" stroke-width="2"/>
+<circle cx="1368.5" cy="539.0" r="5" fill="white" stroke="#8a5bd3" stroke-width="2"/>
 
-<text x="1280" y="608" class="t3" text-anchor="middle">Hubs and subsectors</text>
+<text x="1260" y="608" class="t3" text-anchor="middle">Hubs and subsectors</text>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!-- PANEL 4 — Volatility assessment                           -->
 <!-- ═══════════════════════════════════════════════════════════ -->
 <text x="1686" y="96" text-anchor="middle" class="t2">Realized vs. predicted 20-day volatility</text>
 
-<!-- Retrospective badge (moved up for alignment) -->
-<rect x="1740" y="115" width="138" height="36" rx="13" ry="13" fill="#d7ebfb"/>
-<text x="1769" y="139" class="t4">Retrospective</text>
+<!-- Retrospective badge (above chart, right-aligned, clear of data) -->
+<rect x="1815" y="96" width="98" height="28" rx="10" ry="10" fill="#d7ebfb"/>
+<text x="1826" y="115" class="t5" style="font-weight:700;">Retrospective</text>
 
 <!-- Volatility chart axes -->
 <line class="axis" x1="1511" y1="340" x2="1827" y2="340"/>
@@ -772,8 +773,8 @@
 <line x1="1531" y1="194" x2="1556" y2="194" stroke="#2cb7da" stroke-width="3" stroke-dasharray="8,5"/>
 <text class="t2" x="1565" y="199">Predicted</text>
 
-<!-- Held-out test label (centered, higher) -->
-<text class="t2" x="1669" y="378" text-anchor="middle" style="font-weight:600;">Held-out test: 2021–2025</text>
+<!-- Held-out test label (closer to axis, centered under chart) -->
+<text class="t2" x="1669" y="370" text-anchor="middle" style="font-weight:600;">Held-out test: 2021–2025</text>
 
 <!-- Explanatory box (slightly taller for breathing) -->
 <rect x="1504" y="395" width="366" height="88" rx="10" ry="10" fill="#f3f7fb" stroke="#c3d5e8" stroke-width="1.5"/>

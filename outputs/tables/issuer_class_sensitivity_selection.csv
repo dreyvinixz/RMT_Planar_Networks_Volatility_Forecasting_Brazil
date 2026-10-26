@@ -1,25 +1,25 @@
-symbol,company_name,sector,subsector,segment,valid_return_observations,retained_in_issuer_panel
-BBDC3,BRADESCO,Financials,Banks,Banks,6885,False
-BBDC4,BRADESCO,Financials,Banks,Banks,6886,True
-BRAP3,BRADESPAR,Basic Materials,Mining,Holdings,6210,False
-BRAP4,BRADESPAR,Basic Materials,Mining,Holdings,6291,True
-BRKM3,BRASKEM,Basic Materials,Chemicals,Petrochemicals,5048,False
-BRKM5,BRASKEM,Basic Materials,Chemicals,Petrochemicals,5783,True
-CMIG3,CEMIG,Utilities,Electric Utility,Generation and Distribution,6880,False
-CMIG4,CEMIG,Utilities,Electric Utility,Generation and Distribution,6885,True
-CPLE3,COPEL,Utilities,Electric Utility,Generation and Distribution,6787,False
-CPLE6,COPEL,Utilities,Electric Utility,Generation and Distribution,6852,True
-ELET3,ELETROBRAS,Utilities,Electric Utility,Generation and Transmission,6852,True
-ELET6,ELETROBRAS,Utilities,Electric Utility,Generation and Transmission,6852,False
-GGBR3,GERDAU,Basic Materials,Steel and Metallurgy,Steel,5682,False
-GGBR4,GERDAU,Basic Materials,Steel and Metallurgy,Steel,6174,True
-ITSA3,ITAUSA,Financials,Financial Services,Holdings,5710,False
-ITSA4,ITAUSA,Financials,Financial Services,Holdings,6885,True
-GOAU3,METALURGICA GERDAU,Basic Materials,Steel and Metallurgy,Holdings,5852,False
-GOAU4,METALURGICA GERDAU,Basic Materials,Steel and Metallurgy,Holdings,6885,True
-PETR3,PETROBRAS,Oil Gas and Biofuels,Oil Gas and Biofuels,Exploration Refining and Distribution,6885,True
-PETR4,PETROBRAS,Oil Gas and Biofuels,Oil Gas and Biofuels,Exploration Refining and Distribution,6885,False
-TELB3,TELEBRAS,Telecommunications,Telecommunications,Telecommunications,5386,False
-TELB4,TELEBRAS,Telecommunications,Telecommunications,Telecommunications,6852,True
-USIM3,USIMINAS,Basic Materials,Steel and Metallurgy,Steel,6005,False
-USIM5,USIMINAS,Basic Materials,Steel and Metallurgy,Steel,6669,True
+symbol,company_name,sector,subsector,segment,mean_financial_volume_common_panel,full_sample_valid_return_observations,common_panel_observations,retained_in_issuer_panel,selection_rule
+BBDC3,BRADESCO,Financials,Banks,Banks,76633387.22069417,6885,1527,False,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+BBDC4,BRADESCO,Financials,Banks,Banks,568982596.3955468,6886,1527,True,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+BRAP3,BRADESPAR,Basic Materials,Mining,Holdings,1842568.1519318926,6210,1527,False,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+BRAP4,BRADESPAR,Basic Materials,Mining,Holdings,86294588.56057629,6291,1527,True,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+BRKM3,BRASKEM,Basic Materials,Chemicals,Petrochemicals,490990.1611001965,5048,1527,False,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+BRKM5,BRASKEM,Basic Materials,Chemicals,Petrochemicals,76536335.84872298,5783,1527,True,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+CMIG3,CEMIG,Utilities,Electric Utility,Generation and Distribution,8980476.516699411,6880,1527,False,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+CMIG4,CEMIG,Utilities,Electric Utility,Generation and Distribution,101240199.16044532,6885,1527,True,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+CPLE3,COPEL,Utilities,Electric Utility,Generation and Distribution,12209461.260641782,6787,1527,False,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+CPLE6,COPEL,Utilities,Electric Utility,Generation and Distribution,66028693.58284217,6852,1527,True,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+ELET3,ELETROBRAS,Utilities,Electric Utility,Generation and Transmission,182197911.98362803,6852,1527,True,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+ELET6,ELETROBRAS,Utilities,Electric Utility,Generation and Transmission,75167882.8454486,6852,1527,False,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+GGBR3,GERDAU,Basic Materials,Steel and Metallurgy,Steel,3325996.3156516044,5682,1527,False,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+GGBR4,GERDAU,Basic Materials,Steel and Metallurgy,Steel,234398168.85068762,6174,1527,True,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+ITSA3,ITAUSA,Financials,Financial Services,Holdings,3546092.3366077277,5710,1527,False,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+ITSA4,ITAUSA,Financials,Financial Services,Holdings,199159998.59659463,6885,1527,True,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+GOAU3,METALURGICA GERDAU,Basic Materials,Steel and Metallurgy,Holdings,860781.7085789129,5852,1527,False,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+GOAU4,METALURGICA GERDAU,Basic Materials,Steel and Metallurgy,Holdings,80895037.89691553,6885,1527,True,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+PETR3,PETROBRAS,Oil Gas and Biofuels,Oil Gas and Biofuels,Exploration Refining and Distribution,369893777.95055664,6885,1527,False,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+PETR4,PETROBRAS,Oil Gas and Biofuels,Oil Gas and Biofuels,Exploration Refining and Distribution,1404540077.1394892,6885,1527,True,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+TELB3,TELEBRAS,Telecommunications,Telecommunications,Telecommunications,396075.2278978389,5386,1527,False,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+TELB4,TELEBRAS,Telecommunications,Telecommunications,Telecommunications,4999879.231172233,6852,1527,True,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+USIM3,USIMINAS,Basic Materials,Steel and Metallurgy,Steel,12071793.383104125,6005,1527,False,"max common-panel observations, then max mean financial volume in common panel, then ticker"
+USIM5,USIMINAS,Basic Materials,Steel and Metallurgy,Steel,171952884.44728225,6669,1527,True,"max common-panel observations, then max mean financial volume in common panel, then ticker"

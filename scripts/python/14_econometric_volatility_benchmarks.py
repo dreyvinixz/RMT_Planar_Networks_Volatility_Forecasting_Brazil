@@ -167,6 +167,15 @@ def main():
             preds = pd.Series(model.predict(X_all), index=X_all.index)
             # Clip predictions to 0 to avoid negative RV
             preds = np.maximum(preds, 1e-6)
+
+            valid_prediction = y_all.notna()
+            har_prediction_block = sdf.loc[valid_prediction, ["date", "symbol", "split"]].copy()
+            har_prediction_block["horizon"] = h
+            har_prediction_block["model"] = "HAR-RV"
+            har_prediction_block["feature_set"] = "HAR-RV benchmark"
+            har_prediction_block["y_true"] = y_all.loc[valid_prediction].to_numpy()
+            har_prediction_block["y_pred"] = preds.loc[valid_prediction].to_numpy()
+            all_har_forecasts.append(har_prediction_block)
             
             for split_name, split_mask in [("train", train_mask), ("validation", val_mask), ("test", test_mask)]:
                 mae, rmse, qlike, r2oos = evaluate_model(y_all[split_mask], preds[split_mask], y_train)
@@ -182,6 +191,9 @@ def main():
     
     comp_path = OUTPUT_DIR / "econometric_model_comparison_2006_2025.csv"
     comp_df.to_csv(comp_path, index=False)
+
+    har_predictions_path = OUTPUT_DIR / "har_rv_predictions_2006_2025.csv"
+    pd.concat(all_har_forecasts, ignore_index=True).to_csv(har_predictions_path, index=False)
     
     garch_params_path = OUTPUT_DIR / "garch_parameters_2006_2025.csv"
     garch_params_df.to_csv(garch_params_path, index=False)

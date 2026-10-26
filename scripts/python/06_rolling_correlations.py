@@ -176,6 +176,8 @@ def main() -> None:
     
     out_csv_252 = OUTPUT_DIR / "core_historical_rolling_average_correlation_1998_2025.csv"
     res_252.to_csv(out_csv_252, index=False)
+    out_csv_504 = OUTPUT_DIR / "core_historical_rolling_average_correlation_504d_1998_2025.csv"
+    res_504.to_csv(out_csv_504, index=False)
     
     pdf_path_4 = FIGURES_DIR / "vector" / "figure_4_rolling_average_correlation.pdf"
     png_path_4 = FIGURES_DIR / "preview" / "figure_4_rolling_average_correlation.png"
@@ -190,7 +192,7 @@ def main() -> None:
     low_dates = res_252.sort_values("avg_correlation").head(5)
     print(f"\nTop high-correlation dates:\n{top_dates[['date', 'avg_correlation']].to_string(index=False)}")
     print(f"\nLowest correlation dates:\n{low_dates[['date', 'avg_correlation']].to_string(index=False)}")
-    print(f"Saved output paths: {out_csv_252}, {pdf_path_4}, {png_path_4}")
+    print(f"Saved output paths: {out_csv_252}, {out_csv_504}, {pdf_path_4}, {png_path_4}")
     
     # --- Phase 6.4: Dynamic Pairwise Correlations ---
     print("\nComputing dynamic pairwise correlations (2006-2025)...")

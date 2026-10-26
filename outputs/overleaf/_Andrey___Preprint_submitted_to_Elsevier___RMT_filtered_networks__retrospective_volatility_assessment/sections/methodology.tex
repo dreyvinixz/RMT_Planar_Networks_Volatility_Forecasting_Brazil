@@ -1,0 +1,153 @@
+\section{Methods: Integrated Empirical Framework}
+\label{sec:methodology}
+
+This section describes the empirical sequence: (i) B3 data and asset-universe construction, (ii) spectral separation of market, group and noise components, (iii) matched topological representations of original and filtered dependencies, and (iv) retrospective model assessment. The sequence can be reapplied to another market or sample by replacing the data and asset labels while preserving the stated decision rules. Figure~\ref{fig:methodology_overview} summarizes the analysis.
+
+\begin{center}
+\resizebox{0.94\linewidth}{!}{%
+\begin{tikzpicture}[
+    x=1cm, y=1cm, >=Latex,
+    box/.style={rectangle,rounded corners,draw=black,thick,align=center,minimum width=4.2cm,minimum height=1.0cm,font=\small},
+    smallbox/.style={rectangle,rounded corners,draw=black,thick,align=center,minimum width=3.0cm,minimum height=0.85cm,font=\small},
+    sectionbox/.style={rectangle,rounded corners=2pt,draw=black,thick,fill=none},
+    sectionlabel/.style={font=\bfseries\scriptsize,anchor=west,inner sep=0pt},
+    line/.style={->,thick}]
+% Section 4.1: data and asset universe
+\draw[sectionbox] (-2.5,1.35) rectangle (13.3,-3.35);
+% Section 4.2: RMT spectral decomposition and mode separation
+\draw[sectionbox] (-2.5,-3.60) rectangle (13.3,-7.45);
+% Section 4.3: filtered networks and hierarchical representations
+\draw[sectionbox] (-2.5,-7.70) rectangle (13.3,-9.75);
+% Section 4.4: retrospective model assessments
+\draw[sectionbox] (-2.5,-10.00) rectangle (13.3,-12.05);
+\node[box] (data) at (0,0) {BovDB/B3 daily data\\Adjusted closing prices};
+\node[box] (filters) at (5.4,0) {Asset filtering\\and universe definition};
+\node[box] (returns) at (10.8,0) {Log returns\\and synchronized panel};
+\node[box] (diagnostics) at (5.4,-2.3) {Stylized facts and\\correlation diagnostics};
+\node[box] (rmt) at (5.4,-4.5) {Random Matrix Theory\\spectral decomposition};
+\node[smallbox] (market) at (1.8,-6.6) {Market mode};
+\node[smallbox] (group) at (5.4,-6.6) {Group mode};
+\node[smallbox] (noise) at (9.0,-6.6) {Noise component};
+\node[box] (networks) at (2.4,-8.95) {MST, PMFG and\\hierarchical clustering};
+\node[box] (aggregate) at (8.4,-8.95) {Aggregated subsector\\dependency network};
+\node[box] (assessment) at (5.4,-11.0) {Retrospective model\\assessments};
+\draw[line] (data)--(filters); \draw[line] (filters)--(returns);
+\draw[line] (returns.south)|-(diagnostics.east); \draw[line] (diagnostics)--(rmt);
+\draw[line] (rmt)--(market); \draw[line] (rmt)--(group); \draw[line] (rmt)--(noise);
+% The group-mode matrix feeds the two matched network representations.
+\draw[thick] (group.south) -- (5.4,-8.95);
+\draw[line] (5.4,-8.95) -- (networks.east);
+\draw[line] (5.4,-8.95) -- (aggregate.west);
+% Both network outputs feed the retrospective model assessments.
+\draw[line] (networks.south)|-(assessment.west);
+\draw[line] (aggregate.south) |- (assessment.east);
+% Section labels are drawn last so connector lines cannot cross their text
+\node[sectionlabel] at (-2.3,1.08) {4.1. Data and asset universe};
+\node[sectionlabel] at (-2.3,-3.87) {4.2. RMT spectral decomposition and mode separation};
+\node[sectionlabel] at (-2.3,-7.97) {4.3. Filtered networks and hierarchical representations};
+\node[sectionlabel] at (-2.3,-10.27) {4.4. Retrospective model assessments};
+\end{tikzpicture}%
+}
+\captionof{figure}{Overview of the workflow. The workflow proceeds through stylized-fact checks, correlation estimation, Random Matrix Theory filtering, hierarchical clustering, MST/PMFG network construction, subsector aggregation and volatility forecasting with machine-learning, deep-learning, RMT and network-based features.}
+\label{fig:methodology_overview}
+\end{center}
+
+\subsection{Data and asset universe}
+\label{subsec:data_universe}
+
+This first block defines the empirical universe before any dependence is estimated. It separates raw historical coverage, the complete panel required by spectral methods and the smaller set of representative assets used for the volatility experiment.
+
+\label{subsec:bovdb_prices}
+
+We use daily adjusted B3 equity prices from the locally held historical extraction and cite the public BovDB and BovDBv2 datasets for their documented source and coverage \cite{cardoso_2022_bovdb,souza_2024_bovdbv2}. Harvard Dataverse identifies BovDBv2 V1 as CC0 1.0 and records public daily/intraday coverage through 31 July 2024. The local extraction used here extends through 30 December 2025; the additional local records are not part of that public release, are not included in this package, and their source-specific redistribution terms have not been verified. Reproduction of the local extension therefore requires an authorized source and applicable access rights. We retain adjusted closing prices because corporate-action adjustments affect returns, correlations and graph weights.
+
+\label{subsec:asset_filtering}
+
+We apply deterministic filters to retain direct listed equities with valid, strictly positive adjusted prices. BDRs, ETFs, investment funds, indices and other non-equity vehicles are excluded. We inspect extreme adjusted-return observations as a quality-control step and remove an asset only when the evidence indicates an implausible corporate-action or ticker-history inconsistency. A minimum historical-coverage rule is then applied, one share class per issuer is retained where necessary, and the remaining assets are synchronized on common trading dates.
+
+The resulting core historical universe contains 58 equities. Its raw unbalanced file spans 17 March 1998 to 30 December 2025, whereas the complete synchronized panel used for RMT, clustering and networks contains $N=58$ assets and $T=1527$ common observations from 23 August 2006 to 15 August 2024. The distinction prevents pairwise descriptive samples from being confused with the common panel required by the spectral analysis.
+
+The universe is historical rather than restricted to currently listed firms. This preserves a long B3 cross-section while keeping the number of assets compatible with interpretable spectral and network visualizations. Table~\ref{tab:universe_summary} distinguishes the broader representative-asset coverage from the complete synchronized panel used for RMT, clustering and network construction.
+
+\begin{center}
+\captionof{table}{Summary of the samples used in this study.}
+\label{tab:universe_summary}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrl}
+\toprule
+Sample & Assets & Period & Main use \\
+\midrule
+Representative assets & 3 & 2006--2025 & Stylized facts and initial forecasting experiment \\
+Core historical universe & 58 & 2006-08-23--2024-08-15 & RMT, clustering and networks (complete panel) \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+The complete-case restriction is important because the empirical correlation matrix must be estimated from a common set of trading dates across all assets. Static pairwise and rolling correlations may use the observations available for each pair or window; they therefore retain broader unbalanced coverage and should not be interpreted as estimates from the complete RMT panel.
+
+Each asset in the core universe is assigned to a macro-sector, subsector and segment classification. The macro sectors include Financials, Oil Gas and Biofuels, Basic Materials, Utilities, Industrials, Consumer Cyclical, Consumer Non-Cyclical, Real Estate and Telecommunications. These labels are used for sectoral correlation comparisons, heatmap interpretation, sector-retention checks and subsector-level aggregation. Utilities and Real Estate are kept separate as a descriptive classification, not as a claim that all firms in either group share the same risk profile. Within Basic Materials, the subsector map distinguishes Mining, Steel and Metallurgy, Chemicals, and Paper and Cellulose; detailed asset assignments are provided in the supplementary material.
+
+\label{subsec:notation}
+
+Daily log returns follow the definition in Section~\ref{subsec:theory_market_dynamics}, Eq.~\eqref{eq:theory_log_returns}, and are applied to the adjusted closing-price series retained after filtering. The resulting synchronized return panel contains the same $N=58$ assets on the $T=1527$ common dates. Complete-case synchronization is performed before any dependence estimation so that eigenvalues, eigenvectors, distances and network edges refer to one fixed date--asset panel.
+
+The main quality concern is the distinction between genuine extreme returns and artificial jumps caused by corporate-action adjustment problems. Adjusted prices reduce the impact of splits, dividends and related events, but do not guarantee that every historical corporate action, ticker transition, share-class change or reorganization is perfectly corrected. Extreme-return validation is therefore treated as a separate quality-control step, and assets with implausible corporate-action-related jumps are excluded from the main analyses. The complete synchronized panel provides a consistent input for RMT and networks but shortens the available historical window; results may differ under intraday sampling, alternative liquidity filters, rolling universes or broader forecasting targets.
+
+\label{subsec:stylized_method}
+
+The stylized-fact interpretation and standardization conventions are those defined in Section~\ref{subsec:theory_market_dynamics}. PETR4, VALE3 and BBDC4 are used as liquid, economically distinct demonstration assets for return diagnostics and as initial forecasting targets. We report return distributions, tail summaries, moments, empirical Value at Risk and autocorrelations of absolute returns. The Pearson correlation matrix is constructed according to Eq.~\eqref{eq:theory_corr_matrix}; this subsection specifies only its empirical use. Within- versus between-sector correlations are compared using the B3 classifications and an asset-level sector-label permutation check. Rolling average pairwise correlation is used as a descriptive synchronization measure. These diagnostics establish the empirical object passed to the spectral and network stages; they are not treated as trading signals or causal tests.
+
+\subsection{RMT spectral decomposition and mode separation}
+\label{subsec:rmt_method}
+
+The spectral step follows the RMT formulation in Section~\ref{subsec:theory_rmt}, including the Mar\v{c}enko--Pastur density and support in Eq.~\eqref{eq:theory_marcenko_pastur} and the trace-preserving group-mode reconstruction in Eq.~\eqref{eq:theory_c_group}. Operationally, we apply that rule to the complete synchronized correlation matrix, order the eigenvalues from largest to smallest, remove the leading market mode, retain subsequent eigenmodes whose eigenvalues exceed the upper MP edge as candidate group components, and represent the remaining components by the residual term. The reconstructed matrix is normalized as a correlation matrix before network construction. This is a filtering convention rather than a claim that the MP null fully describes the Brazilian market; the term group mode denotes a spectral component, not a unique causal factor. Issuer-collapsed and circular-shift analyses are used as robustness checks for this descriptive interpretation.
+
+\subsection{Filtered networks and hierarchical representations}
+\label{subsec:network_method}
+
+The same distance transformation and edge-ranking procedure is applied to the original correlation matrix and to the RMT group-mode matrix. This matched construction is central to the proposed methodology: differences in topology can then be attributed to the spectral input rather than to a change in the asset universe or graph algorithm.
+
+\subsubsection{MST, PMFG and hierarchical clustering}
+\label{subsec:distance_clustering_method}
+
+We use the Mantegna distance $d_{ij}=\sqrt{2(1-C_{ij})}$, average-linkage clustering and ordered heatmaps to inspect hierarchical organization. The MST provides the sparse market backbone, while the PMFG retains additional planar links and local clustering. For each representation we compare degree, betweenness, closeness, eigenvector centrality and local clustering, together with sector retention and hub reorganization. The mathematical definitions of these standard descriptors are given in Section~\ref{subsec:theory_networks}; here they are operationalized as outputs of the paired original/group-mode construction. Cophenetic agreement is reported using the standard dendrogram-comparison perspective of Sokal and Rohlf \cite{sokal_rohlf_1962}.
+
+\label{subsec:subsector_network_method}
+
+Following the parallel MST/PMFG and hierarchical-clustering views, ticker-level dependency information is summarized as a mesoscopic economic representation. Retained ticker-level edges are assigned to pairs of B3 subsectors. For subsectors $a$ and $b$, the displayed weight is the mean retained dependency,
+\begin{equation}
+W_{ab}=\frac{1}{|\mathcal{E}_{ab}|}\sum_{(i,j)\in\mathcal{E}_{ab}}w_{ij},
+\qquad \mathcal{E}_{ab}=\{(i,j)\in E:g(i)=a,\ g(j)=b\}.
+\end{equation}
+This operation compresses many asset-level links into an interpretable subsector-to-subsector map. It is used to identify whether filtered dependencies concentrate within or between subsectors and to highlight bridge-like groups. The result is a descriptive aggregation of the filtered graph, not a second correlation estimate or a causal channel model.
+
+\subsection{Retrospective model assessments}
+\label{subsec:experimental_framework}
+\label{subsec:forecast_metrics}
+\label{subsec:evaluation_method}
+
+This final block tests whether adding the structural descriptors produced above improves forecast accuracy. For $i\in\{\mathrm{PETR4},\mathrm{VALE3},\mathrm{BBDC4}\}$ and $h\in\{5,20\}$, the target is the forward realized-volatility measure defined in Eq.~\eqref{eq:theory_rv}, using returns from $t+1$ through $t+h$. Training covers 2006--2017, validation 2018--2020 and the held-out test period 2021--2025. A target is retained only when its complete forward horizon lies within its assigned split; the final $h$ origins before each split boundary are purged to prevent a target window from crossing into the next split. The resulting valid pooled target counts for train/validation/test are 8,880/2,211/3,723 at $h=5$ and 8,835/2,166/3,678 at $h=20$. Only variables available through date $t$ can support a genuine real-time forecast: Set~A satisfies this requirement, whereas Sets~B and~C use full-sample structural descriptors and are therefore retrospective comparisons. A point-in-time forecasting assessment would require reconstructing RMT and network features recursively at every forecast origin.
+
+The nested feature sets provide the operational comparison. Set~A contains lagged return and volatility variables, Set~B adds rolling market variables and full-sample RMT descriptors, and Set~C adds full-sample MST/PMFG descriptors. Ridge, Random Forest and histogram gradient boosting are evaluated alongside compact MLP and CNN-1D models; an asset-specific HAR-RV benchmark is also reported. For each horizon and feature set, the model with the lowest validation QLIKE is selected before test evaluation. The fixed feature sets and model menu test whether the added predictors improve accuracy under a common design; they are not intended as a causal feature test or an exhaustive architecture search.
+
+Table~\ref{tab:forecast_feature_inventory} lists every input variable and its time variation. The models are pooled across PETR4, VALE3 and BBDC4: each model is fitted on the combined training rows and the ticker is not supplied as a separate predictor. Consequently, the asset-static network and sector/subsector variables can serve as asset identifiers in this three-asset sample. In particular, \texttt{subsector\_Mining} identifies VALE3 among the three forecasting targets. The RMT summary variables are constant across all rows because they are computed once from the full synchronized panel.
+
+The ten network predictors and six sector/subsector indicators listed for Set~C are fixed additions; no importance ranking or data-driven selector chooses or removes them. Figure~\ref{fig:feature_importance} shows the 18 largest Random Forest impurity-importance entries across candidate feature sets at each horizon as a descriptive diagnostic, not as a feature-selection procedure. Ridge uses $\alpha=1$. Random Forest uses 300 trees, maximum depth 6 and minimum leaf size 10; histogram gradient boosting uses 300 iterations, maximum depth 4 and learning rate 0.05. The MLP uses 64 and 32 hidden units with dropout 0.15; the CNN uses 24 filters, kernel size 3 and a 32-unit dense layer. Neural models use AdamW with learning rate $10^{-3}$, weight decay $10^{-4}$, batch size 256, at most 80 epochs and patience 10 for validation early stopping. The primary machine-learning comparison uses fixed seed 42; no hyperparameter grid was searched. A five-seed sensitivity analysis (seeds 11, 23, 42, 77 and 101) quantifies MLP and CNN test variability in Table~\ref{tab:app_seeds}.
+
+\begin{center}
+\captionof{table}{Forecast feature inventory, time variation, and model scope. Sets B and C inherit all predictors from the preceding set.}
+\label{tab:forecast_feature_inventory}
+\small
+\begin{tabular}{p{0.17\linewidth}p{0.77\linewidth}}
+\toprule
+Set & Predictors \\
+\midrule
+A (16 predictors) & rolling\_\allowbreak mean\_\allowbreak return\_\allowbreak 5d, rolling\_\allowbreak mean\_\allowbreak return\_\allowbreak 20d, rolling\_\allowbreak vol\_\allowbreak 5d, rolling\_\allowbreak vol\_\allowbreak 20d, rolling\_\allowbreak vol\_\allowbreak 60d, rolling\_\allowbreak vol\_\allowbreak 120d, rolling\_\allowbreak abs\_\allowbreak return\_\allowbreak 5d, rolling\_\allowbreak abs\_\allowbreak return\_\allowbreak 20d, rolling\_\allowbreak abs\_\allowbreak return\_\allowbreak 60d, rolling\_\allowbreak skew\_\allowbreak 60d, rolling\_\allowbreak kurtosis\_\allowbreak 60d, ewma\_\allowbreak volatility, lagged\_\allowbreak rv\_\allowbreak 5d, lagged\_\allowbreak rv\_\allowbreak 20d, abs\_\allowbreak r\_\allowbreak t, r2\_\allowbreak t. All vary by date and asset. \\
+B additions & rolling\_\allowbreak average\_\allowbreak market\_\allowbreak correlation\_\allowbreak 252d, rolling\_\allowbreak average\_\allowbreak market\_\allowbreak correlation\_\allowbreak 504d, rolling\_\allowbreak median\_\allowbreak market\_\allowbreak correlation\_\allowbreak 252d (date-varying, common across assets); largest\_\allowbreak eigenvalue, market\_\allowbreak mode\_\allowbreak share, number\_\allowbreak of\_\allowbreak eigenvalues\_\allowbreak above\_\allowbreak mp (static and shared across assets). \\
+C additions (10 network predictors) & mst\_\allowbreak original\_\allowbreak degree, mst\_\allowbreak original\_\allowbreak betweenness, mst\_\allowbreak group\_\allowbreak degree, mst\_\allowbreak group\_\allowbreak betweenness, pmfg\_\allowbreak original\_\allowbreak degree, pmfg\_\allowbreak original\_\allowbreak betweenness, pmfg\_\allowbreak group\_\allowbreak degree, pmfg\_\allowbreak group\_\allowbreak betweenness, pmfg\_\allowbreak original\_\allowbreak clustering, pmfg\_\allowbreak group\_\allowbreak clustering. Static by asset. \\
+C additions (6 indicators) & sector\_\allowbreak Basic Materials, sector\_\allowbreak Financials, sector\_\allowbreak Oil Gas and Biofuels, subsector\_\allowbreak Banks, subsector\_\allowbreak Mining, subsector\_\allowbreak Oil Gas and Biofuels. Static by asset. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Forecast quality is reported using the four metrics defined in Section~\ref{subsec:theory_volatility}: MAE, RMSE, QLIKE and $R^2_{\mathrm{OOS}}$. Lower MAE, RMSE and QLIKE indicate better forecasts, while higher $R^2_{\mathrm{OOS}}$ indicates improvement over the benchmark. Fixed-seed circular moving-block bootstrap intervals summarize test uncertainty, and a one-sided HAC comparison provides a focused retrospective contrast between the validation-selected structural and Set~A specifications. The global numerical-display convention is applied to all reported counts, estimates, metrics, intervals, eigenvalues, graph quantities and test statistics.

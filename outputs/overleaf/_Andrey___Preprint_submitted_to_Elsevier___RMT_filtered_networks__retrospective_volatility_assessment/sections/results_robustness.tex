@@ -1,0 +1,83 @@
+\subsection{Robustness of the Structural Findings}
+\label{sec:robustness}
+
+The preceding results identify sectoral organization, significant non-leading spectral modes, and a reorganization of hierarchical and network structure after removal of the dominant market component. We now examine whether these findings remain when key features of the analysis are challenged. The robustness analysis focuses on three potential sensitivities: the economic labels assigned to assets, the presence of multiple share classes from the same issuer, and the stability of the resulting network structure across time.
+
+\subsubsection{Robustness of the Sectoral and Spectral Structure}
+
+The sectoral pattern identified in Section~\ref{sec:stylized_correlation} is tested using an asset-level label-permutation procedure that preserves both the empirical dependency matrix and the observed sector-size distribution. The observed difference between mean within-sector and between-sector correlations is $\Delta_{\mathrm{sector}}=0.1184$, whereas the 95th percentile of the permutation distribution is 0.0245. None of the 10,000 permutations produces a difference as large as the observed value ($p\approx 10^{-4}$, the minimum attainable at this simulation count). The stronger within-sector dependence is therefore not reproduced by random reassignment of the existing sector labels.
+
+A separate robustness concern arises from companies represented by multiple listed share classes. The 58-asset panel contains 12 such issuers, which can strengthen issuer-specific co-movement and generate localized spectral components. We therefore repeat the RMT analysis after retaining one deterministic representative per company, reducing the cross-section to 46 issuers.
+
+\begin{center}
+\captionof{table}{Issuer-level RMT robustness check on the same 1,527 dates as the full panel. Parentheses give the number of non-market modes above the Mar\v{c}enko--Pastur upper bound.}
+\label{tab:issuer_rmt_robustness}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrrrrrr}
+\toprule
+Panel & $N$ & $T$ & $Q$ & $\lambda_{+}$ & Eigenvalues above $\lambda_{+}$ & $\lambda_{1}/N$ & Mean pairwise corr. \\
+\midrule
+Full share-class panel & 58 & 1527 & 26.33 & 1.4278 & 5 (4) & 0.3733 & 0.3350 \\
+Issuer-collapsed panel & 46 & 1527 & 33.20 & 1.3773 & 3 (2) & 0.3611 & 0.3215 \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+
+
+Both panels use the common dates 23 August 2006--15 August 2024, so this comparison changes the cross-section while holding the observation period fixed. Issuer representatives are selected by common-panel coverage, then mean financial volume over those same dates, then ticker as a deterministic final tie-break. The rule retains PETR4 over PETR3, ELET3 over ELET6, and CPLE6 over CPLE3. The leading trace share is 0.3733 in the full panel and 0.3611 after collapse. Four non-market eigenvalues exceed the full-panel bound, compared with two in the issuer panel (2.2912 and 1.5388). Thus the number of candidate group modes is sensitive to share-class representation even when $T$ is held constant.
+
+The group-mode matrix and both graph families were recomputed for the two panels on these same dates. Table~\ref{tab:issuer_network_robustness} reports the group-mode network summaries; it separates the effect of reducing $N$ from the prior comparison, which also changed $T$.
+
+\begin{center}
+\captionof{table}{MST and PMFG summaries for the group-mode matrices recomputed on the same dates.}
+\label{tab:issuer_network_robustness}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llrrrrrr}
+\toprule
+Panel & Network & Assets & Edges & Mean edge corr. & Same-sector ratio & Clustering & Top degree / betweenness \\
+\midrule
+Full share-class & MST & 58 & 57 & 0.1388 & 0.6316 & 0.0000 & ALPA4 / ALPA4 \\
+Issuer-collapsed & MST & 46 & 45 & 0.0982 & 0.6000 & 0.0000 & CMIG4 / SHUL4 \\
+Full share-class & PMFG & 58 & 168 & 0.1109 & 0.5417 & 0.6653 & GUAR3 / GUAR3 \\
+Issuer-collapsed & PMFG & 46 & 132 & 0.0812 & 0.4621 & 0.6761 & ROMI3 / SAPR4 \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+
+
+After issuer collapse, mean group-mode edge correlation decreases for both the MST and PMFG, while PMFG average clustering is similar. The edge counts equal $N-1$ and $3N-6$, respectively, in each panel. These changes describe sensitivity to cross-sectional composition; the analysis does not attribute them to a change in sample dates.
+
+We further test the spectral results against a circular-shift surrogate null. Each surrogate preserves the marginal distribution and temporal ordering of every individual return series while breaking their contemporaneous alignment across assets. Across 1,000 independent surrogate realizations, empirical ranks 1--5 exceed their rank-matched 95th-percentile thresholds. Rank 6 is the first that does not: its empirical value is 1.1673, below the null 95th percentile of 1.3057; ranks 6--58 have 1,000 of 1,000 surrogate values at least as large as the empirical value ($p=1$ under the plus-one estimate). For ranks 1--5, zero exceedances give $p=1/(1,001)\approx0.001$, the minimum attainable. This identifies where the empirical spectrum ceases to exceed the circular-shift null.
+
+The issuer-collapse and circular-shift results should be interpreted jointly. The surrogate experiment supports the presence of genuine cross-sectional synchronization beyond the null benchmark, whereas the issuer-level experiment shows that the economic interpretation of some weaker modes remains sensitive to the representation of multiple share classes. Robust statistical separation from the null therefore does not imply that every significant mode corresponds to a broad or stable economic factor.
+
+\subsubsection{Temporal Stability of the Network Structure}
+
+The full-sample MST and PMFG representations summarize long-run dependency structure, but their individual edges and central nodes need not remain unchanged through time. To examine this sensitivity, the synchronized sample is divided into three consecutive windows of 509 observations and the networks are re-estimated within each window. Table~\ref{tab:network_temporal_stability} summarizes the mean pairwise overlap across the resulting network realizations.
+
+\begin{center}
+\captionof{table}{Temporal stability of the MST and PMFG structures across three consecutive windows. Values are means across window pairs.}
+\label{tab:network_temporal_stability}
+
+\small
+\begin{tabular}{llrrr}
+\toprule
+Network & Matrix & Edge Jaccard & Top-5 hub overlap & Community ARI \\
+\midrule
+MST & Original & 0.206 & 0.267 & 0.138 \\
+MST & Group mode & 0.047 & 0.200 & 0.182 \\
+PMFG & Original & 0.212 & 0.200 & 0.214 \\
+PMFG & Group mode & 0.140 & 0.200 & 0.174 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+
+Edge persistence is modest in the original networks and lower still for several group-mode comparisons. The mean edge Jaccard similarity is 0.206 for the original MST and 0.212 for the original PMFG, compared with 0.047 and 0.140 for their group-mode counterparts. Hub persistence is also limited: mean overlap among the five highest-betweenness nodes ranges from 0.20 to 0.27, and no top-five betweenness hub appears in all three windows. Community agreement, measured by the adjusted Rand index, is similarly modest.
+
+These results qualify the interpretation of the full-sample networks. The structural analyses in Section~\ref{sec:network_organization} identify meaningful long-run dependency configurations, but individual edges, hub identities, and community assignments should not be interpreted as invariant properties of the Brazilian equity market. This distinction is particularly important for the retrospective volatility assessment that follows, where full-sample structural descriptors are used as ex-post characteristics rather than as point-in-time network estimates.

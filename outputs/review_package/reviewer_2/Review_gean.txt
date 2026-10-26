@@ -1,0 +1,200 @@
+Algumas fontes estão pequenas... e tem uma cara de que foi feito no GPT.. mas tá lindo :D
+Sobre: a figura do abstract 
+
+sobre o ABSTRACT
+COmeçar com We Study me parecer estranho...
+
+pelo menos IN THIS PAPER WE STUDY
+
+random matrix theory (RMT), tudo em maisculo R , M e T 
+
+By analyzing or taking a look into the
+
+falta uma ligação nessa frase em  Minimum Spanning Tree (MST) and Planar Maximally Filtered
+Graph (PMFG)representations show that market-mode ....
+
+ We then conduct a chronological train-validation-test
+assessment with machine-learning and simple neural models. ele indica TO... fazer tal coisa
+
+ja na introducao
+
+Random Matrix Theory (RMT) provides a useful
+benchmark for distinguishing between correlations that may arise from random estimation effects and those that may
+contain meaningful structural information [4, 5].
+
+In this sense, the
+
+
+Neste sentido, RMT fornece um ..... [ref]
+
+ou aquela 4,5 é para RMT e a afirmação da useful benchmark?
+
+ The Minimum Spanning Tree (MST) ele disse que falta ref
+
+  the Planar Maximally Filtered Graph (PMFG)  ele diz que tbm falt ref logo depois
+
+Themethodologicalnovelty ofthisstudy lies in the controlled integration of these layers within the Brazilian equity
+market context = 
+
+
+In this paper we present a new approach called XXXXX that consider the controled integration of layers within the Brazilian equity-market context..
+
+e se quisser ainda coloca XXXXXX como o nome da tua nova proposta...
+
+ao meu ver, isso é mais impactante que 'Methological novelty'
+
+The objective is not to introduce a new RMT or graph algorithm,
+but to provide an in ... = não precisa falar isso...
+
+foca no que tu vai fazer...
+
+
+The objective is to provide and integrated and .... e vida que segue
+
+Wecharacterize the dependency structure of B3 equities using adjusted daily prices with raw historical coverage
+from 1998 to 2025, combining stylized facts, cross-sectional correlations, sectoral comparisons, and time
+varying market synchronization. = Tira o We
+
+We apply Random Matrix Theory to a complete synchronized panel of 58 equities from 23 August 2006 to
+15 August 2024, separating the dominant market compon = tira o We
+
+We conduct a chronological, nested-feature-set retrospective assessment of whether full-sample RMT and
+network descriptors are associated with realized-volatility model performance. This experiment motivates, but
+does not replace, a fully point-in-time forecasting design based on recursively estimated structural features. = tira o we
+
+2. Theoretical Background and Conceptual Framework = aqui eu vou passar rápido
+
+2.4.1. How Supervised Learning Is Used = na minha opinião essa subsection sobra...
+
+se tu tirar ela.. e explicar tua metodologia direito, o texto funciona da mesma forma.
+
+2.4.2. How Forecasts Are Evaluated = Evaluation metrics ??
+
+MAE e RMSE eu sei que são conhecidas... R2 também...
+
+R2_OOS e Qlike eu não sei...
+
+por isso que eu acho que essa subsection também sobra.
+
+ANalisa cmg.. Se tu colocar na metodologia que usa elas e refernciar... tá tudo certo. Te dei um exemplo ali em baixo
+
+MAEweights all absolute deviations equally, whereas RMSE gives greater weight to large errors. The out-of-sample
+coefficient of determination compares the model with a training-mean benchmark:
+∑𝑀
+𝑅2
+OOS = 1−
+𝑡=1(𝑦𝑡 − ̂𝑦𝑡)2
+∑𝑀
+𝑡=1(𝑦𝑡 − 𝑦train)2
+.
+For positive realized and predicted volatility (or variance) proxies, the Gaussian quasi-likelihood loss (QLIKE) is
+QLIKE(𝑦,̂𝑦) = 𝑦
+̂𝑦 − ln
+(𝑦
+̂𝑦
+) 
+− 1,
+(7)
+(8)
+which remains informative when realized volatility is an imperfect proxy for latent market risk [37]. Lower MAE,
+RMSE andQLIKEvalues indicate better forecasts, while a higher out-of-sample 𝑅2 indicates a stronger improvement
+over the benchmark.
+Model configurations and feature sets are chosen with the validation period and are then evaluated on a separate
+chronological test period. This separation reduces the risk of selecting a model simply because it fits the evaluation
+sample well. The exact target construction, temporal split, model settings and statistical comparisons are reported in
+the methodology and results sections. = Minha opinião é que quando tu falar do teu método novo... tu comenta...
+
+This approach is evaluated considering the well-knonw metrics Mean Absolute Error {MAE)[ref], RMSE[ref], e por aí vai...
+
+2.4.3. Retrospective Assessment vs. Real-Time Forecasting = Isso aqui não precisa ser uma seção tb... pode ser o texto corrido de alguma seção que fale deste tópico
+
+3. Related work = 
+
+
+PARTICULARMENTE... não gosto desta separação por tópicos....
+
+Eu acho que se tu for falando dos trabalhos e, se quiser, no texto explicativo apontar os tópicos.. o texto funciona...
+
+e não fica essa separação excessiva que está.
+
+
+as duas funcionam... eu acho que essa minha proposta, se tu quiser, deixa o texto mais clean.
+
+4. Methods: Proposed Reproducible Integrated Framework = tem que ser algo mais convicente um exemplo genrico nao e para usar seria Drey-tegrated: A new approach to.... ( nota minhha acho que ele meteu um Drey ali porque meu Nome e Andrey)
+
+Its contribution is methodological integra
+tion rather than a new RMT, MST or PMFG algorithm = It is important to highglight that this new framework go deeper than a simple algorithm, such as:... . We propose a layered archictecture that...
+
+4.1.1. BovDB/B3 data source and adjusted closing prices = é de ver com o Rafael...
+
+Na minha opinião.. a tua separação geral já tá muito boa..
+
+4.1 Tal coisa
+4.2 Tal coisa
+...
+
+Se tu criar subseções 4.1.1, 4.1.1.2, etc... 
+
+
+tu vai ter subseções inteiras de 6-8 linhas.... 
+
+Minha proposta é juntar tudo isso em 4.1 Tal coisa..
+
+4.1.4. Stylized facts and correlation diagnostics = é isso que te falo... um bloquinho de 8 linhas... que poderia ser um parágrafo de um todo.
+
+etwork analyses that follow.
+Figure 2 summarises the return properties ofPETR4,VALE3andBBDC4.Thefigurecombinesfourchecksthatare
+standard in the econophysics literature [2]: normalized prices, daily returns, the complementary cumulative distribution
+of absolute returns and the autocorrelation of absolute returns. = EU não gosto de abrir o parágrafo com os dois pés...
+
+FIGURE 2 faz tal coisa..
+
+eu prefiro contar a historinha e dizer que isso tá na Figure 2.
+
+MEsma coisa pro Table ali em baixo...
+
+Dá uma olhada
+
+ecomposition.
+Figure3showsthedistributionofpairwisecorrelationsandcompareswithin-sectorwithbetween-sectorrelation
+ships.
+The = parágrafo de uma frase solta. muito estranho.
+
+junta com a análise seguinte. ou descreve melhor a figura 3
+
+:howmuchoftheobservedcorrelationstructureisassociatedwithadominant
+collectivemarketmode,howmuchremains insmallergroup-levelcomponents,andhowmuchiscompatiblewith
+samplingnoise?WeaddressthisquestionnextthroughRandomMatrixTheory. = (i) , emarketmode = ? , (ii) , group-levelcomponents = ?, (iii) , WeaddressthisquestionnextthroughRandomMatrixTheory = usar these
+
+Table 4reports the numerical inputs for RMT filtering.Theleadingeigenvalue,𝜆1 = 21.6505,issubstantiallylarger
+than the remaining eigenvalues = eu vou parar de marcar e deixar pra ti pensar... mas olha como esse padrão de abrir o parágrafo com a definição da estrutura se repete.
+
+6.1. Limitations and Future Work
+The findings should be interpreted in light = uma sugestão é colocar essa análise das limitações dentro da discussão..
+
+do jeito que tá.. tu dá um destaque muito grande... teve seções que não falou tanto quanto dos problemas...
+
+é o famoso "tá dando bala pra bandido"
+
+
+Conclusion = falto o S
+
+The main contribution of the study is consequently the integration of spectral filtering and network representations
+into a reproducible framework for examining how broad market synchronization, localized dependency structure, and
+volatility modelling relate within the Brazilian equity market. A natural next step is to reconstruct the RMT andnetwork
+descriptors recursively at each forecast origin. Such a design would determine whether the structural relationships
+identified here persist when all features are restricted to information available in real time. == The main contribution of the study is consequently the integration of spectral filtering and network representations
+into a reproducible framework for examining how broad market synchronization, localized dependency structure, and
+volatility modelling relate within the Brazilian equity market. A natural next step is to reconstruct the RMT andnetwork
+descriptors recursively at each forecast origin. Such a design would determine whether the structural relationships
+identified here persist when all features are restricted to information available in real time.
+
+Acknowledgements = sobre (CNPq; grant 307416/2025-9) =  adiciona o grant 318141/2025-6 e 
+
+ FAPERGS/CNPq program
+(grant 23/2551-0000126-8) = esse pode tirar...
+
+alega tbm que a ref [54] P. R. Hansen, A. Lunde, A forecast comparison of volatility models: Does anything beat a GARCH(1,1)?, Journal of Applied Econometrics
+20 (7) (2005) 873–889. doi:10.1002/jae.800. esta joga n a nada de Garch no trabalhos
+
+

@@ -1,0 +1,24 @@
+\section{Empirical Results}
+\label{sec:results}
+
+Unless a table or figure note states otherwise, estimates are displayed to four decimal places, correlations to three decimal places, and counts as integers. Monte Carlo $p$-values are reported at the resolution supported by the number of simulations, including the minimum attainable value where relevant.
+
+The empirical results follow the sequence defined by the integrated framework presented in Section~\ref{sec:methodology}. We begin by examining the statistical behavior of individual returns and the dependence structure across B3 equities. We then investigate whether this dependence contains components that extend beyond broad market synchronization and sampling noise. 
+
+The resulting spectral structures are subsequently examined through hierarchical and network representations to determine how market-mode removal changes the organization of asset dependencies. Finally, we assess the robustness and temporal behavior of these structural findings before testing whether the descriptors improve realized-volatility forecast accuracy.
+
+Each stage therefore builds on the evidence obtained in the previous one. The correlation analysis establishes the empirical dependency structure; RMT separates broad collective behavior from smaller structural components; clustering and financial networks reveal how these components are organized across assets; and the final retrospective model assessment tests whether adding these descriptors improves volatility forecast accuracy.
+
+\input{sections/results_stylized_correlation}
+
+\input{sections/results_rmt}
+
+\input{sections/results_clustering}
+
+\input{sections/results_networks}
+
+\input{sections/results_subsector_network}
+
+\input{sections/results_robustness}
+
+\input{sections/results_forecasting}

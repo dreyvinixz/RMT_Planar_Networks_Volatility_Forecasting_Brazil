@@ -262,7 +262,7 @@ def main():
     sklearn_models = {
         "Ridge": Ridge(alpha=1.0),
         "Random Forest": RandomForestRegressor(
-            n_estimators=300, max_depth=6, min_samples_leaf=10, random_state=RANDOM_SEED, n_jobs=-1
+            n_estimators=300, max_depth=6, min_samples_leaf=10, random_state=RANDOM_SEED, n_jobs=4
         ),
         "HistGradientBoosting": HistGradientBoostingRegressor(
             max_iter=300, max_depth=4, learning_rate=0.05, random_state=RANDOM_SEED
@@ -305,6 +305,7 @@ def main():
                         feature_importances.append({"horizon": h, "feature": col, "importance": importance})
 
             # Incremental tabular deep-learning model.
+            torch.manual_seed(RANDOM_SEED)
             mlp = TabularMLP(input_dim=len(cols))
             val_valid = val_mask & valid_mask
             mlp, _ = train_torch_regressor(
@@ -336,12 +337,14 @@ def main():
         print(f"  Horizon {h}d | CNN-1D | sequence cols: {len(seq_cols)}")
         seq_scaler = StandardScaler()
         df_seq = df.copy()
-        df_seq[seq_cols] = seq_scaler.fit_transform(df_seq[seq_cols].fillna(0))
+        seq_scaler.fit(df.loc[train_mask, seq_cols].fillna(0))
+        df_seq[seq_cols] = seq_scaler.transform(df_seq[seq_cols].fillna(0))
         X_seq, y_seq, row_idx = make_sequence_data(df_seq, h, seq_cols, window=20)
         row_splits = df.loc[row_idx, "split"].to_numpy()
         train_seq = row_splits == "train"
         val_seq = row_splits == "validation"
 
+        torch.manual_seed(RANDOM_SEED)
         cnn = TemporalCNN(n_features=len(seq_cols))
         cnn, _ = train_torch_regressor(cnn, X_seq[train_seq], y_seq[train_seq], X_seq[val_seq], y_seq[val_seq])
         seq_preds = predict_torch(cnn, X_seq)

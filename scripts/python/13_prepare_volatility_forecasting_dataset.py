@@ -60,8 +60,11 @@ def prepare_dataset():
         
         # Target Realized Volatility (forward-looking sums of r2)
         # RV_{t,h} = sqrt(sum_{k=1}^h r_{t+k}^2)
-        sdf["r2_t_forward_5d"] = sdf["r2_t"].rolling(window=5, min_periods=3).sum().shift(-5)
-        sdf["r2_t_forward_20d"] = sdf["r2_t"].rolling(window=20, min_periods=10).sum().shift(-20)
+        # At row t, the rolling sum shifted by -h contains exactly t+1,...,t+h.
+        # Requiring a full window prevents the final observations from silently
+        # receiving shortened targets.
+        sdf["r2_t_forward_5d"] = sdf["r2_t"].rolling(window=5, min_periods=5).sum().shift(-5)
+        sdf["r2_t_forward_20d"] = sdf["r2_t"].rolling(window=20, min_periods=20).sum().shift(-20)
         
         sdf["target_rv_5d"] = np.sqrt(sdf["r2_t_forward_5d"])
         sdf["target_rv_20d"] = np.sqrt(sdf["r2_t_forward_20d"])
@@ -76,22 +79,24 @@ def prepare_dataset():
     print("Merging market-level features...")
     
     # 3a. Rolling Market Correlation
-    corr_path = OUTPUT_DIR / "core_historical_rolling_average_correlation_1998_2025.csv"
-    if corr_path.exists():
-        corr_df = pd.read_csv(corr_path)
-        corr_df["date"] = pd.to_datetime(corr_df["date"])
-        # Map fields
-        # Note: Phase 6 outputs might have 'avg_correlation_252d' instead of 'rolling_average_market_correlation_252d'
-        # We rename to match Phase 10 specs if possible, else keep as is
-        rename_map = {
-            "avg_correlation_252d": "rolling_average_market_correlation_252d",
-            "avg_correlation_504d": "rolling_average_market_correlation_504d",
-            "median_correlation_252d": "rolling_median_market_correlation_252d"
-        }
-        corr_df = corr_df.rename(columns=rename_map)
-        cols_to_keep = ["date"] + [c for c in corr_df.columns if "rolling" in c]
-        if len(cols_to_keep) > 1:
-            df = pd.merge(df, corr_df[cols_to_keep], on="date", how="left")
+    corr_252_path = OUTPUT_DIR / "core_historical_rolling_average_correlation_1998_2025.csv"
+    corr_504_path = OUTPUT_DIR / "core_historical_rolling_average_correlation_504d_1998_2025.csv"
+    corr_frames = []
+    if corr_252_path.exists():
+        corr_252 = pd.read_csv(corr_252_path, usecols=["date", "avg_correlation", "median_correlation"])
+        corr_252["date"] = pd.to_datetime(corr_252["date"])
+        corr_frames.append(corr_252.rename(columns={
+            "avg_correlation": "rolling_average_market_correlation_252d",
+            "median_correlation": "rolling_median_market_correlation_252d",
+        }))
+    if corr_504_path.exists():
+        corr_504 = pd.read_csv(corr_504_path, usecols=["date", "avg_correlation"])
+        corr_504["date"] = pd.to_datetime(corr_504["date"])
+        corr_frames.append(corr_504.rename(columns={
+            "avg_correlation": "rolling_average_market_correlation_504d",
+        }))
+    for corr_features in corr_frames:
+        df = pd.merge(df, corr_features, on="date", how="left")
             
     # 3b. RMT Eigenvalues (Static over the whole period conceptually for the initial structural plan, or we load the rolling ones if they existed. But the plan says they are static/period-level covariates from Phase 7. So we just broadcast them or use rolling if available)
     # The plan says "If some features are static rather than daily, use the static value as an asset-level or period-level covariate."
@@ -161,6 +166,21 @@ def prepare_dataset():
             return "test"
             
     df["split"] = df["date"].apply(assign_split)
+
+    # Purge any origin whose forward target reaches into the next temporal
+    # partition. The split is assigned by forecast origin, and target_end_date
+    # records the last return used in each realized-volatility label.
+    split_end = {
+        "train": pd.Timestamp("2017-12-31"),
+        "validation": pd.Timestamp("2020-12-31"),
+        "test": pd.Timestamp("2025-12-31"),
+    }
+    for horizon in (5, 20):
+        end_col = f"target_end_date_{horizon}d"
+        target_col = f"target_rv_{horizon}d"
+        df[end_col] = df.groupby("symbol", sort=False)["date"].shift(-horizon)
+        within_partition = df[end_col] <= df["split"].map(split_end)
+        df.loc[~within_partition, target_col] = np.nan
     
     # Reorder columns slightly for clarity
     front_cols = ["date", "symbol", "log_return", "target_rv_5d", "target_rv_20d", "split"]
@@ -176,6 +196,26 @@ def prepare_dataset():
     summ_df = df.describe().T
     summ_df["missing_pct"] = df.isna().mean()
     summ_df.to_csv(summary_path)
+
+    audit_rows = []
+    for horizon in (5, 20):
+        target_col = f"target_rv_{horizon}d"
+        end_col = f"target_end_date_{horizon}d"
+        for split_name, sdf in df.groupby("split", sort=False):
+            valid = sdf[target_col].notna()
+            audit_rows.append({
+                "horizon": horizon,
+                "split": split_name,
+                "rows": len(sdf),
+                "valid_targets": int(valid.sum()),
+                "purged_or_incomplete_targets": int((~valid).sum()),
+                "last_origin": sdf.loc[valid, "date"].max(),
+                "last_target_end": sdf.loc[valid, end_col].max(),
+                "split_boundary": split_end[split_name],
+            })
+    pd.DataFrame(audit_rows).to_csv(
+        OUTPUT_DIR / "forecast_target_boundary_audit_2006_2025.csv", index=False
+    )
     
     print("\nDataset generation complete!")
     print(f"  n_rows: {len(df)}")

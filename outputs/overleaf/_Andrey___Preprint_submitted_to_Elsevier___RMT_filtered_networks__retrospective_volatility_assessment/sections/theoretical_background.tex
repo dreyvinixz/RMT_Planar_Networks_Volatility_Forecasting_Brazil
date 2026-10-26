@@ -1,0 +1,128 @@
+\section{Theoretical Background and Conceptual Framework}
+\label{sec:theoretical_background}
+
+This section establishes the theoretical, mathematical and econophysics foundations of the research pipeline. We formalize cross-sectional financial dependencies and finite-sample estimation noise, Random Matrix Theory (RMT) spectral filtering, topological planar graphs (MST and PMFG), and the principles of realized volatility modeling in complex networks.
+
+\subsection{Cross-Sectional Dependencies and Complex Market Dynamics}
+\label{subsec:theory_market_dynamics}
+
+Financial markets operate as complex interconnected systems where asset prices continuously interact through macroeconomic news, sector trends, liquidity cycles, and investor behavior \cite{mantegna_stanley_1999_book,bouchaud_potters_2003}. Rather than analyzing individual stocks in isolation, modern risk management focuses on understanding how assets move together across the entire market cross-section.
+
+To compare price changes consistently across different companies, prices are converted into daily logarithmic returns:
+\begin{equation}
+r_{i,t} = \ln\left(\frac{P_{i,t}^{\mathrm{adj}}}{P_{i,t-1}^{\mathrm{adj}}}\right),
+\label{eq:theory_log_returns}
+\end{equation}
+where $P_{i,t}^{\mathrm{adj}}$ is the dividend- and split-adjusted closing price of asset $i \in \{1, \dots, N\}$ on trading day $t \in \{1, \dots, T\}$ \cite{campbell_1997_econometrics,tsay_2005_analysis}. Across global stock markets, return series share several well-established universal behaviors, known as \emph{stylized facts} \cite{cont_2001_empirical}:
+\begin{itemize}
+  \item \textbf{Heavy Tails (Non-Gaussianity):} Extreme positive or negative price swings occur much more frequently than predicted by a standard normal curve (leptokurtosis) \cite{mandelbrot_1963_variation,fama_1965_behavior}.
+  \item \textbf{Volatility Clustering:} While raw daily returns show little linear predictability, price volatility clusters in time---turbulent days are typically followed by turbulent days, and calm days by calm days \cite{engle_1982_autoregressive,bollerslev_1986_generalized}.
+  \item \textbf{Asymmetric Co-movement:} Correlations between stocks tend to increase sharply during market downturns, which temporarily reduces the benefits of portfolio diversification \cite{longin_solnik_2001_extreme,ang_chen_2002_asymmetric}.
+\end{itemize}
+
+To measure co-movement without distortion from differences in individual asset volatility, each return series is normalized to zero mean and unit variance, $\widetilde{r}_{i,t} = (r_{i,t} - \widehat{\mu}_i)/\widehat{\sigma}_i$. The resulting standardized matrix $\widetilde{\mathbf{R}} \in \mathbb{R}^{T \times N}$ yields the Pearson cross-correlation matrix:
+\begin{equation}
+\mathbf{C} = \frac{1}{T-1} \widetilde{\mathbf{R}}^{\top} \widetilde{\mathbf{R}},
+\label{eq:theory_corr_matrix}
+\end{equation}
+where each entry $C_{ij} \in [-1, 1]$ represents the pairwise linear correlation between assets $i$ and $j$.
+
+However, a fundamental practical obstacle arises when the number of assets $N$ is comparable to the observation history $T$ (i.e., when $Q = T/N$ is finite). Under these conditions, sample correlation matrices become heavily contaminated by random sampling fluctuations, a phenomenon known as \emph{noise dressing} \cite{laloux_1999_noise}. Purely accidental historical coincidences can easily masquerade as real economic relationships. Directly relying on unfiltered sample correlations can severely distort portfolio optimization, network reconstruction, and risk forecasting, creating the need for principled filtering methods.
+
+\subsection{Random Matrix Theory and Spectral Noise Filtering}
+\label{subsec:theory_rmt}
+
+Random Matrix Theory (RMT), originally introduced in mathematical physics to model the energy spectra of complex nuclei \cite{guhr_muller_1998}, provides an analytical benchmark to separate genuine economic structure from random sampling noise in empirical correlation matrices \cite{laloux_1999_noise,plerou_2002_random}.
+
+Under the null hypothesis of a purely random Wishart ensemble, $\mathbf{X} \in \mathbb{R}^{T \times N}$ consists of mutually independent standard normal variables ($X_{ti} \sim \mathcal{N}(0, 1)$). In the asymptotic limit $N, T \to \infty$ with $Q = T/N \ge 1$, the eigenvalue density $\rho(\lambda) = \frac{1}{N}\sum_{k=1}^N \delta(\lambda - \lambda_k)$ of the sample covariance matrix $\mathbf{W} = \frac{1}{T}\mathbf{X}^{\top}\mathbf{X}$ converges almost surely to the Mar\v{c}enko--Pastur (MP) probability distribution \cite{marcenko_1967_distribution}:
+\begin{equation}
+\rho_{\mathrm{MP}}(\lambda) = \frac{Q}{2\pi \sigma^2 \lambda} \sqrt{(\lambda_+ - \lambda)(\lambda - \lambda_-)}, \quad \text{for } \lambda \in [\lambda_-, \lambda_+],
+\label{eq:theory_marcenko_pastur}
+\end{equation}
+with theoretical support bounded by $\lambda_{\pm} = \sigma^2 \left(1 \pm \sqrt{1/Q}\right)^2$, where $\sigma^2$ is the residual variance parameter.
+
+When evaluated against empirical financial correlation matrices, the eigenspectrum $\mathbf{C} = \sum_{k=1}^N \lambda_k \mathbf{v}_k \mathbf{v}_k^{\top}$ ($\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_N$) exhibits a characteristic tripartite decomposition \cite{plerou_2002_random,bun_2017_cleaning}:
+\begin{enumerate}
+  \item \textbf{Market Mode ($\lambda_1 \gg \lambda_+$):} The largest eigenvalue sharply exceeds the MP upper bound $\lambda_+$, absorbing a substantial fraction of the total matrix trace ($\operatorname{Tr}(\mathbf{C}) = N$). Its eigenvector $\mathbf{v}_1$ has strictly positive and relatively uniform loadings ($v_{1,i} \approx 1/\sqrt{N}$), representing pervasive macroeconomic co-movement that pulls all equities simultaneously.
+  \item \textbf{Group Modes ($\lambda_k > \lambda_+$ for $k = 2, \dots, K_{\mathrm{signal}}$):} Intermediate eigenvalues that remain above $\lambda_+$ may reflect localized collective structure associated with industry groups, business conglomerates or shared factor exposures; their economic interpretation requires separate validation.
+  \item \textbf{Bulk Noise Component ($\lambda_k \in [\lambda_-, \lambda_+]$):} The bulk of intermediate and small eigenvalues fall within the theoretical MP band, indicating sampling noise statistically indistinguishable from a random Wishart matrix.
+\end{enumerate}
+
+To isolate candidate localized dependencies from the dominant market mode and bulk noise, RMT enables spectral matrix reconstruction. Removing the dominant market mode ($k=1$) while retaining candidate group modes ($k = 2, \dots, K_{\mathrm{signal}}$) produces the group-mode filtered matrix:
+\begin{equation}
+\mathbf{C}_{\mathrm{group}} = \sum_{k=2}^{K_{\mathrm{signal}}} \lambda_k \mathbf{v}_k \mathbf{v}_k^{\top} + \overline{\lambda}_{\mathrm{rem}} \mathbf{I},
+\label{eq:theory_c_group}
+\end{equation}
+where $\overline{\lambda}_{\mathrm{rem}} = \frac{1}{N - K_{\mathrm{signal}} + 1} \left( N - \lambda_1 - \sum_{k=2}^{K_{\mathrm{signal}}} \lambda_k \right)$ preserves the trace constraint, with diagonal elements subsequently normalized such that $(C_{\mathrm{group}})_{ii} = 1$.
+
+\subsection{Topological Filtering and Planar Network Representations}
+\label{subsec:theory_networks}
+
+The correlation matrix records the relationship between every pair of assets. This complete representation is useful for calculation, but it is difficult to interpret because all assets are connected to one another. Even after RMT filtering removes noise-compatible components, the matrix does not directly show which dependencies form the market backbone, which assets behave as hubs, or whether sectoral groups remain visible. Topological filtering addresses this problem by retaining an informative subset of the strongest relationships and representing them as a network \cite{tumminello_2010_correlation}.
+
+In this network, each asset is a node and each retained dependency is an edge. Correlations are first converted into distances using the transformation proposed by Mantegna \cite{mantegna_1999_hierarchical}: assets with stronger positive correlations are placed closer together, whereas weakly or negatively correlated assets are farther apart. This distance representation allows standard graph algorithms to select the most relevant connections. The network is therefore a simplified view of the correlation structure, not a replacement for the underlying matrix and not evidence of a causal relationship between companies.
+
+In this study, networks are constructed from both the original correlation matrix and the RMT group-mode matrix. Comparing these representations shows which connections are mainly driven by the broad market movement and which localized structures remain after that common component is removed.
+
+\subsubsection{Minimum Spanning Tree (MST)}
+The Minimum Spanning Tree (MST) provides the sparsest connected representation of the market. It links every asset while preferentially retaining the shortest distances, and therefore the strongest correlations, without allowing closed loops \cite{mantegna_1999_hierarchical,bonanno_2004_networks}. The result can be read as a market backbone: branches indicate groups of closely related assets, central nodes indicate potential hubs, and peripheral nodes represent assets that are less integrated with the rest of the network.
+
+The MST is useful because it makes the main dependency hierarchy easy to visualize. Its simplicity is also a limitation, since alternative routes and triangular relationships are discarded. We use the MST to compare the backbone obtained from the original correlations with the backbone that remains after market-mode removal, focusing on changes in hubs and sectoral organization.
+
+\subsubsection{Planar Maximally Filtered Graph (PMFG)}
+The Planar Maximally Filtered Graph (PMFG) retains more of the correlation structure than the MST. Connections are considered from strongest to weakest and are added while the graph can still be represented on a plane without edge crossings \cite{tumminello_2005_tool}. Unlike the MST, the PMFG allows loops and interconnected neighborhoods. It can therefore reveal local clusters, alternative dependency paths and groups of assets that share several strong relationships.
+
+This richer structure is particularly useful for examining whether companies from the same sector remain connected, whether a small number of firms concentrate many relevant links, and how local organization changes after RMT filtering \cite{aste_2010_correlation,pozzi_2013_spread}. In this work, the PMFG complements the MST by supporting comparisons of clustering, sector retention, hub rankings and subsector-level dependencies. Detailed construction rules and mathematical properties are available in the original methodological references \cite{tumminello_2005_tool,tumminello_2010_correlation}.
+
+\subsubsection{Network Descriptors Used in This Study}
+Once the filtered networks are constructed, standard descriptors summarize the role of each asset and the organization of the market:
+\begin{itemize}
+  \item \textbf{Degree centrality} counts how many direct connections an asset has and helps identify highly connected hubs.
+  \item \textbf{Betweenness centrality} indicates how often an asset lies between other assets, highlighting potential bridges between groups.
+  \item \textbf{Closeness centrality} measures how near an asset is to the rest of the network through the available paths.
+  \item \textbf{Eigenvector centrality} gives greater importance to assets connected to other influential assets.
+  \item \textbf{Local clustering} measures how strongly an asset's neighbors are connected to one another and helps identify cohesive local groups.
+\end{itemize}
+
+These descriptors do not represent predictive signals by themselves. They summarize structural roles in the filtered market and allow the original and group-mode networks to be compared consistently. In the retrospective volatility experiment, selected descriptors are added to conventional return and volatility variables to test whether they improve forecast accuracy. Because the structural descriptors are estimated from the full synchronized sample, this comparison is ex post rather than a real-time forecasting strategy.
+
+\subsection{Realized Volatility and Supervised Predictive Modeling}
+\label{subsec:theory_volatility}
+
+Volatility describes the intensity of price fluctuations, regardless of whether prices move upward or downward. A low-volatility period is relatively calm, whereas a high-volatility period contains larger and less stable price movements. This information is important for risk measurement, portfolio allocation and position sizing because two assets with similar average returns may expose investors to very different levels of uncertainty.
+
+Future volatility is not known when a forecast is made. After the forecast horizon has passed, it can be approximated from the returns observed during that period. For a horizon of $h$ trading days, the realized-volatility proxy used as a forecasting target is
+\begin{equation}
+\mathrm{RV}_{i,t}^{(h)} = \sqrt{\sum_{\tau=1}^{h} r_{i,t+\tau}^{2}},
+\label{eq:theory_rv}
+\end{equation}
+where the square root returns the measure to the scale of the returns; an annualization factor can be applied when comparisons across sampling frequencies require it. This ex-post measure is called \emph{realized volatility} \cite{andersen_2003_modeling}. In this study, the forecasting task is not to predict the direction of the next price movement. It is to estimate how much PETR4, VALE3 and BBDC4 are likely to fluctuate over the following 5 or 20 trading days.
+
+A supervised model learns from historical examples that contain two parts: information available at a given date and the volatility subsequently observed over the forecast horizon. During training, the model learns how the predictors are associated with later volatility. It then applies the learned relationship to dates that were not used for model fitting.
+
+The conventional predictors summarize recent returns and volatility persistence. Additional feature sets introduce broad market information, RMT descriptors and the MST/PMFG network descriptors discussed in Section~\ref{subsec:theory_networks}. The comparison includes a linear Ridge model \cite{hoerl_kennard_1970_ridge}, tree-based models such as Random Forest and gradient boosting \cite{breiman_2001_random,friedman_2001_greedy}, and simple neural models \cite{bucci_2020_realized,christensen_2022_realized}. These approaches differ in how they combine the predictors: the linear model provides a simple baseline, tree-based models can capture nonlinear interactions, and neural models provide a limited deep-learning comparison. The purpose is to test whether adding structural information improves volatility forecast accuracy, not to claim that one model represents the true dynamics of the market.
+
+No single metric provides a complete assessment, so the models are compared using complementary measures. For $M$ evaluation dates, the mean absolute error (MAE) and root mean squared error (RMSE) are:
+\begin{equation}
+\mathrm{MAE}=\frac{1}{M}\sum_{t=1}^{M}\lvert y_t-\widehat{y}_t\rvert,
+\qquad
+\mathrm{RMSE}=\sqrt{\frac{1}{M}\sum_{t=1}^{M}(y_t-\widehat{y}_t)^2}.
+\label{eq:theory_mae_rmse}
+\end{equation}
+MAE weights all absolute deviations equally, whereas RMSE gives greater weight to large errors. The out-of-sample coefficient of determination compares the model with a training-mean benchmark:
+\begin{equation}
+R_{\mathrm{OOS}}^2 = 1 - \frac{\sum_{t=1}^{M}(y_t-\widehat{y}_t)^2}{\sum_{t=1}^{M}(y_t-\overline{y}_{\mathrm{train}})^2}.
+\label{eq:theory_oos_r2}
+\end{equation}
+For positive realized and predicted volatility proxies, the variance-form Gaussian quasi-likelihood loss (QLIKE) used in the computations is
+\begin{equation}
+\mathrm{QLIKE}(y,\widehat{y}) = \ln(\widehat{y}^{2})+\frac{y^{2}}{\widehat{y}^{2}},
+\label{eq:theory_qlike}
+\end{equation}
+This is equivalent, up to a term that depends only on the realized proxy, to the ratio form of QLIKE; thus, model rankings on the same evaluation observations are unchanged. QLIKE remains informative when realized volatility is an imperfect proxy for latent market risk \cite{patton_2011_volatility}. Lower MAE, RMSE and QLIKE values indicate better forecasts, while a higher out-of-sample $R^2$ indicates a stronger improvement over the benchmark.
+
+Model configurations and feature sets are chosen with the validation period and are then evaluated on a separate chronological test period. This separation reduces the risk of selecting a model simply because it fits the evaluation sample well. The exact target construction, temporal split, model settings and statistical comparisons are reported in the methodology and results sections.
+
+A real-time forecast made on a particular date may use only information that was available up to that date. The return and volatility predictors satisfy this principle because they are calculated from past observations. However, the RMT and network descriptors used in this study were estimated from the complete synchronized sample. For an early date in the sample, those descriptors therefore summarize information that would not yet have been available.
+
+Consequently, the experiment should be interpreted as a retrospective structural assessment. It compares forecast accuracy with and without full-sample structural features, but it does not establish that those features could improve forecasts in real time. A deployable forecasting experiment would need to reconstruct the RMT and network descriptors repeatedly, using only data available before each prediction date.

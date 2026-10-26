@@ -1,0 +1,41 @@
+Sobre: Random Matrix Filtering and Planar Financial Networks: A Retrospective Assessment for Volatility Forecasting in Complex Financial Markets
+
+Descritores de RMT e de rede estimados na amostra completa são constantes por ativo. Em um modelo por ativo eles são colunas constantes, sem informação. Em um modelo agrupado, funcionam como identificador do ativo. A Fig. 17 sugere isso: `subsector_Mining` é praticamente um dummy de VALE3. *Mudar*: incluir uma tabela com todas as features de cada conjunto (A, B, C), dizendo se são variantes no tempo e se o modelo é por ativo ou agrupado. Descrever também o procedimento de seleção das features de rede (a Fig. 17 mostra só um subconjunto).
+
+A Tabela 9 só mostra o modelo selecionado por validação. Pela Tabela 10 (diferença = QLIKE_A − QLIKE_struct < 0), o Ridge Set A tem QLIKE implícito de ≈ −3,888 em h=20, melhor que todas as linhas da Tabela 9. Incluir Ridge A e HAR na tabela. Faltam purge/embargo de h dias nas fronteiras treino/validação/teste, pois o alvo olha t+1…t+h... Bloco do bootstrap = h (5 dias) é curto para perdas persistentes. Talvez testar blocos maiores? Faltam hiperparâmetros, grade de busca, número de seeds e variância entre seeds para MLP/CNN.
+
+A Tabela 10 tem diferenças negativas (estrutural pior) e p = 0,929 e 0,969. Não há ganho nem ex post. Graphical Abstract ("informative ex post"), Highlight 4 ("modest ex-post model differences") e Conclusão ("supports a structural association") não se sustentam. Não há teste de associação, e Set B vs A nem foi testado... *Mudar*: reformular como resultado nulo. Reescrever também a pergunta de pesquisa: "descritores associados ao desempenho do modelo" é conceitualmente confuso. A pergunta real é se eles melhoram a acurácia da previsão, né?
+
+A correlação média de 0,24 (Fig. 3) é de overlap par-a-par. O λ₁/N = 0,37 implica uma média da ordem de 0,35 no painel sincronizado. Vamos aproximar essa análise e sincronizar os dois números.
+
+A Tabela 14 só testa os ranks 1–5. Testar também 6, 7… para mostrar onde o nulo deixa de ser excedido...
+
+"4 additional modes" no Graphical Abstract e "five eigenvalues" no Abstract superestimam o resultado, pois só 2 modos de grupo sobrevivem ao colapso por emissor...
+
+*Mudar*: refazer C_group, as redes e a Tabela 16 no painel colapsado por emissor, nas mesmas datas do painel principal. Hoje a Tabela 7 mistura mudança de N com mudança de T.
+
+Seção 5.1 / Fig. 5: o texto diz que a correlação sobe em 2015–16, mas a Fig. 5 mostra ~0,2 estável nesse período. Corrigir o texto.
+
+p-valores: o texto diz p < 0,0001 e p < 0,001, mas as Tabelas 14 e 15 trazem 0,0010 e 0,0001. Com B permutações o mínimo é 1/(B+1). Escrever "p ≈ 10⁻⁴ (mínimo atingível)"
+
+Graphical Abstract: o eixo diz "annualized", mas a Eq. 5 e a Fig. 16 usam RV de 20 dias não anualizada. Os gráficos parecem esquemáticos (curvas suaves, tickers reais, eixo até 2024 contra teste 2021–2025). Usar dados reais ou rotular como ilustrativo...
+
+Tabela 12: a regra de desempate escolheu PETR3 (menos líquida) em vez de PETR4, que é o alvo da previsão? É isso mesmo? Não deveria ser a mais líquida?
+
+ELET6 e CPLE6: verificar o tratamento de transição de tickers. Se foram extintos antes de ago/2024, não deveriam estar no painel completo até essa data.
+
+Nota da Tabela 9: "QLIKE defined in Section 4.4" não deveria apontar para a Seção 2.4.2 (Eq. 8)? Confere!
+
+Confere isso:  [16] tem autor malformado ("R. P. N. . V. F. Contributors"). Usar "Souza, A. V. S. et al." e um DOI
+[17] (Bouchaud & Potters) está sem ano, cidade e edição.
+[55] (Zhang & Broadstock, IRFA 87, 102604) não consegui confirmar, está estranho
+A afirmação da Seção 3.3 de "limited integration of spectral and topological comparisons" precisa ser suavizada.
+
+"Display convention: The global numerical-precision convention in Section 4.4 applies" aparece sob a Fig. 2 e as Tabelas 3–10 e 16, mas a Seção 4.4 não define nenhuma convenção de precisão. Definir uma vez (início da Seção 5) e remover as ~10 notas repetidas.
+
+Seção 2 vs 4: são parcialmente duplicadas e a Seção 4 vive remetendo à 2. A distância de Mantegna só é definida na 4.3.1, embora a 2.3 a use. A Seção 2.4 tem explicações didáticas ("a low-volatility period is relatively calm…") e já cita PETR4/VALE3/BBDC4, o que pertence à Seção 4.4. Considerar fundir as duas.
+
+"group mode", "Group/Sector Mode", "Group_Mode" (com underscore nas Figs. 9–10) e "candidate group-level component" são usados como sinônimos. Uniformizar, assim como "numerical-precision" vs "numerical-display". A legenda da Fig. 7 tem "component RMT components"
+
+Reprodutibilidade: a extração local de 1998–2025 não é redistribuída, e o BovDBv2 público termina em 2024 enquanto a análise vai até dez/2025. Isso enfraquece o "reproducible framework". Talavez liberar ao menos o painel de retornos processado (58 × T) ou as matrizes de correlação....
+

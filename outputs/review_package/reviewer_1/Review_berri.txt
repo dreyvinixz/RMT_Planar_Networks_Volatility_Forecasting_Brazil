@@ -1,0 +1,9 @@
+Não entendi muito a utilidade desta imagem. Pra mim ela está muito grande (larga) para pouca informação. Se for possível deixe esses traços horizontais menores... vai ficar mais compreensível e perto da ação.
+imagem falada: Figure10:Group-modedendrogramobtainedfromMantegnadistancesandaveragelinkage.Thetreesummarizesthe
+dependencygeometryremainingafterremovalofthedominantmarketmode;labelcolorsindicatetheinitialmacro
+sectorclassificationforcomparison.
+
+Você cita essas imagens no texto? Só mantem aqui o que você citar e explicar a relevância na parte principal do texto.
+ele fala de : Figure18:Fulldendrogramcomparisonfororiginal,filteredandgroup-modematricesusingMantegnadistancesand
+averagelinkage.Themaintextpresentsthegroup-modetreeonly,togetherwiththecopheneticsummary.
+

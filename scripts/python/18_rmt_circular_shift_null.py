@@ -10,7 +10,6 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 TABLES_DIR = PROJECT_ROOT / "outputs" / "tables"
 N_SURROGATES = 1000
 RANDOM_SEED = 42
-N_RANKS = 5
 
 
 def main() -> None:
@@ -20,7 +19,8 @@ def main() -> None:
     empirical = np.linalg.eigvalsh(np.corrcoef(returns, rowvar=False))[::-1]
 
     rng = np.random.default_rng(RANDOM_SEED)
-    surrogate_eigenvalues = np.empty((N_SURROGATES, N_RANKS))
+    n_ranks = n_assets
+    surrogate_eigenvalues = np.empty((N_SURROGATES, n_ranks))
     for replicate in range(N_SURROGATES):
         shifts = rng.integers(0, n_obs, size=n_assets)
         shifted = np.column_stack(
@@ -28,10 +28,10 @@ def main() -> None:
         )
         surrogate_eigenvalues[replicate] = np.linalg.eigvalsh(
             np.corrcoef(shifted, rowvar=False)
-        )[::-1][:N_RANKS]
+        )[::-1][:n_ranks]
 
     rows = []
-    for rank in range(N_RANKS):
+    for rank in range(n_ranks):
         exceedances = int((surrogate_eigenvalues[:, rank] >= empirical[rank]).sum())
         rows.append(
             {
